@@ -1,0 +1,149 @@
+<md-content layout="row" layout-align="center center">
+  <md-subheader>
+    <h2>Current Status Overview:</h2>
+  </md-subheader>
+</md-content>
+
+<md-content layout="row" layout-align="start" class="md-padding md-primary">
+  <div class="report-block md-primary">
+    <div class="report-content">
+      <h4 class="report-header">
+        Daily Inspections
+      </h4>
+
+      <div class="report-body">
+        <chart data="basic" index="0"></chart>
+      </div>
+    </div>
+  </div>
+  <div class="report-block md-primary">
+    <div class="report-content">
+      <h4 class="report-header">
+        Weekly Inspections
+      </h4>
+
+      <div class="report-body">
+        <chart data="expert" index="1"></chart>
+      </div>
+    </div>
+  </div>
+  <!--<table>-->
+  <!--<thead>-->
+  <!--<tr class="table-header">-->
+  <!--<th class="no-header"></th>-->
+  <!--<th>Ladder Assist</th>-->
+  <!--<th>Basic</th>-->
+  <!--<th>Expert</th>-->
+  <!--<th>Total Inspections</th>-->
+  <!--<th>New Orders</th>-->
+  <!--<th>Cancelled</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr>-->
+  <!--<th>Today</th>-->
+  <!--<td>3</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+  <!--<th>Tomorrow</th>-->
+  <!--<td>test</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+  <!--</table>-->
+</md-content>
+
+<md-content layout="row" layout-align="center center">
+  <md-subheader>
+    <h2>Overview of Current Inspections:</h2>
+  </md-subheader>
+</md-content>
+
+<md-content layout="row" layout-align="start" class="md-padding">
+  <table>
+    <thead>
+    <tr class="table-header">
+      <th class="no-header"></th>
+      <th>Ladder Assist</th>
+      <th>Basic</th>
+      <th>Expert</th>
+      <th>Total Inspections</th>
+      <th>New Orders</th>
+      <th>Cancelled</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th>Today</th>
+      <td>n/a</td>
+      <td>{{counts.basic.today}}</td>
+      <td>{{counts.expert.today}}</td>
+      <td>{{counts.total.today}}</td>
+      <td>{{counts.new.today}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>Tomorrow</th>
+      <td>n/a</td>
+      <td>{{counts.basic.tomorrow}}</td>
+      <td>{{counts.expert.tomorrow}}</td>
+      <td>{{counts.total.tomorrow}}</td>
+      <td>{{counts.new.tomorrow}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>Yesterday</th>
+      <td>n/a</td>
+      <td>{{counts.basic.yesterday}}</td>
+      <td>{{counts.expert.yesterday}}</td>
+      <td>{{counts.total.yesterday}}</td>
+      <td>{{counts.new.yesterday}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>This Week</th>
+      <td>n/a</td>
+      <td>{{counts.basic.thisWeek}}</td>
+      <td>{{counts.expert.thisWeek}}</td>
+      <td>{{counts.total.thisWeek}}</td>
+      <td>{{counts.new.thisWeek}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>Next Week</th>
+      <td>n/a</td>
+      <td>{{counts.basic.nextWeek}}</td>
+      <td>{{counts.expert.nextWeek}}</td>
+      <td>{{counts.total.nextWeek}}</td>
+      <td>{{counts.new.nextWeek}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>Last Week</th>
+      <td>n/a</td>
+      <td>{{counts.basic.lastWeek}}</td>
+      <td>{{counts.expert.lastWeek}}</td>
+      <td>{{counts.total.lastWeek}}</td>
+      <td>{{counts.new.lastWeek}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>This Year</th>
+      <td>n/a</td>
+      <td>{{counts.basic.year}}</td>
+      <td>{{counts.expert.year}}</td>
+      <td>{{counts.total.year}}</td>
+      <td>{{counts.new.year}}</td>
+      <td>n/a</td>
+    </tr>
+    <tr>
+      <th>Last Year</th>
+      <td>n/a</td>
+      <td>{{counts.basic.lastYear}}</td>
+      <td>{{counts.expert.lastYear}}</td>
+      <td>{{counts.total.lastYear}}</td>
+      <td>{{counts.new.lastYear}}</td>
+      <td>n/a</td>
+    </tr>
+    </tbody>
+  </table>
+</md-content>
