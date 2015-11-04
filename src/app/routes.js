@@ -18,4 +18,19 @@
         })
       }]
   )
+
+  app.config(
+    ["$httpProvider",
+    function ($httpProvider) {
+        $httpProvider.interceptors.push(["$q",
+        function($q) {
+          return {
+            request: function (request) {
+              console.log(request);
+              return request || $q.when(request);
+            }
+          }
+        }])
+    }]
+  )
 })()

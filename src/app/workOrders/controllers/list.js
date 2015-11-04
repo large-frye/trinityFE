@@ -19,8 +19,7 @@
 
         workOrderService.counts().$promise.then(
           function (resp) {
-            $scope.basic = resp.basic;
-            $scope.expert = resp.expert;
+            $scope.counts = resp;
           }, function (error) {
             window.console && console.log(error);
           });
