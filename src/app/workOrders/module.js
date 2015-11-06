@@ -7,5 +7,7 @@
     'trinity.workOrders.editCtrl',
     'trinity.workOrders.services',
     'trinity.workOrders.directives',
+      "trinity.workOrders.dateCtrl",
+      "trinity.workOrders.filters"
   ])
 })();

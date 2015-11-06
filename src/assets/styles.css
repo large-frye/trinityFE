@@ -67,3 +67,7 @@ td:hover {
 .report-block .report-body {
   padding: .5em;
 }
+
+.red {
+  background-color: red;
+}

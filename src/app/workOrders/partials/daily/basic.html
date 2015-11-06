@@ -1,0 +1,27 @@
+<md-content layout="row" class="md-padding">
+
+    <p>Workorders / Daily / {{type | upperCaseChar:0}} / {{daily.name | upperCaseChar:0}}</p>
+
+</md-content>
+
+<md-content layout="table" class="md-padding md-contact-chips">
+
+    <table>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Inspection Date</th>
+        <th>Status</th>
+    </tr>
+    <tr ng-repeat="w in workorders">
+        {{w}}
+        <td>{{w.workorder.id}}</td>
+        <td ng-class="{red: w.workorder.user.firstName == ' '}">{{w.workorder.user.firstName}}</td>
+        <td ng-class="{red: w.workorder.user.lastName == ' '}">{{w.workorder.user.lastName}}</td>
+        <td>{{w.workorder.inspection.dateOfInspection | date: 'MMM d, yyyy'}} {{w.workorder.inspection.timeOfInspection._ | date: 'hh:mm:ss a'}}</td>
+        <td>{{statuses[w.workorder.details.status]}}</td>
+    </tr>
+    </table>
+
+</md-content>
