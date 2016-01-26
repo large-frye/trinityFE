@@ -12,7 +12,7 @@ var app = express();
 app.set('port', process.env.PORT || 8000);
 app.use(bodyParser());
 app.use(methodOverride());
-app.use('/', express.static(__dirname + '/src'));
+app.use('/', express.static(__dirname + '/'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
 
 console.log(__dirname + 'bower_components');

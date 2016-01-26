@@ -44,6 +44,7 @@
         $scope.$on('$routeChangeSuccess', function (event, current, previous) {
           setTimeout(function () {
             $scope.sidebar = trinityFactory.sidebar;
+            $scope.$apply();
           }, 1);
         });
       }]);

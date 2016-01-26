@@ -4,7 +4,7 @@
     </md-subheader>
 </md-content>
 
-<md-content layout="row" layout-align="start" class="md-padding md-primary">
+<div class="row">
     <div class="report-block md-primary">
         <div class="report-content">
             <h4 class="report-header">
@@ -50,16 +50,17 @@
     <!--</tr>-->
     <!--</tbody>-->
     <!--</table>-->
-</md-content>
+</div>
 
-<md-content layout="row" layout-align="center center">
-    <md-subheader>
+<div class="row">
+    <div class="col-sm-12">
         <h2>Overview of Current Inspections:</h2>
-    </md-subheader>
-</md-content>
+    </div>
+</div>
 
-<md-content layout="row" layout-align="start" class="md-padding">
-    <table>
+
+<div layout="row" layout-align="start" class="md-padding">
+    <table class="table">
         <thead>
         <tr class="table-header">
             <th class="no-header"></th>
@@ -76,22 +77,22 @@
             <th>Today</th>
             <td>n/a</td>
             <td>
-                <a href="/#/admin/workorders/daily/basic/{{counts.daily.today.basic}}/0" target="_blank">
+                <a href="/#/admin/workorders/daily/basic/{{counts.daily.today.basic}}/0">
                     {{counts.daily.today.basic}}
                 </a>
             </td>
             <td>
-                <a href="/#/admin/workorders/daily/expert/{{counts.daily.today.expert}}/0" target="_blank">
+                <a href="/#/admin/workorders/daily/expert/{{counts.daily.today.expert}}/0">
                     {{counts.daily.today.expert}}
                 </a>
             </td>
             <td>
-                <a href="/#/admin/workorders/daily/total/{{counts.daily.today.total}}/0" target="_blank">
+                <a href="/#/admin/workorders/daily/total/{{counts.daily.today.total}}/0">
                     {{counts.daily.today.total}}
                 </a>
             </td>
             <td>
-                <a href="/#/admin/workorders/daily/new/{{counts.daily.today.new}}/0" target="_blank">
+                <a href="/#/admin/workorders/daily/new/{{counts.daily.today.new}}/0">
                     {{counts.daily.today.new}}
                 </a>
             </td>
@@ -189,4 +190,4 @@
         </tr>
         </tbody>
     </table>
-</md-content>
+</div>

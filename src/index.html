@@ -1,110 +1,121 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>trinity</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width">
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <meta charset="utf-8">
+    <title>trinity</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-  <!-- bower:css -->
-  <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-  <!-- endbower -->
-  <!-- endbuild -->
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
 
-  <!-- build:css({.tmp/serve,src}) styles/app.css -->
-  <!-- inject:css -->
-  <!-- css files will be automatically insert here -->
-  <!-- endinject -->
-  <!-- endbuild -->
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link href="assets/styles.css" type="text/css" rel="stylesheet"/>
-  <link href="bower/angular-material/angular-material.css" type="text/css" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link href="assets/styles.css" type="text/css" rel="stylesheet"/>
+    <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">-->
 </head>
 <body layout="column">
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
-  your browser</a> to improve your experience.</p>
+    your browser</a> to improve your experience.</p>
 <![endif]-->
 
 <div layout="column" flex>
-  <div flex id="content">
-    <div ng-controller="toolBarCtrl">
+    <div flex id="content">
+        <div ng-controller="toolBarCtrl">
 
-      <!-- Toolbar -->
+            <!-- Toolbar -->
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a href="../" class="navbar-brand">Trinity Inspections Admin</a>
+                        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar-main">
+                        <ul class="nav navbar-nav">
+                            <li ng-repeat="item in items" ng-class="{'dropdown': item.children}">
+                                <a ng-if="item.children" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{item.name}}<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="child in item.children">
+                                        {{child.name}}
+                                    </li>
+                                </ul>
 
-      <md-toolbar layout="row">
-        <div class="md-toolbar-tools">
-          <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
-            <md-icon aria-label="Menu"
-                     md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
-          </md-button>
-          <ul layout="row" class="nav" flex>
-            <li ng-repeat="item in items">
-              <md-menu ng-if="item.children">
-                <md-button ng-click="$mdOpenMenu($event)" aria-label="Open some menu">
-                  {{item.name}}
-                </md-button>
-                <md-menu-content>
-                  <md-menu-item ng-repeat="child in item.children">
-                    <md-button ng-click="doSomething()" aria-label="Do something">
-                      <a href="{{link}}" target="_blank">{{child.name}}</a>
-                    </md-button>
-                  </md-menu-item>
-                </md-menu-content>
-              </md-menu>
-              <div ng-if="!item.children" class="md-button">
-                {{item.name}}
-              </div>
-            </li>
-          </ul>
+                                <a ng-if="!item.children" href="{{link}}">{{item.name}}</a>
+                            </li>
+                            <!--<li class="dropdown">-->
+                                <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span-->
+                                        <!--class="caret"></span></a>-->
+                                <!--<ul class="dropdown-menu" aria-labelledby="themes">-->
+                                    <!--<li><a href="../default/">Default</a></li>-->
+                                    <!--<li class="divider"></li>-->
+                                    <!--<li><a href="../cerulean/">Cerulean</a></li>-->
+                                    <!--<li><a href="../cosmo/">Cosmo</a></li>-->
+                                    <!--<li><a href="../cyborg/">Cyborg</a></li>-->
+                                    <!--<li><a href="../darkly/">Darkly</a></li>-->
+                                    <!--<li><a href="../flatly/">Flatly</a></li>-->
+                                    <!--<li><a href="../journal/">Journal</a></li>-->
+                                    <!--<li><a href="../lumen/">Lumen</a></li>-->
+                                    <!--<li><a href="../paper/">Paper</a></li>-->
+                                    <!--<li><a href="../readable/">Readable</a></li>-->
+                                    <!--<li><a href="../sandstone/">Sandstone</a></li>-->
+                                    <!--<li><a href="../simplex/">Simplex</a></li>-->
+                                    <!--<li><a href="../slate/">Slate</a></li>-->
+                                    <!--<li><a href="../spacelab/">Spacelab</a></li>-->
+                                    <!--<li><a href="../superhero/">Superhero</a></li>-->
+                                    <!--<li><a href="../united/">United</a></li>-->
+                                    <!--<li><a href="../yeti/">Yeti</a></li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                        </ul>
 
-          <ul layout="row" layout-align="end center" class="nav">
-            <li class="md-button" aria-label="tasks">
-              <md-tooltip>
-                Tasks
-              </md-tooltip>
-              <i class="fa fa-tasks"></i>
-            </li>
-            <li>
-              <md-input-container flex layout-align="center" class="md-accent">
-                <input type="text" ng-model="searchWorkorder" placeholder="Search Work Orders">
-              </md-input-container>
-            </li>
-          </ul>
+                        <!--<ul class="nav navbar-nav navbar-right">-->
+                            <!--<li><a href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a></li>-->
+                            <!--<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>-->
+                        <!--</ul>-->
+
+                    </div>
+                </div>
+            </div>
         </div>
-      </md-toolbar>
-      <!--<md-toolbar layout="row">-->
-      <!--<div class="md-toolbar-tools">-->
 
+        <div class="container-fluid">
+            <div ng-view></div>
+        </div>
 
-      <!--</div>-->
+        <!--<div layout="row" flex>-->
+            <!--<div layout="row" ng-controller="sideBarCtrl">-->
+                <!--<md-sidenav ng-show="sidebar" layout="column" class="md-sidenav-left md-whiteframe-z2"-->
+                            <!--md-component-id="left"-->
+                            <!--md-is-locked-open="$mdMedia('gt-sm')">-->
 
-      <!--</md-toolbar>-->
+                <!--</md-sidenav>-->
+            <!--</div>-->
+            <!---->
+        <!--</div>-->
     </div>
-
-    <div layout="row" flex>
-      <div layout="row" ng-controller="sideBarCtrl">
-        <md-sidenav ng-if="sidebar" layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
-                    md-is-locked-open="$mdMedia('gt-sm')">
-
-        </md-sidenav>
-      </div>
-      <div layout="column" flex>
-        <div ng-view></div>
-      </div>
-    </div>
-  </div>
 </div>
 
 <script type="application/javascript" src="bower/jquery/dist/jquery.js"></script>
 <script type="application/javascript" src="bower/angular/angular.min.js"></script>
 <script type="application/javascript" src="bower/angular-route/angular-route.min.js"></script>
 <script type="application/javascript" src="bower/angular-resource/angular-resource.min.js"></script>
-<script type="application/javascript" src="bower/angular-material/angular-material.min.js"></script>
 <script type="application/javascript" src="bower/angular-animate/angular-animate.min.js"></script>
 <script type="application/javascript" src="bower/angular-aria/angular-aria.min.js"></script>
 

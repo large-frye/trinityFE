@@ -1,8 +1,9 @@
 (function() {
     angular.module("trinity.workOrders.dateCtrl", [])
 
-        .controller("dateCtrl", ["$scope", "workOrderService", "daily", "$route",
-            function($scope, workOrderService, daily, $route) {
+        .controller("dateCtrl", ["$scope", "workOrderService", "daily", "$route", "trinityFactory",
+            function($scope, workOrderService, daily, $route, trinityFactory) {
+
                 $scope.workorders = daily;
 
                 // Current daily type (0 = today, 1 = tomorrow, -1 = yesterday)
