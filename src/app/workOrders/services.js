@@ -3,19 +3,23 @@
     angular.module('trinity.workOrders.services', ['ngResource'])
         .service('workOrderService', ['$resource',
             function ($resource) {
-                return $resource('http://localhost:9000/workorders/:action/:param1/:param2/:param3/:param4/:param5', {
+                return $resource('http://api.trinity.dev/account/workorders/:action/:param1/:param2/:param3/:param4/:param5', {
                     "action": "@action"
                 }, {
-                    "all": {
+                    "list": {
                         "method": "GET",
                         "headers": {
                             "Accept": "application/json"
+                        }
+                    },
+                    listByTime: {
+                        method: 'GET',
+                        headers: {
+                            'Accept': 'application/json'
                         },
-                        "params": {
-                            "action": "all"
-                        },
-                        "withCredentials": true,
-                        "isArray": true
+                        params: {
+                            action: 'time'
+                        }
                     },
                     "get": {
                         "method": "GET",
@@ -27,15 +31,14 @@
                         },
                         "withCredentials": true
                     },
-                    "counts": {
+                    counts: {
                         "method": "GET",
                         "headers": {
                             "Accept": "application/json"
                         },
                         "params": {
-                            "action": "counts"
-                        },
-                        "withCredentials": true
+                            "action": 'counts'
+                        }
                     },
                     "daily": {
                         "method": "GET",

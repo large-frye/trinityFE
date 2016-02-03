@@ -1,0 +1,43 @@
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Data Table With Full Features</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th><!-- Empty header --></th>
+                    <th ng-repeat="type in timeTypes">{{type.name}}</th>
+                </tr>
+                <tr>
+                    <th>Today</th>
+                    <td>-1</td>
+                    <td>{{basic.today}}</td>
+                    <td>{{expert.today}}</td>
+                    <td>{{basic.today + expert.today}}</td>
+                </tr>
+                <tr>
+                    <th>Last Week</th>
+                    <td>-1</td>
+                    <td>{{basic.last_week}}</td>
+                    <td>{{expert.last_week}}</td>
+                    <td>{{basic.last_week + expert.last_week}}</td>
+                </tr>
+                <tr>
+                    <th>This Year</th>
+                    <td>-1</td>
+                    <td>{{basic.this_year}}</td>
+                    <td>{{expert.this_year}}</td>
+                    <td>{{basic.this_year + expert.this_year}}</td>
+                </tr>
+                <tr>
+                    <th>Last Year</th>
+                    <td>-1</td>
+                    <td>{{basic.last_year}}</td>
+                    <td>{{expert.last_year}}</td>
+                    <td>{{basic.last_year + expert.last_year}}</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

@@ -1,193 +1,36 @@
-<md-content layout="row" layout-align="center center">
-    <md-subheader>
-        <h2>Current Status Overview:</h2>
-    </md-subheader>
-</md-content>
-
-<div class="row">
-    <div class="report-block md-primary">
-        <div class="report-content">
-            <h4 class="report-header">
-                Daily Inspections
-            </h4>
-
-            <div class="report-body">
-                <chart data="basic" index="0"></chart>
-            </div>
-        </div>
-    </div>
-    <div class="report-block md-primary">
-        <div class="report-content">
-            <h4 class="report-header">
-                Weekly Inspections
-            </h4>
-
-            <div class="report-body">
-                <chart data="expert" index="1"></chart>
-            </div>
-        </div>
-    </div>
-    <!--<table>-->
-    <!--<thead>-->
-    <!--<tr class="table-header">-->
-    <!--<th class="no-header"></th>-->
-    <!--<th>Ladder Assist</th>-->
-    <!--<th>Basic</th>-->
-    <!--<th>Expert</th>-->
-    <!--<th>Total Inspections</th>-->
-    <!--<th>New Orders</th>-->
-    <!--<th>Cancelled</th>-->
-    <!--</tr>-->
-    <!--</thead>-->
-    <!--<tbody>-->
-    <!--<tr>-->
-    <!--<th>Today</th>-->
-    <!--<td>3</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-    <!--<th>Tomorrow</th>-->
-    <!--<td>test</td>-->
-    <!--</tr>-->
-    <!--</tbody>-->
-    <!--</table>-->
-</div>
-
-<div class="row">
-    <div class="col-sm-12">
-        <h2>Overview of Current Inspections:</h2>
-    </div>
-</div>
-
-
-<div layout="row" layout-align="start" class="md-padding">
-    <table class="table">
-        <thead>
-        <tr class="table-header">
-            <th class="no-header"></th>
-            <th>Ladder Assist</th>
-            <th>Basic</th>
-            <th>Expert</th>
-            <th>Total Inspections</th>
-            <th>New Orders</th>
-            <th>Cancelled</th>
-        </tr>
-        </thead>
-        <tbody>
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Data Table With Full Features</h3>
+  </div><!-- /.box-header -->
+  <div class="box-body">
+      {{counts}}
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+          <tr>
+              <th ng-repeat="type in timeTypes">{{type.name}}</th>
+          </tr>
         <tr>
             <th>Today</th>
-            <td>n/a</td>
-            <td>
-                <a href="/#/admin/workorders/daily/basic/{{counts.daily.today.basic}}/0">
-                    {{counts.daily.today.basic}}
-                </a>
-            </td>
-            <td>
-                <a href="/#/admin/workorders/daily/expert/{{counts.daily.today.expert}}/0">
-                    {{counts.daily.today.expert}}
-                </a>
-            </td>
-            <td>
-                <a href="/#/admin/workorders/daily/total/{{counts.daily.today.total}}/0">
-                    {{counts.daily.today.total}}
-                </a>
-            </td>
-            <td>
-                <a href="/#/admin/workorders/daily/new/{{counts.daily.today.new}}/0">
-                    {{counts.daily.today.new}}
-                </a>
-            </td>
-            <td>n/a</td>
-        </tr>
-        <tr>
-            <th>Tomorrow</th>
-            <td>n/a</td>
-            <td>{{counts.daily.tomorrow.basic}}</td>
-            <td>{{counts.daily.tomorrow.expert}}</td>
-            <td>{{counts.daily.tomorrow.total}}</td>
-            <td>{{counts.daily.tomorrow.new}}</td>
-            <td>n/a</td>
+            <td>5</td>
+            <td>{{counts[0].basic_today}}</td>
         </tr>
         <tr>
             <th>Yesterday</th>
-            <td>n/a</td>
-            <td>{{counts.daily.yesterday.basic}}</td>
-            <td>{{counts.daily.yesterday.expert}}</td>
-            <td>{{counts.daily.yesterday.total}}</td>
-            <td>{{counts.daily.yesterday.new}}</td>
-            <td>n/a</td>
+            <td>5</td>
+            <td>{{counts[0].basic_yesterday}}</td>
         </tr>
         <tr>
-            <th>This Week</th>
-            <td>n/a</td>
-            <td>{{counts.weekly.week.basic}}</td>
-            <td>{{counts.weekly.week.expert}}</td>
-            <td>{{counts.weekly.week.total}}</td>
-            <td>{{counts.weekly.week.new}}</td>
-            <td>n/a</td>
+            <th>Tomorrow</th>
+            <td>-</td>
+            <td>
+                <a target="_blank" ng-href="/#/account/workorders/yesterday">
+                    {{counts[0].basic_tomorrow}}
+                </a>
+            </td>
         </tr>
         <tr>
-            <th>Next Week</th>
-            <td>n/a</td>
-            <td>{{counts.weekly.next.basic}}</td>
-            <td>{{counts.weekly.next.expert}}</td>
-            <td>{{counts.weekly.next.total}}</td>
-            <td>{{counts.weekly.next.new}}</td>
-            <td>n/a</td>
+            <th>Today</th>
         </tr>
-        <tr>
-            <th>Last Week</th>
-            <td>n/a</td>
-            <td>{{counts.weekly.last.basic}}</td>
-            <td>{{counts.weekly.last.expert}}</td>
-            <td>{{counts.weekly.last.total}}</td>
-            <td>{{counts.weekly.last.new}}</td>
-            <td>n/a</td>
-        </tr>
-        <tr>
-            <th>This Month</th>
-            <td>n/a</td>
-            <td>{{counts.monthly.month.basic}}</td>
-            <td>{{counts.monthly.month.expert}}</td>
-            <td>{{counts.monthly.month.total}}</td>
-            <td>{{counts.monthly.month.new}}</td>
-            <td>n/a</td>
-        </tr>
-        <tr>
-            <th>Next Month</th>
-            <td>n/a</td>
-            <td>{{counts.monthly.next.basic}}</td>
-            <td>{{counts.monthly.next.expert}}</td>
-            <td>{{counts.monthly.next.total}}</td>
-            <td>{{counts.monthly.next.new}}</td>
-            <td>n/a</td>
-        </tr>
-        <tr>
-            <th>Last Month</th>
-            <td>n/a</td>
-            <td>{{counts.monthly.last.basic}}</td>
-            <td>{{counts.monthly.last.expert}}</td>
-            <td>{{counts.monthly.last.total}}</td>
-            <td>{{counts.monthly.last.new}}</td>
-            <td>n/a</td>
-        </tr>
-        <tr>
-            <th>This Year</th>
-            <td>n/a</td>
-            <td>{{counts.yearly.year.basic}}</td>
-            <td>{{counts.yearly.year.expert}}</td>
-            <td>{{counts.yearly.year.total}}</td>
-            <td>{{counts.yearly.year.new}}</td>
-            <td>n/a</td>
-        </tr>
-        <tr>
-            <th>Last Year</th>
-            <td>n/a</td>
-            <td>{{counts.yearly.last.basic}}</td>
-            <td>{{counts.yearly.last.expert}}</td>
-            <td>{{counts.yearly.last.total}}</td>
-            <td>{{counts.yearly.last.new}}</td>
-            <td>n/a</td>
-        </tr>
-        </tbody>
-    </table>
+      </thead>
+  </div>
 </div>

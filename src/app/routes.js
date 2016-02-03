@@ -49,6 +49,16 @@
                     controller: 'homeCtrl'
                 })
 
+                .when('/account', {
+                    templateUrl: '/src/app/workOrders/partials/counts.html',
+                    controller: 'countsCtrl'
+                })
+
+                .when('/account/workorders/:time', {
+                    templateUrl: '/src/app/workOrders/partials/list.html',
+                    controller: 'listCtrl'
+                })
+
                     .when('/sign-in', {
                         templateUrl: '/src/app/account/partials/login.html',
                         controller: 'loginCtrl'
