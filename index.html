@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Trinity - Admin</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -12,22 +12,33 @@
     <link href="src/assets/styles.css" type="text/css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
     <link rel="stylesheet" href="bower_components/AdminLTE-2.3.0/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="bower_components/AdminLTE-2.3.0/dist/css/skins/skin-red-light.min.css" />
     <link rel="stylesheet" href="bower_components/iCheck/skins/flat/flat.css" />
 </head>
-<body>
+<body class="skin-red-light sidebar-mini">
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
+    <div class="wrapper">
+        <div ng-controller="userCtrl">
+            <navbar user="user"></navbar>
+        </div>
 
+        <div ng-controller="sidebarCtrl">
+            here
+            <sidebar options="options"></sidebar>
+        </div>
 
-<div class="container-fluid">
-    <div class="container">
-        <div ng-view></div>
+        <div class="content-wrapper" style="min-height:1177px">
+            <div class="padded">
+                <div ng-view></div>
+            </div>
+        </div>
     </div>
-</div>
 
 <script type="application/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="application/javascript" src="bower_components/AdminLTE-2.3.0/bootstrap/js/bootstrap.min.js"></script>
 <script type="application/javascript" src="bower_components/angular/angular.min.js"></script>
 <script type="application/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
 <script type="application/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
@@ -38,6 +49,7 @@
 <!-- Shared -->
 <script type="text/javascript" src="src/app/shared/controllers.js"></script>
 <script type="text/javascript" src="src/app/shared/services.js"></script>
+<script type="text/javascript" src="src/app/shared/directives.js"></script>
 <script type="text/javascript" src="src/app/shared/app.js"></script>
 
 <!-- WorkOrders Modules -->
@@ -56,11 +68,22 @@
 <script type="text/javascript" src="src/app/account/directives.js"></script>
 <script type="text/javascript" src="src/app/account/di.js"></script>
 
+<!-- Inspections -->
+<script type="text/javascript" src="src/app/inspections/controllers/inspect.js"></script>
+<script type="text/javascript" src="src/app/inspections/module.js"></script>
+
 <!-- Routes Module -->
 <script type="text/javascript" src="src/app/routes.js"></script>
 
 <!-- Main App -->
 <script type="text/javascript" src="src/app/app.js"></script>
+
+<!-- Admin LTE -->
+<script type="application/javascript" src="bower_components/AdminLTE-2.3.0/dist/js/app.min.js"></script>
+
+<!-- Datatables -->
+<script type="application/javascript" src="bower_components/AdminLTE-2.3.0/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="application/javascript" src="bower_components/AdminLTE-2.3.0/plugins/datatables/dataTables.bootstrap.min.js"></script>
 
 </body>
 </html>

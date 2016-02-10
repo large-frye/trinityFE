@@ -1,36 +1,30 @@
-<div class="box">
-  <div class="box-header">
-    <h3 class="box-title">Data Table With Full Features</h3>
-  </div><!-- /.box-header -->
-  <div class="box-body">
-      {{counts}}
-    <table id="example1" class="table table-bordered table-striped">
-      <thead>
-          <tr>
-              <th ng-repeat="type in timeTypes">{{type.name}}</th>
-          </tr>
-        <tr>
-            <th>Today</th>
-            <td>5</td>
-            <td>{{counts[0].basic_today}}</td>
-        </tr>
-        <tr>
-            <th>Yesterday</th>
-            <td>5</td>
-            <td>{{counts[0].basic_yesterday}}</td>
-        </tr>
-        <tr>
-            <th>Tomorrow</th>
-            <td>-</td>
-            <td>
-                <a target="_blank" ng-href="/#/account/workorders/yesterday">
-                    {{counts[0].basic_tomorrow}}
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <th>Today</th>
-        </tr>
-      </thead>
-  </div>
-</div>
+<datatable>
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Workorders : <em>{{type}}</em> : <strong>{{timeUnit}}</strong></h3>
+        </div><!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Policy ID</th>
+                        <th>Insured</th>
+                        <th>Adjuster</th>
+                        <th>Inspector</th>
+                        <th>Date of Inspection</th>
+                        <th>Created Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="order in orders">
+                        <td>{{order.policy_number}}
+                        <td>{{order.first_name}} {{order.last_name}}</td>
+                        <td>{{order.client_name}}</td>
+                        <td>{{order.inspector}}</td>
+                        <td>{{order.date_of_inspection}}</td>
+                        <td>_</td>
+                    </tr>
+            </table>
+        </div>
+    </div>
+</datatable>

@@ -6,7 +6,9 @@
 </head>
 <body>
     <div ng-if="error">
-        <login></login>
+        <div class="alert alert-danger">
+            <p>Error</p>
+        </div>
     </div>
     <div ng-if="!error">
         <!-- User is logged in -->

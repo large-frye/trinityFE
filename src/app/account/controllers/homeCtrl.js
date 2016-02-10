@@ -16,7 +16,9 @@
 
 
                 }, function(err) {
-                    if (err.status === 401) {
+                    var errors = [401, 400];
+                    console.log(err.status);
+                    if (errors.indexOf(err.status) !== -1) {
                         $location.path('/sign-in');
                     }
                 });

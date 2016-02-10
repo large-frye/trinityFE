@@ -2,91 +2,89 @@
  * Created by frye on 9/23/15.
  */
 (function () {
-    var app = angular.module('routes', [])
+    var app = angular.module('routes', []);
 
     app.config(
         ['$routeProvider',
             function ($routeProvider) {
-                var resolver = {
-                    daily: ["$route", "$q", "workOrderService", "trinityFactory", function ($route, $q, workOrderService, trinityFactory) {
-                        var deferred = $q.defer();
-                        workOrderService.daily({
-                            "param1": "day",
-                            "param2": $route.current.params.type,
-                            "param3": $route.current.params.interval,
-                            "param4": "0",
-                            "param5": $route.current.params.id
-                        }, function (data) {
-                            trinityFactory.sidebar = true;
-                            deferred.resolve(data);
-                        }, function (error) {
-                            window.console && console.log(error);
-                            deferred.resolve(error);
-                        });
 
-                        return deferred.promise;
-                    }]
+                var countsResolver = {
+                    counts: ['$q', 'workOrderService', 'UserFactory', '$rootScope', '$location',
+                        function($q, workOrderService, UserFactory, $rootScope, $location) {
+                            var deferred = $q.defer();
+
+                            // Pre-loading direct-chat-contacts-open
+                            $rootScope.$broadcast('PRELOAD_COUNTS');
+
+                            workOrderService.counts(function(data) {
+                                UserFactory.user.set(angular.fromJson(localStorage.getItem('user')));
+                                deferred.resolve(data);
+                            }, function(err) {
+                                UserFactory.user.clear();
+                                $rootScope.$broadcast('LOGOUT');
+                                $location.path('/sign-in');
+                                deferred.resolve(err);
+                            });
+
+                            return deferred.promise;
+                        }
+                    ]
                 };
 
-                $routeProvider.when('/admin/workorders/edit/:id', {
-                    templateUrl: 'app/workOrders/partials/edit.html',
-                    controller: 'editCtrl'
-                })
-
-                .when('/admin/workorders', {
-                    templateUrl: 'app/workOrders/partials/list.html',
-                    controller: 'listCtrl'
-                })
-
-                .when("/admin/workorders/daily/:type/:id/:interval", {
-                    templateUrl: "/app/workOrders/partials/daily/basic.html",
-                    controller: "dateCtrl",
-                    resolve: resolver
-                })
-
-                .when('/', {
-                    templateUrl: '/src/app/account/partials/home.html',
-                    controller: 'homeCtrl'
-                })
+                $routeProvider
 
                 .when('/account', {
                     templateUrl: '/src/app/workOrders/partials/counts.html',
-                    controller: 'countsCtrl'
+                    controller: 'countsCtrl',
+                    resolve: countsResolver
                 })
 
-                .when('/account/workorders/:time', {
+                .when('/account/workorders/:type/:timeUnit', {
                     templateUrl: '/src/app/workOrders/partials/list.html',
                     controller: 'listCtrl'
                 })
 
-                    .when('/sign-in', {
-                        templateUrl: '/src/app/account/partials/login.html',
-                        controller: 'loginCtrl'
-                    })
+                .when('/account/inspections/new', {
+                    templateUrl: '/src/app/inspections/partials/new.html',
+                    controller: 'inspectionsCtrl'
+                })
 
-                    .when('/sign-out', {
-                        templateUrl: '/src/app/account/partials/login.html',
-                        controller: 'loginCtrl'
-                    })
+                .when('/sign-in', {
+                    templateUrl: '/src/app/account/partials/login.html',
+                    controller: 'loginCtrl'
+                })
 
-                .otherwise({ redirectTo: '/' });
+                .when('/sign-out', {
+                    templateUrl: '/src/app/account/partials/login.html',
+                    controller: 'loginCtrl'
+                })
+
+                .otherwise({ redirectTo: '/account' });
             }]
-    )
+    );
 
     app.config(
         ["$httpProvider",
             function ($httpProvider) {
-                $httpProvider.interceptors.push(["$q",
-                    function ($q) {
+                $httpProvider.interceptors.push(['$q', '$location',
+                    function ($q, $location) {
                         return {
                             request: function (request) {
                                 if (localStorage.getItem('token')) {
                                     request.headers.Authorization = 'Bearer ' + localStorage.getItem('token');
                                 }
+
                                 return request;
+                            },
+                            responseError: function (rejection) {
+                                if (rejection.status === 401) {
+                                    $location.path('/sign-in');
+                                }
+
+                                return $q.reject(rejection);
                             }
-                        }
-                    }])
+                        };
+                    }]);
             }]
-    )
+    );
 })();

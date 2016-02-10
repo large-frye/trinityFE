@@ -6,6 +6,7 @@
 
   var app = angular.module('shared', [
     'shared.controllers',
+    'shared.directives',
     'shared.services'
   ])
 })()

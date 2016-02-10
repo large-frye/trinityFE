@@ -51,7 +51,7 @@
                         "withCredentials": true,
                         "isArray": true
                     }
-                })
+                });
             }
-        ])
-})()
+        ]);
+})();

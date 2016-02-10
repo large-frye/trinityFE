@@ -17,9 +17,9 @@
                     },
                     params: {
                         action: 'account',
-                        sub: 'counts'
-                    },
-                    isArray: true
+                        sub: 'workorders',
+                        id: 'counts'
+                    }
                 },
                 'authenticate': {
                     method: 'POST',
@@ -29,7 +29,8 @@
                     params: {
                         action: 'auth',
                         sub: 'login'
-                    }
+                    },
+                    isArray: true
                 },
                 'workOrders': {
                     method: 'GET',

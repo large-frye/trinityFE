@@ -7,7 +7,8 @@
       'shared', // Content in our shared module
       'routes',
       'trinity.workOrders', // Work Orders
-      'trinity.account'
+      'trinity.account',
+      'trinity.inspections'
   ]);
 
   // Bootstrap trinity to document
