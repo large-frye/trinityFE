@@ -1,14 +1,253 @@
+<sidebar options="options" ng-if="options"></sidebar>
+
 <div class="box box-gray">
-	<div class="box-header with-border">New Inspection</div>
+	<h3 class="box-header with-border">Work Order Details</h3>
 
-	<form name="inspection" ng-submit="save" class="row">
-		<div class="form-group">
-			<div class="box-body">
-				<label class="col-sm-2 control-label">Date of Inspection</label>
-				<div class="col-sm-10">
+	<div class="box-body">
 
+		<form name="inspectionForm" ng-submit="save" class="form-horizontal">
+
+			<div class="section">
+				<h4 class="page-header">Client Info</h4>
+			</div>
+
+			<div class="alert alert-info">
+				<i class="fa fa-info-circle"></i> You may select an adjuster to pre-fill if the adjuster exists. If not the adjuster will be created.
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Select adjuster</label>
+				<div class="col-sm-6">
+					<select class="form-control select2" ng-model="inspection.adjuster" ng-options="adjuster.name for adjuster in adjusters"></select>
+				</div>
+				<!-- <div class="col-sm-2">
+					<button type="button" class="btn btn-lg btn-primary" ng-click="showModal()">
+						Create Client
+					</button>
+				</div> -->
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.adjuster.profile.first_name" />
 				</div>
 			</div>
-		</div>
-	</form>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Last Name</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.adjuster.profile.last_name" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Phone 1</label>
+				<div class="col-sm-8">
+					<input type="phone" class="form-control" ng-model="inspection.adjuster.profile.phone" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Phone 2</label>
+				<div class="col-sm-8">
+					<input type="phone" class="form-control" ng-model="inspection.adjuster.profile.phone_2" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Email</label>
+				<div class="col-sm-8">
+					<input type="email" class="form-control" ng-model="inspection.adjuster.email" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Insurance Company</label>
+				<div class="col-sm-8">
+					<input type="phone" class="form-control" ng-model="inspection.adjuster.profile.insurance_company" />
+				</div>
+			</div>
+
+			<!-- Header -->
+			<div class="section margin-top">
+				<h4 class="page-header">Inspection Information</h4>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Insurance #</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.inspection_num" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Date Received</label>
+				<div class="col-sm-8">
+					<input type="date" class="form-control" ng-model="inspection.date_received" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Request Date of Inpsection</label>
+				<div class="col-sm-8">
+					<input type="date" class="form-control" ng-model="inspection.date_of_inspection" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Requested Inspection Type</label>
+				<div class="col-sm-8">
+					<select class="form-control select2" ng-model="inspection.inspection_type" ng-options="type.name for type in inspectionTypes"></select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Auto Upgrade</label>
+				<div class="col-sm-8">
+					<label class="radio-inline">
+						<input type="radio" ng-model="inspection.auto_upgrade" ng-value="true" />
+						Yes
+					</label>
+					<label class="radio-inline">
+						<input type="radio" ng-model="inspection.auto_upgrade" ng-value="false" />
+						No
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Type of Damage</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.damage_type" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Date of Loss</label>
+				<div class="col-sm-8">
+					<input type="date" class="form-control" ng-model="inspection.date_of_loss" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Does it have a tarp?</label>
+				<div class="col-sm-8">
+					<label class="radio-inline">
+						<input type="radio" ng-model="inspection.has_tarp" ng-value="true" />
+						Yes
+					</label>
+					<label class="radio-inline">
+						<input type="radio" ng-model="inspection.has_tarp" ng-value="false" />
+						No
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Estimate/Scope Requested</label>
+				<div class="col-sm-8">
+					<label class="radio-inline">
+						<input type="radio" ng-model="inspection.estimate_requested" ng-value="true" />
+						Yes
+					</label>
+					<label class="radio-inline">
+						<input type="radio" ng-model="inspection.estimate_requested" ng-value="false" />
+						No
+					</label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Special Instruction by Adjuster</label>
+				<div class="col-sm-8">
+					<textarea class="form-control" ng-model="inspection.special_instructions_adjuster"></textarea>
+				</div>
+			</div>
+
+			<!-- Header -->
+			<div class="section margin-top">
+				<h4 class="page-header">Property Information</h4>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Claim #</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.claim_num" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.first_name" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Last Name</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.last_name" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Street Address</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.address" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">City</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.city" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">State</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.state" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Zip Code</label>
+				<div class="col-sm-8">
+					<input type="number" class="form-control" ng-model="inspection.zip_code" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Phone 1</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" ng-model="inspection.phone_1" data-inputmask="mask": "(999) 999-9999"" data-mask/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Phone 2</label>
+				<div class="col-sm-8">
+					<input type="phone" class="form-control" ng-model="inspection.phone_2" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Phone 3</label>
+				<div class="col-sm-8">
+					<input type="phone" class="form-control" ng-model="inspection.phone_3" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Special Instruction by Insured</label>
+				<div class="col-sm-8">
+					<textarea class="form-control" ng-model="inspection.special_instructions_insured"></textarea>
+				</div>
+			</div>
+
+			<hr/>
+
+			<button type="submit" class="btn btn-success" ng-click="save()">Save</button>
+
+		</form>
+	</div>
 </div>

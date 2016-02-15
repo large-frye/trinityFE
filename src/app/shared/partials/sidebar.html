@@ -20,7 +20,8 @@
             <!-- <li class="header">User: Admin</li> -->
             <!-- Optionally, you can add icons to the links -->
             <li ng-repeat="option in options"
-                ng-class="{'active': activeLink(option.link) }">
+                ng-class="{'active': activeLink(option.link), 'li-disabled': option.disabled }"
+                ng-click="handleClick(option.disabled, $event)">
                 <a href="{{option.link}}">
                     <i class="fa {{option.icon}}"></i>
                     <span>{{option.parent}}</span>

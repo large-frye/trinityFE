@@ -6,8 +6,7 @@
     'use strict';
 
     angular.module('shared.services', ['ngResource'])
-
-            .service('UserFactory', [function () {
+        .service('UserFactory', [function () {
             return {
                 user: {
                     set: function (user) {
@@ -21,8 +20,21 @@
                     }
                 }
             };
-        }
-            ]
-            );
+        }])
+
+        .service('location', ['$location', '$route', '$rootScope',
+            function($location, $route, $rootScope) {
+            $location.skipReload = function() {
+                var lastRoute = $route.current();
+                var un = $rootScope.on('$locationChangeSuccess', function() {
+                    $route.current = lastRoute;
+                    un();
+                });
+                return $location;
+            };
+            return $location;
+        }])
+
+
 
 }(angular));

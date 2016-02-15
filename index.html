@@ -15,19 +15,14 @@
     <link rel="stylesheet" href="bower_components/AdminLTE-2.3.0/dist/css/skins/skin-red-light.min.css" />
     <link rel="stylesheet" href="bower_components/iCheck/skins/flat/flat.css" />
 </head>
-<body class="skin-red-light sidebar-mini">
+<body class="skin-red-light layout-top-nav">
 <!--[if lt IE 10]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
     <div class="wrapper">
-        <div ng-controller="userCtrl">
-            <navbar user="user"></navbar>
-        </div>
-
-        <div ng-controller="sidebarCtrl">
-            here
-            <sidebar options="options"></sidebar>
+        <div ng-controller="navCtrl">
+            <navbar user="user" options="options"></navbar>
         </div>
 
         <div class="content-wrapper" style="min-height:1177px">
@@ -43,8 +38,11 @@
 <script type="application/javascript" src="bower_components/angular-route/angular-route.min.js"></script>
 <script type="application/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
 <script type="application/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script type="application/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script type="application/javascript" src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script type="application/javascript" src="bower_components/iCheck/icheck.min.js"></script>
+<script type="application/javascript" src="bower_components/angular-strap/dist/angular-strap.min.js"></script>
+<script type="application/javascript" src="bower_components/angular-strap/dist/angular-strap.tpl.min.js"></script>
 
 <!-- Shared -->
 <script type="text/javascript" src="src/app/shared/controllers.js"></script>
@@ -70,7 +68,16 @@
 
 <!-- Inspections -->
 <script type="text/javascript" src="src/app/inspections/controllers/inspect.js"></script>
+<script type="text/javascript" src="src/app/inspections/services.js"></script>
 <script type="text/javascript" src="src/app/inspections/module.js"></script>
+
+<!-- User Modules -->
+<script type="text/javascript" src="src/app/user/services.js"></script>
+<script type="text/javascript" src="src/app/user/module.js"></script>
+
+<!-- Reports Module -->
+<script type="text/javascript" src="src/app/reports/controllers/report.js"></script>
+<script type="text/javascript" src="src/app/reports/services/report.js"></script>
 
 <!-- Routes Module -->
 <script type="text/javascript" src="src/app/routes.js"></script>

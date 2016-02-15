@@ -1,18 +1,59 @@
-.navbar-custom-menu>.nav>li>a {
-    padding-top: 15px;
-    padding-bottom: 0;
-    height: 50px;
-}
-
-.main-header {
-    margin-bottom: 20px;
-    height: 30px;
-}
 
 .padded {
     padding: 1em;
 }
 
+.main-header {
+}
+
+.sidebar {
+    margin-top: 20px;
+}
+
+.layout-top-nav .wrapper .content-wrapper, .layout-top-nav .right-side, .layout-top-nav .main-footer {
+    margin-left: 230px;
+}
+
 .content-wrapper.no-margin-left {
-    margin-left: 0;
+    margin-left: 0 !important;
+}
+
+.form-control {
+    /*height: 30px;
+    margin-top: 8px;*/
+}
+
+.margin-top {
+    margin-top: 1em;
+}
+
+.section {
+    display: inline-block;
+    width: 100%;
+}
+
+.btn {
+    line-height: 12px;
+}
+
+.modal-backdrop.am-fade {
+    opacity: .5;
+    transition: opacity .15s linear;
+}
+.modal-backdrop.am-fade .ng-enter {
+    opacity: 0;
+}
+.modal-backdrop.am-fade .ng-enter-active {
+    opacity: .5;
+}
+.modal-backdrop.am-fade .ng-leave {
+    opacity: .5;
+}
+.modal-backdrop.am-fade .ng-leave-active {
+    opacity: 0;
+}
+
+.li-disabled:hover {
+    background-color: initial;
+    cursor: pointer;
 }

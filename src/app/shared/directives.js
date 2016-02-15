@@ -7,13 +7,13 @@
 		return {
 			restrict: 'E',
 			scope: {
-				user: '='
+				user: '=',
+				options: '='
 			},
 			link: function ($scope, elem, attrs) {
 
 				// Make sure user is still validated
 				accountService.signIn(function(data) {
-					console.log(data);
 
 				}, function(err) {
 					if ($scope.user) {
@@ -50,6 +50,12 @@
 
 	                return true;
 	            };
+
+				$scope.handleClick = function(disabled, $event) {
+					if (disabled) {
+						$event.preventDefault();
+					}
+				}
 			},
 			templateUrl: 'src/app/shared/partials/sidebar.html'
 		};

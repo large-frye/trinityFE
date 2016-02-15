@@ -31,6 +31,61 @@
                     ]
                 };
 
+                var inspectionResolver = {
+                    inspection: ['$q', 'InspectionService', '$route', '$routeParams',
+                    function($q, InspectionService, $route, $routeParams) {
+                        var deferred = $q.defer();
+                        var id = $route.current.params.id;
+
+                        if (id) {
+                            InspectionService.get({
+                                id: id
+                            }).$promise.then(function(data) {
+                                data.order.date_received = new Date(data.order.date_received);
+                                data.order.date_of_inspection = new Date(data.order.date_of_inspection);
+                                data.order.date_of_loss = new Date(data.order.date_of_loss);
+                                deferred.resolve(data);
+                            }, function(err) {
+                                deferred.resolve(err);
+                            })
+                        } else {
+                            deferred.resolve({
+                                auto_upgrade: false,
+                                has_tarp: false,
+                                estimate_requested: false
+                            });
+                        }
+
+                        return deferred.promise;
+                    }]
+                };
+
+                var report = {
+                    report: ['$q', '$route', '$routeParams', 'reportService',
+                        function($q, $route, $routeParams, reportService) {
+                            var deferred = $q.defer();
+                            var filter = $route.current.params.filter;
+
+                            if (filter) {
+                                reportService.byStatus({
+                                    sub: filter
+                                }).$promise.then(function(data) {
+                                    deferred.resolve(data);
+                                }, function(err) {
+                                    deferred.resolve(err);
+                                })
+                            } else {
+                                reportService.get().$promise.then(function(data) {
+                                    deferred.resolve(data);
+                                }, function(err) {
+                                    deferred.resolve(err);
+                                })
+                            }
+
+                            return deferred.promise;
+                        }]
+                }
+
                 $routeProvider
 
                 .when('/account', {
@@ -46,7 +101,26 @@
 
                 .when('/account/inspections/new', {
                     templateUrl: '/src/app/inspections/partials/new.html',
-                    controller: 'inspectionsCtrl'
+                    controller: 'inspectionsCtrl',
+                    resolve: inspectionResolver
+                })
+
+                .when('/account/inspections/:id', {
+                    templateUrl: '/src/app/inspections/partials/new.html',
+                    controller: 'inspectionsCtrl',
+                    resolve: inspectionResolver
+                })
+
+                .when('/account/reports', {
+                    templateUrl: '/src/app/reports/partials/list.html',
+                    controller: 'reportCtrl',
+                    resolve: report
+                })
+
+                .when('/account/reports/:filter', {
+                    templateUrl: '/src/app/reports/partials/list.html',
+                    controller: 'reportCtrl',
+                    resolve: report
                 })
 
                 .when('/sign-in', {
