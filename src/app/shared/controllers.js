@@ -11,19 +11,18 @@
 
         var initUser = function() {
             UserFactory.user.set(angular.fromJson(localStorage.getItem('user')));
-            console.log(UserFactory.user.get());
             $scope.user = UserFactory.user.get();
         };
 
-        var baseOrigin = '/#/account';
+        var baseOrigin = '/#/admin';
 
         // Add our navbar options here
         $scope.options = [{
             parent: 'Inspections',
             children: [{
-                name: 'Overview & Stats', link: '/#/account'
+                name: 'Overview & Stats', link: '/#/admin'
             }, {
-                name: 'New Inspection', link: '/#/account/inspections/new'
+                name: 'New Inspection', link: '/#/admin/inspections/new'
             }],
             link: baseOrigin,
             icon: 'fa-folder-o'
@@ -83,7 +82,7 @@
     }])
 
     .controller('sidebarCtrl', ['$scope', function($scope) {
-        var baseOrigin = '/#/account';
+        var baseOrigin = '/#/admin';
 
         // options
         $scope.options = [{

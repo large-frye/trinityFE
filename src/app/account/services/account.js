@@ -16,7 +16,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        action: 'account',
+                        action: 'admin',
                         sub: 'workorders',
                         id: 'counts'
                     }
@@ -38,7 +38,7 @@
                         'Content-Type': 'application/json'
                     },
                     params: {
-                        action: 'account',
+                        action: 'admin',
                         sub: 'workorders',
                         id: 5
                     }
@@ -49,12 +49,12 @@
                         'Content-Type': 'application/json'
                     },
                     params: {
-                        action: 'account',
+                        action: 'admin',
                         sub: 'workorder'
                     },
                     isArray: true
                 }
-            })
+            });
         }])
 
         .service('accountInfo', [ function() {

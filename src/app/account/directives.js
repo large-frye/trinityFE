@@ -28,6 +28,6 @@
                     });
                 },
                 templateUrl: 'src/app/account/partials/login.html'
-            }
-        }])
+            };
+        }]);
 })();

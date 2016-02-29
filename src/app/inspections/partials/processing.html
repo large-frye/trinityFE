@@ -1,0 +1,254 @@
+<sidebar options="options"></sidebar>
+
+<div class="box box-info">
+	<h3 class="box-header with-border">Processing Details</h3>
+	<div class="box-body">
+		<form name="processingForm" ng-submit="save" class="form-horizontal processing-form">
+
+			<div class="box-group" id="accordion">
+				<div class="panel box">
+					<div class="box-header">
+						<h4 class="box-title">
+							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="">
+	                        Work order details (Locked)
+	                      </a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
+						<div class="processing-gray">
+
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="col-sm-3 no-set-width control-label">Policy #</label>
+										<div class="col-sm-9">{{inspection.policy_num}}</div>
+									</div>
+								</div>
+
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="col-sm-4 no-set-width control-label">Date received</label>
+										<div class="col-sm-8 processing-content">
+											{{inspection.created_at}}
+										</div>
+									</div>
+								</div>
+
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="col-sm-3 no-set-width control-label">Claim #</label>
+										<div class="col-sm-9 processing-content">{{inspection.claim_num}}</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="col-sm-4 no-set-width control-label">Insured Name</label>
+										<div class="col-sm-8 processing-content">{{inspection.first_name}} {{inspection.last_name}}</div>
+									</div>
+								</div>
+
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label class="col-sm-4 no-set-width control-label">Phone Number</label>
+										<div class="col-sm-8 processing-content">{{inspection.phone_1}}</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="col-sm-4 no-set-width control-label">Insured Address</label>
+										<div class="col-sm-8 processing-content">{{inspection.address}}
+											{{inspection.city}},
+											{{inspection.state}}
+											{{inspection.zip}}
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
+										<div class="col-sm-10">
+											<p>
+												{{inspection.special_instructions_insured}}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- adjutser -->
+						<div class="processing-gray margin-top">
+							<div class="row">
+								<div class="margin-top col-sm-6">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-set-width">Adjuster Name</label>
+										<div class="col-sm-9 processing-content">{{inspection.adjuster.name}}</div>
+									</div>
+								</div>
+								<div class="margin-top col-sm-6">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-set-width">Insurance Company</label>
+										<div class="col-sm-8 processing-content">{{inspection.adjuster.profile.insurance_company}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="margin-top col-sm-12">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-set-width">Adjuster Phone</label>
+										<div class="col-sm-10 processing-content">{{inspection.adjuster.profile.phone}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="margin-top col-sm-12">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-set-width">Adjuster Email</label>
+										<div class="col-sm-10 processing-content">{{inspection.adjuster.email}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="margin-top col-sm-6">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-set-width">Requested Inspection Type</label>
+										<div class="col-sm-7 processing-content">{{inspection.inspection_val}}</div>
+									</div>
+								</div>
+								<div class="margin-top col-sm-6">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-set-width">Auto Upgrade</label>
+										<div class="col-sm-9 processing-content">{{auto_upgrade}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="margin-top col-sm-6">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-set-width">Requested Date</label>
+										<div class="col-sm-9 processing-content">{{inspection.date_of_inspection | date: 'shortDate'}}</div>
+									</div>
+								</div>
+								<div class="margin-top col-sm-6">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-set-width">Requested Time</label>
+										<div class="col-sm-9 processing-content">{{inspection.date_of_inspection | date: 'hh:mm a'}}</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="margin-top col-sm-12">
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-set-width">Adjuster Special Instructions:</label>
+										<div class="col-sm-10 processing-content">
+											<p>
+												{{inspection.special_instructions_adjuster}}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h4 class="page-header">Processing Information</h4>
+			<div class="row margin-top">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Progress Status</label>
+						<div class="col-sm-8">
+							<select ng-model="status" class="form-control"
+									ng-options="status.name for status in statuses"
+									ng-change="setStatus(status)">
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Date of last contact</label>
+						<div class="col-sm-8">
+							<input type="date" class="form-control"
+								ng-model="inspection.date_of_last_contact" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row margin-top">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Date of inspection</label>
+						<div class="col-sm-8">
+							<input type="date" ng-model="inspection.date_of_inspection"
+							 		class="form-control"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Time of inspection</label>
+						<div class="col-sm-8">
+							<input type="date" ng-model="time"
+							 		class="form-control"/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row margin-top">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Inspector</label>
+						<div class="col-sm-8">
+							<select ng-model="inspector" class="form-control"
+									ng-options="inspector.name for inspector in inspectors"
+									ng-change="setInspector(inspector)">
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Date Cancelled</label>
+						<div class="col-sm-8">
+							<input type="date" class="form-control"
+								ng-model="inspection.date_cancelled" />
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row margin-top">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">Special Instructions to Inspector</label>
+						<div class="col-sm-9">
+							<textarea class="form-control"
+								ng-model="inspection.special_instructions_to_inspector">
+							</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+			<button type="submit" class="btn btn-success" ng-click="save()">Save</button>
+		</form>
+	</div>
+</div>

@@ -11,6 +11,8 @@
             'Next Week', 'Last Week', 'This Month', 'Next Month', 'Last Month',
             'This Year', 'Last Year'];
 
+            angular.element('.content-wrapper').addClass('no-margin-left');
+
             $scope.timeTypes = [{
                 name: 'Ladder Assist',
                 map: -1

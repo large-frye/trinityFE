@@ -16,11 +16,22 @@
 					'Accept': 'application/json'
 				},
 				params: {
-					action: 'account',
+					action: 'admin',
 					sub: 'users',
 					id: 4
 				}
+			},
+			inspectors: {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json'
+				},
+				params: {
+					action: 'admin',
+					sub: 'users',
+					id: 'inspectors'
+				}
 			}
-		})
-	}])
+		});
+	}]);
 })();

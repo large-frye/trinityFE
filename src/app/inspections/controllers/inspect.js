@@ -2,27 +2,42 @@
 	angular.module('trinity.inspections.controllers.inspect', [])
 
 	.controller('inspectionsCtrl', ['$scope', 'UserService', 'InspectionService', '$modal', '$routeParams',
-	'inspection', 'location',
+	'inspection', '$location', 'REPORTS', '$timeout', '$window', 'shared',
 		function ($scope, UserService, InspectionService, $modal, $routeParams,
-		inspection, location) {
+		inspection, $location, REPORTS, $timeout, $window, shared) {
 
+			if (!$routeParams.id) $window.scrollTo(0, 0);
+
+			/**
+			 * [function description]
+			 * @return {[type]} [description]
+			 */
 			var setInspectionType = function() {
 				$scope.inspection.inspection_type = $scope.inspectionTypes.filter(function(type) {
 					return type.id === $scope.inspection.inspection_type;
 				})[0];
 			};
 
+			/**
+			 * [function description]
+			 * @param  {[type]} data [description]
+			 * @return {[type]}      [description]
+			 */
 			var setStringToDate = function(data) {
 				data.date_received = new Date(data.date_received);
 				data.date_of_inspection = new Date(data.date_of_inspection);
 				data.date_of_loss = new Date(data.date_of_loss);
 			};
 
+			/**
+			 * [function description]
+			 * @return {[type]} [description]
+			 */
 			var setAdjuster = function() {
 				$scope.inspection.adjuster = $scope.adjusters.filter(function(adjuster) {
 					return adjuster.id === $scope.inspection.adjuster.id;
 				})[0];
-			}
+			};
 
 			// Inspection Types
 			$scope.inspectionTypes = [{
@@ -35,6 +50,9 @@
 				id: 2,
 				name: 'Ladder Assist'
 			}];
+
+			// Pass id, if a new work order id will be falsy
+			$scope.hasInspection = $routeParams.id;
 
 			// Adjusters dropdown
 			UserService.adjusters(function(data) {
@@ -54,44 +72,28 @@
 
 			if ($routeParams.id) {
 				angular.element('.content-wrapper').removeClass('no-margin-left');
-
-				$scope.options = [{
-					parent: 'Work Order Details',
-					link: '/#/account/workorders/' + $scope.inspection.id
-				}, {
-					parent: 'Processing Order Details',
-					link: '/#/account/processing/' + $scope.inspection.id
-				}, {
-					parent: 'Inspection Details',
-					link: '/#/account/inspection/' + $scope.inspection.id
-				}, {
-					parent: 'Inspection Photos',
-					link: '/#/account/inspection/photos/' + $scope.inspection.id
-				}, {
-					parent: 'Generate Report',
-					link: '/#/account/generate/' + $scope.inspection.id
-				}, {
-					parent: 'Invoice Details',
-					link: '/#/account/invoice/' + $scope.inspection.id
-				}];
-
+				$scope.options = shared.getInspectionSideBar($routeParams.id);
 				setInspectionType();
-
 			} else {
 				// Hide the side bar
 				angular.element('.content-wrapper').addClass('no-margin-left');
 			}
 
-			$scope.save = function() {
+			/**
+			 * [function description]
+			 * @param  {[type]} redirect [description]
+			 * @return {[type]}          [description]
+			 */
+			$scope.save = function(redirect) {
+
+				// In case inspection_val exists
+				delete $scope.inspection.inspection_val;
+
 				// Angular will use the object and we only need the id
 				var inspection = angular.copy($scope.inspection);
 				inspection.inspection_type = inspection.inspection_type.id;
 
 				InspectionService.create(inspection).$promise.then(function(data) {
-
-					if (!$scope.inspection.id) {
-						location.skipReload().path('/account/inspections/' + data.id);
-					}
 
 					setStringToDate(data);
 					$scope.inspection = data;
@@ -100,11 +102,31 @@
 					setInspectionType();
 					setAdjuster();
 
-				}, function(err) {
-					console.log(err);
-				})
-			}
+					switch (redirect) {
+						case 'new':
+							$location.url('/account/inspections/new');
+							break;
+						case 'reports':
+							$location.path('/account/reports/' + decodeURIComponent(REPORTS[data.status_id].toLowerCase().replace(' ', '-').replace('_', '-')));
+							break;
+						default:
+							$location.url('/account/inspections/' + data.id);
+							break;
+					}
 
+					$timeout(function() {
+						$scope.$apply();
+					});
+
+				}, function(err) {
+					window.console && console.log(err);
+				});
+			};
+
+			/**
+			 * [function description]
+			 * @return {[type]} [description]
+			 */
 			$scope.showModal = function() {
 				var modal = $modal({
 					scope: $scope,
@@ -114,7 +136,7 @@
 					animation: 'am-fade-and-scale',
 					templateUrl: 'src/app/inspections/partials/create-client-modal.html'
 				});
-			}
+			};
 		}
 	])
 

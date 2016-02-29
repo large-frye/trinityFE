@@ -19,20 +19,30 @@
                     $rootScope.$broadcast('LOGOUT');
                 }
 
+                angular.element('.content-wrapper').addClass('no-margin-left');
+
                 $scope.signIn = function() {
                     accountService.authenticate($scope.user, function(response) {
-                        localStorage.setItem('user', angular.toJson(response[0].user));
-                        localStorage.setItem('token', response[1].token);
+                        var user = response[0].user;
+                        var token = response[1].token;
+
+                        // Set our user to our factory
+                        UserFactory.user.set(user);
+
+                        localStorage.setItem('user', angular.toJson(user));
+                        localStorage.setItem('token', token);
+
                         $rootScope.$broadcast('LOGIN');
                         $rootScope.$on('PRELOAD_COUNTS', function() {
                             $scope.loading = true;
-                            console.log('here');
                         });
-                        $location.path('/account');
 
                         // Let's reset our margin-left on .content-wrapper
                         angular.element('.content-wrapper')
                             .removeClass('no-margin-left');
+
+                        $location.path('/' + user.appRole);
+
                     }, function(err) {
                         $scope.error = 'Sign in failed, please try again.';
                         console.log("error: %o", err);

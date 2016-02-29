@@ -13,6 +13,7 @@
       'trinity.user',
       'trinity.reports.controllers.report',
       'trinity.reports.services.report',
+      'trinity.reports.directives',
       'mgcrea.ngStrap'
   ])
 

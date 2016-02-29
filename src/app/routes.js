@@ -44,10 +44,11 @@
                                 data.order.date_received = new Date(data.order.date_received);
                                 data.order.date_of_inspection = new Date(data.order.date_of_inspection);
                                 data.order.date_of_loss = new Date(data.order.date_of_loss);
+                                data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
                                 deferred.resolve(data);
                             }, function(err) {
                                 deferred.resolve(err);
-                            })
+                            });
                         } else {
                             deferred.resolve({
                                 auto_upgrade: false,
@@ -73,51 +74,83 @@
                                     deferred.resolve(data);
                                 }, function(err) {
                                     deferred.resolve(err);
-                                })
+                                });
                             } else {
                                 reportService.get().$promise.then(function(data) {
                                     deferred.resolve(data);
                                 }, function(err) {
                                     deferred.resolve(err);
-                                })
+                                });
                             }
 
                             return deferred.promise;
                         }]
-                }
+                };
+
+                var inspectionForm = {
+                    form: ['$q', '$route', '$routeParams', 'InspectionService',
+                        function($q, $route, $routeParams, InspectionService) {
+                            var deferred = $q.defer();
+                            InspectionService.inspectionForm({
+                                id: $route.current.params.id
+                            }).$promise.then(function(data) {
+                                if (data.inspection.length > 0) {
+                                    deferred.resolve(data);
+                                } else {
+                                    deferred.resolve({});
+                                }
+                            }, function(err) {
+                                deferred.resolve(err);
+                            });
+
+                            return deferred.promise;
+                        }]
+                };
 
                 $routeProvider
 
-                .when('/account', {
+                .when('/admin', {
                     templateUrl: '/src/app/workOrders/partials/counts.html',
                     controller: 'countsCtrl',
                     resolve: countsResolver
                 })
 
-                .when('/account/workorders/:type/:timeUnit', {
+                .when('/admin/workorders/:type/:timeUnit', {
                     templateUrl: '/src/app/workOrders/partials/list.html',
                     controller: 'listCtrl'
                 })
 
-                .when('/account/inspections/new', {
+                .when('/admin/inspections/new', {
                     templateUrl: '/src/app/inspections/partials/new.html',
                     controller: 'inspectionsCtrl',
                     resolve: inspectionResolver
                 })
 
-                .when('/account/inspections/:id', {
+                .when('/admin/inspections/:id', {
                     templateUrl: '/src/app/inspections/partials/new.html',
                     controller: 'inspectionsCtrl',
                     resolve: inspectionResolver
                 })
 
-                .when('/account/reports', {
+                .when('/admin/inspections/processing/:id', {
+                    templateUrl: '/src/app/inspections/partials/processing.html',
+                    controller: 'processingCtrl',
+                    resolve: inspectionResolver
+                })
+
+                .when('/admin/inspections/form/:id', {
+                    templateUrl: '/src/app/inspections/partials/form.html',
+                    controller: 'formCtrl',
+                    resolve: inspectionForm
+                })
+
+                .when('/admin/reports', {
                     templateUrl: '/src/app/reports/partials/list.html',
                     controller: 'reportCtrl',
                     resolve: report
                 })
 
-                .when('/account/reports/:filter', {
+                .when('/admin/reports/:filter', {
                     templateUrl: '/src/app/reports/partials/list.html',
                     controller: 'reportCtrl',
                     resolve: report
