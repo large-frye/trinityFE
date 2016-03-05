@@ -1,0 +1,120 @@
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Inspections</h3>
+    </div><!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th><!-- Empty header --></th>
+                    <th ng-repeat="type in timeTypes">{{type.name}} <i class="fa fa-info-circle"></i></th>
+                </tr>
+                <tr>
+                    <th>Today</th>
+                    <td>-1</td>
+                    <td><a target="_blank" href="/#/account/workorders/basic/today">
+                        {{basic.today}}</a></td>
+                    <td><a target="_blank" href="/#/account/workorders/expert/today">
+                        {{expert.today}}</a></td>
+                    <td><a target="_blank" href="/#/account/workorders/total/today">
+                        {{basic.today + expert.today}}</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Yesterday</th>
+                    <td>-1</td>
+                    <td>{{basic.yesterday}}</td>
+                    <td>{{expert.yesterday}}</td>
+                    <td>{{basic.yesterday + expert.yesterday}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Tomorrow</th>
+                    <td>-1</td>
+                    <td>{{basic.tomorrow}}</td>
+                    <td>{{expert.tomorrow}}</td>
+                    <td>{{basic.tomorrow + expert.tomorrow}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>This Week</th>
+                    <td>-1</td>
+                    <td>{{basic.this_week}}</td>
+                    <td>{{expert.this_week}}</td>
+                    <td>{{basic.this_week + expert.this_week}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Last Week</th>
+                    <td>-1</td>
+                    <td>{{basic.last_week}}</td>
+                    <td>{{expert.last_week}}</td>
+                    <td>{{basic.last_week + expert.last_week}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Next Week</th>
+                    <td>-1</td>
+                    <td>{{basic.next_week}}</td>
+                    <td>{{expert.next_week}}</td>
+                    <td>{{basic.next_week + expert.next_week}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>This Month</th>
+                    <td>-1</td>
+                    <td>{{basic.this_month}}</td>
+                    <td>{{expert.this_month}}</td>
+                    <td>{{basic.this_month + expert.this_month}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Last Month</th>
+                    <td>-1</td>
+                    <td><a href="/#/account/workorders/basic/last-month">
+                        {{basic.last_month}}</a></td>
+                    <td><a href="/#/account/workorders/expert/last-month">
+                        {{expert.last_month}}</a></td>
+                    <td><a href="/#/account/workorders/total/last-month">
+                        {{basic.last_month + expert.last_month}}</a></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Next Month</th>
+                    <td>-1</td>
+                    <td>{{basic.next_month}}</td>
+                    <td>{{expert.next_month}}</td>
+                    <td>{{basic.next_month + expert.next_month}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>This Year</th>
+                    <td>-1</td>
+                    <td>{{basic.this_year}}</td>
+                    <td>{{expert.this_year}}</td>
+                    <td>{{basic.this_year + expert.this_year}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Last Year</th>
+                    <td>-1</td>
+                    <td>{{basic.last_year}}</td>
+                    <td>{{expert.last_year}}</td>
+                    <td>{{basic.last_year + expert.last_year}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="box">
+	<div class="box-header">
+		<h3 class="box-title">Inspections Requiring Inspector Attention</h3>
+	</div><!-- /.box-header -->
+	<div class="box-body">
+		<table id="example1" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Date of inspection</th>
+					<th>Time of inspection</th>
+					<th>Inspection Type</th>
+					<th>Insurance Company</th>
+					<th>Adjuster</th>
+					<th>Insured</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>State</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="item in items['inspector_attention_required']">
+					<td>
+						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
+					</td>
+					<td>
+						{{item.date_of_inspection | date:'hh:mm:ss'}}
+					</td>
+					<td>
+
+					</td>
+					<td>
+						{{item.adjuster.profile.insurance_company}}
+					</td>
+					<td>
+						{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+					</td>
+					<td>
+						{{item.first_name}} {{item.last_name}}
+					</td>
+					<td>
+						{{item.address}}
+					</td>
+					<td>
+						{{item.city}}
+					</td>
+					<td>
+						{{item.state}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="box-header">
+		<h3 class="box-title">New Pickups</h3>
+	</div><!-- /.box-header -->
+	<div class="box-body">
+		<table id="example1" class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Date of inspection</th>
+					<th>Time of inspection</th>
+					<th>Inspection Type</th>
+					<th>Insurance Company</th>
+					<th>Adjuster</th>
+					<th>Insured</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>State</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr ng-repeat="item in items['new_pickups']">
+					<td>
+						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
+					</td>
+					<td>
+						{{item.date_of_inspection | date:'hh:mm:ss'}}
+					</td>
+					<td>
+
+					</td>
+					<td>
+						{{item.adjuster.profile.insurance_company}}
+					</td>
+					<td>
+						{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+					</td>
+					<td>
+						{{item.first_name}} {{item.last_name}}
+					</td>
+					<td>
+						{{item.address}}
+					</td>
+					<td>
+						{{item.city}}
+					</td>
+					<td>
+						{{item.state}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
