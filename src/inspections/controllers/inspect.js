@@ -8,8 +8,6 @@
 
 			if (!$routeParams.id) $window.scrollTo(0, 0);
 
-			console.log($dateParser);
-
 			/**
 			 * [function description]
 			 * @return {[type]} [description]

@@ -2,7 +2,7 @@
 	angular.module('trinity.reports.services.report', ['ngResource'])
 
 	.service('reportService', ['$resource', function($resource) {
-		return $resource('http://api.trinity.is:4444/admin/reports/:action/:sub/:sub2', {
+		return $resource('http://api-dev.trinity.is:4444/admin/reports/:action/:sub/:sub2', {
 
 		}, {
 			get: {
