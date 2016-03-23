@@ -40,8 +40,6 @@
 	                return true;
 	            };
 
-				console.log('using this');
-
 				$scope.handleClick = function(disabled, $event) {
 					if (disabled) {
 						$event.preventDefault();
@@ -49,6 +47,19 @@
 				};
 			},
 			templateUrl: 'src/partials/shared/sidebar.html'
+		};
+	}])
+
+	.directive('alacrityForm', [ function() {
+		return {
+			restrict: 'E',
+			scope: {
+				form: '='
+			},
+			link: function($scope, elem, attrs) {
+
+			},
+			templateUrl: 'src/partials/shared/alacrity-form.html'
 		};
 	}])
 

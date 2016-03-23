@@ -1,8 +1,8 @@
 (function () {
   'use strict';
   var app = angular.module('trinity', [
-        'ngRoute',
-        'ngAnimate',
+      'ngRoute',
+      'ngAnimate',
         'ngSanitize',
         'ngAria',
         'shared',

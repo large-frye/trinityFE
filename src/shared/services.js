@@ -89,69 +89,11 @@
                     initLocalStorageUser: function(user, cb) {
                         this.user = angular.fromJson(user);
                         this.role = this.user.appRole;
+                        console.log(this.user.appRole);
                         this.baseOrigin = '/#/' + this.role;
                         cb();
                     }
                 },
-                // baseOrigin: '/#/' + user.appRole(),
-                // navOptions: {
-                //     admin: [{
-                //         parent: 'Inspections',
-                //         children: [{
-                //             name: 'Overview & Stats', link: '/#/admin'
-                //         }, {
-                //             name: 'New Inspection', link: '/#/admin/inspections/new'
-                //         }],
-                //         link: this.baseOrigin,
-                //         icon: 'fa-folder-o'
-                //     }, {
-                //         parent: 'Reports',
-                //         link: this.baseOrigin + '/reports',
-                //         icon: 'fa-bar-chart-o'
-                //     }, {
-                //         parent: 'Inspector Billing',
-                //         link: this.baseOrigin + '/inspector/billing',
-                //         icon: 'fa-dollar'
-                //     }, {
-                //         parent: 'Calendar',
-                //         link: this.baseOrigin + '/calendar',
-                //         icon: 'fa-calendar'
-                //     }, {
-                //         parent: 'Maps',
-                //         link: this.baseOrigin + '/maps',
-                //         icon: 'fa-map'
-                //     }, {
-                //         parent: 'Tasks',
-                //         link: this.baseOrigin + '/tasks',
-                //         icon: 'fa-tasks'
-                //     }, {
-                //         parent: 'Resources',
-                //         children: [{
-                //             name: 'Resources', link: this.baseOrigin + '/resources'
-                //         }, {
-                //             name: 'Training Material', link: this.baseOrigin + '/resources/training-material'
-                //         }, {
-                //             name: 'Training Videos', link: this.baseOrigin + '/resources/training-videos'
-                //         }, {
-                //             name: 'Office Training Videos', link: this.baseOrigin + '/resources/office-training-videos'
-                //         }],
-                //         link: this.baseOrigin + '/resources',
-                //         icon: 'fa-folder-o'
-                //     }, {
-                //         parent: 'Contacts',
-                //         children: [{
-                //             name: 'Admins', link: this.baseOrigin + '/contacts/admins'
-                //         }, {
-                //             name: 'Office Users', link: this.baseOrigin + '/contacts/office-users'
-                //         }],
-                //         link: this.baseOrigin + '/contacts',
-                //         icon: 'fa-folder-o'
-                //     }],
-                //     inspector: [{
-                //         parent: 'Inspections',
-                //         link: this.baseOrigin
-                //     }]
-                // }
             };
         }])
 
@@ -230,6 +172,21 @@
                 id: 18, name: 'Inspected'
             }
         ])
+
+        .factory('alert', ['$timeout', function($timeout) {
+            return {
+                add: function(alert, delay) {
+                    this.alerts = this.alert || [];
+                    this.alerts.push(alert);
+                    var self = this;
+                    $timeout(function() {
+                        self.alerts.pop();
+                    }, delay);
+
+                    return this.alerts;
+                }
+            };
+        }])
 
         .factory('shared', [ function() {
             return {

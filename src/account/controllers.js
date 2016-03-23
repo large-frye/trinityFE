@@ -3,7 +3,8 @@
  */
 (function() {
     angular.module('trinity.account.controllers', [])
-        .controller('loginCtrl', ['$scope', 'accountService', '$location', 'accountInfo', '$route', '$timeout', 'UserFactory', '$rootScope', 'UserService',
+        .controller('loginCtrl', ['$scope', 'accountService', '$location', 'accountInfo', '$route', '$timeout', 'UserFactory',
+            '$rootScope', 'UserService',
             function($scope, accountService, $location, accountInfo, $route, $timeout, UserFactory, $rootScope, UserService) {
 
                 UserFactory.user.clear();

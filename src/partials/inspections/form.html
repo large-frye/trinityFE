@@ -12,21 +12,39 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
-					<li>
-						<a href="#"><i class="fa fa-times text-danger"></i>Basic Sketch</a>
+					<li ng-class="{'disabled': form.basic_sketch}">
+						<a ng-href="{{form.basic_sketch}}"
+						ng-click="initUpload($event, 'basic_sketch');">
+							<i ng-if="!form.basic_sketch" class="fa fa-times text-danger"></i>
+							<i ng-if="form.basic_sketch" class="fa fa-check text-success"></i>
+							Basic Sketch
+						</a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-times text-danger"></i>Expert Sketch</a>
+						<a ng-href="{{form.expert_sketch}}" ng-click="initUpload($event, 'expert_sketch');">
+							<i ng-if="!form.expert_sketch" class="fa fa-times text-danger"></i>
+							<i ng-if="form.expert_sketch" class="fa fa-check text-success"></i>
+							Expert Sketch
+						</a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-times text-danger"></i>Alacrity Form</a>
+						<a ng-href="{{form.alacrity_form}}" ng-click="initUpload($event, 'alacrity_form');">
+							<i ng-if="!form.alacrity_form" class="fa fa-times text-danger"></i>
+							<i ng-if="form.alacrity_form" class="fa fa-check text-success"></i>
+							Alacrity Form
+						</a>
 					</li>
 					<li>
-						<a href="#"><i class="fa fa-times text-danger"></i>NCT Form</a>
+						<a ng-href="{{form.nct_form}}" ng-click="initUpload($event, 'nct_form');">
+							<i ng-if="!form.nct_form" class="fa fa-times text-danger"></i>
+							<i ng-if="form.nct_form" class="fa fa-check text-success"></i>
+							NCT Form
+						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
+		<input type="file" name="formUpload" style="display:none" onchange="angular.element(this).scope().uploadFile();" />
 	</div>
 
 	<div class="clearfix"></div>
@@ -275,7 +293,7 @@
 						<div class="col-sm-6">
 							<select class="form-control" ng-options="outcome.name for outcome in outcomes.outcomes"
 								ng-model="inspectionOutcome"
-								ng-change="form.outcome_type=inspectionOutcome.id;">
+								ng-change="form.outcome_type=inspectionOutcome.name;">
 								<option value="">
 									Select an outcome
 								</option>
@@ -326,7 +344,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Misc.</label>
 						<div class="col-sm-6">
-							<input type="number" ng-model="form.misc_charge" class="form-control" placeholder="Manual enter value" />
+							<input type="text" ng-model="form.misc_charge" class="form-control" placeholder="Manual enter value" />
 						</div>
 					</div>
 				</div>
@@ -340,7 +358,7 @@
 
 			<hr />
 
-			<div class="row" ng-if="[1,2,3,4].indexOf(form.outcome_type) != -1">
+			<div class="row" ng-if="['Cancelled', 'Cancelled w/ trip charge', 'Reschedule w/ trip charge', 'Reschedule'].indexOf(form.outcome_type) != -1">
 				<div class="col-sm-12">
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">
@@ -352,100 +370,9 @@
 				</div>
 			</div>
 
-			<div ng-if="[5,6].indexOf(form.outcome_type) != -1">
+			<alacrity-form form="form"></alacrity-form>
 
-				<div class="alert alert-info">
-					<p>
-						If you'd like you can upload the Alcarity Form and NCT form and you don't have to fill out this bottom portion.
-					</p>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Was an adjuster present for this inspection?</label>
-						<div class="col-sm-8">
-							<label class="radio-inline">
-								<div class="col-sm-6">
-									<input type="radio" ng-model="form.adjuster_present" value="1"/>Yes
-								</div>
-								<div class="col-sm-6">
-									<input type="radio" ng-model="form.adjuster_present" value="0"/>No
-								</div>
-							</label>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Was adjuster on any portion of the roof?</label>
-						<div class="col-sm-8">
-							<label class="radio-inline">
-								<div class="col-sm-6">
-									<input type="radio" ng-model="form.adjuster_on_roof" value="1"/>Yes
-								</div>
-								<div class="col-sm-6">
-									<input type="radio" ng-model="form.adjuster_on_roof" value="0"/>No
-								</div>
-							</label>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Outside Temperature? </label>
-						<div class="col-sm-10">
-							<input type="text" ng-model="form.outside_temperature" class="form-control" />
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Predominant Roof Pitch?</label>
-						<div class="col-sm-10">
-							<input type="text" ng-model="form.predominant_roof_pitch" class="form-control" />
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Number of stories?</label>
-						<div class="col-sm-10">
-							<input type="text" ng-model="form.number_of_stories" class="form-control" />
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Roof Material Types?</label>
-						<div class="col-sm-10">
-							<textarea ng-model="form.roof_material_types" class="form-control">
-							</textarea>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label class="col-sm-2 control-label">
-							Number of layers?</label>
-						<div class="col-sm-10">
-							<input type="text" ng-model="form.number_of_layers" class="form-control" />
-						</div>
-					</div>
-				</div>
-
-			</div>
+			<div class="clearfix"></div>
 
 			<hr />
 			<button type="submit" class="btn btn-success" ng-click="save()">Save</button>

@@ -42,7 +42,7 @@
                                 id: id
                             }).$promise.then(function(data) {
                                 data.order.date_received = new Date(data.order.date_received);
-                                data.order.date_of_inspection = new Date(data.order.date_of_inspection);
+                                // data.order.date_of_inspection = new Date(data.order.date_of_inspection);
                                 data.order.date_of_loss = new Date(data.order.date_of_loss);
                                 data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
                                 deferred.resolve(data);
@@ -224,8 +224,8 @@
     app.config(
         ["$httpProvider",
             function ($httpProvider) {
-                $httpProvider.interceptors.push(['$q', '$location', 'UserFactory',
-                    function ($q, $location, UserFactory) {
+                $httpProvider.interceptors.push(['$q', '$location', 'UserFactory', '$rootScope',
+                    function ($q, $location, UserFactory, $rootScope) {
                         return {
                             request: function (request) {
                                 if (localStorage.getItem('token')) {

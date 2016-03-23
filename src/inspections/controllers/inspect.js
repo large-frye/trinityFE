@@ -2,19 +2,22 @@
 	angular.module('trinity.inspections.controllers.inspect', [])
 
 	.controller('inspectionsCtrl', ['$scope', 'UserService', 'InspectionService', '$modal', '$routeParams',
-	'inspection', '$location', 'REPORTS', '$timeout', '$window', 'shared',
+	'inspection', '$location', 'REPORTS', '$timeout', '$window', 'shared', 'UserFactory', 'alert', '$dateParser',
 		function ($scope, UserService, InspectionService, $modal, $routeParams,
-		inspection, $location, REPORTS, $timeout, $window, shared) {
+		inspection, $location, REPORTS, $timeout, $window, shared, UserFactory, alert, $dateParser) {
 
 			if (!$routeParams.id) $window.scrollTo(0, 0);
+
+			console.log($dateParser);
 
 			/**
 			 * [function description]
 			 * @return {[type]} [description]
 			 */
 			var setInspectionType = function() {
+				console.log($scope.inspectionTypes);
 				$scope.inspection.inspection_type = $scope.inspectionTypes.filter(function(type) {
-					return type.id === $scope.inspection.inspection_type;
+					return type.id == $scope.inspection.inspection_type;
 				})[0];
 			};
 
@@ -79,6 +82,10 @@
 				angular.element('.content-wrapper').addClass('no-margin-left');
 			}
 
+			$scope.setTime = function() {
+				console.log($scope);
+			};
+
 			/**
 			 * [function description]
 			 * @param  {[type]} redirect [description]
@@ -91,6 +98,7 @@
 
 				// Angular will use the object and we only need the id
 				var inspection = angular.copy($scope.inspection);
+				console.log(inspection);
 				inspection.inspection_type = inspection.inspection_type.id;
 
 				InspectionService.create(inspection).$promise.then(function(data) {
@@ -102,17 +110,25 @@
 					setInspectionType();
 					setAdjuster();
 
+					var role = UserFactory.user.get().appRole;
+
 					switch (redirect) {
 						case 'new':
-							$location.url('/account/inspections/new');
+							$location.url('/' + role + '/inspections/new');
 							break;
 						case 'reports':
-							$location.path('/account/reports/' + decodeURIComponent(REPORTS[data.status_id].toLowerCase().replace(' ', '-').replace('_', '-')));
+							$location.path('/' + role + '/reports/' + decodeURIComponent(REPORTS[data.status_id].toLowerCase().replace(' ', '-').replace('_', '-')));
 							break;
 						default:
-							$location.url('/account/inspections/' + data.id);
+							$location.path('/' + role + '/inspections/' + data.id);
 							break;
 					}
+
+					$scope.alerts = alert.add({
+						title: 'Saved',
+						content: 'Saved',
+						type: 'success'
+					}, 3000);
 
 					$timeout(function() {
 						$scope.$apply();

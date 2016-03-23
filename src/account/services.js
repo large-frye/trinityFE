@@ -7,7 +7,7 @@
     angular.module('trinity.account.services', [])
 
         .service('accountService', ['$resource', function($resource) {
-            return $resource('http://api.trinity.dev/:action/:sub/:id/:id2', {
+            return $resource('http://api.trinity.is:4444/:action/:sub/:id/:id2', {
                 action: '@action'
             }, {
                 'signIn': {

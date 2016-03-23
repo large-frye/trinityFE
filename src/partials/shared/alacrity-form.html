@@ -1,0 +1,379 @@
+<div ng-if="['Allstate (Alacrity) Ladder Assist', 'Allstate (NCT) Ladder Assist'].indexOf(form.outcome_type) != -1" class="alacrity-form">
+	<div class="alert alert-info">
+		<p>
+			If you'd like you can upload the Alcarity Form and NCT form and you don't have to fill out this bottom portion.
+		</p>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Was an adjuster present for this inspection?</label>
+			<div class="col-sm-8">
+				<label class="radio-inline">
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.adjuster_present" value="1"/>Yes
+					</div>
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.adjuster_present" value="0"/>No
+					</div>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Was adjuster on any portion of the roof?</label>
+			<div class="col-sm-8">
+				<label class="radio-inline">
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.adjuster_on_roof" value="1"/>Yes
+					</div>
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.adjuster_on_roof" value="0"/>No
+					</div>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Outside Temperature? </label>
+			<div class="col-sm-10">
+				<input type="text" ng-model="form.outside_temperature" class="form-control" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Predominant Roof Pitch?</label>
+			<div class="col-sm-10">
+				<input type="text" ng-model="form.predominant_roof_pitch" class="form-control" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Number of stories?</label>
+			<div class="col-sm-10">
+				<input type="text" ng-model="form.number_of_stories" class="form-control" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Roof Material Types?</label>
+			<div class="col-sm-10">
+				<textarea ng-model="form.roof_material_types" class="form-control">
+				</textarea>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Number of layers?</label>
+			<div class="col-sm-10">
+				<input type="text" ng-model="form.number_of_layers" class="form-control" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<label class="control-label no-set-width question-header">
+			If covered damage - did the brittleness test damage the shingle?
+		</label>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-2 no-set-width">
+				North
+			</label>
+			<label class="radio-inline">
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.north_brittleness_test" value="1"/>Yes
+				</div>
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.north_brittleness_test" value="0"/>No
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-2 no-set-width">
+				South
+			</label>
+			<label class="radio-inline">
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.south_brittleness_test" value="1"/>Yes
+				</div>
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.south_brittleness_test" value="0"/>No
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-2 no-set-width">
+				East
+			</label>
+			<label class="radio-inline">
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.east_brittleness_test" value="1"/>Yes
+				</div>
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.east_brittleness_test" value="0"/>No
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-2 no-set-width">
+				West
+			</label>
+			<label class="radio-inline">
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.west_brittleness_test" value="1"/>Yes
+				</div>
+				<div class="col-sm-6">
+					<input type="radio" ng-model="form.west_brittleness_test" value="0"/>No
+				</div>
+			</label>
+		</div>
+	</div>
+
+	<!-- Hail Damage -->
+	<div class="col-sm-12">
+		<label class="control-label no-set-width question-header">
+			Hail Damage (number of damaged shigles per test square)
+		</label>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-1">
+				North
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.north_hail_damage_shingles" />
+			</div>
+			<label class="control-label col-sm-1">
+				South
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.south_hail_damage_shingles" />
+			</div>
+			<label class="control-label col-sm-1">
+				East
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.east_hail_damage_shingles" />
+			</div>
+			<label class="control-label col-sm-1">
+				West
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.west_hail_damage_shingles" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Wind Damage -->
+	<div class="col-sm-12">
+		<label class="control-label no-set-width question-header">
+			Wind Damage (number of damaged shigles per test square)
+		</label>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-1">
+				North
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.north_wind_damage_shingles" />
+			</div>
+			<label class="control-label col-sm-1">
+				South
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.south_wind_damage_shingles" />
+			</div>
+			<label class="control-label col-sm-1">
+				East
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.east_wind_damage_shingles" />
+			</div>
+			<label class="control-label col-sm-1">
+				West
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.west_wind_damage_shingles" />
+			</div>
+		</div>
+	</div>
+
+	<!-- Wind Damage -->
+	<div class="col-sm-12">
+		<label class="control-label no-set-width question-header">
+			Quantity of damaged items
+		</label>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-1 no-set-width">
+				Box Vents
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_box_vents" />
+			</div>
+			<label class="control-label col-sm-1 no-set-width">
+				Turbines
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_turbines" />
+			</div>
+			<label class="control-label col-sm-1 no-set-width">
+				HVAC Vents
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_hvac_vents" />
+			</div>
+			<label class="control-label col-sm-1 no-set-width">
+				Power Vents
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_power_vents" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-1 no-set-width">
+				Ridge Vents
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_ridge_vents" />
+			</div>
+			<label class="control-label col-sm-1 no-set-width">
+				Skylights
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_skylights" />
+			</div>
+			<label class="control-label col-sm-1 no-set-width">
+				Flashing
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_flashing" />
+			</div>
+			<label class="control-label col-sm-1 no-set-width">
+				Chimney caps
+			</label>
+			<div class="col-sm-1">
+				<input type="text" class="form-control" ng-model="form.damaged_items_chimney_caps" />
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="control-label col-sm-1">
+				Other
+			</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" ng-model="form.damaged_items_other" />
+			</div>
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
+
+	<!-- Wind Damage -->
+	<div class="col-sm-12">
+		<label class="control-label no-set-width question-header">
+			Roof conditions
+		</label>
+	</div>
+
+	<ul class="list-checkboxes">
+		<li ng-repeat="condition in listRoofConditions">
+			<input type="checkbox" ng-model="roofCondition"
+				ng-click="addCondition(condition, roofCondition)"
+				ng-checked="form.roof_conditions.length > 0 && conditionExists(condition)"/>
+			{{condition}}
+		</li>
+	</ul>
+
+	<div class="col-sm-12 margin-top">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Did you measure the roof?</label>
+			<div class="col-sm-8">
+				<label class="radio-inline">
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.measure_roof" value="1"/>Yes
+					</div>
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.measure_roof" value="0"/>No
+					</div>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Did you diagram the roof?</label>
+			<div class="col-sm-8">
+				<label class="radio-inline">
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.diagram_roof" value="1"/>Yes
+					</div>
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.diagram_roof" value="0"/>No
+					</div>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">
+				Was a rope & harness used?</label>
+			<div class="col-sm-8">
+				<label class="radio-inline">
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.rope_and_harness_used" value="1"/>Yes
+					</div>
+					<div class="col-sm-6">
+						<input type="radio" ng-model="form.rope_and_harness_used" value="0"/>No
+					</div>
+				</label>
+			</div>
+		</div>
+	</div>
+</div>
