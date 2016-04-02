@@ -4,7 +4,7 @@
 	angular.module('trinity.inspections.services', ['ngResource'])
 
 	.service('InspectionService', ['$resource', function ($resource) {
-		return $resource('http://api-dev.trinity.is:4444/admin/:route/:action/:id', {
+		return $resource('http://api.trinity.is:4444/admin/:route/:action/:id', {
 
 		}, {
 			create: {
@@ -64,7 +64,7 @@
 	}])
 
 	.service('FormService', ['$resource', function($resource) {
-		return $resource('http://api-dev.trinity.is:4444/admin/:route/:action/:id', {
+		return $resource('http://api.trinity.is:4444/admin/:route/:action/:id', {
 
 		}, {
 			get: {

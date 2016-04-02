@@ -7,7 +7,7 @@
 	angular.module('trinity.user.services', [])
 
 	.service('UserService', ['$resource', function($resource) {
-		return $resource('http://api-dev.trinity.is:4444/:action/:sub/:id/:id2', {
+		return $resource('http://api.trinity.is:4444/:action/:sub/:id/:id2', {
 			action: '@action'
 		}, {
 			'adjusters': {

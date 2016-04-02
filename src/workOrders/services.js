@@ -3,7 +3,7 @@
     angular.module('trinity.workOrders.services', ['ngResource'])
         .service('workOrderService', ['$resource',
             function ($resource) {
-                return $resource('http://api-dev.trinity.is:4444/:userType/workorders/:action/:param1/:param2/:param3/:param4/:param5', {
+                return $resource('http://api.trinity.is:4444/:userType/workorders/:action/:param1/:param2/:param3/:param4/:param5', {
                     "action": "@action"
                 }, {
                     "list": {
