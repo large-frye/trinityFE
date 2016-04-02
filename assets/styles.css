@@ -3,7 +3,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-
 .padded {
     padding: 1em;
 }
@@ -140,4 +139,9 @@ body {
 a.disabled {
     cursor: not-allowed;
     pointer-events: none;
+}
+
+.sidebar-menu > li > a {
+    padding: .25em !important;
+    font-size: 15px;
 }

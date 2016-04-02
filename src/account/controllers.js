@@ -80,14 +80,12 @@
             }
         ])
 
-        .controller('adminHomeCtrl', ['$scope', 'workOrderService', 'UserFactory', 'counts',
-            function($scope, workOrderService, UserFactory, counts) {
+        .controller('adminHomeCtrl', ['$scope', 'workOrderService', 'UserFactory', 'counts', 'shared',
+            function($scope, workOrderService, UserFactory, counts, shared) {
 
                 $scope.timeFilters = ['Today', 'Yesterday', 'Tomorrow', 'This Week',
                 'Next Week', 'Last Week', 'This Month', 'Next Month', 'Last Month',
                 'This Year', 'Last Year'];
-
-                angular.element('.content-wrapper').addClass('no-margin-left');
 
                 $scope.timeTypes = [{
                     name: 'Ladder Assist',
@@ -109,15 +107,7 @@
                 $scope.expert = counts.expert[0];
 
                 // options
-                $scope.options = [{
-                    parent: 'Inspections',
-                    children: [{
-                        name: 'Overview & Stats', link: '/#/account'
-                    }, {
-                        name: 'New Inspection', link: '/#/account/inspections/new'
-                    }],
-                    link: '/#/account'
-                }];
+                $scope.options = shared.getReportSideBar();
             }
         ])
 
