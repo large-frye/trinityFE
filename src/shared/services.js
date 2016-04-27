@@ -25,6 +25,7 @@
                         this.baseOrigin = '/#/' + this.user.appRole;
                     },
                     getNavOptions: function() {
+
                         var options = {
                             admin: [{
                                 parent: 'New Inspection',
@@ -76,6 +77,31 @@
                             inspector: [{
                                 parent: 'Inspections',
                                 link: this.baseOrigin
+                            }, {
+                                parent: 'Reports',
+                                link: '/#/inspector/reports'
+                            }, {
+                                parent: 'Inspector Billing',
+                                link: '/#/inspector/billing'
+                            }, {
+                                parent: 'Calendar',
+                                link: '/#/inspector/calendar'
+                            }, {
+                                parent: 'Maps',
+                                link: '/#/inspector/maps'
+                            }, {
+                                parent: 'Tasks',
+                                link: '/#/inspector/tasks'
+                            }, {
+                                parent: 'Resources',
+                                children: [{
+                                    name: 'Resources', link: '/#/inspector/resources'
+                                }, {
+                                    name: 'Training Material', link: '/#/inspector/resources/training-material'
+                                }, {
+                                    name: 'Training Videos', link: '/#/inspector/resources/training-videos'
+                                }],
+                                link: '/#/inspector/resources'
                             }]
                         };
 
@@ -84,7 +110,6 @@
                     initLocalStorageUser: function(user, cb) {
                         this.user = angular.fromJson(user);
                         this.role = this.user.appRole;
-                        console.log(this.user.appRole);
                         this.baseOrigin = '/#/' + this.role;
                         cb();
                     }
@@ -206,6 +231,17 @@
     					link: '/#/admin/inspections/invoice/' + id
     				}];
                 },
+                getInspectorInspectionBar: function(id) {
+                    return [{
+                        parent: 'Inspection Details',
+                        link: '/#/admin/inspections/form/' + id
+                    }, {
+                        parent: 'Inspection Photos',
+                        link: '/#/admin/inspections/photos/' + id
+                    }, {
+                        parent: 'Submit New Pickup'
+                    }]
+                },
                 getReportSideBar: function() {
                     return [{
                         parent: 'All Inspections',
@@ -298,8 +334,58 @@
                         parent: 'Last Year\'s Inspections',
                         link: '/#/admin/reports/last-year'
                     }];
+                },
+                getReportInspectorSidebar: function() {
+                    return [{
+                        parent: 'All Open Inspections (default)',
+                        link: '/#/inspector/reports'
+                    }, {
+                        parent: 'New Pickups',
+                        link: '/#/inspector/reports/new-pickups'
+                    }, {
+                        parent: 'Insp. Input Required',
+                        link: '/#/inspector/reports/insp-input-required'
+                    }, {
+                        parent: 'Today\'s Inspections',
+                        link: '/#/inspector/reports/today'
+                    }, {
+                        parent: 'Tomorrow\'s Inspections',
+                        link: '/#/inspector/reports/tomorrow'
+                    }, {
+                        parent: 'Yesterday\'s Inspections',
+                        link: '/#/inspector/reports/yesterday'
+                    }, {
+                        parent: 'This Week\'s Inspections',
+                        link: '/#/inspector/reports/this-week'
+                    }, {
+                        parent: 'Next Week\'s Inspections',
+                        link: '/#/inspector/reports/next-week'
+                    }, {
+                        parent: 'Last Week\'s Inspections',
+                        link: '/#/inspector/reports/last-week'
+                    }, {
+                        parent: 'This Month\'s Inspections',
+                        link: '/#/inspector/reports/this-month'
+                    }, {
+                        parent: 'Next Month\'s Inspections',
+                        link: '/#/inspector/reports/next-month'
+                    }, {
+                        parent: 'Last Month\'s Inspections',
+                        link: '/#/inspector/reports/last-month'
+                    }];
                 }
             };
+        }])
+    
+        .service('env', [ function() {
+            return {
+                getEndpoint: function() {
+                    if (location.href.match(/localhost/) !== -1) {
+                        return 'http://api-dev.trinity.is:4444'
+                    }
+                    return 'http://api.trinity.is:4444';
+                }
+            }
         }]);
 
 

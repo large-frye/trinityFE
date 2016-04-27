@@ -3,7 +3,7 @@
 		<h3 class="box-title">Inspections Requiring Inspector Attention</h3>
 	</div><!-- /.box-header -->
 	<div class="box-body">
-		<table id="example1" class="table table-bordered table-hover">
+		<table id="inspector-reports" class="table table-bordered table-hover">
 			<thead>
 				<tr>
 					<th>Date of inspection</th>
@@ -19,7 +19,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in items['inspector_attention_required']">
+				<tr ng-repeat="item in items['inspector_attention_required']" ng-click="openInspection(item.id)">
 					<td>
 						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 					</td>
@@ -27,7 +27,7 @@
 						{{item.date_of_inspection | date:'hh:mm:ss'}}
 					</td>
 					<td>
-
+						{{item.inspection_type}}
 					</td>
 					<td>
 						{{item.adjuster.profile.insurance_company}}
@@ -80,7 +80,7 @@
 						{{item.date_of_inspection | date:'hh:mm:ss'}}
 					</td>
 					<td>
-
+						{{item.inspection_type}}
 					</td>
 					<td>
 						{{item.adjuster.profile.insurance_company}}

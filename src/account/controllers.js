@@ -106,15 +106,22 @@
                 $scope.basic = counts.basic[0];
                 $scope.expert = counts.expert[0];
 
+                for (var key in $scope.basic) {
+                    $scope.basic[key] = parseInt($scope.basic[key], 10);
+                }
+                for (var key in $scope.expert) {
+                    $scope.expert[key] = parseInt($scope.expert[key], 10);
+                }
+
                 // options
                 $scope.options = shared.getReportSideBar();
             }
         ])
 
-        .controller('inspectorHomeCtrl', ['$scope', 'items', function($scope, items) {
-            // clear side bar
-            angular.element('.content-wrapper').addClass('no-margin-left');
-
+        .controller('inspectorHomeCtrl', ['$scope', 'items', '$location', function($scope, items, $location) {
             $scope.items = items.orders;
+            $scope.openInspection = function(id) {
+                $location.path('/inspector/inspections/' + id);
+            }
         }]);
 })();

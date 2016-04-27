@@ -6,8 +6,10 @@
 
     angular.module('trinity.account.services', [])
 
-        .service('accountService', ['$resource', function($resource) {
-            return $resource('http://api.trinity.is:4444/:action/:sub/:id/:id2', {
+        .service('accountService', ['$resource', 'env', function($resource, env) {
+            var pattern = '/:action/:sub/:id/:id2';
+            var url = env.getEndpoint() + pattern;
+            return $resource(url, {
                 action: '@action'
             }, {
                 'signIn': {

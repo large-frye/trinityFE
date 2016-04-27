@@ -6,8 +6,12 @@
 
 	angular.module('trinity.user.services', [])
 
-	.service('UserService', ['$resource', function($resource) {
-		return $resource('http://api.trinity.is:4444/:action/:sub/:id/:id2', {
+	.service('UserService', ['$resource', 'env', function($resource, env) {
+
+		var pattern = '/:action/:sub/:id/:id2';
+		var url = env.getEndpoint() + pattern;
+
+		return $resource(url, {
 			action: '@action'
 		}, {
 			'adjusters': {
@@ -16,7 +20,7 @@
 					'Accept': 'application/json'
 				},
 				params: {
-					action: 'admin',
+					action: 'shared',
 					sub: 'users',
 					id: 4
 				},

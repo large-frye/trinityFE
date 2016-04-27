@@ -1,10 +1,12 @@
 (function() {
 	angular.module('trinity.reports.services.report', ['ngResource'])
 
-	.service('reportService', ['$resource', function($resource) {
-		return $resource('http://api.trinity.is:4444/admin/reports/:action/:sub/:sub2', {
+	.service('reportService', ['$resource', 'env', function($resource, env) {
 
-		}, {
+		var pattern = '/admin/reports/:action/:sub/:sub2';
+		var url = env.getEndpoint() + pattern;
+
+		return $resource(url, { }, {
 			get: {
 				method: 'GET',
 				headers: {
@@ -28,5 +30,20 @@
 				withCredentials: true
 			}
 		});
-	}]);
+	}])
+
+		.service('inspectorReportService', ['$resource', 'env', function($resource, env) {
+			var pattern = '/inspector/reports/:action/:sub/:sub2';
+			var url = env.getEndpoint() + pattern;
+
+			return $resource(url, { }, {
+				get: {
+					method: 'GET',
+					headers: {
+						Accept: 'application/json'
+					},
+					withCredentials: true
+				}
+			});
+		}]);
 }());

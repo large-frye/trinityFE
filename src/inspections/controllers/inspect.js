@@ -96,7 +96,6 @@
 
 				// Angular will use the object and we only need the id
 				var inspection = angular.copy($scope.inspection);
-				console.log(inspection);
 				inspection.inspection_type = inspection.inspection_type.id;
 
 				InspectionService.create(inspection).$promise.then(function(data) {

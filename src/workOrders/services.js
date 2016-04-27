@@ -1,9 +1,13 @@
 (function () {
     'use strict';
     angular.module('trinity.workOrders.services', ['ngResource'])
-        .service('workOrderService', ['$resource',
-            function ($resource) {
-                return $resource('http://api.trinity.is:4444/:userType/workorders/:action/:param1/:param2/:param3/:param4/:param5', {
+        .service('workOrderService', ['$resource', 'env',
+            function ($resource, env) {
+
+                var pattern = '/:userType/workorders/:action/:param1/:param2/:param3/:param4/:param5';
+                var url = env.getEndpoint() + pattern;
+
+                return $resource(url, {
                     "action": "@action"
                 }, {
                     "list": {
@@ -62,7 +66,7 @@
                             Accept: 'application/json'
                         },
                         params: {
-                            userType: 'inspector',
+                            userType: 'inspector'
                         },
                         withCredentials: true
                     }

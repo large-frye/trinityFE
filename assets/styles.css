@@ -31,7 +31,7 @@ body {
     margin-top: 1em;
 }
 
-.margin-bottom: {
+.margin-bottom {
     margin-bottom: 1em;
 }
 
@@ -148,4 +148,17 @@ a.disabled {
 
 .admin-table td {
     text-align: center;
+}
+
+.inspection-form input[type=text].form-control,
+.inspection-form input[type=phone].form-control,
+.inspection-form input[type=email].form-control,
+.inspection-form select.form-control {
+    padding: 5px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.inspection-form .form-group {
+    margin: .5em 0;
 }
