@@ -380,7 +380,7 @@
         .service('env', [ function() {
             return {
                 getEndpoint: function() {
-                    if (location.href.match(/localhost/) !== -1) {
+                    if (location.href.match(/localhost/) !== null) {
                         return 'http://api-dev.trinity.is:4444'
                     }
                     return 'http://api.trinity.is:4444';
