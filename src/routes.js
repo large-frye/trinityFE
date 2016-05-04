@@ -225,6 +225,12 @@
                         resolve: inspector.reports
                     })
 
+                    .when('/inspector/inspections/new', {
+                        templateUrl: '/src/partials/inspections/inspector/edit.html',
+                        controller: 'inspector.inspectionsCtrl',
+                        resolve: inspector.inspections
+                    })
+
                     .when('/inspector/inspections/:id', {
                         templateUrl: '/src/partials/inspections/inspector/edit.html',
                         controller: 'inspector.inspectionsCtrl',

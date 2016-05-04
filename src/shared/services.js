@@ -76,6 +76,9 @@
                             }],
                             inspector: [{
                                 parent: 'Inspections',
+                                children: [{
+                                    name: 'Submit new pickup', link: this.baseOrigin + '/inspections/new'
+                                }],
                                 link: this.baseOrigin
                             }, {
                                 parent: 'Reports',
@@ -234,12 +237,13 @@
                 getInspectorInspectionBar: function(id) {
                     return [{
                         parent: 'Inspection Details',
-                        link: '/#/admin/inspections/form/' + id
+                        link: '/#/inspector/inspections/form/' + id
                     }, {
                         parent: 'Inspection Photos',
-                        link: '/#/admin/inspections/photos/' + id
+                        link: '/#/inspector/inspections/photos/' + id
                     }, {
-                        parent: 'Submit New Pickup'
+                        parent: 'Submit New Pickup',
+                        link: '/#/inspector/inspections/new'
                     }]
                 },
                 getReportSideBar: function() {
