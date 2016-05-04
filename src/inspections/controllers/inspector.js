@@ -8,7 +8,8 @@
     angular.module('trinity.inspections.controller.inspector', [])
 
         .controller('inspector.inspectionsCtrl', ['$scope', 'inspection', 'shared', '$route', '$routeParams', 'UserService',
-            function($scope, inspection, shared, $route, $routeParams, UserService) {
+            '$window',
+            function($scope, inspection, shared, $route, $routeParams, UserService, $window) {
                 $scope.id = $route.current.params.id;
 
                 if ($scope.id) {
@@ -81,15 +82,16 @@
 
                 $scope.inspection = inspection;
 
-                if ($routeParams.id) {
-                    angular.element('.content-wrapper').removeClass('no-margin-left');
-                    $scope.options = shared.getInspectionSideBar($routeParams.id);
-                    setInspectionType();
-                } else {
-                    // Hide the side bar
-                    angular.element('.content-wrapper').addClass('no-margin-left');
-                }
-
+                // if ($routeParams.id) {
+                //     angular.element('.content-wrapper').removeClass('no-margin-left');
+                //     $scope.options = shared.getInspectionSideBar($routeParams.id);
+                //     setInspectionType();
+                // } else {
+                //     // Hide the side bar
+                //     // angular.element('.content-wrapper').addClass('no-margin-left');
+                // }
+                $scope.options = shared.getInspectorInspectionBar($routeParams.id);
+                console.log($scope.options);
                 $scope.setTime = function() {
                     console.log($scope);
                 };

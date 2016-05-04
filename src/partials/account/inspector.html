@@ -72,7 +72,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in items['new_pickups']">
+				<tr ng-repeat="item in items['new_pickups']" ng-click="openInspection(item.id)">
 					<td>
 						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 					</td>
