@@ -24,7 +24,8 @@
                 <div class="col-sm-6">
                     <select class="form-control select2"
                             ng-model="inspection.adjuster"
-                            ng-options="adjuster.title for adjuster in adjusters">
+                            ng-options="adjuster.title for adjuster in adjusters"
+                            ng-change="inspection.adjuster_id=adjuster.id">
                     </select>
                 </div>
             </div>
@@ -63,6 +64,85 @@
                     <input type="phone" class="form-control" ng-model="inspection.adjuster.profile.phone" />
                 </div>
             </div>
+
+            <div class="section">
+                <h4 class="page-header">Inspection Info</h4>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Date of Inpsection</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="inspection.date_of_inspection" name="date" bs-datepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Time of Inpsection</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" size="8" ng-model="time" name="time" bs-timepicker>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Inspection Type</label>
+                <div class="col-sm-8">
+                    <select class="form-control select2" ng-model="inspection.inspection_type"
+                            ng-options="type.name for type in inspectionTypes"></select>
+                </div>
+            </div>
+
+            <div class="section margin-top">
+                <h4 class="page-header">Property Information</h4>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Policy Num</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="inspection.policy_num" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Insured First Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="inspection.first_name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Insured Last Name</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="inspection.last_name" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Street Address</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="inspection.address" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">City</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="inspection.city" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">State</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="inspection.state" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Zip Code</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" ng-model="inspection.zip_code" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success" ng-click="save()">Save</button>
 
         </form>
 

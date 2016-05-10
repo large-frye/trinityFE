@@ -77,7 +77,7 @@
                             inspector: [{
                                 parent: 'Inspections',
                                 children: [{
-                                    name: 'Submit new pickup', link: this.baseOrigin + '/inspections/new'
+                                    name: 'Submit new pickup', link: '/#/inspector/inspections/new'
                                 }],
                                 link: this.baseOrigin
                             }, {

@@ -5,7 +5,7 @@
 
         .service('InspectionService', ['$resource', 'env', function ($resource, env) {
 
-            var pattern = '/admin/:route/:action/:id';
+            var pattern = '/:type/:route/:action/:id';
             var url = env.getEndpoint() + pattern;
 
             return $resource(url, {}, {
@@ -26,6 +26,7 @@
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'workorder'
                     },
                     withCredentials: true
@@ -36,6 +37,7 @@
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'workorder',
                         action: 'statuses'
                     },
@@ -47,6 +49,7 @@
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'inspections'
                     },
                     withCredentials: true
@@ -57,6 +60,7 @@
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'inspections',
                         action: 'outcomes'
                     },

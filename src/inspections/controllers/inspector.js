@@ -8,8 +8,9 @@
     angular.module('trinity.inspections.controller.inspector', [])
 
         .controller('inspector.inspectionsCtrl', ['$scope', 'inspection', 'shared', '$route', '$routeParams', 'UserService',
-            '$window',
-            function($scope, inspection, shared, $route, $routeParams, UserService, $window) {
+            '$window', 'InspectionService', 'UserFactory', '$location', 'alert', '$timeout',
+            function($scope, inspection, shared, $route, $routeParams, UserService, $window, InspectionService,
+                UserFactory, $location, alert, $timeout) {
                 $scope.id = $route.current.params.id;
 
                 if ($scope.id) {
@@ -45,8 +46,8 @@
                  */
                 var setAdjuster = function() {
                     $scope.inspection.adjuster = $scope.adjusters.filter(function(adjuster) {
-                        if ($scope.inspection.adjuster) {
-                            return adjuster.id === $scope.inspection.adjuster.id;
+                        if ($scope.inspection.adjuster || $scope.inspection.adjuster_id) {
+                            return adjuster.id === $scope.inspection.adjuster_id;
                         }
                     })[0];
                 };
@@ -81,17 +82,12 @@
                 });
 
                 $scope.inspection = inspection;
-
-                // if ($routeParams.id) {
-                //     angular.element('.content-wrapper').removeClass('no-margin-left');
-                //     $scope.options = shared.getInspectionSideBar($routeParams.id);
-                //     setInspectionType();
-                // } else {
-                //     // Hide the side bar
-                //     // angular.element('.content-wrapper').addClass('no-margin-left');
-                // }
                 $scope.options = shared.getInspectorInspectionBar($routeParams.id);
-                console.log($scope.options);
+
+                if ($routeParams.id) {
+                    setInspectionType();
+                }
+
                 $scope.setTime = function() {
                     console.log($scope);
                 };
@@ -110,7 +106,15 @@
                     var inspection = angular.copy($scope.inspection);
                     inspection.inspection_type = inspection.inspection_type.id;
 
-                    InspectionService.create(inspection).$promise.then(function(data) {
+                    // Always will be set to NEW_PICKUP and set the inspector_id;
+                    if (!inspection.id) {
+                        inspection.status_id = 7;
+                        inspection.inspector_id = UserFactory.user.get().id;
+                    }
+
+                    InspectionService.create({
+                        type: 'inspector'
+                    }, inspection).$promise.then(function(data) {
 
                         setStringToDate(data);
                         $scope.inspection = data;

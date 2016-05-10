@@ -181,6 +181,7 @@
                                         userId: UserFactory.user.get().id,
                                         id: id
                                     }, function(data) {
+                                        console.log(data);
                                         if (data.order.length) {
                                             deferred.resolve(data.order[0]);
                                         }

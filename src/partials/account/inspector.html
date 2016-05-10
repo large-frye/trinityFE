@@ -19,7 +19,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in items['inspector_attention_required']" ng-click="openInspection(item.id)">
+				<tr ng-repeat="item in items['inspector_attention_required']" ng-click="openInspection(item.customer_id)">
 					<td>
 						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 					</td>
@@ -72,7 +72,114 @@
 			</thead>
 
 			<tbody>
-			<tr ng-repeat="item in items['today']" ng-click="openInspection(item.id)">
+			<tr ng-repeat="item in items['today']" ng-click="openInspection(item.customer_id)">
+				<td>
+					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
+				</td>
+				<td>
+					{{item.date_of_inspection | date:'hh:mm:ss'}}
+				</td>
+				<td>
+					{{item.inspection_type}}
+				</td>
+				<td>
+					{{item.adjuster.profile.insurance_company}}
+				</td>
+				<td>
+					{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+				</td>
+				<td>
+					{{item.first_name}} {{item.last_name}}
+				</td>
+				<td>
+					{{item.address}}
+				</td>
+				<td>
+					{{item.city}}
+				</td>
+				<td>
+					{{item.state}}
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="box-header">
+		<h3 class="box-title">Tomorrow's Inspections</h3>
+	</div><!-- /.box-header -->
+	<div class="box-body">
+		<table id="example1" class="table table-bordered table-hover">
+			<thead>
+			<tr>
+				<th>Date of inspection</th>
+				<th>Time of inspection</th>
+				<th>Inspection Type</th>
+				<th>Insurance Company</th>
+				<th>Adjuster</th>
+				<th>Insured</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>State</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr ng-repeat="item in items['tomorrow']" ng-click="openInspection(item.customer_id)">
+				<td>
+					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
+				</td>
+				<td>
+					{{item.date_of_inspection | date:'hh:mm:ss'}}
+				</td>
+				<td>
+					{{item.inspection_type}}
+				</td>
+				<td>
+					{{item.adjuster.profile.insurance_company}}
+				</td>
+				<td>
+					{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+				</td>
+				<td>
+					{{item.first_name}} {{item.last_name}}
+				</td>
+				<td>
+					{{item.address}}
+				</td>
+				<td>
+					{{item.city}}
+				</td>
+				<td>
+					{{item.state}}
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="box-header">
+		<h3 class="box-title">Yesterdays's Inspections</h3>
+	</div><!-- /.box-header -->
+	<div class="box-body">
+		<table id="example1" class="table table-bordered table-hover">
+			<thead>
+			<tr>
+				<th>Date of inspection</th>
+				<th>Time of inspection</th>
+				<th>Inspection Type</th>
+				<th>Insurance Company</th>
+				<th>Adjuster</th>
+				<th>Insured</th>
+				<th>Address</th>
+				<th>City</th>
+				<th>State</th>
+			</tr>
+			</thead>
+
+			<tbody>
+			<tr ng-repeat="item in items['yesterday']" ng-click="openInspection(item.customer_id)">
+				<td>{{item}}</td>
 				<td>
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
@@ -126,7 +233,7 @@
 			</thead>
 
 			<tbody>
-			<tr ng-repeat="item in items['new_pickups']" ng-click="openInspection(item.id)">
+			<tr ng-repeat="item in items['new_pickups']" ng-click="openInspection(item.customer_id)">
 				<td>
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
