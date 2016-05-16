@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    var app = angular.module('trinity', [
+    angular.module('trinity', [
             'ngRoute',
             'ngAnimate',
             'ngSanitize',
@@ -18,6 +18,8 @@
             'trinity.reports.services.report',
             'trinity.inspections.controller.inspector',
             'trinity.reports.directives',
+            'trinity.controllers.invoice',
+            'trinity.services.invoice',
             'mgcrea.ngStrap'
         ])
 

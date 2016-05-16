@@ -1,0 +1,80 @@
+<div class="box box-gray">
+    <h3 class="box-header with-border">Inspector Billing</h3>
+
+    <div class="box-body">
+        <form name="InvoiceForm" ng-submit="save()" class="form-horizontal inspection-form">
+            <div class="form-group row">
+                <label class="col-sm-2 control-label">Week of</label>
+                <div class="col-sm-4">
+                    <select ng-model="vm.week" 
+                        ng-options="week.name for week in vm.weeks" 
+                        ng-change="vm.getWeeklyInvoices()" 
+                        class="form-control">
+                    </select>
+                </div>
+                <label class="col-sm-2 control-label">Weekly Mileage Fields</label>
+                <div class="col-sm-4">
+                    <button ng-click="vm.changeInspectorMiles()" 
+                            ng-disabled="!vm.invoice.inspector.id"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal">
+                        Lock/Unlock Inspector Miles
+                    </button>
+                    <button ng-click="vm.changeAllInspectorMiles()"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal; margin-left: 1em;"
+                            ng-disabled="!vm.week">
+                        Lock/Unlock All Inspector Miles
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Inspector</label>
+                <div class="col-sm-4">
+                    <select ng-model="vm.invoice.inspector"
+                            ng-options="inspector.name for inspector in vm.inspectors"
+                            ng-change="vm.getInvoiceByInspector(inspector.id)" 
+                            class="form-control"></select>
+                </div>
+                
+                <label class="col-sm-2 control-label">Print Weekly Billing</label>
+                <div class="col-sm-4">
+                    <button ng-click="vm.changeInspectorMiles()" 
+                            ng-disabled="!vm.invoice.inspector.id"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal">
+                        Print Billing Inspector
+                    </button>
+                    <button ng-click="vm.changeAllInspectorMiles()"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal; margin-left: 1em;"
+                            ng-disabled="!vm.week">
+                        Print Billing All Inspectors
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Mon.</th>
+                        <th>Tues.</th>
+                        <th>Wed.</th>
+                        <th>Thurs.</th>
+                        <th>Fri.</th>
+                        <th>Sat.</th>
+                        <th>Sun.</th>
+                        <th>Total Mileage</th>
+                        <th>Billable Mileage</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -107,6 +107,20 @@
                         }]
                 };
 
+                var invoices = { invoice: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve] };
+
+                function InvoiceResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+                    
+                    defer.resolve({
+                        id: $route
+                    });
+                    return defer.promise;
+                }
+
+
                 var inspector = {
                     home: {
                         items: ['$q', '$route', '$routeParams', 'workOrderService', 'UserFactory',
@@ -238,6 +252,13 @@
                         resolve: inspector.inspections
                     })
 
+                    .when('/admin/invoice/:id', {
+                        templateUrl: '/src/partials/invoice/invoice.html',
+                        controller: 'invoiceCtrl',
+                        controllerAs: 'vm',
+                        resolve: invoices
+                    })
+
                     .when('/admin/workorders/:type/:timeUnit', {
                         templateUrl: '/src/partials/workorders/list.html',
                         controller: 'listCtrl'
@@ -322,4 +343,13 @@
                     }]);
             }]
     );
+    
+    function hideSidebar() {
+        angular.element('.content-wrapper').css({
+            'margin-left': '0',
+            'transition': 'none'   
+        });
+    }
 })();
+
+

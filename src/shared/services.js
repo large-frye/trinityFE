@@ -25,7 +25,6 @@
                         this.baseOrigin = '/#/' + this.user.appRole;
                     },
                     getNavOptions: function() {
-
                         var options = {
                             admin: [{
                                 parent: 'New Inspection',
@@ -33,11 +32,11 @@
                                 icon: 'fa-folder-o'
                             }, {
                                 parent: 'Reports',
-                                link: this.baseOrigin + '/reports',
+                                link: '/#/' + this.user.appRole + '/reports',
                                 icon: 'fa-bar-chart-o'
                             }, {
                                 parent: 'Inspector Billing',
-                                link: this.baseOrigin + '/inspector/billing',
+                                link: this.baseOrigin + '/invoice/1',
                                 icon: 'fa-dollar'
                             }, {
                                 parent: 'Calendar',
@@ -385,7 +384,8 @@
             return {
                 getEndpoint: function() {
                     if (location.href.match(/localhost/) !== null) {
-                        return 'http://api-dev.trinity.is:4444'
+                        // return 'http://52.2.169.5';
+                        return 'http://api.trinity.dev';
                     }
                     return 'http://api.trinity.is:4444';
                 }

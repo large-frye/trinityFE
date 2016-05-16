@@ -32,7 +32,7 @@
 					'Accept': 'application/json'
 				},
 				params: {
-					action: 'admin',
+					action: 'shared',
 					sub: 'users',
 					id: 'inspectors'
 				},
