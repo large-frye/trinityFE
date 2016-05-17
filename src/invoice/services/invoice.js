@@ -12,7 +12,7 @@
         ////////////////
 
         var endpoint = env.getEndpoint();
-        var url = endpoint + '/shared/invoice/:id';
+        var url = endpoint + '/shared/invoice/:param/:param2/:param3';
         
         function api() {
             return $resource(url, {}, {
@@ -22,10 +22,24 @@
                         'Accept': 'application/json'
                     }, 
                     params: {
-                        id: 'weeks'
+                        param: 'weeks'
                     },
                     withCredentials: true,
                     isArray: true
+                },
+                getWeeklyInspections: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    withCredentials: true
+                },
+                getInspectionsByInspector: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    withCredentials: true
                 }
             });
         }

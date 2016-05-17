@@ -20,6 +20,7 @@
             'trinity.reports.directives',
             'trinity.controllers.invoice',
             'trinity.services.invoice',
+            'trinity.filters.shared',
             'mgcrea.ngStrap'
         ])
 

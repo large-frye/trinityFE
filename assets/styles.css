@@ -28,11 +28,11 @@ body {
 }
 
 .margin-top {
-    margin-top: 1em;
+    margin-top: 1em !important;
 }
 
 .margin-bottom {
-    margin-bottom: 1em;
+    margin-bottom: 1em !important;
 }
 
 .section {
@@ -153,6 +153,7 @@ a.disabled {
 .inspection-form input[type=text].form-control,
 .inspection-form input[type=phone].form-control,
 .inspection-form input[type=email].form-control,
+.inspection-form input[type=number].form-control,
 .inspection-form select.form-control {
     padding: 5px;
     height: 30px;
@@ -161,4 +162,8 @@ a.disabled {
 
 .inspection-form .form-group {
     margin: .5em 0;
+}
+
+.inspection-form .billing-input input.form-control {
+    margin-top: 0;
 }
