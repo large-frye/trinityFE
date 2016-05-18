@@ -387,7 +387,7 @@
                         // return 'http://52.2.169.5';
                         return 'http://api.trinity.dev';
                     }
-                    return 'http://api.trinity.is:4444';
+                    return 'http://52.2.169.5';
                 }
             }
         }]);
