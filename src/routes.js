@@ -12,6 +12,8 @@
                     counts: ['$q', 'workOrderService', 'UserFactory', '$rootScope', '$location',
                         function ($q, workOrderService, UserFactory, $rootScope, $location) {
                             var deferred = $q.defer();
+                            
+                            showSidebar();
 
                             // Pre-loading direct-chat-contacts-open
                             $rootScope.$broadcast('PRELOAD_COUNTS');
@@ -36,6 +38,8 @@
                         function ($q, InspectionService, $route, $routeParams) {
                             var deferred = $q.defer();
                             var id = $route.current.params.id;
+                            
+                            showSidebar();
 
                             if (id) {
                                 InspectionService.get({
@@ -66,6 +70,8 @@
                         function ($q, $route, $routeParams, reportService) {
                             var deferred = $q.defer();
                             var filter = $route.current.params.filter;
+                            
+                            showSidebar();
 
                             if (filter) {
                                 reportService.byStatus({
@@ -91,6 +97,9 @@
                     form: ['$q', '$route', '$routeParams', 'InspectionService',
                         function ($q, $route, $routeParams, InspectionService) {
                             var deferred = $q.defer();
+                            
+                            showSidebar();
+                            
                             InspectionService.inspectionForm({
                                 id: $route.current.params.id
                             }).$promise.then(function (data) {
@@ -127,6 +136,8 @@
                             function ($q, $route, $routeParams, workOrderService, UserFactory) {
                                 var deferred = $q.defer();
                                 var user = UserFactory.user.get();
+                                
+                                showSidebar();
 
                                 workOrderService.inspectorDaily({
                                     param1: user.id
@@ -155,6 +166,7 @@
                                 var deferred = $q.defer();
                                 var user = UserFactory.user.get();
                                 deferred.resolve(user);
+                                showSidebar();
                                 return deferred.promise;
                                 // InspectorService.workorders({
                                 //
@@ -171,6 +183,8 @@
                                 if (!filter) {
                                     filter = 'all';
                                 }
+                                
+                                showSidebar();
 
                                 inspectorReportService.get({
                                     action: filter,
@@ -202,6 +216,9 @@
                                     }, function(err) {
                                         $log.error(err);
                                     });
+                                    
+                                    showSidebar();
+                                    
                                 } else {
                                     deferred.resolve({
                                         auto_upgrade: false,
@@ -348,6 +365,14 @@
         angular.element('.content-wrapper').css({
             'margin-left': '0',
             'transition': 'none'   
+        });
+    }
+    
+    function showSidebar() {
+        var $el = angular.element('.content-wrapper');
+        $el.removeClass('margin-left');
+        $el.css({
+            'margin-left': '230px'
         });
     }
 })();

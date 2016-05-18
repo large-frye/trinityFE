@@ -102,9 +102,12 @@
                 }, {
                     name: 'Cancelled'
                 }];
-
+                
+                $scope.items = [ counts.basic[0], counts.expert[0], counts.expert[0] ];
+                
                 $scope.basic = counts.basic[0];
                 $scope.expert = counts.expert[0];
+                $scope.ladderAssist = counts.ladderAssist[0];
 
                 for (var key in $scope.basic) {
                     $scope.basic[key] = parseInt($scope.basic[key], 10);

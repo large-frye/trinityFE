@@ -26,5 +26,15 @@
                     }
                 }
             };
+        })
+        .filter('newOrders', function() {
+            return function(items) {
+                console.log(items);     
+            }
+        })
+        .filter('cancelledOrders', function() {
+            return function(items) {
+                console.log(items);     
+            }
         });
 })();

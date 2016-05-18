@@ -36,41 +36,41 @@
                                 icon: 'fa-bar-chart-o'
                             }, {
                                 parent: 'Inspector Billing',
-                                link: this.baseOrigin + '/invoice/1',
+                                link: '/#/' + this.user.appRole + '/invoice/1',
                                 icon: 'fa-dollar'
                             }, {
                                 parent: 'Calendar',
-                                link: this.baseOrigin + '/calendar',
+                                link: '/#/' + this.user.appRole + '/calendar',
                                 icon: 'fa-calendar'
                             }, {
                                 parent: 'Maps',
-                                link: this.baseOrigin + '/maps',
+                                link: '/#/' + this.user.appRole + '/maps',
                                 icon: 'fa-map'
                             }, {
                                 parent: 'Tasks',
-                                link: this.baseOrigin + '/tasks',
+                                link: '/#/' + this.user.appRole + '/tasks',
                                 icon: 'fa-tasks'
                             }, {
                                 parent: 'Resources',
                                 children: [{
-                                    name: 'Resources', link: this.baseOrigin + '/resources'
+                                    name: 'Resources', link: '/#/' + this.user.appRole + '/resources'
                                 }, {
-                                    name: 'Training Material', link: this.baseOrigin + '/resources/training-material'
+                                    name: 'Training Material', link: '/#/' + this.user.appRole + '/resources/training-material'
                                 }, {
-                                    name: 'Training Videos', link: this.baseOrigin + '/resources/training-videos'
+                                    name: 'Training Videos', link: '/#/' + this.user.appRole + '/resources/training-videos'
                                 }, {
-                                    name: 'Office Training Videos', link: this.baseOrigin + '/resources/office-training-videos'
+                                    name: 'Office Training Videos', link: '/#/' + this.user.appRole + '/resources/office-training-videos'
                                 }],
-                                link: this.baseOrigin + '/resources',
+                                link: '/#/' + this.user.appRole + '/resources',
                                 icon: 'fa-folder-o'
                             }, {
                                 parent: 'Contacts',
                                 children: [{
-                                    name: 'Admins', link: this.baseOrigin + '/contacts/admins'
+                                    name: 'Admins', link: '/#/' + this.user.appRole + '/contacts/admins'
                                 }, {
-                                    name: 'Office Users', link: this.baseOrigin + '/contacts/office-users'
+                                    name: 'Office Users', link: '/#/' + this.user.appRole + '/contacts/office-users'
                                 }],
-                                link: this.baseOrigin + '/contacts',
+                                link: '/#/' + this.user.appRole + '/contacts',
                                 icon: 'fa-folder-o'
                             }],
                             inspector: [{
@@ -78,7 +78,7 @@
                                 children: [{
                                     name: 'Submit new pickup', link: '/#/inspector/inspections/new'
                                 }],
-                                link: this.baseOrigin
+                                link: '/#/' + this.user.appRole
                             }, {
                                 parent: 'Reports',
                                 link: '/#/inspector/reports'
