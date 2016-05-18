@@ -15,6 +15,7 @@
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'workorder',
                         action: 'save'
                     },
