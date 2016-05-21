@@ -2,7 +2,7 @@
 
 (function(angular) { angular.module('trinity.inspections', [
 	'trinity.inspections.controllers.inspect',
-	'trinity.inspections.controllers.processing',
+	'trinity.controllers.admin.processing',
 	'trinity.inspections.services',
 	'trinity.controllers.inspections.admin.form'
 ]);}(angular));

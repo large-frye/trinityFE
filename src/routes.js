@@ -85,7 +85,8 @@
                                 });
                             } else if (filter) {
                                 reportService.byStatus({
-                                    sub: filter
+                                    sub: filter,
+                                    sub2: 'all'
                                 }).$promise.then(function (data) {
                                     deferred.resolve(data);
                                 }, function (err) {
@@ -219,7 +220,6 @@
                                         userId: UserFactory.user.get().id,
                                         id: id
                                     }, function(data) {
-                                        console.log(data);
                                         if (data.order.length) {
                                             deferred.resolve(data.order[0]);
                                         }
@@ -305,7 +305,8 @@
 
                     .when('/admin/inspections/processing/:id', {
                         templateUrl: '/src/partials/inspections/processing.html',
-                        controller: 'processingCtrl',
+                        controller: 'adminProcessingCtrl',
+                        controllerAs: 'vm',
                         resolve: inspectionResolver
                     })
 
@@ -391,6 +392,7 @@
     function showSidebar() {
         var $el = angular.element('.content-wrapper');
         $el.removeClass('margin-left');
+        $el.removeClass('no-margin-left');
         $el.css({
             'margin-left': '230px'
         });

@@ -126,10 +126,10 @@ body {
 
 .alert-fixed {
     position: fixed;
-    top: 4em;
+    top: 5em;
     left: 15px;
     right: 15px;
-    z-index: 1000;
+    z-index: 10000000;
 }
 
 .form-forms .dropdown.open .dropdown-menu li:hover{
@@ -154,6 +154,7 @@ a.disabled {
 .inspection-form input[type=phone].form-control,
 .inspection-form input[type=email].form-control,
 .inspection-form input[type=number].form-control,
+.inspection-form input[type=date].form-control,
 .inspection-form select.form-control {
     padding: 5px;
     height: 30px;

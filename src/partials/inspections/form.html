@@ -68,7 +68,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 no-set-width control-label">Inspection #</label>
-										<div class="col-sm-9">{{vm.workorder.policy_num}}</div>
+										<div class="col-sm-9 processing-content">{{vm.workorder.policy_num}}</div>
 									</div>
 								</div>
 
@@ -128,7 +128,7 @@
 								<div class="col-sm-12">
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
-										<div class="col-sm-10">
+										<div class="col-sm-10 processing-content">
 											<p>
 												{{vm.workorder.special_instructions_insured}}
 											</p>
@@ -223,16 +223,16 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Date of inspection</label>
-										<div class="col-sm-8">
-											{{vm.workorder.date_of_inspection}}
+										<div class="col-sm-8 processing-content">
+											{{vm.workorder.date_of_inspection | date:YYYY/mm/dd}}
 										</div>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Time of inspection</label>
-										<div class="col-sm-8">
-											!!
+										<div class="col-sm-8 processing-content">
+											{{vm.workorder.date_of_inspection | date:'hh:mm a'}}
 										</div>
 									</div>
 								</div>
@@ -242,7 +242,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Inspector</label>
-										<div class="col-sm-8">
+										<div class="col-sm-8 processing-content">
 											{{vm.workorder.inspector}}
 										</div>
 									</div>
@@ -251,7 +251,7 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Date Cancelled</label>
-										<div class="col-sm-8">
+										<div class="col-sm-8 processing-content">
 											{{vm.workorder.date_cancelled}}
 										</div>
 									</div>
@@ -262,7 +262,7 @@
 								<div class="col-sm-12">
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Special Instructions to Inspector</label>
-										<div class="col-sm-9">
+										<div class="col-sm-9 processing-content">
 											{{vm.workorder.special_instructions_to_inspector}}
 										</div>
 									</div>

@@ -9,6 +9,7 @@
 
     AdminInspectionController.$inject = ['InspectionService', 'InspectionFactory', 'FormService', '$log', 'STATUSES', 'form', '$rootScope', '$modal',
     '$routeParams', 'shared'];
+    
     function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal, $routeParams, shared) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
@@ -46,6 +47,7 @@
                 data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
                 vm.workorder = data.order;
                 vm.workorderStatus = getStatus();
+                vm.auto_upgrade = vm.workorder.auto_upgrade ? 'Yes' : 'No';
                 if (cb) cb();
             }, function(err) {
                 $log.error(err);
