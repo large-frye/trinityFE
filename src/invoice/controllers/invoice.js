@@ -70,7 +70,7 @@
         function changeInspectorMiles() {
 
         }
-
+ 
         function changeAllInspectorMiles() {
 
         }

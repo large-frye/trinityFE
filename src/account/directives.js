@@ -1,6 +1,4 @@
-/**
- * Created by andrewfrye on 1/20/16.
- */
+/* global angular */
 (function() {
     angular.module('trinity.account.directives', [])
 
@@ -58,25 +56,7 @@
                         return $scope.basic + $scope.expert + $scope.ladderAssist;
                     }
                 },
-                template: '<th>{{colHeader}}</th>' +
-                    '<td><a target="_blank" href="/#/admin/reports/{{itemType}}/ladderAssist">' +
-                        '{{ladderAssist}}</a></td>' +
-                    '<td><a target="_blank" href="/#/admin/reports/{{itemType}}/basic">' +
-                        '{{basic}}</a></td>' +
-                    '<td><a target="_blank" href="/#/admin/reports/{{itemType}}/expert">' +
-                        '{{expert}}</a></td>' +
-                    '<td><a target="_blank" href="/#/admin/reports/{{itemType}}">' +
-                        '{{getTotal()}}</a></td>' +
-                    '<td>' +
-                        '<a href="/#/admin/reports/{{itemType}}/new" target="_blank">' +
-                            '{{newToday()}}' +
-                        '</a>' +
-                    '</td>' +
-                    '<td>' +
-                        '<a href="/#/admin/reports/today/cancelled" target="_blank">' +
-                            '{{basic.cancelledToday + expert.cancelledToday + ladderAssist.cancelledToday}}' +    
-                        '</a>' +
-                    '</td>'
+                templateUrl: 'src/partials/shared/count-listings.html'
             }
         }])
 })();

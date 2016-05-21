@@ -70,10 +70,20 @@
                         function ($q, $route, $routeParams, reportService) {
                             var deferred = $q.defer();
                             var filter = $route.current.params.filter;
+                            var type = $route.current.params.type;
                             
                             showSidebar();
-
-                            if (filter) {
+                            
+                            if (filter && type) {
+                                reportService.byStatus({
+                                    sub: filter,
+                                    sub2: type
+                                }).$promise.then(function (data) {
+                                    deferred.resolve(data);
+                                }, function (err) {
+                                    deferred.resolve(err);
+                                });
+                            } else if (filter) {
                                 reportService.byStatus({
                                     sub: filter
                                 }).$promise.then(function (data) {
@@ -301,19 +311,29 @@
 
                     .when('/admin/inspections/form/:id', {
                         templateUrl: '/src/partials/inspections/form.html',
-                        controller: 'formCtrl',
+                        controller: 'adminInspectionCtrl',
+                        controllerAs: 'vm',
                         resolve: inspectionForm
                     })
 
                     .when('/admin/reports', {
                         templateUrl: '/src/partials/reports/list.html',
-                        controller: 'reportCtrl',
+                        controller: 'adminReportCtrl',
+                        controllerAs: 'vm',
                         resolve: report
                     })
 
                     .when('/admin/reports/:filter', {
                         templateUrl: '/src/partials/reports/list.html',
-                        controller: 'reportCtrl',
+                        controller: 'adminReportCtrl',
+                        controllerAs: 'vm',
+                        resolve: report
+                    })
+                    
+                    .when('/admin/reports/:filter/:type', {
+                        templateUrl: '/src/partials/reports/list.html',
+                        controller: 'adminReportCtrl',
+                        controllerAs: 'vm',
                         resolve: report
                     })
 

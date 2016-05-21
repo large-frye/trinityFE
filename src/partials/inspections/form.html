@@ -1,4 +1,4 @@
-<sidebar options="options"></sidebar>
+<sidebar options="vm.options"></sidebar>
 
 <div class="box box-info">
 	<div class="box-header with-border margin-bottom">
@@ -12,45 +12,45 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" role="menu">
-					<li ng-class="{'disabled': form.basic_sketch}">
-						<a ng-href="{{form.basic_sketch}}"
+					<li ng-class="{'disabled': vm.form.basic_sketch}">
+						<a ng-href="{{vm.form.basic_sketch}}"
 						ng-click="initUpload($event, 'basic_sketch');">
-							<i ng-if="!form.basic_sketch" class="fa fa-times text-danger"></i>
-							<i ng-if="form.basic_sketch" class="fa fa-check text-success"></i>
+							<i ng-if="!vm.form.basic_sketch" class="fa fa-times text-danger"></i>
+							<i ng-if="vm.form.basic_sketch" class="fa fa-check text-success"></i>
 							Basic Sketch
 						</a>
 					</li>
 					<li>
-						<a ng-href="{{form.expert_sketch}}" ng-click="initUpload($event, 'expert_sketch');">
-							<i ng-if="!form.expert_sketch" class="fa fa-times text-danger"></i>
-							<i ng-if="form.expert_sketch" class="fa fa-check text-success"></i>
+						<a ng-href="{{vm.form.expert_sketch}}" ng-click="vm.initUpload($event, 'expert_sketch');">
+							<i ng-if="!vm.form.expert_sketch" class="fa fa-times text-danger"></i>
+							<i ng-if="vm.form.expert_sketch" class="fa fa-check text-success"></i>
 							Expert Sketch
 						</a>
 					</li>
 					<li>
-						<a ng-href="{{form.alacrity_form}}" ng-click="initUpload($event, 'alacrity_form');">
-							<i ng-if="!form.alacrity_form" class="fa fa-times text-danger"></i>
-							<i ng-if="form.alacrity_form" class="fa fa-check text-success"></i>
+						<a ng-href="{{vm.form.alacrity_form}}" ng-click="vm.initUpload($event, 'alacrity_form');">
+							<i ng-if="!vm.form.alacrity_form" class="fa fa-times text-danger"></i>
+							<i ng-if="vm.form.alacrity_form" class="fa fa-check text-success"></i>
 							Alacrity Form
 						</a>
 					</li>
 					<li>
-						<a ng-href="{{form.nct_form}}" ng-click="initUpload($event, 'nct_form');">
-							<i ng-if="!form.nct_form" class="fa fa-times text-danger"></i>
-							<i ng-if="form.nct_form" class="fa fa-check text-success"></i>
+						<a ng-href="{{vm.form.nct_form}}" ng-click="vm.initUpload($event, 'nct_form');">
+							<i ng-if="!vm.form.nct_form" class="fa fa-times text-danger"></i>
+							<i ng-if="vm.form.nct_form" class="fa fa-check text-success"></i>
 							NCT Form
 						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<input type="file" name="formUpload" style="display:none" onchange="angular.element(this).scope().uploadFile();" />
+		<input type="file" name="formUpload" style="display:none" onchange="angular.element(this).scope().vm.uploadFile();" />
 	</div>
 
 	<div class="clearfix"></div>
 
 	<div class="box-body">
-		<form name="processingForm" ng-submit="save" class="form-horizontal processing-form">
+		<form name="processingForm" ng-submit="vm.save" class="form-horizontal processing-form">
 
 			<div class="box-group" id="accordion">
 				<div class="panel box">
@@ -68,14 +68,14 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 no-set-width control-label">Inspection #</label>
-										<div class="col-sm-9">{{workorder.policy_num}}</div>
+										<div class="col-sm-9">{{vm.workorder.policy_num}}</div>
 									</div>
 								</div>
 
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 no-set-width control-label">Claim #</label>
-										<div class="col-sm-9 processing-content">{{workorder.claim_num}}</div>
+										<div class="col-sm-9 processing-content">{{vm.workorder.claim_num}}</div>
 									</div>
 								</div>
 							</div>
@@ -84,13 +84,13 @@
 								<div class="margin-top col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-set-width">Inspection Type</label>
-										<div class="col-sm-7 processing-content">{{workorder.inspection_val}}</div>
+										<div class="col-sm-7 processing-content">{{vm.workorder.inspection_val}}</div>
 									</div>
 								</div>
 								<div class="margin-top col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-set-width">Auto Upgrade</label>
-										<div class="col-sm-9 processing-content">{{auto_upgrade}}</div>
+										<div class="col-sm-9 processing-content">{{vm.auto_upgrade}}</div>
 									</div>
 								</div>
 							</div>
@@ -99,14 +99,14 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-4 no-set-width control-label">Insured Name</label>
-										<div class="col-sm-8 processing-content">{{workorder.first_name}} {{workorder.last_name}}</div>
+										<div class="col-sm-8 processing-content">{{vm.workorder.first_name}} {{vm.workorder.last_name}}</div>
 									</div>
 								</div>
 
 								<div class="col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-4 no-set-width control-label">Phone Number</label>
-										<div class="col-sm-8 processing-content">{{workorder.phone_1}}</div>
+										<div class="col-sm-8 processing-content">{{vm.workorder.phone_1}}</div>
 									</div>
 								</div>
 							</div>
@@ -115,10 +115,10 @@
 								<div class="col-sm-12">
 									<div class="form-group">
 										<label class="col-sm-4 no-set-width control-label">Insured Address</label>
-										<div class="col-sm-8 processing-content">{{workorder.address}}
-											{{inspection.city}},
-											{{inspection.state}}
-											{{inspection.zip}}
+										<div class="col-sm-8 processing-content">{{vm.workorder.address}}
+											{{vm.workorder.city}},
+											{{vm.workorder.state}}
+											{{vm.workorder.zip}}
 										</div>
 									</div>
 								</div>
@@ -130,7 +130,7 @@
 										<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
 										<div class="col-sm-10">
 											<p>
-												{{workorder.special_instructions_insured}}
+												{{vm.workorder.special_instructions_insured}}
 											</p>
 										</div>
 									</div>
@@ -144,13 +144,13 @@
 								<div class="margin-top col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-set-width">Adjuster Name</label>
-										<div class="col-sm-9 processing-content">{{workorder.adjuster.name}}</div>
+										<div class="col-sm-9 processing-content">{{vm.workorder.adjuster.name}}</div>
 									</div>
 								</div>
 								<div class="margin-top col-sm-6">
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-set-width">Insurance Company</label>
-										<div class="col-sm-8 processing-content">{{workorder.adjuster.profile.insurance_company}}</div>
+										<div class="col-sm-8 processing-content">{{vm.workorder.adjuster.profile.insurance_company}}</div>
 									</div>
 								</div>
 							</div>
@@ -158,7 +158,7 @@
 								<div class="margin-top col-sm-12">
 									<div class="form-group">
 										<label class="col-sm-2 control-label no-set-width">Adjuster Phone</label>
-										<div class="col-sm-10 processing-content">{{workorder.adjuster.profile.phone}}</div>
+										<div class="col-sm-10 processing-content">{{vm.workorder.adjuster.profile.phone}}</div>
 									</div>
 								</div>
 							</div>
@@ -166,7 +166,7 @@
 								<div class="margin-top col-sm-12">
 									<div class="form-group">
 										<label class="col-sm-2 control-label no-set-width">Adjuster Email</label>
-										<div class="col-sm-10 processing-content">{{workorder.adjuster.email}}</div>
+										<div class="col-sm-10 processing-content">{{vm.workorder.adjuster.email}}</div>
 									</div>
 								</div>
 							</div>
@@ -176,7 +176,7 @@
 										<label class="col-sm-2 control-label no-set-width">Adjuster Special Instructions:</label>
 										<div class="col-sm-10 processing-content">
 											<p>
-												{{workorder.special_instructions_adjuster}}
+												{{vm.workorder.special_instructions_adjuster}}
 											</p>
 										</div>
 									</div>
@@ -204,7 +204,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Progress Status</label>
 										<div class="col-sm-8 processing-content">
-											{{workorderStatus.name}}
+											{{vm.workorderStatus.name}}
 										</div>
 									</div>
 								</div>
@@ -213,7 +213,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Date of last contact</label>
 										<div class="col-sm-8 processing-content">
-											{{workorder.date_of_last_contact | date:YYYY/mm/dd}}
+											{{vm.workorder.date_of_last_contact | date:YYYY/mm/dd}}
 										</div>
 									</div>
 								</div>
@@ -224,8 +224,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Date of inspection</label>
 										<div class="col-sm-8">
-											<input type="date" ng-model="inspection.date_of_inspection"
-											 		class="form-control"/>
+											{{vm.workorder.date_of_inspection}}
 										</div>
 									</div>
 								</div>
@@ -233,8 +232,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Time of inspection</label>
 										<div class="col-sm-8">
-											<input type="date" ng-model="time"
-											 		class="form-control"/>
+											!!
 										</div>
 									</div>
 								</div>
@@ -245,10 +243,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Inspector</label>
 										<div class="col-sm-8">
-											<select ng-model="inspector" class="form-control"
-													ng-options="inspector.name for inspector in inspectors"
-													ng-change="setInspector(inspector)">
-											</select>
+											{{vm.workorder.inspector}}
 										</div>
 									</div>
 								</div>
@@ -257,8 +252,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Date Cancelled</label>
 										<div class="col-sm-8">
-											<input type="date" class="form-control"
-												ng-model="inspection.date_cancelled" />
+											{{vm.workorder.date_cancelled}}
 										</div>
 									</div>
 								</div>
@@ -269,9 +263,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Special Instructions to Inspector</label>
 										<div class="col-sm-9">
-											<textarea class="form-control"
-												ng-model="inspection.special_instructions_to_inspector">
-											</textarea>
+											{{vm.workorder.special_instructions_to_inspector}}
 										</div>
 									</div>
 								</div>

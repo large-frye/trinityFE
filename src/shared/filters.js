@@ -36,5 +36,10 @@
             return function(items) {
                 console.log(items);     
             }
-        });
+        })
+        .filter('replace', function() {
+            return function(str, match, replace) {
+                return str.replace(match, replace);      
+            }
+        })
 })();

@@ -167,3 +167,7 @@ a.disabled {
 .inspection-form .billing-input input.form-control {
     margin-top: 0;
 }
+
+.skin-red-light .sidebar-menu>li.active {
+    border-left: 4px solid #dd4b39; 
+}

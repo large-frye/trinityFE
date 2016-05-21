@@ -1,3 +1,5 @@
+/* global angular */
+
 (function (angular) {
 	angular.module('trinity.inspections.controllers.inspect', [])
 
@@ -13,7 +15,6 @@
 			 * @return {[type]} [description]
 			 */
 			var setInspectionType = function() {
-				console.log($scope.inspectionTypes);
 				$scope.inspection.inspection_type = $scope.inspectionTypes.filter(function(type) {
 					return type.id == $scope.inspection.inspection_type;
 				})[0];

@@ -1,25 +1,25 @@
-<sidebar options="options"></sidebar>
+<sidebar options="vm.options"></sidebar>
 
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">All {{report.name[0]}} Inspections</h3>
+		<h3 class="box-title">All {{vm.report.name[0]}} Inspections</h3>
 	</div><!-- /.box-header -->
 	<div class="box-body">
 		<table id="example1" class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th ng-repeat="field in report.fields">
+					<th ng-repeat="field in vm.report.fields">
 						{{field.header}}
 					</th>
 				</tr>
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in report.reports" ng-click="findInspection(item.customer_id)">
-					<td ng-repeat="field in report.fields">
+				<tr ng-repeat="item in vm.report.reports" 
+					ng-click="vm.findInspection(item.customer_id)">
+					<td ng-repeat="field in vm.report.fields">
 						{{item[field.key]}}
 					</td>
-					<!-- <report-data report="item" fields="report.fields"></report-data> -->
 				</tr>
 			</tbody>
 		</table>

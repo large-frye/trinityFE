@@ -25,7 +25,7 @@
 			},
 			link: function ($scope, elem, attrs)  {
 				$scope.activeLink = function(link) {
-					return link.replace(/\/#/, '') === $route.current.$$route.originalPath;
+					return link === location.pathname + location.hash;
 				};
 
 				$scope.hide = function() {

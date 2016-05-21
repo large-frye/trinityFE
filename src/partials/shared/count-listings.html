@@ -1,0 +1,33 @@
+<!-- replace filter is taking in '_' and replacing it with '-' -->
+
+<th>{{colHeader}}</th>
+<td>
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/ladderAssist"> 
+        {{ladderAssist}}
+    </a>
+</td> 
+<td>
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/basic"> 
+        {{basic}}
+    </a>
+</td> 
+<td>
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/expert"> 
+        {{expert}}
+    </a>
+</td> 
+<td>
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}"> 
+        {{getTotal()}}
+    </a>
+</td> 
+<td> 
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/new"> 
+        {{newToday()}} 
+    </a> 
+</td> 
+<td> 
+    <a href="/#/admin/reports/today/cancelled">
+        {{basic.cancelledToday + expert.cancelledToday + ladderAssist.cancelledToday}}    
+    </a>
+</td>
