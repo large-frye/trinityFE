@@ -1,0 +1,138 @@
+<div class="box box-gray">
+    <h3 class="box-header with-border">Inspector Billing</h3>
+
+    <div class="box-body">
+        <form name="InvoiceForm" ng-submit="save()" class="form-horizontal inspection-form">
+            <div class="form-group row">
+                <label class="col-sm-2 control-label">Week of</label>
+                <div class="col-sm-4">
+                    <select ng-model="vm.week" 
+                        ng-options="week.name for week in vm.weeks" 
+                        ng-change="vm.getWeeklyInspections()" 
+                        class="form-control">
+                    </select>
+                </div>
+                <label class="col-sm-2 control-label">Weekly Mileage Fields</label>
+                <div class="col-sm-4">
+                    <button ng-click="vm.changeInspectorMiles()" 
+                            ng-disabled="!vm.billing.inspector.id"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal">
+                        Lock/Unlock Inspector Miles
+                    </button>
+                    <button ng-click="vm.changeAllInspectorMiles()"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal; margin-left: 1em;"
+                            ng-disabled="!vm.week">
+                        Lock/Unlock All Inspector Miles
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Inspector</label>
+                <div class="col-sm-4">
+                    <select ng-model="vm.billing.inspector"
+                            ng-options="inspector.name for inspector in vm.inspectors"
+                            ng-change="vm.getInspectionsByInspector(vm.billing.inspector.id)" 
+                            class="form-control"></select>
+                </div>
+                
+                <label class="col-sm-2 control-label">Print Weekly Billing</label>
+                <div class="col-sm-4">
+                    <button ng-click="vm.changeInspectorMiles()" 
+                            ng-disabled="!vm.billing.inspector.id"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal">
+                        Print Billing Inspector
+                    </button>
+                    <button ng-click="vm.changeAllInspectorMiles()"
+                            class="btn btn-primary col-sm-5"
+                            style="white-space: normal; margin-left: 1em;"
+                            ng-disabled="!vm.week">
+                        Print Billing All Inspectors
+                    </button>
+                </div>
+            </div>
+            
+            <div class="form-group margin-top">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Date</th>
+                            <th>Insured</th>
+                            <th>Insp. Type</th>
+                            <th>Rate</th>
+                            <th>Rope & Harness</th>
+                            <th>Tarp(s)</th>
+                            <th>Misc</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="inspection in vm.inspections">
+                        <td>{{inspection.date_of_inspection}}</td>
+                        <td>{{inspection.first_name}} {{inspection.last_name}}</td>
+                        <td>{{inspection.inspection_outcome | outcomeType}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr> 
+                </table>
+            </div>
+
+            <div class="form-group margin-top" ng-if="vm.billing.inspector.id && vm.inspections.length > 0">
+                <table class="table table-bordered billing-input">
+                    <thead class="thead-default">
+                        <tr>
+                            <th>Mon.</th>
+                            <th>Tues.</th>
+                            <th>Wed.</th>
+                            <th>Thurs.</th>
+                            <th>Fri.</th>
+                            <th>Sat.</th>
+                            <th>Sun.</th>
+                            <th>Total Mileage</th>
+                            <th>Billable Mileage</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.mon" ng-change="vm.incTotal(vm.mileage.mon)" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.tues" ng-change="vm.incTotal(vm.mileage.tues)" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.wed" ng-change="vm.incTotal(vm.mileage.wed)" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.thurs" ng-change="vm.incTotal(vm.mileage.thurs)" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.fri" ng-change="vm.incTotal(vm.mileage.fri)" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.sat" ng-change="vm.incTotal(vm.mileage.sat)" />
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" ng-model="vm.mileage.sun" ng-change="vm.incTotal(vm.mileage.sun)" />
+                        </td>
+                        <td>
+                            {{ vm.mileage.total }} 
+                        </td>
+                        <td>
+                            {{ vm.mileage.billableMileage }}    
+                        </td>
+                        <td>
+                            ${{ vm.mileage.billable }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+
