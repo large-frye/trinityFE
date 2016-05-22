@@ -36,7 +36,7 @@
                                 icon: 'fa-bar-chart-o'
                             }, {
                                 parent: 'Inspector Billing',
-                                link: '/#/' + this.user.appRole + '/invoice/1',
+                                link: '/#/' + this.user.appRole + '/billing',
                                 icon: 'fa-dollar'
                             }, {
                                 parent: 'Calendar',

@@ -5,6 +5,7 @@
     angular.module('trinity.filters.shared', [])
         .filter('outcomeType', function () {
             return function (outcomeType) {
+                console.log(outcomeType);
                 switch (outcomeType) {
                     case "0": {
                         return 'Basic Inspection';

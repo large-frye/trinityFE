@@ -19,8 +19,8 @@
         'trinity.reports.services.report',
         'trinity.inspections.controller.inspector',
         'trinity.reports.directives',
-        'trinity.controllers.invoice',
-        'trinity.services.invoice',
+        'trinity.controllers.billing',
+        'trinity.services.billing',
         'trinity.filters.shared',
         'mgcrea.ngStrap',
             
@@ -32,11 +32,7 @@
             angular.extend($modalProvider.defaults, {
                 html: true
             });
-        })
-        
-        .run(['$locale', function($locale) {
-            console.log($locale);
-        }]);
+        });
 
     // Bootstrap trinity to document
     angular.bootstrap(document, ['trinity']);

@@ -127,9 +127,9 @@
                         }]
                 };
 
-                var invoices = { invoice: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve] };
+                var billing = { billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve] };
 
-                function InvoiceResolve($q, $route, $routeParams, UserFactory) {
+                function BillingResolve($q, $route, $routeParams, UserFactory) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     hideSidebar();
@@ -140,9 +140,35 @@
                     return defer.promise;
                 }
                 
-                var photos = { photos: ['$q', '$route', '$routeParams', 'UserFactory', PhotosResolve] };
+                var photo = { photos: ['$q', '$route', '$routeParams', 'UserFactory', PhotosResolve] };
                 
                 function PhotosResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    showSidebar();
+                    
+                    defer.resolve({
+                        id: $route
+                    });
+                    return defer.promise;
+                }
+                
+                var generate = { generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve] };
+                
+                function GenerateResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    showSidebar();
+                    
+                    defer.resolve({
+                        id: $route
+                    });
+                    return defer.promise;
+                }
+                
+                var invoice = { invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve] };
+                
+                function InvoiceResolve($q, $route, $routeParams, UserFactory) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     showSidebar();
@@ -176,7 +202,7 @@
                                     deferred.resolve(d);
                                 }, function (e) {
                                     console.log(e);
-                                    deferred.reject({error: "data failed to load"});
+                                    deferred.reject({error: 'data failed to load' });
                                 });
 
                                 return deferred.promise;
@@ -291,11 +317,11 @@
                         resolve: inspector.inspections
                     })
 
-                    .when('/admin/invoice/:id', {
-                        templateUrl: '/src/partials/invoice/invoice.html',
-                        controller: 'invoiceCtrl',
+                    .when('/admin/billing', {
+                        templateUrl: '/src/partials/billing/billing.html',
+                        controller: 'billingCtrl',
                         controllerAs: 'vm',
-                        resolve: invoices
+                        resolve: billing
                     })
 
                     .when('/admin/workorders/:type/:timeUnit', {
@@ -333,7 +359,21 @@
                         templateUrl: '/src/partials/inspections/photos.html',
                         controller: 'adminInspectionPhotoCtrl',
                         controllerAs: 'vm',
-                        resolve: photos
+                        resolve: photo
+                    })
+                    
+                    .when('/admin/inspections/generate-report/:id', {
+                        templateUrl: '/src/partials/inspections/generate.html',
+                        controller: 'adminInspectionReportGenerateCtrl',
+                        controllerAs: 'vm',
+                        resolve: generate
+                    })
+                    
+                    .when('/admin/inspections/invoice/:id', {
+                        templateUrl: '/src/partials/inspections/invoice.html',
+                        controller: 'adminInspectionInvoiceCtrl',
+                        controllerAs: 'vm',
+                        resolve: invoice
                     })
 
                     .when('/admin/reports', {
@@ -374,7 +414,7 @@
     );
 
     app.config(
-        ["$httpProvider",
+        ['$httpProvider',
             function ($httpProvider) {
                 $httpProvider.interceptors.push(['$q', '$location', 'UserFactory', '$rootScope',
                     function ($q, $location, UserFactory, $rootScope) {
