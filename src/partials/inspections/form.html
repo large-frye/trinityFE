@@ -1,5 +1,13 @@
 <sidebar options="vm.options"></sidebar>
 
+<div class="alert-fixed">
+	<div ng-repeat="alert in vm.alerts">
+		<div class="alert alert-{{alert.type}}">
+			{{alert.content}}
+		</div>
+	</div>
+</div>
+
 <div class="box box-info">
 	<div class="box-header with-border margin-bottom">
 		<div class="col-sm-3">
@@ -14,7 +22,7 @@
 				<ul class="dropdown-menu" role="menu">
 					<li ng-class="{'disabled': vm.form.basic_sketch}">
 						<a ng-href="{{vm.form.basic_sketch}}"
-						ng-click="initUpload($event, 'basic_sketch');">
+						ng-click="vm.initUpload($event, 'basic_sketch');">
 							<i ng-if="!vm.form.basic_sketch" class="fa fa-times text-danger"></i>
 							<i ng-if="vm.form.basic_sketch" class="fa fa-check text-success"></i>
 							Basic Sketch
@@ -44,6 +52,9 @@
 				</ul>
 			</div>
 		</div>
+		<div class="col-sm-7 margin-top">
+			<div ng-if="vm.form.basic_sketch">Basic Sketch Added</div>
+		</div>
 		<input type="file" name="formUpload" style="display:none" onchange="angular.element(this).scope().vm.uploadFile();" />
 	</div>
 
@@ -63,7 +74,6 @@
 					</div>
 					<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
 						<div class="processing-gray">
-
 							<div class="row">
 								<div class="col-sm-6">
 									<div class="form-group">
@@ -243,7 +253,7 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Inspector</label>
 										<div class="col-sm-8 processing-content">
-											{{vm.workorder.inspector}}
+											{{vm.workorder.inspector.name}}
 										</div>
 									</div>
 								</div>
@@ -252,7 +262,10 @@
 									<div class="form-group">
 										<label class="col-sm-2 no-set-width control-label">Date Cancelled</label>
 										<div class="col-sm-8 processing-content">
-											{{vm.workorder.date_cancelled}}
+											<span ng-if="vm.workorder.date_cancelled">
+												{{vm.workorder.date_cancelled}}
+											</span>
+											<span ng-if="!vm.workorder.date_cancelled">Order is not cancelled</span>
 										</div>
 									</div>
 								</div>
@@ -283,9 +296,9 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Inspection outcome</label>
 						<div class="col-sm-6">
-							<select class="form-control" ng-options="outcome.name for outcome in outcomes.outcomes"
-								ng-model="inspectionOutcome"
-								ng-change="form.outcome_type=inspectionOutcome.name;">
+							<select class="form-control" ng-options="outcome.name for outcome in vm.outcomes.outcomes"
+								ng-model="vm.inspectionOutcome"
+								ng-change="vm.workorder.inspection_outcome=vm.inspectionOutcome.id;">
 								<option value="">
 									Select an outcome
 								</option>
@@ -301,9 +314,9 @@
 						<label class="col-sm-2 control-label">Rope & Harness Charge</label>
 						<div class="col-sm-6">
 							<select class="form-control"
-								ng-options="outcome.amount for outcome in outcomes.harnessCharges"
-								ng-model="harnessCharge"
-								ng-change="form.harness_charge=harnessCharge.amount">
+								ng-options="outcome.amount for outcome in vm.outcomes.harnessCharges"
+								ng-model="vm.harnessCharge"
+								ng-change="vm.form.harness_charge=vm.harnessCharge.amount">
 								<option value="">
 									Select an amount
 								</option>
@@ -319,9 +332,9 @@
 						<label class="col-sm-2 control-label">Tarp(s) Charge</label>
 						<div class="col-sm-6">
 							<select class="form-control"
-								ng-options="outcome.amount for outcome in outcomes.tarpCharges"
-								ng-model="tarpCharge"
-								ng-change="form.tarp_charge=tarpCharge.amount">
+								ng-options="outcome.amount for outcome in vm.outcomes.tarpCharges"
+								ng-model="vm.tarpCharge"
+								ng-change="vm.form.tarp_charge=vm.tarpCharge.amount">
 								<option value="">
 									Select a charge
 								</option>
@@ -336,7 +349,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label">Misc.</label>
 						<div class="col-sm-6">
-							<input type="text" ng-model="form.misc_charge" class="form-control" placeholder="Manual enter value" />
+							<input type="text" ng-model="vm.form.misc_charge" class="form-control" placeholder="Manual enter value" />
 						</div>
 					</div>
 				</div>
@@ -344,30 +357,32 @@
 
 			<hr />
 
-			<button type="button" class="btn btn-danger" click="lockBilling">
+			<button type="button" class="btn btn-danger" ng-click="vm.showBillingModal()">
+				<!--<span ng-if="!vm.workorder.billing_locked">Lock</span>
+				<span ng-if="vm.workorder.billing_locked">Unlock</span> Billing Details-->
 				Lock Billing Details
 			</button>
 
 			<hr />
 
-			<div class="row" ng-if="['Cancelled', 'Cancelled w/ trip charge', 'Reschedule w/ trip charge', 'Reschedule'].indexOf(form.outcome_type) != -1">
+			<div class="row" ng-if="[1, 2, 3, 4].indexOf(vm.workorder.inspection_outcome) != -1">
 				<div class="col-sm-12">
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">
 							What was the reason this inspection was cancelled or needs to be scheduled?</label>
 						<div class="col-sm-10">
-							<input type="text" ng-model="form.cancel_reschedule_reason" class="form-control" />
+							<input type="text" ng-model="vm.form.cancel_reschedule_reason" class="form-control" />
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<alacrity-form form="form"></alacrity-form>
+			<alacrity-form form="vm.form" outcome-type="vm.workorder.inspection_outcome"></alacrity-form>
 
 			<div class="clearfix"></div>
 
 			<hr />
-			<button type="submit" class="btn btn-success" ng-click="save()">Save</button>
+			<button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>
 		</form>
 	</div>
 </div>

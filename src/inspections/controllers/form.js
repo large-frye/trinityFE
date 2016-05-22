@@ -8,9 +8,9 @@
         .controller('adminInspectionCtrl', AdminInspectionController);
 
     AdminInspectionController.$inject = ['InspectionService', 'InspectionFactory', 'FormService', '$log', 'STATUSES', 'form', '$rootScope', '$modal',
-    '$routeParams', 'shared'];
+    '$routeParams', 'shared', 'alert'];
     
-    function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal, $routeParams, shared) {
+    function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal, $routeParams, shared, alert) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.listRoofConditions = InspectionFactory.roofConditions;
@@ -25,6 +25,7 @@
         vm.upload = upload;
         vm.showModal = showModal;
         vm.uploadFile = uploadFile;
+        vm.showBillingModal = showBillingModal;
         
         activate();
 
@@ -57,6 +58,7 @@
         function getInspectionOutcomes() {
             return InspectionService.inspectionOutcomes(function(data) {
                 vm.outcomes = data;
+                vm.inspectionOutcome = setInspectionOutcome();
                 setBillingTypes();
             }, function(err) {
                 $log.error(err);
@@ -70,16 +72,9 @@
         }
         
         function setInspectionOutcome() {
-            var outcomeId = vm.workorder.inspection_outcome;
-            
-            switch (outcomeId) {
-            case '0':
-                return 'Basic Inspection';
-            case '1':
-                return 'Expert Inspection';
-            case '5':
-                return 'Ladder Assist';
-            }
+            return vm.outcomes.outcomes.filter(function(item) {
+                return item.id === vm.workorder.inspection_outcome;
+            })[0];
         }
         
         function setHarnessCharge() {
@@ -138,7 +133,7 @@
             var form = angular.copy(vm.form);
             form.workorder_id = vm.workorder.id;
             FormService.save(form).$promise.then(function(data) {
-                $log.log(data);
+                saveWorkorder();
             }, function(err) {
                 $log.log(err);
             });
@@ -192,6 +187,46 @@
                 vm.form[vm.fileType] = data.url;
             }, function(err) {
                 $log.log(err);
+            });
+        }
+        
+        function showBillingModal() {
+            
+            var mv = $rootScope.$new();
+            mv.lockBilling = lockBilling;
+            mv.workorder = vm.workorder;
+            
+            var modal = modal || $modal({
+                scope: mv,
+                templateUrl: 'src/partials/modals/billing-locked-confirm.html',
+                show: false
+            });
+            
+            modal.$promise.then(modal.show);
+        }
+        
+        function lockBilling(workorder) {
+            if (workorder.billing_locked === 1) {
+                workorder.billing_locked = 0;
+            } else {
+                vm.workorder.billing_locked = 1;
+            }
+            
+            saveWorkorder();
+        }
+        
+        function saveWorkorder() {
+            var workorderCopy = angular.copy(vm.workorder);
+            delete workorderCopy.inspection_val;
+            
+            return InspectionService.create(workorderCopy).$promise.then(function(data) {
+                vm.alerts = alert.add({
+                    title: 'Saved',
+                    content: 'Saved',
+                    type: 'success'
+                }, 3000);
+            }, function(err) {
+                $log.error(err);
             });
         }
     }

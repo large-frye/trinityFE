@@ -98,6 +98,7 @@
 				// Angular will use the object and we only need the id
 				var inspection = angular.copy($scope.inspection);
 				inspection.inspection_type = inspection.inspection_type.id;
+				inspection.date_of_inspection = new Date(inspection.date_of_inspection).getTime();
 
 				InspectionService.create(inspection).$promise.then(function(data) {
 

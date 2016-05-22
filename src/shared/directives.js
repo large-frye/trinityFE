@@ -54,7 +54,8 @@
 		return {
 			restrict: 'E',
 			scope: {
-				form: '='
+				form: '=',
+				outcomeType: '='
 			},
 			link: function($scope, elem, attrs) {
 

@@ -1,3 +1,5 @@
+/* global angular */
+
 (function () {
     'use strict';
 
@@ -70,14 +72,19 @@
             });
         }])
 
-        .service('FormService', ['$resource', function ($resource) {
-            return $resource('http://api.trinity.is:4444/admin/:route/:action/:id', {}, {
+        .service('FormService', ['$resource', 'env', function ($resource, env) {
+            
+            var pattern = '/:type/:route/:action/:id';
+            var url = env.getEndpoint() + pattern;
+            
+            return $resource(url, {}, {
                 get: {
                     method: 'GET',
                     headers: {
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'form',
                         action: 'get'
                     },
@@ -89,6 +96,7 @@
                         Accept: 'application/json'
                     },
                     params: {
+                        type: 'admin',
                         route: 'form',
                         action: 'save'
                     },
@@ -97,6 +105,7 @@
                 upload: {
                     method: 'POST',
                     params: {
+                        type: 'admin',
                         route: 'form',
                         action: 'upload'
                     },

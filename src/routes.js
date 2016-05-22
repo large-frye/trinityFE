@@ -139,7 +139,19 @@
                     });
                     return defer.promise;
                 }
-
+                
+                var photos = { photos: ['$q', '$route', '$routeParams', 'UserFactory', PhotosResolve] };
+                
+                function PhotosResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    showSidebar();
+                    
+                    defer.resolve({
+                        id: $route
+                    });
+                    return defer.promise;
+                }
 
                 var inspector = {
                     home: {
@@ -315,6 +327,13 @@
                         controller: 'adminInspectionCtrl',
                         controllerAs: 'vm',
                         resolve: inspectionForm
+                    })
+                    
+                    .when('/admin/inspections/photos/:id', {
+                        templateUrl: '/src/partials/inspections/photos.html',
+                        controller: 'adminInspectionPhotoCtrl',
+                        controllerAs: 'vm',
+                        resolve: photos
                     })
 
                     .when('/admin/reports', {

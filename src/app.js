@@ -32,7 +32,11 @@
             angular.extend($modalProvider.defaults, {
                 html: true
             });
-        });
+        })
+        
+        .run(['$locale', function($locale) {
+            console.log($locale);
+        }]);
 
     // Bootstrap trinity to document
     angular.bootstrap(document, ['trinity']);

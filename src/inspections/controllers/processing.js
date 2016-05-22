@@ -63,6 +63,8 @@
 		
 		function save() {
 			var inspection = angular.copy(vm.inspection);
+			inspection.date_of_inspection = new Date(inspection.date_of_inspection).getTime();
+			inspection.status_id = vm.status.id;
 			delete inspection.inspection_val;
 
 			InspectionService.create(inspection).$promise.then(function(data) {

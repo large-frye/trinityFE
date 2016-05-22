@@ -4,5 +4,6 @@
 	'trinity.inspections.controllers.inspect',
 	'trinity.controllers.admin.processing',
 	'trinity.inspections.services',
-	'trinity.controllers.inspections.admin.form'
+	'trinity.controllers.inspections.admin.form',
+	'trinity.controllers.inspections.admin.photos'
 ]);}(angular));
