@@ -217,6 +217,7 @@
         
         function saveWorkorder() {
             var workorderCopy = angular.copy(vm.workorder);
+            workorderCopy.date_of_inspection = new Date(workorderCopy.date_of_inspection).getTime();
             delete workorderCopy.inspection_val;
             
             return InspectionService.create(workorderCopy).$promise.then(function(data) {

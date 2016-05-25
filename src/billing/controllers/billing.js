@@ -5,9 +5,10 @@
     angular.module('trinity.controllers.billing', [])
         .controller('billingCtrl', BillingCtrl);
 
-    BillingCtrl.$inject = ['billingData', 'UserService', '$log', 'BillingService'];
+    BillingCtrl.$inject = ['billingData', 'UserService', '$log', 'BillingService', '$window'
+    , 'alert'];
 
-    function BillingCtrl(billingData, UserService, $log, BillingService) {
+    function BillingCtrl(billingData, UserService, $log, BillingService, $window, alert) {
         var vm = this;
         vm.billing = billingData;
         vm.mileage = vm.mileage || {
@@ -20,6 +21,8 @@
         vm.changeAllInspectorMiles = changeAllInspectorMiles;
         vm.getInspectionsByInspector = getInspectionsByInspector;
         vm.incTotal = incTotal;
+        vm.print = print;
+        vm.lockMiles = lockMiles;
 
         ////////
 
@@ -67,6 +70,8 @@
                 param3: vm.billing.inspector && vm.billing.inspector.id || null
             }, function (data) {
                 vm.inspections = data.inspections;
+                vm.meta = data.meta;
+                getInspectionTotals();
             }, function (err) {
                 $log.error(err);
             });
@@ -87,6 +92,7 @@
                 param3: id
             }, function(data) {
                 vm.inspections = data.inspections;
+                getInspectionTotals();
             }, function(err) {
                 $log.error(err);
             });
@@ -111,6 +117,32 @@
         
         function setBillable() {
             vm.mileage.billable = vm.mileage.billableMileage * .5;
+        }
+        
+        function getInspectionTotals() {
+            vm.inspections.forEach(function(inspection) {
+                inspection.chargeTotal = 0;
+                var meta = vm.meta[inspection.id];
+                if (typeof meta !== 'undefined') {
+                    meta.forEach(function(item) {
+                        inspection.chargeTotal += parseInt(item.value, 10); 
+                    });
+                }
+            });
+        }
+        
+        function print() {
+            $window.print();
+        }
+        
+        function lockMiles() {
+            return BillingService.api().lock({
+                param2: vm.billing.inspector.id
+            }, function(data) {
+                vm.billing.inspector.profile.is_miles_locked = data.lockedState;
+            }, function(err) {
+                $log.error(err);
+            });
         }
     }
 } ());

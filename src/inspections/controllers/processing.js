@@ -95,7 +95,6 @@
 		}
 		
 		function setLastContact() {
-			console.log(vm.inspection.date_of_last_contact);
 			vm.inspection.date_of_last_contact = vm.inspection.date_of_last_contact || new Date();
 		}
 	}

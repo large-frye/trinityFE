@@ -1,7 +1,22 @@
 <div class="box box-gray">
     <h3 class="box-header with-border">Inspector Billing</h3>
+    
+    <div class="alert-fixed">
+        <div ng-repeat="alert in vm.alerts">
+            <div class="alert alert-{{alert.type}}">
+                {{alert.content}}
+            </div>
+        </div>
+    </div>
 
     <div class="box-body">
+        
+        <div ng-if="vm.billing.inspector.profile.is_miles_locked">
+            <div class="alert alert-info">
+                {{vm.billing.inspector.name}} is not allowed to add billable miles.
+            </div>
+        </div>
+        
         <form name="InvoiceForm" ng-submit="save()" class="form-horizontal inspection-form">
             <div class="form-group row">
                 <label class="col-sm-2 control-label">Week of</label>
@@ -14,16 +29,15 @@
                 </div>
                 <label class="col-sm-2 control-label">Weekly Mileage Fields</label>
                 <div class="col-sm-4">
-                    <button ng-click="vm.changeInspectorMiles()" 
+                    <button ng-click="vm.lockMiles()" 
                             ng-disabled="!vm.billing.inspector.id"
                             class="btn btn-primary col-sm-5"
                             style="white-space: normal">
                         Lock/Unlock Inspector Miles
                     </button>
-                    <button ng-click="vm.changeAllInspectorMiles()"
-                            class="btn btn-primary col-sm-5"
+                    <button class="btn btn-primary col-sm-5"
                             style="white-space: normal; margin-left: 1em;"
-                            ng-disabled="!vm.week">
+                            ng-disabled="true">
                         Lock/Unlock All Inspector Miles
                     </button>
                 </div>
@@ -40,16 +54,16 @@
                 
                 <label class="col-sm-2 control-label">Print Weekly Billing</label>
                 <div class="col-sm-4">
-                    <button ng-click="vm.changeInspectorMiles()" 
-                            ng-disabled="!vm.billing.inspector.id"
+                    <button ng-disabled="!vm.billing.inspector.id"
                             class="btn btn-primary col-sm-5"
-                            style="white-space: normal">
+                            style="white-space: normal"
+                            ng-click="vm.print()">
                         Print Billing Inspector
                     </button>
-                    <button ng-click="vm.changeAllInspectorMiles()"
-                            class="btn btn-primary col-sm-5"
+                    <button class="btn btn-primary col-sm-5"
                             style="white-space: normal; margin-left: 1em;"
-                            ng-disabled="!vm.week">
+                            ng-disabled="!vm.week"
+                            ng-click="vm.print();">
                         Print Billing All Inspectors
                     </button>
                 </div>
@@ -69,15 +83,16 @@
                             <th>Total</th>
                         </tr>
                     </thead>
+                    
                     <tr ng-repeat="inspection in vm.inspections">
                         <td>{{inspection.date_of_inspection}}</td>
                         <td>{{inspection.first_name}} {{inspection.last_name}}</td>
                         <td>{{inspection.inspection_outcome | outcomeType}}</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{vm.meta[inspection.id] | showMeta:'harness_charge'}}</td>
+                        <td>{{vm.meta[inspection.id] | showMeta:'tarp_charge'}}</td>
+                        <td>{{vm.meta[inspection.id] | showMeta:'misc_charge'}}</td>
+                        <td>${{ inspection.chargeTotal }}</td>
                     </tr> 
                 </table>
             </div>
@@ -132,6 +147,8 @@
                     </tr>
                 </table>
             </div>
+            
+            <button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>
         </form>
     </div>
 </div>

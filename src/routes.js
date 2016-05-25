@@ -135,7 +135,7 @@
                     hideSidebar();
                     
                     defer.resolve({
-                        id: $route
+                        id: 123
                     });
                     return defer.promise;
                 }
@@ -362,7 +362,7 @@
                         resolve: photo
                     })
                     
-                    .when('/admin/inspections/generate-report/:id', {
+                    .when('/admin/inspections/generate/:id', {
                         templateUrl: '/src/partials/inspections/generate.html',
                         controller: 'adminInspectionReportGenerateCtrl',
                         controllerAs: 'vm',
