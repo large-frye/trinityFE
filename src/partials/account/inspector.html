@@ -19,7 +19,7 @@
 			</thead>
 
 			<tbody>
-				<tr ng-repeat="item in items['inspector_attention_required']" ng-click="openInspection(item.customer_id)">
+				<tr ng-repeat="item in vm.items['inspector_attention_required']" ng-click="vm.openInspection(item.customer_id)">
 					<td>
 						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 					</td>
@@ -72,7 +72,7 @@
 			</thead>
 
 			<tbody>
-			<tr ng-repeat="item in items['today']" ng-click="openInspection(item.customer_id)">
+			<tr ng-repeat="item in vm.items['today']" ng-click="vm.openInspection(item.customer_id)">
 				<td>
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
@@ -125,7 +125,7 @@
 			</thead>
 
 			<tbody>
-			<tr ng-repeat="item in items['tomorrow']" ng-click="openInspection(item.customer_id)">
+			<tr ng-repeat="item in vm.items['tomorrow']" ng-click="vm.openInspection(item.customer_id)">
 				<td>
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
@@ -178,8 +178,7 @@
 			</thead>
 
 			<tbody>
-			<tr ng-repeat="item in items['yesterday']" ng-click="openInspection(item.customer_id)">
-				<td>{{item}}</td>
+			<tr ng-repeat="item in vm.items['yesterday']" ng-click="vm.openInspection(item.customer_id)">
 				<td>
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
@@ -233,7 +232,7 @@
 			</thead>
 
 			<tbody>
-			<tr ng-repeat="item in items['new_pickups']" ng-click="openInspection(item.customer_id)">
+			<tr ng-repeat="item in vm.items['new_pickups']" ng-click="vm.openInspection(item.customer_id)">
 				<td>
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>

@@ -119,13 +119,5 @@
                 // options
                 $scope.options = shared.getReportSideBar();
             }
-        ])
-
-        .controller('inspectorHomeCtrl', ['$scope', 'items', '$location', function($scope, items, $location) {
-            $scope.items = items.orders;
-            $scope.openInspection = function(id) {
-                console.log(id);
-                $location.path('/inspector/inspections/' + id);
-            }
-        }]);
+        ]);
 })();

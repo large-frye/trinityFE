@@ -11,9 +11,16 @@
 
     <div class="box-body">
         
-        <div ng-if="vm.billing.inspector.profile.is_miles_locked">
+        <div ng-if="vm.billing.inspector.profile.is_miles_locked && vm.userRole !== 'inspector'">
             <div class="alert alert-info">
                 {{vm.billing.inspector.name}} is not allowed to add billable miles.
+            </div>
+        </div>
+        
+        <!-- alert msg for an inspector whose miles are currently locked -->
+        <div ng-if="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'">
+            <div class="alert alert-danger">
+                You can not enter billable miles. If this an error please contact us.
             </div>
         </div>
         
@@ -27,29 +34,33 @@
                         class="form-control">
                     </select>
                 </div>
-                <label class="col-sm-2 control-label">Weekly Mileage Fields</label>
-                <div class="col-sm-4">
-                    <button ng-click="vm.lockMiles()" 
-                            ng-disabled="!vm.billing.inspector.id"
-                            class="btn btn-primary col-sm-5"
-                            style="white-space: normal">
-                        Lock/Unlock Inspector Miles
-                    </button>
-                    <button class="btn btn-primary col-sm-5"
-                            style="white-space: normal; margin-left: 1em;"
-                            ng-disabled="true">
-                        Lock/Unlock All Inspector Miles
-                    </button>
+                <div ng-if="vm.userRole !== 'inspector'">
+                    <label class="col-sm-2 control-label">Weekly Mileage Fields</label>
+                    <div class="col-sm-4">
+                        <button ng-click="vm.lockMiles()" 
+                                ng-disabled="!vm.billing.inspector.id"
+                                class="btn btn-primary col-sm-5"
+                                style="white-space: normal">
+                            Lock/Unlock Inspector Miles
+                        </button>
+                        <button class="btn btn-primary col-sm-5"
+                                style="white-space: normal; margin-left: 1em;"
+                                ng-disabled="true">
+                            Lock/Unlock All Inspector Miles
+                        </button>
+                    </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="col-sm-2 control-label">Inspector</label>
-                <div class="col-sm-4">
-                    <select ng-model="vm.billing.inspector"
-                            ng-options="inspector.name for inspector in vm.inspectors"
-                            ng-change="vm.getInspectionsByInspector(vm.billing.inspector.id)" 
-                            class="form-control"></select>
+                <div ng-if="vm.userRole !== 'inspector'">
+                    <label class="col-sm-2 control-label">Inspector</label>
+                    <div class="col-sm-4">
+                        <select ng-model="vm.billing.inspector"
+                                ng-options="inspector.name for inspector in vm.inspectors"
+                                ng-change="vm.getInspectionsByInspector(vm.billing.inspector.id)" 
+                                class="form-control"></select>
+                    </div>
                 </div>
                 
                 <label class="col-sm-2 control-label">Print Weekly Billing</label>
@@ -63,7 +74,8 @@
                     <button class="btn btn-primary col-sm-5"
                             style="white-space: normal; margin-left: 1em;"
                             ng-disabled="!vm.week"
-                            ng-click="vm.print();">
+                            ng-click="vm.print();"
+                            ng-if="vm.userRole !== 'inspector'">
                         Print Billing All Inspectors
                     </button>
                 </div>
@@ -115,31 +127,38 @@
                     </thead>
                     <tr>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.mon" ng-change="vm.incTotal(vm.mileage.mon)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.monday" ng-change="vm.incTotal(vm.mileage.mon)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.tues" ng-change="vm.incTotal(vm.mileage.tues)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.tuesday" ng-change="vm.incTotal(vm.mileage.tues)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.wed" ng-change="vm.incTotal(vm.mileage.wed)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.wednesday" ng-change="vm.incTotal(vm.mileage.wed)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.thurs" ng-change="vm.incTotal(vm.mileage.thurs)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.thursday" ng-change="vm.incTotal(vm.mileage.thurs)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.fri" ng-change="vm.incTotal(vm.mileage.fri)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.friday" ng-change="vm.incTotal(vm.mileage.fri)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.sat" ng-change="vm.incTotal(vm.mileage.sat)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.saturday" ng-change="vm.incTotal(vm.mileage.sat)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
-                            <input type="number" class="form-control" ng-model="vm.mileage.sun" ng-change="vm.incTotal(vm.mileage.sun)" />
+                            <input type="number" class="form-control" ng-model="vm.mileage.sunday" ng-change="vm.incTotal(vm.mileage.sun)"
+                                ng-disabled="vm.billing.inspector.profile.is_miles_locked && vm.userRole === 'inspector'" />
                         </td>
                         <td>
                             {{ vm.mileage.total }} 
                         </td>
                         <td>
-                            {{ vm.mileage.billableMileage }}    
+                            {{ vm.mileage.billable_mileage }}    
                         </td>
                         <td>
                             ${{ vm.mileage.billable }}
@@ -148,7 +167,9 @@
                 </table>
             </div>
             
-            <button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>
+            <button type="submit" class="btn btn-success" ng-click="vm.save()" 
+                ng-if="(vm.billing.inspector && !vm.billing.inspector.profile.is_miles_locked) || 
+                   (vm.billing.inspector.profile.is_miles_locked && vm.userRole !== 'inspector')">Save</button>
         </form>
     </div>
 </div>

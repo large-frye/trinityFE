@@ -186,7 +186,7 @@
                                 var deferred = $q.defer();
                                 var user = UserFactory.user.get();
                                 
-                                showSidebar();
+                                hideSidebar();
 
                                 workOrderService.inspectorDaily({
                                     param1: user.id
@@ -273,6 +273,8 @@
                                         has_tarp: false,
                                         estimate_requested: false
                                     });
+                                    
+                                    hideSidebar();
                                 }
 
                                 return deferred.promise;
@@ -290,34 +292,46 @@
 
                     .when('/inspector', {
                         templateUrl: '/src/partials/account/inspector.html',
-                        controller: 'inspectorHomeCtrl',
+                        controller: 'inspectorAccountCtrl',
+                        controllerAs: 'vm',
                         resolve: inspector.home
                     })
                     .when('/inspector/reports', {
                         templateUrl: '/src/partials/reports/inspector/reports.html',
-                        controller: 'inspector.reportsCtrl',
+                        controller: 'inspectorReportCtrl',
+                        controllerAs: 'vm',
                         resolve: inspector.reports
                     })
 
                     .when('/inspector/reports/:status', {
                         templateUrl: '/src/partials/reports/inspector/reports.html',
-                        controller: 'inspector.reportsCtrl',
+                        controller: 'inspectorReportCtrl',
+                        controllerAs: 'vm',
                         resolve: inspector.reports
                     })
 
                     .when('/inspector/inspections/new', {
                         templateUrl: '/src/partials/inspections/inspector/edit.html',
                         controller: 'inspector.inspectionsCtrl',
+                        controllerAs: 'vm',
                         resolve: inspector.inspections
                     })
 
                     .when('/inspector/inspections/:id', {
                         templateUrl: '/src/partials/inspections/inspector/edit.html',
                         controller: 'inspector.inspectionsCtrl',
+                        controllerAs: 'vm',
                         resolve: inspector.inspections
                     })
 
                     .when('/admin/billing', {
+                        templateUrl: '/src/partials/billing/billing.html',
+                        controller: 'billingCtrl',
+                        controllerAs: 'vm',
+                        resolve: billing
+                    })
+                    
+                    .when('/inspector/billing', {
                         templateUrl: '/src/partials/billing/billing.html',
                         controller: 'billingCtrl',
                         controllerAs: 'vm',

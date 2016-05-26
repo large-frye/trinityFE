@@ -18,6 +18,7 @@
         'trinity.reports.controller.inspector',
         'trinity.reports.services.report',
         'trinity.inspections.controller.inspector',
+        'trinity.account.controllers.inspector',
         'trinity.reports.directives',
         'trinity.controllers.billing',
         'trinity.services.billing',

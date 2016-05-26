@@ -31,9 +31,15 @@
         .filter('showMeta', function() {
             return function(array, search) {
                 if (typeof array !== 'undefined') {
-                    return array.filter(function(item) {
+                    var data = array.filter(function(item) {
                         return item.key === search;
-                    })[0].value;   
+                    })[0];
+                    
+                    if (typeof data !== 'undefined') {
+                        return data.value;
+                    } else {
+                        return 'No data';
+                    }
                 } else {
                     return 'No data';
                 }

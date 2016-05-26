@@ -236,14 +236,14 @@
                 getInspectorInspectionBar: function(id) {
                     return [{
                         parent: 'Inspection Details',
-                        link: '/#/inspector/inspections/form/' + id
+                        link: '/#/inspector/inspections/' + id
                     }, {
                         parent: 'Inspection Photos',
                         link: '/#/inspector/inspections/photos/' + id
                     }, {
                         parent: 'Submit New Pickup',
                         link: '/#/inspector/inspections/new'
-                    }]
+                    }];
                 },
                 getReportSideBar: function() {
                     return [{

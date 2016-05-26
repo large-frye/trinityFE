@@ -1,4 +1,4 @@
-<sidebar options="options" ng-if="options"></sidebar>
+<sidebar options="vm.options" ng-if="vm.options"></sidebar>
 
 <div class="box box-gray">
     <h3 class="box-header with-border">Work Order Details</h3>
@@ -6,14 +6,14 @@
     <div class="box-body">
 
         <div class="alert-fixed">
-            <div ng-repeat="alert in alerts">
+            <div ng-repeat="alert in vm.alerts">
                 <div class="alert alert-{{alert.type}}">
                     {{alert.content}}
                 </div>
             </div>
         </div>
 
-        <form name="inspectionForm" ng-submit="save" class="form-horizontal inspection-form">
+        <form name="inspectionForm" ng-submit="vm.save" class="form-horizontal inspection-form">
 
             <div class="section">
                 <h4 class="page-header">Client Info</h4>
@@ -23,9 +23,9 @@
                 <label class="col-sm-2 control-label">Select adjuster</label>
                 <div class="col-sm-6">
                     <select class="form-control select2"
-                            ng-model="inspection.adjuster"
-                            ng-options="adjuster.title for adjuster in adjusters"
-                            ng-change="inspection.adjuster_id=adjuster.id">
+                            ng-model="vm.inspection.adjuster"
+                            ng-options="adjuster.title for adjuster in vm.adjusters"
+                            ng-change="vm.inspection.adjuster_id=adjuster.id">
                     </select>
                 </div>
             </div>
@@ -33,35 +33,35 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Insurance Company</label>
                 <div class="col-sm-8">
-                    <input type="phone" class="form-control" ng-model="inspection.adjuster.profile.insurance_company" />
+                    <input type="phone" class="form-control" ng-model="vm.inspection.adjuster.profile.insurance_company" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Email</label>
                 <div class="col-sm-8">
-                    <input type="email" class="form-control" ng-model="inspection.adjuster.email" />
+                    <input type="email" class="form-control" ng-model="vm.inspection.adjuster.email" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">First Name</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.adjuster.profile.first_name" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.adjuster.profile.first_name" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Last Name</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.adjuster.profile.last_name" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.adjuster.profile.last_name" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Phone</label>
                 <div class="col-sm-8">
-                    <input type="phone" class="form-control" ng-model="inspection.adjuster.profile.phone" />
+                    <input type="phone" class="form-control" ng-model="vm.inspection.adjuster.profile.phone" />
                 </div>
             </div>
 
@@ -72,20 +72,20 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Date of Inpsection</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" ng-model="inspection.date_of_inspection" name="date" bs-datepicker>
+                    <input type="text" class="form-control" ng-model="vm.inspection.date_of_inspection" name="date" bs-datepicker>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Time of Inpsection</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" size="8" ng-model="time" name="time" bs-timepicker>
+                    <input type="text" class="form-control" size="8" ng-model="vm.inspection.date_of_inspection" name="time" bs-timepicker>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Inspection Type</label>
                 <div class="col-sm-8">
-                    <select class="form-control select2" ng-model="inspection.inspection_type"
-                            ng-options="type.name for type in inspectionTypes"></select>
+                    <select class="form-control select2" ng-model="vm.inspection.inspection_type"
+                            ng-options="type.name for type in vm.inspectionTypes"></select>
                 </div>
             </div>
 
@@ -96,53 +96,53 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Policy Num</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.policy_num" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.policy_num" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Insured First Name</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.first_name" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.first_name" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Insured Last Name</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.last_name" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.last_name" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Street Address</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.address" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.address" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">City</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.city" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.city" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">State</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" ng-model="inspection.state" />
+                    <input type="text" class="form-control" ng-model="vm.inspection.state" />
                 </div>
             </div>
 
             <div class="form-group">
                 <label class="col-sm-2 control-label">Zip Code</label>
                 <div class="col-sm-8">
-                    <input type="number" class="form-control" ng-model="inspection.zip_code" />
+                    <input type="number" class="form-control" ng-model="vm.inspection.zip_code" />
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success" ng-click="save()">Save</button>
+            <button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>
 
         </form>
 
