@@ -1,7 +1,6 @@
 <sidebar options="options" ng-if="options"></sidebar>
 
 <div class="box box-gray">
-	<h3 class="box-header with-border">Work Order Details</h3>
 
 	<div class="box-body">
 
@@ -15,12 +14,11 @@
 
 		<form name="inspectionForm" ng-submit="save" class="form-horizontal inspection-form">
 
-			<div class="section">
-				<h4 class="page-header">Client Info</h4>
-			</div>
-
-			<div class="alert alert-info">
-				<i class="fa fa-info-circle"></i> You may select an adjuster to pre-fill if the adjuster exists. If not the adjuster will be created.
+			<div class="form-group">
+				<h4 class="col-sm-1">Client Info</h4>
+				<div class="alert alert-info col-sm-11" style="margin-top:7px">
+					<i class="fa fa-info-circle"></i> You may select an adjuster to pre-fill if the adjuster exists. If not the adjuster will be created.
+				</div>	
 			</div>
 
 			<div class="form-group">
@@ -76,8 +74,8 @@
 			</div>
 
 			<!-- Header -->
-			<div class="section margin-top">
-				<h4 class="page-header">Inspection Information</h4>
+			<div class="form-group">
+				<h4>Inspection Information</h4>
 			</div>
 
 			<div class="form-group">
@@ -187,8 +185,8 @@
 			</div>
 
 			<!-- Header -->
-			<div class="section margin-top">
-				<h4 class="page-header">Property Information</h4>
+			<div class="form-group">
+				<h4>Insured Information</h4>
 			</div>
 
 			<div class="form-group">

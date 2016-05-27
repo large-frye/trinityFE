@@ -132,6 +132,11 @@ body {
     z-index: 10000000;
 }
 
+.alert {
+    padding: 2px;
+    margin: 0;
+}
+
 .form-forms .dropdown.open .dropdown-menu li:hover{
     cursor: pointer;
 }
@@ -156,13 +161,21 @@ a.disabled {
 .inspection-form input[type=number].form-control,
 .inspection-form input[type=date].form-control,
 .inspection-form select.form-control {
-    padding: 5px;
-    height: 30px;
-    margin-top: 10px;
+    padding: 1px 0 1px 5px;
+    height: 24px;
+}
+
+.form-horizontal .control-label {
+    padding-top: 0;
+    margin-top: 2px;
+}
+
+.form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+    padding-top: 0;
 }
 
 .inspection-form .form-group {
-    margin: .5em 0;
+    margin: .3em 0;
 }
 
 .inspection-form .billing-input input.form-control {
@@ -171,4 +184,8 @@ a.disabled {
 
 .skin-red-light .sidebar-menu>li.active {
     border-left: 4px solid #dd4b39; 
+}
+
+.dropdown-menu.datepicker {
+    max-width: 400px !important;
 }

@@ -95,9 +95,7 @@
         
         function getStatus() {
             return STATUSES.filter(function(item) {
-                if (item.id) {
-                    return item.id = vm.workorder.status_id;    
-                }
+                return item.id && vm.workorder.status_id === item.id;
             })[0];
         }
         
