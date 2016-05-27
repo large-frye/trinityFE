@@ -179,7 +179,7 @@
 						<div class="col-sm-8">
 							<select ng-model="vm.status" class="form-control"
 									ng-options="status.name for status in vm.statuses"
-									ng-change="vm.setStatus(status)">
+									ng-change="vm.setStatus(vm.status)">
 							</select>
 						</div>
 					</div>
@@ -223,7 +223,7 @@
 						<div class="col-sm-8">
 							<select ng-model="vm.inspector" class="form-control"
 									ng-options="inspector.name for inspector in vm.inspectors"
-									ng-change="vm.setInspector(inspector)">
+									ng-change="vm.setInspector(vm.inspector)">
 							</select>
 						</div>
 					</div>
