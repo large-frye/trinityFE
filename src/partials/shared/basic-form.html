@@ -1,0 +1,190 @@
+<div ng-if="outcomeType===8">
+    <div id="wind" class="form-header">
+        <h4>Wind</h4>
+        <!-- damage wind shingles -->
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Shingles Damaged</label>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">North</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.north_wind_damaged" aria-label="Text input with checkbox">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">South</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.south_wind_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">East</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.east_wind_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">West</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.west_wind_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+        </div>
+
+        <!-- fraud wind input -->			
+        <div class="form-group sm-margin-top">
+            <label class="col-sm-2 control-label">Fraud wind input</label>
+            <div class="col-sm-10">
+                <select class="select2-multiple col-sm-10" ng-model="form.wind_fraud_input_array" multiple="multiple" 
+                    ng-options="input for input in windFraudInput">
+                </select>
+            </div>
+        </div>
+
+        <!-- roof peeled back -->
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Roof Peeled Back</label>
+            <div class="col-sm-10">
+                <select class="form-control" ng-model="form.wind_roof_peeled_back" 
+                    ng-options="peeledBack for peeledBack in windRoofPeeledBack" 
+                    ng-change="peeledBack = form.wind_roof_peeled_back && form.wind_roof_peeled_back != 'N/A'"></select>
+            </div>
+        </div>
+        
+        <!-- roof peeled back slope -->
+        <div class="form-group" ng-if="peeledBack">
+            <label for="" class="col-sm-2 control-label">Roof Peeled Back Slope</label>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">North</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.wind_north_roof_peeled_damaged" aria-label="Text input with checkbox">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">South</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.wind_south_roof_peeled_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">East</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.wind_east_roof_peeled_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">West</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.wind_west_roof_peeled_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+        </div>
+
+        <!-- comments -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Comments</label>
+            <div class="col-sm-6">
+                <textarea ng-model="form.wind_comments" class="col-sm-12 form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <div id="hail" class="form-header">
+        <h4>Hail</h4>   
+        <div class="form-group">
+            
+            <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+            
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">North</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.hail_north_damaged" aria-label="Text input with checkbox">
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">South</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.hail_south_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">East</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.hail_east_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+            <div class="col-sm-2">
+                <label class="col-sm-4 control-label">West</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" ng-model="form.hail_west_damaged" aria-label="Text input with checkbox">
+                </div>	
+            </div>
+        </div>
+        
+        <!-- fraud wind input -->			
+        <div class="form-group sm-margin-top">
+            <label class="col-sm-2 control-label">Fraud hail input</label>
+            <div class="col-sm-10">
+                <select class="select2-multiple col-sm-10" ng-model="form.hail_fraud_input_array" multiple="multiple" 
+                    ng-options="input for input in hailInput">
+                </select>
+            </div>
+        </div>
+        
+        <!-- comments -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Comments</label>
+            <div class="col-sm-6">
+                <textarea ng-model="form.hail_comments" class="col-sm-12 form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    
+    <div id="collateral-damages" class="form-header">
+        <h4>Collateral Damages</h4>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Damages</label>
+            <div class="col-sm-10">
+                <select class="select2-multiple col-sm-10" ng-model="form.collateral_damages_array" multiple="multiple" 
+                    ng-options="damage for damage in collateralDamages">
+                </select>
+            </div>
+        </div>
+        <!-- comments -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Comments</label>
+            <div class="col-sm-6">
+                <textarea ng-model="form.collateral_damages_comments" class="col-sm-12 form-control"></textarea>
+            </div>
+        </div>    
+    </div>
+    
+    <div id="metal-damage" class="form-header">
+        <h4>Metal Damage</h4>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">Damages</label>
+            <div class="col-sm-10">
+                <select class="select2-multiple col-sm-10" ng-model="form.metal_damages_array" multiple="multiple" 
+                    ng-options="damage for damage in metalDamage">
+                </select>
+            </div>
+        </div>
+        
+        <!-- hail size -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Hail Size</label>
+            <div class="col-sm-6">
+                <select ng-model="form.metal_damage_hail_size" class="col-sm-12 form-control"
+                    ng-options="size for size in hailSize"></select>
+            </div>
+        </div>  
+        
+        <!-- comments -->
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Comments</label>
+            <div class="col-sm-6">
+                <textarea ng-model="form.metal_damage_comments" class="col-sm-12 form-control"></textarea>
+            </div>
+        </div>  
+    </div>
+    
+</div>
+

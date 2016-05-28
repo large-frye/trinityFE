@@ -63,6 +63,33 @@
 			templateUrl: 'src/partials/shared/alacrity-form.html'
 		};
 	}])
+	
+	.directive('basicForm', ['$interval', 'formFactory', function($interval, formFactory) {
+		return {
+			restrict: 'E',
+			scope: {
+				form: '=',
+				outcomeType: '='
+			},
+			link: function($scope, el, attrs) {
+				$scope.windFraudInput = formFactory.getFraudInput();
+				$scope.windRoofPeeledBack = formFactory.getRoofPeeledBack();
+				$scope.hailInput = formFactory.getHailInput();
+				$scope.hailSize = formFactory.getHailSize();
+				$scope.metalDamage = formFactory.getMetalDamage();
+				$scope.collateralDamages = formFactory.getCollateralDamages();
+				
+				var interval = $interval(function() {
+					var $select = $('.select2-multiple');
+					if ($select.length > 0) {
+						$select.select2();
+						$interval.cancel(interval);
+					}
+				}, 10);
+			},
+			templateUrl: 'src/partials/shared/basic-form.html'
+		};
+	}])
 
 	.directive('datatable', ['$timeout', '$rootScope', function($timeout, $rootScope) {
 		return {

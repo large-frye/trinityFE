@@ -105,6 +105,10 @@
                 var inspectionItems = form.inspection;
                 inspectionItems.forEach(function(item) {
                     vm.form[item.key] = item.value;
+                    
+                    if (item.key.match(/array/) !== null) {
+                        vm.form[item.key] = item.value.split(',');
+                    }
                 });
 
                 if (vm.form.roof_conditions) {
@@ -130,6 +134,15 @@
         function save() {
             var form = angular.copy(vm.form);
             form.workorder_id = vm.workorder.id;
+            
+            for(var key in form) {
+                var item = form[key];
+                if (typeof item === 'object' && item.length) {
+                    // Convert array to list
+                    form[key] = item.toString();
+                }
+            }
+            
             FormService.save(form).$promise.then(function(data) {
                 saveWorkorder();
             }, function(err) {

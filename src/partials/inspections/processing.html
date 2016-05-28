@@ -12,167 +12,166 @@
 		</div>
 		
 		<form name="processingForm" ng-submit="save" class="form-horizontal processing-form inspection-form">
-			<div class="box-group" id="accordion">
-				<div class="panel box">
-					<div class="box-header">
-						<h4 class="box-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" class="">
-	                        Work order details (Locked)
-	                      </a>
-						</h4>
+			<div class="processing-gray">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-3 no-set-width control-label">Policy #</label>
+							<div class="col-sm-9 processing-content">{{vm.inspection.policy_num}}</div>
+						</div>
 					</div>
-					<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
-						<div class="processing-gray">
 
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="col-sm-3 no-set-width control-label">Policy #</label>
-										<div class="col-sm-9 processing-content">{{vm.inspection.policy_num}}</div>
-									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="col-sm-4 no-set-width control-label">Date received</label>
-										<div class="col-sm-8 processing-content">
-											{{vm.inspection.created_at}}
-										</div>
-									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="col-sm-3 no-set-width control-label">Claim #</label>
-										<div class="col-sm-9 processing-content">{{vm.inspection.claim_num}}</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="col-sm-4 no-set-width control-label">Insured Name</label>
-										<div class="col-sm-8 processing-content">{{vm.inspection.first_name}} {{vm.inspection.last_name}}</div>
-									</div>
-								</div>
-
-								<div class="col-sm-4">
-									<div class="form-group">
-										<label class="col-sm-4 no-set-width control-label">Phone Number</label>
-										<div class="col-sm-8 processing-content">{{vm.inspection.phone_1}}</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="col-sm-4 no-set-width control-label">Insured Address</label>
-										<div class="col-sm-8 processing-content">{{vm.inspection.address}}
-											{{vm.inspection.city}},
-											{{vm.inspection.state}}
-											{{vm.inspection.zip}}
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
-										<div class="col-sm-10 processing-content">
-											<p>
-												{{vm.inspection.special_instructions_insured}}
-											</p>
-										</div>
-									</div>
-								</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Date received</label>
+							<div class="col-sm-8 processing-content">
+								{{vm.inspection.created_at}}
 							</div>
 						</div>
+					</div>
 
-						<!-- adjutser -->
-						<div class="processing-gray margin-top">
-							<div class="row">
-								<div class="margin-top col-sm-6">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-set-width">Adjuster Name</label>
-										<div class="col-sm-9 processing-content">{{vm.inspection.adjuster.name}}</div>
-									</div>
-								</div>
-								<div class="margin-top col-sm-6">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-set-width">Insurance Company</label>
-										<div class="col-sm-8 processing-content">{{vm.inspection.adjuster.profile.insurance_company}}</div>
-									</div>
-								</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-3 no-set-width control-label">Claim #</label>
+							<div class="col-sm-9 processing-content">{{vm.inspection.claim_num}}</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Insured Name</label>
+							<div class="col-sm-8 processing-content">{{vm.inspection.first_name}} {{vm.inspection.last_name}}</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Phone Number</label>
+							<div class="col-sm-8 processing-content">{{vm.inspection.phone_1}}</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Insured Address</label>
+							<div class="col-sm-8 processing-content">{{vm.inspection.address}}
+								{{vm.inspection.city}},
+								{{vm.inspection.state}}
+								{{vm.inspection.zip}}
 							</div>
-							<div class="row">
-								<div class="margin-top col-sm-12">
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-set-width">Adjuster Phone</label>
-										<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.profile.phone}}</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="margin-top col-sm-12">
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-set-width">Adjuster Email</label>
-										<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.email}}</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="margin-top col-sm-6">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-set-width">Requested Inspection Type</label>
-										<div class="col-sm-7 processing-content">{{vm.inspection.inspection_val}}</div>
-									</div>
-								</div>
-								<div class="margin-top col-sm-6">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-set-width">Auto Upgrade</label>
-										<div class="col-sm-9 processing-content">{{vm.auto_upgrade}}</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="margin-top col-sm-6">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-set-width">Requested Date</label>
-										<div class="col-sm-9 processing-content">{{vm.inspection.date_of_inspection | date: 'shortDate'}}</div>
-									</div>
-								</div>
-								<div class="margin-top col-sm-6">
-									<div class="form-group">
-										<label class="col-sm-3 control-label no-set-width">Requested Time</label>
-										<div class="col-sm-9 processing-content">{{vm.inspection.date_of_inspection | date: 'hh:mm a'}}</div>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="margin-top col-sm-12">
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-set-width">Adjuster Special Instructions:</label>
-										<div class="col-sm-10 processing-content">
-											<p>
-												{{vm.inspection.special_instructions_adjuster}}
-											</p>
-										</div>
-									</div>
-								</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
+							<div class="col-sm-10 processing-content">
+								<p>
+									{{vm.inspection.special_instructions_insured}}
+								</p>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
+			<!-- adjutser -->
+			<div class="processing-gray margin-top">
+				<div class="row">
+					<div class="margin-top col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-set-width">Adjuster Name</label>
+							<div class="col-sm-9 processing-content">{{vm.inspection.adjuster.name}}</div>
+						</div>
+					</div>
+					<div class="margin-top col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-set-width">Insurance Company</label>
+							<div class="col-sm-8 processing-content">{{vm.inspection.adjuster.profile.insurance_company}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="margin-top col-sm-12">
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-set-width">Adjuster Phone</label>
+							<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.profile.phone}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="margin-top col-sm-12">
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-set-width">Adjuster Email</label>
+							<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.email}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="margin-top col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-set-width">Requested Inspection Type</label>
+							<div class="col-sm-7 processing-content">{{vm.inspection.inspection_val}}</div>
+						</div>
+					</div>
+					<div class="margin-top col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-set-width">Auto Upgrade</label>
+							<div class="col-sm-9 processing-content">{{vm.auto_upgrade}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="margin-top col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-set-width">Requested Date</label>
+							<div class="col-sm-9 processing-content">{{vm.inspection.date_of_inspection | date: 'shortDate'}}</div>
+						</div>
+					</div>
+					<div class="margin-top col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-3 control-label no-set-width">Requested Time</label>
+							<div class="col-sm-9 processing-content">{{vm.inspection.date_of_inspection | date: 'hh:mm a'}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="margin-top col-sm-12">
+						<div class="form-group">
+							<label class="col-sm-2 control-label no-set-width">Adjuster Special Instructions:</label>
+							<div class="col-sm-10 processing-content">
+								<p>
+									{{vm.inspection.special_instructions_adjuster}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="box-group" id="accordion">
+				<div class="panel box">
+					<div class="box-header">
+						<h4 class="box-title">
+	                        Work order details (Locked)
+	                      </a>
+						</h4>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse" aria-expanded="false">
+						
+					</div>
+				</div>
+			</div>-->
+
 			<hr />
 
 			<h4 class="page-header">Processing Information</h4>
-			<div class="row margin-top">
+			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">Progress Status</label>
@@ -190,13 +189,13 @@
 						<label class="col-sm-2 no-set-width control-label">Date of last contact</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control"
-								ng-model="vm.inspection.date_of_last_contact" bs-datepicker/>
+								ng-model="vm.inspection.date_of_last_contact" bs-datepicker placement="top"/>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			<div class="row margin-top">
+			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">Date of inspection</label>
@@ -216,7 +215,7 @@
 				</div>
 			</div>
 
-			<div class="row margin-top">
+			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">Inspector</label>
@@ -240,7 +239,7 @@
 				</div>
 			</div>
 
-			<div class="row margin-top">
+			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">Special Instructions to Inspector</label>

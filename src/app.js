@@ -24,6 +24,7 @@
         'trinity.services.billing',
         'trinity.filters.shared',
         'mgcrea.ngStrap',
+        'trinity.shared.factories.form',
             
         // new angular stype
         'trinity.controllers.admin.reports'

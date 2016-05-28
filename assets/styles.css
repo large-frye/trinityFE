@@ -31,6 +31,10 @@ body {
     margin-top: 1em !important;
 }
 
+.sm-margin-top {
+    margin-top: .5em !important;
+}
+
 .margin-bottom {
     margin-bottom: 1em !important;
 }
@@ -75,15 +79,10 @@ body {
     background-color: #f2f2f2;
     border: 1px solid #ddd;
     padding: .5em 1em;
-    margin: 1em;
 }
 
 .processing-content {
-    padding-top: .5em;
-    padding-bottom: .5em;
     background-color: #e8e8e8;
-    margin-top: .5em;
-    margin-left: 1em;
     border: 1px solid #ddd;
 
 }
@@ -188,4 +187,19 @@ a.disabled {
 
 .dropdown-menu.datepicker {
     max-width: 400px !important;
+}
+
+.input-group-addon {
+    padding: 0 5px;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    color: black;
+}
+
+.form-header h4{
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2;
+    padding: 5px;
 }

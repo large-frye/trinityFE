@@ -45,10 +45,12 @@
                                 InspectionService.get({
                                     id: id
                                 }).$promise.then(function (data) {
-                                    data.order.date_received = new Date(data.order.date_received);
+                                    data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
+                                    console.log(data);
+                                    // data.order.date_received = new Date(data.order.date_received);
                                     // data.order.date_of_inspection = new Date(data.order.date_of_inspection);
-                                    data.order.date_of_loss = new Date(data.order.date_of_loss);
-                                    data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
+                                    // data.order.date_of_loss = new Date(data.order.date_of_loss);
+                                    // data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
                                     deferred.resolve(data);
                                 }, function (err) {
                                     deferred.resolve(err);
