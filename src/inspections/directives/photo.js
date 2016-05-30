@@ -20,13 +20,11 @@
             scope: {
                 photo: '='
             },
-            template: '<img src="{{vm.photo.file_url}}" ng-click="vm.photo.selected=!vm.photo.selected"' 
-            + ' ng-class="{\'selected\': vm.photo.selected}"/>'
+            templateUrl: 'src/partials/inspections/photo.html'
         };
         return directive;
         
-        function link(scope, element, attrs) {
-        }
+        function link(scope, element, attrs) {}
     }
     /* @ngInject */
     function PhotoSelectController () {

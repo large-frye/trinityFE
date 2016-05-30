@@ -6,40 +6,86 @@
     </div>
 </div>
 
-<input type="file" name="photoUpload[]" style="display:none;" 
-            onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]" />
+<input type="file" name="photoUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"
+/>
 
 <div class="box box-info">
     <div class="box-body">
-        
+
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li ng-repeat="parentCategory in vm.parentCategories">
-                    <a href="#parent_category_{{parentCategory.id}}" 
-                        ng-click="vm.getSubCategories(parentCategory.id);" data-toggle="tab">{{parentCategory.name}} ({{vm.photos[parentCategory.id].length}})</a>    
+                <li ng-repeat="parentCategory in vm.parentCategories" ng-class="{'active':$index===0}">
+                    <a href="#parent_category_{{parentCategory.id}}" ng-class="{'active':$index===0}" ng-click="vm.getSubCategories(parentCategory.id);"
+                        data-toggle="tab">{{parentCategory.name}} ({{vm.getParentPhotoSize(parentCategory.id)}})</a>
                 </li>
             </ul>
             <div class="tab-content">
-              <div class="tab-pane" ng-repeat="parentCategory in vm.parentCategories" id="parent_category_{{parentCategory.id}}">
-                  <div ng-repeat="photo in vm.photos[parentCategory.id]">
-                      <photo-select photo="photo" />
-                  </div>
-                  <hr>
-                  <button class="btn btn-info" type="button" ng-click="vm.updateSubCategories(parentCategory.id)">Add/Change Sub Categories</button>
-              </div>
+                <div ng-class="{'tab-pane inspection-photos active':$index==0, 'tab-pane inspection-photos':$index>0}" ng-repeat="parentCategory in vm.parentCategories"
+                    id="parent_category_{{parentCategory.id}}" >
+                    <div class="box-group" id="accordion">
+                        <div class="panel box box-default" ng-repeat="subCategory in vm.subCategories">
+                            <div class="box-header with-header">
+                                <h5 class="box-title small-text">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{subCategory.id}}">
+                                        {{subCategory.name}} ({{vm.photos[parentCategory.id][subCategory.id].length || 0}})
+                                    </a>
+                                </h5>
+                            </div> 
+                            <div id="collapse_{{subCategory.id}}" class="panel-collapse collapse">
+                                <div class="box-body">
+                                    <div class="photo-col" ng-repeat="photo in vm.photos[parentCategory.id][subCategory.id]">
+                                        <photo-select photo="photo" />
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        
+                        <div class="panel box box-default">
+                            <div class="box-header with-header">
+                                <h5 class="box-title small-text">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_no_sub_parent">
+                                        No Sub Parent ({{vm.photos[parentCategory.id]['no_sub_parent'].length || 0 }})
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapse_no_sub_parent" class="panel-collapse collapse">
+                                <div class="box-body">
+                                    <div class="photo-col" ng-repeat="photo in vm.photos[parentCategory.id]['no_sub_parent']">
+                                        <photo-select photo="photo" />
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        
+                        <div class="panel box box-default">
+                            <div class="box-header with-header">
+                                <h5 class="box-title small-text">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_no_parent">
+                                        Photos Not Categorized ({{vm.photos['no_parent'].length || 0 }})
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapse_no_parent" class="panel-collapse collapse">
+                                <div class="box-body">
+                                    <div class="photo-col" ng-repeat="photo in vm.photos['no_parent']">
+                                        <photo-select photo="photo" />
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        
+                    </div>
+                   
+                    <div class="margin-top">
+                        <button class="btn btn-default" type="button" ng-click="vm.updateSubCategories(parentCategory.id)">Add/Change Sub Categories</button>
+                        <button type="button" ng-click="vm.clearSelected()" class="btn btn-default">Clear Selected</button>    
+                    </div>
+                </div>
             </div>
-            <!-- /.tab-content -->
-          </div>
-          
-        <!--<div class="col-sm-3" ng-repeat="photo in vm.photos">
-            <photo-select photo="photo"/>
-        </div>-->
-        
-        <div class="col-sm-12">
-            <hr/>    
         </div>
-        
+
         <div class="col-sm-12 sm-margin-top">
+            <button type="button" ng-click="vm.uploadPhotos()" class="btn btn-success">Save</button>
             <button type="button" ng-click="vm.uploadPhotos()" class="btn btn-info">Upload Photos</button>
         </div>
     </div>
