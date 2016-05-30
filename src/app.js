@@ -25,6 +25,8 @@
         'trinity.filters.shared',
         'mgcrea.ngStrap',
         'trinity.shared.factories.form',
+        'trinity.inspections.services.photo',
+        'trinity.directives.inspections.photoSelect',
             
         // new angular stype
         'trinity.controllers.admin.reports'

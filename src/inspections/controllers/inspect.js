@@ -99,6 +99,8 @@
 				var inspection = angular.copy($scope.inspection);
 				inspection.inspection_type = inspection.inspection_type.id;
 				inspection.date_of_inspection = new Date(inspection.date_of_inspection).getTime();
+				inspection.date_received = new Date(inspection.date_received).getTime();
+				inspection.date_of_loss = new Date(inspection.date_of_loss).getTime();
 
 				InspectionService.create(inspection).$promise.then(function(data) {
 

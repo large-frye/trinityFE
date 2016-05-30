@@ -42,10 +42,10 @@
             return InspectionService.get(({
                 id: $routeParams.id
             }), function(data) {
-                data.order.date_received = new Date(data.order.date_received);
-                data.order.date_of_inspection = new Date(data.order.date_of_inspection);
-                data.order.date_of_loss = new Date(data.order.date_of_loss);
-                data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
+                data.order.date_received = new Date(parseInt(data.order.date_received));
+                data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
+                data.order.date_of_loss = new Date(parseInt(data.order.date_of_loss));
+                data.order.date_of_last_contact = new Date(parseInt(data.order.date_of_last_contact));
                 vm.workorder = data.order;
                 vm.workorderStatus = getStatus();
                 vm.auto_upgrade = vm.workorder.auto_upgrade ? 'Yes' : 'No';

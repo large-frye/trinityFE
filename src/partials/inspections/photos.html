@@ -6,11 +6,41 @@
     </div>
 </div>
 
+<input type="file" name="photoUpload[]" style="display:none;" 
+            onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]" />
+
 <div class="box box-info">
-    <div class="box-header with-border margin-bottom">
-        <h3>Inspection Photos</h3>
-    </div>
     <div class="box-body">
-        {{vm}}
+        
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li ng-repeat="parentCategory in vm.parentCategories">
+                    <a href="#parent_category_{{parentCategory.id}}" 
+                        ng-click="vm.getSubCategories(parentCategory.id);" data-toggle="tab">{{parentCategory.name}} ({{vm.photos[parentCategory.id].length}})</a>    
+                </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane" ng-repeat="parentCategory in vm.parentCategories" id="parent_category_{{parentCategory.id}}">
+                  <div ng-repeat="photo in vm.photos[parentCategory.id]">
+                      <photo-select photo="photo" />
+                  </div>
+                  <hr>
+                  <button class="btn btn-info" type="button" ng-click="vm.updateSubCategories(parentCategory.id)">Add/Change Sub Categories</button>
+              </div>
+            </div>
+            <!-- /.tab-content -->
+          </div>
+          
+        <!--<div class="col-sm-3" ng-repeat="photo in vm.photos">
+            <photo-select photo="photo"/>
+        </div>-->
+        
+        <div class="col-sm-12">
+            <hr/>    
+        </div>
+        
+        <div class="col-sm-12 sm-margin-top">
+            <button type="button" ng-click="vm.uploadPhotos()" class="btn btn-info">Upload Photos</button>
+        </div>
     </div>
 </div>

@@ -1,7 +1,6 @@
 <sidebar options="vm.options"></sidebar>
 
-<div class="box box-info">
-	<h3 class="box-header with-border">Processing Details</h3>
+<div class="box box-warning">
 	<div class="box-body">	
 		<div class="alert-fixed">
 			<div ng-repeat="alert in vm.alerts">
@@ -49,7 +48,7 @@
 					<div class="col-sm-4">
 						<div class="form-group">
 							<label class="col-sm-4 no-set-width control-label">Phone Number</label>
-							<div class="col-sm-8 processing-content">{{vm.inspection.phone_1}}</div>
+							<div class="col-sm-7 processing-content">{{vm.inspection.phone_1}}</div>
 						</div>
 					</div>
 				</div>
@@ -67,16 +66,12 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
-							<div class="col-sm-10 processing-content">
-								<p>
-									{{vm.inspection.special_instructions_insured}}
-								</p>
-							</div>
-						</div>
+				<div class="form-group">
+					<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
+					<div class="col-sm-8 processing-content">
+						<p>
+							{{vm.inspection.special_instructions_insured}}
+						</p>
 					</div>
 				</div>
 			</div>
@@ -84,13 +79,13 @@
 			<!-- adjutser -->
 			<div class="processing-gray margin-top">
 				<div class="row">
-					<div class="margin-top col-sm-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-set-width">Adjuster Name</label>
 							<div class="col-sm-9 processing-content">{{vm.inspection.adjuster.name}}</div>
 						</div>
 					</div>
-					<div class="margin-top col-sm-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-set-width">Insurance Company</label>
 							<div class="col-sm-8 processing-content">{{vm.inspection.adjuster.profile.insurance_company}}</div>
@@ -98,7 +93,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="margin-top col-sm-12">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-set-width">Adjuster Phone</label>
 							<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.profile.phone}}</div>
@@ -106,7 +101,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="margin-top col-sm-12">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-set-width">Adjuster Email</label>
 							<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.email}}</div>
@@ -114,13 +109,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="margin-top col-sm-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-set-width">Requested Inspection Type</label>
 							<div class="col-sm-7 processing-content">{{vm.inspection.inspection_val}}</div>
 						</div>
 					</div>
-					<div class="margin-top col-sm-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-set-width">Auto Upgrade</label>
 							<div class="col-sm-9 processing-content">{{vm.auto_upgrade}}</div>
@@ -128,13 +123,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="margin-top col-sm-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-set-width">Requested Date</label>
 							<div class="col-sm-9 processing-content">{{vm.inspection.date_of_inspection | date: 'shortDate'}}</div>
 						</div>
 					</div>
-					<div class="margin-top col-sm-6">
+					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-set-width">Requested Time</label>
 							<div class="col-sm-9 processing-content">{{vm.inspection.date_of_inspection | date: 'hh:mm a'}}</div>
@@ -142,10 +137,10 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="margin-top col-sm-12">
+					<div class="col-sm-12">
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-set-width">Adjuster Special Instructions:</label>
-							<div class="col-sm-10 processing-content">
+							<div class="col-sm-8 processing-content">
 								<p>
 									{{vm.inspection.special_instructions_adjuster}}
 								</p>
@@ -168,9 +163,9 @@
 				</div>
 			</div>-->
 
-			<hr />
+			<hr style="margin: 10px 0" />
 
-			<h4 class="page-header">Processing Information</h4>
+			<h4>Processing Information</h4>
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
@@ -232,8 +227,8 @@
 					<div class="form-group">
 						<label class="col-sm-2 no-set-width control-label">Date Cancelled</label>
 						<div class="col-sm-8">
-							<input type="date" class="form-control"
-								ng-model="vm.inspection.date_cancelled" />
+							<input type="text" class="form-control"
+								ng-model="vm.inspection.date_cancelled" bs-datepicker placement="top"/>
 						</div>
 					</div>
 				</div>

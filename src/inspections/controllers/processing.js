@@ -64,6 +64,8 @@
 		function save() {
 			var inspection = angular.copy(vm.inspection);
 			inspection.date_of_inspection = new Date(inspection.date_of_inspection).getTime();
+			inspection.date_of_last_contact = new Date(inspection.date_of_last_contact).getTime();
+			inspection.date_cancelled = new Date(inspection.date_cancelled).getTime();
 			inspection.status_id = vm.status.id;
 			delete inspection.inspection_val;
 

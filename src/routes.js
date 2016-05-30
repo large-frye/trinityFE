@@ -46,7 +46,6 @@
                                     id: id
                                 }).$promise.then(function (data) {
                                     data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
-                                    console.log(data);
                                     // data.order.date_received = new Date(data.order.date_received);
                                     // data.order.date_of_inspection = new Date(data.order.date_of_inspection);
                                     // data.order.date_of_loss = new Date(data.order.date_of_loss);
@@ -142,16 +141,25 @@
                     return defer.promise;
                 }
                 
-                var photo = { photos: ['$q', '$route', '$routeParams', 'UserFactory', PhotosResolve] };
+                var photo = { photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotosResolve] };
                 
-                function PhotosResolve($q, $route, $routeParams, UserFactory) {
+                function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     showSidebar();
                     
-                    defer.resolve({
-                        id: $route
+                    PhotoService.api().getPhotos({
+                        type: 'admin',
+                        route: 'photos',
+                        action: $route.current.params.id
+                    }, function(data) {
+                       defer.resolve({
+                            photos: data
+                        }); 
+                    }, function(err) {
+                        $log.error(err);
                     });
+                    
                     return defer.promise;
                 }
                 
