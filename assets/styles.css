@@ -236,3 +236,12 @@ img.selected {
 .box-title.small-text {
     font-size: 16px !important;
 }
+
+.modal-dialog.modal-large {
+    width: 80% !important;
+}
+
+select.form-control {
+    padding: .2em;
+    height: 25px;
+}

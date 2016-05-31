@@ -29,7 +29,8 @@
         'trinity.directives.inspections.photoSelect',
             
         // new angular stype
-        'trinity.controllers.admin.reports'
+        'trinity.controllers.admin.reports',
+        'trinity.shared.controllers.photoModal'
     ])
 
         .config(function ($modalProvider) {
