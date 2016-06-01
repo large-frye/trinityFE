@@ -68,6 +68,18 @@
                         action: 'outcomes'
                     },
                     withCredentials: true
+                },
+                getInspectionTypes: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'inspections',
+                        action: 'types'
+                    },
+                    withCredentials: true
                 }
             });
         }])

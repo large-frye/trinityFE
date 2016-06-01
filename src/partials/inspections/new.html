@@ -17,8 +17,9 @@
 			<div class="form-group">
 				<h4 class="col-sm-1">Client Info</h4>
 				<div class="alert alert-info col-sm-11" style="margin-top:7px">
-					<i class="fa fa-info-circle"></i> You may select an adjuster to pre-fill if the adjuster exists. If not the adjuster will be created.
-				</div>	
+					<i class="fa fa-info-circle"></i> You may select an adjuster to pre-fill if the adjuster exists. If not the adjuster
+					will be created.
+				</div>
 			</div>
 
 			<div class="form-group">
@@ -52,12 +53,19 @@
 				</div>
 			</div>
 
-			<!-- <div class="form-group">
+			<div class="form-group">
 				<label class="col-sm-2 control-label">Phone 2</label>
+				<div class="col-sm-8">
+					<input type="phone" class="form-control" ng-model="inspection.adjuster.profile.phone_1" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Phone 3</label>
 				<div class="col-sm-8">
 					<input type="phone" class="form-control" ng-model="inspection.adjuster.profile.phone_2" />
 				</div>
-			</div> -->
+			</div>
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Email</label>
@@ -95,7 +103,12 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Date Received</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" ng-model="inspection.date_received" bs-datepicker/>
+					<div class="input-group date">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<date-picker date="inspection.date_received" />
+					</div>
 				</div>
 			</div>
 
@@ -103,13 +116,21 @@
 				<div class="col-sm-4">
 					<label class="col-sm-6 control-label">Request Date of Inpsection</label>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" ng-model="inspection.date_of_inspection" name="date" bs-datepicker>
+						<div class="input-group date">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
+							</div>
+							<date-picker date="inspection.requested_date_of_inspection" />
+						</div>
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<label class="col-sm-7 control-label">Request Time of Inpsection</label>
 					<div class="col-sm-4">
-						<input type="text" class="form-control" size="8" ng-model="inspection.date_of_inspection" name="time" bs-timepicker data-default-time="false">
+						<div class="input-group bootstrap-timepicker timepicker">
+							<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+							<time-picker date="inspection.requested_date_of_inspection" time="time" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -145,7 +166,12 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Date of Loss</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" ng-model="inspection.date_of_loss" bs-datepicker/>
+					<div class="input-group date">
+						<div class="input-group-addon">
+							<i class="fa fa-calendar"></i>
+						</div>
+						<date-picker date="inspection.date_of_loss" />
+					</div>
 				</div>
 			</div>
 
@@ -220,7 +246,9 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">State</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" ng-model="inspection.state" />
+					<select class="form-control" ng-options="state.name for state in states" class="form-control col-sm-12" 
+						ng-model="state"
+						ng-change="inspection.state=state.name"></select>
 				</div>
 			</div>
 
@@ -234,36 +262,36 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Phone 1</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" ng-model="inspection.phone_1" data-inputmask="mask": "(999) 999-9999"" data-mask/>
+					<input type="text" class="form-control" ng-model="inspection.phone_1" data-inputmask="mask" : "(999) 999-9999" " data-mask/>
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Phone 2</label>
-				<div class="col-sm-8">
-					<input type="phone" class="form-control" ng-model="inspection.phone_2" />
+			<div class="form-group ">
+				<label class="col-sm-2 control-label ">Phone 2</label>
+				<div class="col-sm-8 ">
+					<input type="phone" class="form-control " ng-model="inspection.phone_2 " />
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Phone 3</label>
-				<div class="col-sm-8">
-					<input type="phone" class="form-control" ng-model="inspection.phone_3" />
+			<div class="form-group ">
+				<label class="col-sm-2 control-label ">Phone 3</label>
+				<div class="col-sm-8 ">
+					<input type="phone" class="form-control " ng-model="inspection.phone_3 " />
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Special Instruction by Insured</label>
-				<div class="col-sm-8">
-					<textarea class="form-control" ng-model="inspection.special_instructions_insured"></textarea>
+			<div class="form-group ">
+				<label class="col-sm-2 control-label ">Special Instruction by Insured</label>
+				<div class="col-sm-8 ">
+					<textarea class="form-control " ng-model="inspection.special_instructions_insured "></textarea>
 				</div>
 			</div>
 
 			<hr/>
 
-			<button type="submit" class="btn btn-success" ng-click="save()">Save</button>
-			<button type="submit" class="btn btn-success" ng-click="save('new')">Save & Create New</button>
-			<button type="submit" class="btn btn-success" ng-click="save('reports')" ng-if="hasInspection">Save & Go to Reports</button>
+			<button type="submit " class="btn btn-success " ng-click="save() ">Save</button>
+			<button type="submit " class="btn btn-success " ng-click="save( 'new') ">Save & Create New</button>
+			<button type="submit " class="btn btn-success " ng-click="save( 'reports') " ng-if="hasInspection ">Save & Go to Reports</button>
 
 		</form>
 	</div>

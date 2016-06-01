@@ -45,7 +45,7 @@
                                 InspectionService.get({
                                     id: id
                                 }).$promise.then(function (data) {
-                                    data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
+                                    // data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
                                     // data.order.date_received = new Date(data.order.date_received);
                                     // data.order.date_of_inspection = new Date(data.order.date_of_inspection);
                                     // data.order.date_of_loss = new Date(data.order.date_of_loss);
@@ -56,9 +56,11 @@
                                 });
                             } else {
                                 deferred.resolve({
-                                    auto_upgrade: false,
-                                    has_tarp: false,
-                                    estimate_requested: false
+                                    order: {
+                                        auto_upgrade: false,
+                                        has_tarp: false,
+                                        estimate_requested: false    
+                                    }
                                 });
                             }
 

@@ -23,7 +23,7 @@
         function activate() { }
         
         function findInspection(id) {
-            $location.url(encodeURIComponent('/admin/inspections/' + id));
+            $location.url(encodeURIComponent('/admin/inspections/processing/' + id));
         }
     }
 })();

@@ -217,7 +217,7 @@
     					parent: 'Work Order Details',
     					link: '/#/admin/inspections/' + id
     				}, {
-    					parent: 'Processing Order Details',
+    					parent: 'Processing Details',
     					link: '/#/admin/inspections/processing/' + id
     				}, {
     					parent: 'Inspection Details',

@@ -83,7 +83,7 @@ body {
 
 .processing-content {
     background-color: #e8e8e8;
-    border: 1px solid #ddd;
+    border: 1px solid #999;
 
 }
 
@@ -244,4 +244,8 @@ img.selected {
 select.form-control {
     padding: .2em;
     height: 25px;
+}
+
+.form-control {
+    border-color: #999 !important;
 }

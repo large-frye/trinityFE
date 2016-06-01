@@ -5,11 +5,14 @@
 
 	.controller('inspectionsCtrl', ['$scope', 'UserService', 'InspectionService', '$modal', '$routeParams',
 	'inspection', '$location', 'REPORTS', '$timeout', '$window', 'shared', 'UserFactory', 'alert', '$dateParser',
+	'formFactory',
 		function ($scope, UserService, InspectionService, $modal, $routeParams,
-		inspection, $location, REPORTS, $timeout, $window, shared, UserFactory, alert, $dateParser) {
+		inspection, $location, REPORTS, $timeout, $window, shared, UserFactory, alert, $dateParser, formFactory) {
 
 			if (!$routeParams.id) $window.scrollTo(0, 0);
-
+			
+			$scope.inspection = inspection.order;
+		
 			/**
 			 * [function description]
 			 * @return {[type]} [description]
@@ -40,21 +43,19 @@
 					return adjuster.id === $scope.inspection.adjuster.id;
 				})[0];
 			};
-
-			// Inspection Types
-			$scope.inspectionTypes = [{
-				id: 0,
-				name: 'Basic'
-			}, {
-				id: 1,
-				name: 'Expert'
-			}, {
-				id: 2,
-				name: 'Ladder Assist'
-			}];
+			
+			InspectionService.getInspectionTypes(function(data) {
+				$scope.inspectionTypes = data.types;
+				if ($scope.inspection.inspection_type) {
+					setInspectionType();	
+				}	
+			}, function(err) {
+				console.log(err);
+			});
 
 			// Pass id, if a new work order id will be falsy
 			$scope.hasInspection = $routeParams.id;
+			$scope.states = formFactory.getStates();
 
 			// Adjusters dropdown
 			UserService.adjusters(function(data) {
@@ -70,21 +71,21 @@
 				window.console && console.log(err);
 			});
 
-			$scope.inspection = inspection.order;
-
 			if ($routeParams.id) {
 				angular.element('.content-wrapper').removeClass('no-margin-left');
 				$scope.options = shared.getInspectionSideBar($routeParams.id);
-				setInspectionType();
+			
+				// set state property
+				$scope.states.forEach(function(state) {
+					if (state.name === $scope.inspection.state) {
+						$scope.state = state;	
+					}
+				});
 			} else {
 				// Hide the side bar
 				angular.element('.content-wrapper').addClass('no-margin-left');
 			}
-
-			$scope.setTime = function() {
-				console.log($scope);
-			};
-
+			
 			/**
 			 * [function description]
 			 * @param  {[type]} redirect [description]
@@ -98,9 +99,25 @@
 				// Angular will use the object and we only need the id
 				var inspection = angular.copy($scope.inspection);
 				inspection.inspection_type = inspection.inspection_type.id;
-				inspection.date_of_inspection = new Date(inspection.date_of_inspection).getTime();
 				inspection.date_received = new Date(inspection.date_received).getTime();
 				inspection.date_of_loss = new Date(inspection.date_of_loss).getTime();
+				
+				function getDate() {
+					inspection.requested_date_of_inspection = new Date(inspection.requested_date_of_inspection);
+					return getMonth() + '/' + getDay() + '/' + inspection.requested_date_of_inspection.getFullYear();
+				}
+				
+				function getMonth() {
+					var month = inspection.requested_date_of_inspection.getMonth() + 1;
+					return month > 9 ? month.toString() : '0' + month;
+				}
+				
+				function getDay() {
+					var day = inspection.requested_date_of_inspection.getDate();
+					return day > 9 ? day.toString() : '0' + day;
+				}
+				
+				inspection.requested_date_of_inspection = new Date(getDate() + ' ' + $scope.time).getTime();
 
 				InspectionService.create(inspection).$promise.then(function(data) {
 

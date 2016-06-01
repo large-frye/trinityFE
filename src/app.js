@@ -30,7 +30,9 @@
             
         // new angular stype
         'trinity.controllers.admin.reports',
-        'trinity.shared.controllers.photoModal'
+        'trinity.shared.controllers.photoModal',
+        'trinity.directives.inspections.datePicker',
+        'trinity.directives.inspections.timePicker'
     ])
 
         .config(function ($modalProvider) {
