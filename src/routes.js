@@ -190,6 +190,24 @@
                     });
                     return defer.promise;
                 }
+                
+                var settings = {
+                    photos: { settings: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve] }
+                };
+                
+                function PhotoSettingsResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+                    
+                    PhotoService.api().getParentCategories(function(data) {
+                        defer.resolve(data);
+                    }, function(err) {
+                        $log.error(err);
+                    });
+                    
+                    return defer.promise;
+                }
 
                 var inspector = {
                     home: {
@@ -421,6 +439,13 @@
                         controller: 'adminReportCtrl',
                         controllerAs: 'vm',
                         resolve: report
+                    })
+                    
+                    .when('/admin/settings/photos', {
+                        templateUrl: '/src/partials/settings/photos.html',
+                        controller: 'photoSettingsCtrl',
+                        controllerAs: 'vm',
+                        resolve: settings.photos
                     })
 
                     // Authentication

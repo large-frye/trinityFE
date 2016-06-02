@@ -32,7 +32,10 @@
         'trinity.controllers.admin.reports',
         'trinity.shared.controllers.photoModal',
         'trinity.directives.inspections.datePicker',
-        'trinity.directives.inspections.timePicker'
+        'trinity.directives.inspections.timePicker',
+        
+        // settings
+        'trinity.controllers.settings.photos'
     ])
 
         .config(function ($modalProvider) {

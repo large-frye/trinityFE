@@ -72,6 +72,11 @@
                                 }],
                                 link: '/#/' + this.user.appRole + '/contacts',
                                 icon: 'fa-folder-o'
+                            }, {
+                                parent: 'Settings',
+                                children: [{
+                                    name: 'Photos', link: '/#/admin/settings/photos'
+                                }]
                             }],
                             inspector: [{
                                 parent: 'Inspections',

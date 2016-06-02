@@ -97,7 +97,7 @@
                     </thead>
                     
                     <tr ng-repeat="inspection in vm.inspections">
-                        <td>{{inspection.date_of_inspection}}</td>
+                        <td>{{inspection.date_of_inspection | date:'yyyy-MM-dd'}}</td>
                         <td>{{inspection.first_name}} {{inspection.last_name}}</td>
                         <td>{{inspection.inspection_outcome | outcomeType}}</td>
                         <td></td>

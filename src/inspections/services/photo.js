@@ -33,6 +33,19 @@
                     },
                     withCredentials: true
                 },
+                saveCategories: {
+                    method: 'POST',
+                    params: {
+                        type: 'admin',
+                        route: 'settings',
+                        action: 'categories',
+                        workorderId: 'save' // should rename url structure
+                    },
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    withCredentials: true
+                },
                 getParentCategories: {
                     method: 'GET',
                     headers: {
