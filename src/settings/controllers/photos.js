@@ -5,8 +5,8 @@
         .module('trinity.controllers.settings.photos', [])
         .controller('photoSettingsCtrl', PhotoSettingsCtrl);
 
-    PhotoSettingsCtrl.$inject = ['settings', 'UserFactory', 'PhotoService', '$log', '$modal'];
-    function PhotoSettingsCtrl(settings, UserFactory, PhotoService, $log, $modal) {
+    PhotoSettingsCtrl.$inject = ['settings', 'UserFactory', 'PhotoService', '$log', '$modal', 'alert'];
+    function PhotoSettingsCtrl(settings, UserFactory, PhotoService, $log, $modal, alert) {
         var vm = this;
         vm.settings = settings;
         vm.options = UserFactory.user.getNavOptions();
@@ -51,7 +51,11 @@
                 subCategories: angular.copy(vm.settings.subCategories)
             };
             PhotoService.api().saveCategories(saveObj, function(data) {
-                
+                vm.alerts = alert.add({
+                    title: 'Saved',
+                    content: 'Saved',
+                    type: 'success'
+                }, 3000);
             }, function(err) {
                 $log.error(err);
             });
