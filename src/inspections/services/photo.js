@@ -81,6 +81,18 @@
                         action: 'parent'
                     },
                     withCredentials: true
+                },
+                save: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'photos',
+                        action: 'save'
+                    },
+                    withCredentials: true
                 }
             });
         }

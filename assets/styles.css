@@ -249,3 +249,21 @@ select.form-control {
 .form-control {
     border-color: #999 !important;
 }
+
+.category-choice {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.category-choice li input[type="radio"] {
+    margin-right: 5px;
+}
+
+.category-choice button {
+    width: 350px;
+}
+
+.btn-default:hover {
+    color: #444;    
+}

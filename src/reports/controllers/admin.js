@@ -14,7 +14,6 @@
         vm.report = report;
         vm.options = shared.getReportSideBar();
         vm.findInspection = findInspection;
-        
 
         activate();
 

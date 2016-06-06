@@ -5,13 +5,15 @@
         .module('trinity.shared.controllers.photoModal', [])
         .controller('photoModalCtrl', PhotoModalCtrl);
 
-    PhotoModalCtrl.$inject = ['$scope', 'methods'];
-    function PhotoModalCtrl($scope, methods) {
+    PhotoModalCtrl.$inject = ['$scope', 'methods', 'setPhotos'];
+    function PhotoModalCtrl($scope, methods, setPhotos) {
         var vm = this;
         vm.getSubCategories = getSubCategories;
         vm.save = save;
         vm.photos = $scope.photos;
         vm.photosSelected = false;
+        vm.parentCategories = $scope.parents;
+        vm.setSelected = setSelected;
 
         activate();
 
@@ -24,18 +26,25 @@
             vm.children = methods.subCategories(id, ref);
         }
         
-        function save() {
-            methods.save();
+        function setSelected(category) {
+            vm.photos.forEach(function(photo) {
+                photo.label = category.name;
+                vm.labelSelected = true;
+            });
         }
         
-        $scope.$watch('photos', function(next, prev) {
-            vm.photosSelected = false;
-            vm.photos.forEach(function(photo) {
-                if (photo.selected) {
-                    vm.photosSelected = true;
-                    return;
-                }
-            });
-        }, []);
+        function save() {
+            setPhotos(vm.photos);
+        }
+        
+        // $scope.$watch('photos', function(next, prev) {
+        //     vm.photosSelected = false;
+        //     vm.photos.forEach(function(photo) {
+        //         if (photo.selected) {
+        //             vm.photosSelected = true;
+        //             return;
+        //         }
+        //     });
+        // }, []);
     }
 })();

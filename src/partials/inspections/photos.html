@@ -11,83 +11,39 @@
 
 <div class="box box-info">
     <div class="box-body">
-
-        <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-                <li ng-repeat="parentCategory in vm.parentCategories" ng-class="{'active':$index===0}">
-                    <a href="#parent_category_{{parentCategory.id}}" ng-class="{'active':$index===0}" ng-click="vm.getSubCategories(parentCategory.id);"
-                        data-toggle="tab">{{parentCategory.name}} ({{vm.getParentPhotoSize(parentCategory.id)}})</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div ng-class="{'tab-pane inspection-photos active':$index==0, 'tab-pane inspection-photos':$index>0}" ng-repeat="parentCategory in vm.parentCategories"
-                    id="parent_category_{{parentCategory.id}}" >
-                    <div class="box-group" id="accordion">
-                        <div class="panel box box-default" ng-repeat="subCategory in vm.subCategories">
-                            <div class="box-header with-header">
-                                <h5 class="box-title small-text">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{subCategory.id}}">
-                                        {{subCategory.name}} ({{vm.photos[parentCategory.id][subCategory.id].length || 0}})
-                                    </a>
-                                </h5>
-                            </div> 
-                            <div id="collapse_{{subCategory.id}}" class="panel-collapse collapse">
-                                <div class="box-body">
-                                    <div class="photo-col" ng-repeat="photo in vm.photos[parentCategory.id][subCategory.id]">
-                                        <photo-select photo="photo" />
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                        
-                        <div class="panel box box-default">
-                            <div class="box-header with-header">
-                                <h5 class="box-title small-text">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_no_sub_parent">
-                                        No Sub Parent ({{vm.photos[parentCategory.id]['no_sub_parent'].length || 0 }})
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapse_no_sub_parent" class="panel-collapse collapse">
-                                <div class="box-body">
-                                    <div class="photo-col" ng-repeat="photo in vm.photos[parentCategory.id]['no_sub_parent']">
-                                        <photo-select photo="photo" />
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                        
-                        <div class="panel box box-default">
-                            <div class="box-header with-header">
-                                <h5 class="box-title small-text">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse_no_parent">
-                                        Photos Not Categorized ({{vm.photos['no_parent'].length || 0 }})
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapse_no_parent" class="panel-collapse collapse">
-                                <div class="box-body">
-                                    <div class="photo-col" ng-repeat="photo in vm.photos['no_parent']">
-                                        <photo-select photo="photo" />
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                        
-                    </div>
-                   
-                    <div class="margin-top">
-                        <button class="btn btn-default" type="button" ng-click="vm.updateSubCategories(parentCategory.id)">Add/Change Sub Categories</button>
-                        <button type="button" ng-click="vm.clearSelected()" class="btn btn-default">Clear Selected</button>    
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        
         <div class="col-sm-12 sm-margin-top">
             <button type="button" ng-click="vm.save()" class="btn btn-success">Save</button>
             <button type="button" ng-click="vm.uploadPhotos()" class="btn btn-info">Upload Photos</button>
-            <button type="button" ng-click="vm.categorizePhotos()" class="btn btn-default">Categorize Photos</button>
+            <button type="button" ng-click="vm.categorizePhotos()" class="btn btn-default" ng-disabled="!vm.photosSelected">Categorize Photos</button>
+            <button type="button" ng-click="vm.selectAll()" class="btn btn-default">Select All</button>
+            <button type="button" ng-click="vm.clearSelected()" class="btn btn-default">Clear Selected</button>
+        </div>
+
+        <div class="col-sm-12 nav-tabs-custom margin-top">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#all-photos" ng-click="vm.getAllPhotos()" data-toggle="tab">All Photos</a>
+                </li>
+                <li>
+                    <a href="#all-uncategorized-photos" ng-click="vm.getAllUncategorizedPhotos()" data-toggle="tab">Uncategorized Photos</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="all-photos" class="tab-pane inspection-photos active">
+                    <h4>All Photos</h4>
+                    <div class="col-sm-3" ng-repeat="photo in vm.photos.all">
+                        <photo-select photo="photo" />
+                    </div>
+                </div>
+                
+                <div id="all-uncategorized-photos" class="tab-pane inspection-photos">
+                    <h4>Uncategorized Photos</h4>
+                    <div class="col-sm-3" ng-repeat="photo in vm.photos.notCategorized">
+                        <photo-select photo="photo" />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

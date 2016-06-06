@@ -35,7 +35,9 @@
         'trinity.directives.inspections.timePicker',
         
         // settings
-        'trinity.controllers.settings.photos'
+        'trinity.controllers.settings.photos',
+        'trinity.controllers.shared.addCategory',
+        'trinity.settings.services.category'
     ])
 
         .config(function ($modalProvider) {

@@ -3,27 +3,33 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Categorize Photos</h4>
+                <h4 class="modal-title">Categorize Photo(s)</h4>
             </div>
             <div class="modal-body">
-                <div class="col-sm-6">
-                    <select ng-model="parentId" class="form-control no-padding" ng-options="p.name for p in parents"
-                        ng-change="vm.getSubCategories(parentId.id, children)">
-                    </select>    
+                <div class="alert alert-info">
+                    Choose the first category by selecting an option below.
                 </div>
-                <div class="col-sm-6">
-                    <select ng-disabled="!parentId" ng-model="childId" 
-                        class="form-control no-padding" ng-options="c.name for c in vm.children.categories">
-                    </select>    
-                </div>
-                <div class="photo-col" ng-repeat="photo in photos">
-                    <photo-select photo="photo" />    
-                </div>
-			</div>
+                <ul class="category-choice" ng-if="!vm.category1">
+                    <li ng-repeat="category in vm.parentCategories" style="margin: 5px 0">
+                        <button type="button" class="btn btn-default" ng-click="vm.getSubCategories(category.id, true);vm.category1=category;">{{category.name}}</button>
+                    </li>
+                </ul>
+                
+                <ul class="category-choice" ng-if="vm.category1 && !vm.category2">
+                    <li ng-repeat="category in vm.children.categories" style="margin: 5px 0">
+                        <button type="button" class="btn btn-default" ng-click="vm.getSubCategories(category.id, true);vm.category2=category;">{{category.name}}</button>
+                    </li>
+                </ul>
+                
+                <ul class="category-choice" ng-if="vm.category2">
+                    <li ng-repeat="category in vm.children.categories" style="margin: 5px 0">
+                        <button type="button" class="btn btn-default" ng-click="vm.setSelected(category)">{{category.name}}</button>
+                    </li>
+                </ul>
+                
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" 
-                ng-disabled="!vm.photosSelected" 
-                ng-click="vm.save();$hide();">Save</button>
+                <button type="button" class="btn btn-success" ng-disabled="!vm.labelSelected" ng-click="vm.save();$hide();">Save</button>
                 <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
             </div>
         </div>
