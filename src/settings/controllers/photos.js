@@ -1,3 +1,5 @@
+/* global angular */
+
 (function () {
     'use strict';
 
@@ -16,6 +18,7 @@
         vm.showCategory2 = showCategory2;
         vm.save = save;
         vm.addCategory = addCategory;
+        vm.deleteCategory = deleteCategory;
 
         activate();
 
@@ -41,15 +44,16 @@
                 $log.log(err);
             });
         }
-
         function showCategory1() {
             delete vm.category1;
             vm.categoryType = 'Category 1';
+            delete vm.parentCat1;
         }
 
         function showCategory2() {
             delete vm.category2;
             vm.categoryType = 'Category 2';
+            delete vm.parentCat2;
         }
 
         function save() {
@@ -68,9 +72,12 @@
             });
         }
 
-        function addCategory(cat1, cat2) {
+        function addCategory() {
             var scope = $rootScope.$new();
-            // scope.parentId = parentId;
+            scope.parentCategories = {
+                category1: vm.parentCat1,
+                category2: vm.parentCat2
+            };
 
             var modal = modal || $modal({
                 scope: scope,
@@ -81,12 +88,39 @@
                 resolve: {
                     categorySaved: function() {
                         return function(data) {
-                            getCategories();
+                            if (!vm.parentCat1) {
+                                getCategories();
+                            }
+                            else if (vm.parentCat1 && !vm.parentCat2) {
+                                getSubCategories(vm.parentCat1.id, 2);
+                            } else if (vm.parentCat1 && vm.parentCat2) {
+                                getSubCategories(vm.parentCat2.id, 3);
+                            }
                         };
                     }   
                 }
             });
             modal.$promise.then(modal.show);
+        }
+
+        function deleteCategory(id, categoryType) {
+            return CategoryService.api().deleteCategory({
+                id: id
+            }, function() { // We do not need any data to return.
+                switch (categoryType) {
+                    case 1:
+                        getCategories();
+                        break;
+                    case 2: 
+                        getSubCategories(vm.parentCat1.id, 2);
+                        break;
+                    case 3:
+                        getSubCategories(vm.parentCat2.id, 3);
+                        break;
+                }
+            }, function(err) {
+                $log.error(err);
+            });
         }
         
         function getCategories() {

@@ -11,13 +11,15 @@
                 </div>
                 <ul class="category-choice" ng-if="!vm.category1">
                     <li ng-repeat="category in vm.parentCategories" style="margin: 5px 0">
-                        <button type="button" class="btn btn-default" ng-click="vm.getSubCategories(category.id, true);vm.category1=category;">{{category.name}}</button>
+                        <button type="button" class="btn btn-default" 
+                        ng-click="vm.getSubCategories(category.id, true);vm.category1=category;vm.setParentId(category.id)">{{category.name}}</button>
                     </li>
                 </ul>
                 
                 <ul class="category-choice" ng-if="vm.category1 && !vm.category2">
                     <li ng-repeat="category in vm.children.categories" style="margin: 5px 0">
-                        <button type="button" class="btn btn-default" ng-click="vm.getSubCategories(category.id, true);vm.category2=category;">{{category.name}}</button>
+                        <button type="button" class="btn btn-default" 
+                        ng-click="vm.getSubCategories(category.id, true);vm.category2=category;vm.setSubParentId(category.id)">{{category.name}}</button>
                     </li>
                 </ul>
                 

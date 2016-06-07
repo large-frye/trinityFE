@@ -70,6 +70,18 @@
                     },
                     withCredentials: true
                 },
+                getMicroCategories: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'photos',
+                        action: 'micro-categories'
+                    },
+                    withCredentials: true
+                },
                 getPhotosByCategory: {
                     method: 'GET',
                     headers: {

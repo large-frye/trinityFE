@@ -32,6 +32,7 @@
         function activate() {
             getParentCategories();
             getSubCategories(1);
+            reorderPhotos();
         }
 
         function uploadPhotos() {
@@ -228,6 +229,18 @@
             });
             notCategorizedPhotos.forEach(function(photo) {
                 photo.selected = true;
+            });
+        }
+        
+        function reorderPhotos() {
+            vm.photos.all.sort(function(a, b) {
+                if (a.label === null || a.label === '') {
+                    return -1;
+                } else if (b.label === null || b.label === '') {
+                    return 1;
+                } else {
+                    return 0;
+                }
             });
         }
 

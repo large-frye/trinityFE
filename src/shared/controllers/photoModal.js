@@ -9,11 +9,14 @@
     function PhotoModalCtrl($scope, methods, setPhotos) {
         var vm = this;
         vm.getSubCategories = getSubCategories;
+        vm.parentId = $scope.parentId;
         vm.save = save;
         vm.photos = $scope.photos;
         vm.photosSelected = false;
         vm.parentCategories = $scope.parents;
         vm.setSelected = setSelected;
+        vm.setParentId = setParentId;
+        vm.setSubParentId = setSubParentId;
 
         activate();
 
@@ -35,6 +38,18 @@
         
         function save() {
             setPhotos(vm.photos);
+        }
+        
+        function setParentId(id) {
+            vm.photos.forEach(function(photo) {
+                photo.parent_id = id;
+            });
+        }
+        
+        function setSubParentId(id) {
+            vm.photos.forEach(function(photo) {
+                photo.sub_parent_id = id;
+            });
         }
         
         // $scope.$watch('photos', function(next, prev) {

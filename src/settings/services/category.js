@@ -12,7 +12,7 @@
         ////////////////
 
         function api() {
-            var pattern = '/:type/settings/:action/:route';
+            var pattern = '/:type/settings/:action/:route/:id';
             var url = env.getEndpoint() + pattern;
 
             return $resource(url, {}, {
@@ -50,6 +50,18 @@
                         type: 'admin',
                         action: 'categories',
                         route: 'create-excel'
+                    },
+                    withCredentials: true
+                },
+                deleteCategory: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        action: 'categories',
+                        route: 'delete'
                     },
                     withCredentials: true
                 }
