@@ -122,35 +122,35 @@
         function categorizePhotos() {
             showModal();
         }
-        
+
         function getSelectedPhotos() {
             var photos = []
-            , remove = []
-            , keys = [];
-            
-            vm.photos.all.forEach(function(photo) {
+                , remove = []
+                , keys = [];
+
+            vm.photos.all.forEach(function (photo) {
                 if (photo.selected) photos.push(photo);
             });
-            
-            vm.photos.notCategorized.forEach(function(photo) {
+
+            vm.photos.notCategorized.forEach(function (photo) {
                 if (photo.selected) photos.push(photo);
             });
-            
-            photos.forEach(function(photo, index) {
-                if(keys.indexOf(photo.file_name) === -1) {
+
+            photos.forEach(function (photo, index) {
+                if (keys.indexOf(photo.file_name) === -1) {
                     keys.push(photo.file_name);
                 } else {
                     remove.push(index);
                 }
             });
-            
-            remove.forEach(function(i, index) {
+
+            remove.forEach(function (i, index) {
                 if (index > 0) {
                     i--; // If sliced before the length of the array is length - 1 now 
                 }
                 photos.splice(i, 1);
             });
-            
+
             return photos;
         }
 
@@ -159,7 +159,7 @@
             scope.photos = getSelectedPhotos();
             scope.parents = vm.parentCategories;
             scope.children = [];
-            
+
             var modal = modal || $modal({
                 scope: scope,
                 templateUrl: 'src/partials/modals/photos/categorize.html',
@@ -171,8 +171,8 @@
                             subCategories: getSubCategories
                         };
                     },
-                    setPhotos: function() {
-                        return function(photos) {
+                    setPhotos: function () {
+                        return function (photos) {
                             save(photos);
                         };
                     }
@@ -213,9 +213,11 @@
                 if (photo.selected) selected = true; return;
             });
 
-            notCategorizedPhotos.forEach(function (photo) {
-                if (photo.selected) selected = true; return;
-            });
+            if (typeof notCategorizedPhotos !== 'undefined') {
+                notCategorizedPhotos.forEach(function (photo) {
+                    if (photo.selected) selected = true; return;
+                });
+            }
 
             return selected;
         }
@@ -223,17 +225,21 @@
         function selectAll() {
             var allPhotos = vm.photos.all;
             var notCategorizedPhotos = vm.photos.notCategorized;
-            
+
             allPhotos.forEach(function getPhotos(photo) {
                 photo.selected = true;
             });
-            notCategorizedPhotos.forEach(function(photo) {
-                photo.selected = true;
-            });
+
+            if (typeof notCategorizedPhotos !== 'undefined') {
+                notCategorizedPhotos.forEach(function (photo) {
+                    photo.selected = true;
+                });
+            }
+
         }
-        
+
         function reorderPhotos() {
-            vm.photos.all.sort(function(a, b) {
+            vm.photos.all.sort(function (a, b) {
                 if (a.label === null || a.label === '') {
                     return -1;
                 } else if (b.label === null || b.label === '') {

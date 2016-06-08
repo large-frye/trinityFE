@@ -284,3 +284,24 @@ select.form-control {
 .scroll-box li:before {
     content: '-'
 }
+
+.search-form input[type="text"] {
+    margin-top: 12px;
+    padding: .5em .2em;
+    height: 25px;
+    width: 200px;
+}
+
+input[type="search"].form-control  {
+    padding: .5em .2em;
+    height: 25px;
+}
+
+/* Datatables */
+.dataTables_filter {
+    display: none;
+}
+
+.clear {
+    clear: both;
+}

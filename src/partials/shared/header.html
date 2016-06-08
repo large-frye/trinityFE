@@ -1,23 +1,18 @@
 <header class="main-header">
 
-    <!-- Logo -->
-    <a href="/#/account" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>A</b>LT</span>
-        <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>Trinity</b></span>
-    </a>
-
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a ng-href="/#/{{user.appRole}}" class="navbar-brand">Trinity LLC.</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
             </div>
 
             <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li ng-repeat="option in options" ng-class="{'dropdown': 'option.children'}">
+                    <li ng-repeat="option in vm.options" ng-class="{'dropdown': 'option.children'}">
                         <a href="#" class="dropdown-toggle"
                             data-toggle="dropdown"
                             aria-expanded="true"
@@ -34,10 +29,14 @@
                         <a href="{{option.link}}" ng-if="!option.children">{{option.parent}}</a>
                     </li>
                 </ul>
+                <!--<form class="navbar-form navbar-left search-form" name="searchForm" ng-submit="search()">
+                    <div class="form-group"><input type="text" class="form-control" placeholder="Search by last name only" ng-model="vm.searchText"></div>
+                    <button class="btn btn-default margin-sm-top" ng-click="vm.search()">Search</button>
+                </form>-->
             </div>
 
             <!-- Navbar Right Menu -->
-            <div class="navbar-custom-menu" ng-if="user">
+            <div class="navbar-custom-menu" ng-if="vm.user">
                 <ul class="nav navbar-nav">
 
                     <!-- User Account Menu -->
@@ -47,7 +46,7 @@
                             <!-- The user image in the navbar-->
                             <i class="fa fa-user"></i>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">{{user.profile.first_name}} {{user.profile.last_name}}</span>
+                            <span class="hidden-xs">{{vm.user.profile.first_name}} {{vm.user.profile.last_name}}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -55,7 +54,7 @@
                                 <i class="fa fa-2x fa-user"></i>
 
                                 <p>
-                                    {{user.profile.first_name}} {{user.profile.last_name}}
+                                    {{vm.user.profile.first_name}} {{vm.user.profile.last_name}}
                                 </p>
                             </li>
                             <!-- Menu Body -->
