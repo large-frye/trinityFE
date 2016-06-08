@@ -267,3 +267,20 @@ select.form-control {
 .btn-default:hover {
     color: #444;    
 }
+
+.scroll-box {
+    height: 100px;
+    overflow-y: scroll;
+    border: 1px solid #888;
+    padding: .5em;
+}
+
+.scroll-box ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.scroll-box li:before {
+    content: '-'
+}

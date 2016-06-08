@@ -33,6 +33,7 @@
         'trinity.shared.controllers.photoModal',
         'trinity.directives.inspections.datePicker',
         'trinity.directives.inspections.timePicker',
+        'trintiy.services.inspections.workorderNote',
         
         // settings
         'trinity.controllers.settings.photos',

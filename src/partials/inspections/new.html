@@ -246,8 +246,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">State</label>
 				<div class="col-sm-8">
-					<select class="form-control" ng-options="state.name for state in states" class="form-control col-sm-12" 
-						ng-model="state"
+					<select class="form-control" ng-options="state.name for state in states" class="form-control col-sm-12" ng-model="state"
 						ng-change="inspection.state=state.name"></select>
 				</div>
 			</div>
@@ -269,14 +268,14 @@
 			<div class="form-group ">
 				<label class="col-sm-2 control-label ">Phone 2</label>
 				<div class="col-sm-8 ">
-					<input type="phone" class="form-control " ng-model="inspection.phone_2 " />
+					<input type="phone " class="form-control " ng-model="inspection.phone_2 " />
 				</div>
 			</div>
 
 			<div class="form-group ">
 				<label class="col-sm-2 control-label ">Phone 3</label>
 				<div class="col-sm-8 ">
-					<input type="phone" class="form-control " ng-model="inspection.phone_3 " />
+					<input type="phone " class="form-control " ng-model="inspection.phone_3 " />
 				</div>
 			</div>
 
@@ -285,6 +284,24 @@
 				<div class="col-sm-8 ">
 					<textarea class="form-control " ng-model="inspection.special_instructions_insured "></textarea>
 				</div>
+			</div>
+
+			<div class="form-group ">
+				<label class="col-sm-2 control-label ">Workorder Notes</label>
+				<div class="col-sm-8 ">
+					<div class="scroll-box form-control ">
+						<ul>	
+							<li ng-repeat="note in workorderNotes">
+								<strong>{{note.text}}</strong> <span class="text-muted">({{note.username}} / added: {{note.created_at}})</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">Add Workorder Note</label>
+				<div class="col-sm-8"><input type="text" ng-model="workorderNote.text" class="form-control"></div>
 			</div>
 
 			<hr/>
