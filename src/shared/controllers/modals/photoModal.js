@@ -2,7 +2,7 @@
 'use strict';
 
     angular
-        .module('trinity.shared.controllers.photoModal', [])
+        .module('trinity.shared.controllers.modals.photoModal', [])
         .controller('photoModalCtrl', PhotoModalCtrl);
 
     PhotoModalCtrl.$inject = ['$scope', 'methods', 'setPhotos'];

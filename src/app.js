@@ -27,10 +27,11 @@
         'trinity.shared.factories.form',
         'trinity.inspections.services.photo',
         'trinity.directives.inspections.photoSelect',
+        'trinity.shared.controllers.modals.photoModalDelete',
+        'trinity.shared.controllers.modals.photoModal',
             
         // new angular stype
         'trinity.controllers.admin.reports',
-        'trinity.shared.controllers.photoModal',
         'trinity.directives.inspections.datePicker',
         'trinity.directives.inspections.timePicker',
         'trintiy.services.inspections.workorderNote',

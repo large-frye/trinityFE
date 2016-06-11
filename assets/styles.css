@@ -214,11 +214,16 @@ img {
 }
 
 img.selected {
-    border: 4px solid dodgerblue;
+    border: 5px solid dodgerblue;
     border-radius: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     outline: none !important;
+}
+
+.modal-photo-delete img.selected {
+    border: none !important;
+    border-radius: 0 !important;
 }
 
 .photo-col {
@@ -304,6 +309,10 @@ input[type="search"].form-control  {
 
 .clear {
     clear: both;
+}
+
+.btn-default[disabled] {
+    color: #bbb;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

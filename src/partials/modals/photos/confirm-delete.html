@@ -1,0 +1,20 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-large modal-photo-delete">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" ng-click="vm.close()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Delete selected photos</h4>
+            </div>
+            <div class="modal-body">
+                <p>You are going to be deleting the photos selected, would you like to continue?</p>
+                <div class="col-sm-3" ng-repeat="photo in vm.photos">
+                    <photo-select photo="photo"></photo-select>
+                </div>
+            </div>
+            <div class="modal-footer clear">
+                <button type="button" class="btn btn-success" ng-click="vm.deletePhotos()">Ok</button>
+                <button type="button" class="btn btn-default" ng-click="vm.close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

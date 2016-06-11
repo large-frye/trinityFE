@@ -6,18 +6,18 @@
     </div>
 </div>
 
-<input type="file" name="photoUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"
-/>
+<input type="file" name="photoUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
 
 <div class="box box-info">
     <div class="box-body">
-        
         <div class="col-sm-12 sm-margin-top">
             <button type="button" ng-click="vm.save()" class="btn btn-success">Save</button>
             <button type="button" ng-click="vm.uploadPhotos()" class="btn btn-info">Upload Photos</button>
             <button type="button" ng-click="vm.categorizePhotos()" class="btn btn-default" ng-disabled="!vm.photosSelected">Categorize Photos</button>
             <button type="button" ng-click="vm.selectAll()" class="btn btn-default">Select All</button>
             <button type="button" ng-click="vm.clearSelected()" class="btn btn-default">Clear Selected</button>
+            <button type="button" ng-click="vm.deleteSelected()" class="btn btn-danger" ng-disabled="!vm.photosSelected">Delete Selected</button>
+            <button type="button" ng-click="vm.deleteAll()" class="btn btn-danger">Delete All</button>
         </div>
 
         <div class="col-sm-12 nav-tabs-custom margin-top">

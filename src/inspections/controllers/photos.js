@@ -23,6 +23,8 @@
         vm.getParentPhotoSize = getParentPhotoSize;
         vm.categorizePhotos = categorizePhotos;
         vm.selectAll = selectAll;
+        vm.deleteAll = deleteAll;
+        vm.deleteSelected = deleteSelected;
         vm.photosSelected = false;
 
         activate();
@@ -61,6 +63,7 @@
             }, formData).$promise.then(function (data) {
                 vm.photos = data.categorizedPhotos;
                 getParentPhotoSize(1);
+                selectNewPhotos();
                 categorizePhotos();
             }, function (err) {
                 $log.log(err);
@@ -132,9 +135,11 @@
                 if (photo.selected) photos.push(photo);
             });
 
-            vm.photos.notCategorized.forEach(function (photo) {
-                if (photo.selected) photos.push(photo);
-            });
+            if (typeof vm.photos.notCategorized !== 'undefined') {
+                vm.photos.notCategorized.forEach(function (photo) {
+                    if (photo.selected) photos.push(photo);
+                });
+            }
 
             photos.forEach(function (photo, index) {
                 if (keys.indexOf(photo.file_name) === -1) {
@@ -199,7 +204,8 @@
             PhotoService.api().save({
                 'photos': photos
             }, function (data) {
-                console.log(data);
+                // Unselect all
+                clearSelected();
             }, function (err) {
                 $log.error(err);
             });
@@ -235,7 +241,27 @@
                     photo.selected = true;
                 });
             }
+        }
 
+        function selectNewPhotos() {
+            var allPhotos = vm.photos.all;
+            var notCategorizedPhotos = vm.photos.notCategorized;
+
+            allPhotos.forEach(function getPhotos(photo) {
+                if (photo.recently_upload) {
+                    photo.selected = true;
+                    delete photo.recently_upload;
+                }
+            });
+
+            if (typeof notCategorizedPhotos !== 'undefined') {
+                notCategorizedPhotos.forEach(function (photo) {
+                    if (photo.recently_upload) {
+                        photo.selected = true;
+                        delete photo.recently_upload;
+                    }
+                });
+            }
         }
 
         function reorderPhotos() {
@@ -248,6 +274,61 @@
                     return 0;
                 }
             });
+        }
+
+        function deleteAll() {
+            selectAll();
+            var scope = $rootScope.$new();
+            scope.photos = getSelectedPhotos();
+            console.log(scope.photos);
+            var deleteModal = deleteModal || $modal({
+                scope: scope,
+                templateUrl: 'src/partials/modals/photos/confirm-delete.html',
+                controller: 'photoModalDeleteCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    callbackPhotos: function () {
+                        return function (photos) {
+                            if (photos) {
+                                vm.photos = photos.categorizedPhotos;
+                            }
+                            clearSelected();
+                        };
+                    },
+                    getPhotos: function () {
+                        return getSelectedPhotos();
+                    }
+                },
+                show: false
+            });
+            deleteModal.$promise.then(deleteModal.show);
+        }
+
+        function deleteSelected() {
+            var scope = $rootScope.$new();
+            scope.photos = getSelectedPhotos();
+
+            var deleteModal = deleteModal || $modal({
+                scope: scope,
+                templateUrl: 'src/partials/modals/photos/confirm-delete.html',
+                controller: 'photoModalDeleteCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    callbackPhotos: function () {
+                        return function (photos) {
+                            if (photos) {
+                                vm.photos = photos.categorizedPhotos;
+                            }
+                            clearSelected();
+                        };
+                    },
+                    getPhotos: function () {
+                        return getSelectedPhotos();
+                    }
+                },
+                show: false
+            });
+            deleteModal.$promise.then(deleteModal.show);
         }
 
         $scope.$watch('vm.photos', function (next, prev) {

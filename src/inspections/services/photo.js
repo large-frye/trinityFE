@@ -105,6 +105,18 @@
                         action: 'save'
                     },
                     withCredentials: true
+                },
+                delete: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'photos',
+                        action: 'delete'
+                    },
+                    withCredentials: true
                 }
             });
         }
