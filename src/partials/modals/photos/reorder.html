@@ -1,0 +1,35 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-large modal-reorder">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" ng-click="vm.close()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Reorder photos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">To start reordering, please click a parent category.</div>
+                <ul class="category-choice" ng-if="!vm.category1">
+                    <li ng-repeat="category in vm.parentCategories">
+                        <button type="button" class="btn btn-default" ng-click="vm.getSubCategories(category.id, true);vm.parentId=category.id;vm.subParentId=null">
+                            {{category.name}}
+                        </button>
+                        <ul ng-show="vm.children[category.id]" id="parent-{{category.name | lowercase | replace:' ':'-'}}">
+                            <li ng-repeat="child in vm.children[category.id].categories" class="clear">
+                                <button class="btn btn-default" ng-click="vm.getLabels(child.id, true);vm.subParentId=child.id;vm.photos=[]">{{child.name}}</button>
+                                <ul ng-show="vm.labels[child.id]">
+                                    <li ng-repeat="label in vm.labels[child.id].categories" ng-class="{'clear': !vm.photos['label.id'], 'pull-left clear': vm.photos[label.id]}">
+                                        <button class="btn btn-default" ng-click="vm.getPhotos(label.id, label.name);selectedLabel=label;clicked=!clicked">{{label.name}}</button>
+                                        <photo-sort clicked="clicked" photos="vm.photos" label="selectedLabel" parent-id="vm.parentId" sub-parent-id="vm.subParentId" />
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer clear">
+                <button type="button" class="btn btn-success" ng-click="vm.save()">Save</button>
+                <button type="button" class="btn btn-default" ng-click="vm.close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

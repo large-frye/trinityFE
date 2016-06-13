@@ -12,7 +12,7 @@
         ////////////////
 
         function api() { 
-            var endpoint = env.getEndpoint() + '/:type/:route/:action/:workorderId/:parentCategory';
+            var endpoint = env.getEndpoint() + '/:type/:route/:action/:workorderId/:parentCategory/:parentId/:subParentId/:labelName';
             return $resource(endpoint, {}, {
                 getPhotos: {
                     method: 'GET',
@@ -22,6 +22,17 @@
                     params: {},
                     withCredentials: true
                 },  
+                getLabeledPhotos: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'photos'
+                    },
+                    withCredentials: true
+                },
                 upload: {
                     method: 'POST',
                     params: {

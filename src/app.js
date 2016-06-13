@@ -29,6 +29,8 @@
         'trinity.directives.inspections.photoSelect',
         'trinity.shared.controllers.modals.photoModalDelete',
         'trinity.shared.controllers.modals.photoModal',
+        'trinity.shared.controllers.modals.photoModalReorder',
+        'trinity.shared.directives.photoSort',
             
         // new angular stype
         'trinity.controllers.admin.reports',

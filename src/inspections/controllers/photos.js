@@ -26,6 +26,7 @@
         vm.deleteAll = deleteAll;
         vm.deleteSelected = deleteSelected;
         vm.photosSelected = false;
+        vm.reorderModal = reorderModal;
 
         activate();
 
@@ -34,7 +35,7 @@
         function activate() {
             getParentCategories();
             getSubCategories(1);
-            reorderPhotos();
+            sortPhotos();
         }
 
         function uploadPhotos() {
@@ -71,7 +72,7 @@
         }
 
         function getParentCategories() {
-            PhotoService.api().getParentCategories(function (data) {
+            return PhotoService.api().getParentCategories(function (data) {
                 vm.parentCategories = data.categories;
             }, function (err) {
                 $log.log(err);
@@ -150,9 +151,7 @@
             });
 
             remove.forEach(function (i, index) {
-                if (index > 0) {
-                    i--; // If sliced before the length of the array is length - 1 now 
-                }
+                if (index > 0) i -= index;
                 photos.splice(i, 1);
             });
 
@@ -179,6 +178,12 @@
                     setPhotos: function () {
                         return function (photos) {
                             save(photos);
+                            sortPhotos();
+                        };
+                    },
+                    callbackPhotos: function() {
+                        return function() {
+                            clearSelected();
                         };
                     }
                 },
@@ -264,7 +269,7 @@
             }
         }
 
-        function reorderPhotos() {
+        function sortPhotos() {
             vm.photos.all.sort(function (a, b) {
                 if (a.label === null || a.label === '') {
                     return -1;
@@ -280,7 +285,6 @@
             selectAll();
             var scope = $rootScope.$new();
             scope.photos = getSelectedPhotos();
-            console.log(scope.photos);
             var deleteModal = deleteModal || $modal({
                 scope: scope,
                 templateUrl: 'src/partials/modals/photos/confirm-delete.html',
@@ -293,6 +297,7 @@
                                 vm.photos = photos.categorizedPhotos;
                             }
                             clearSelected();
+                            sortPhotos();
                         };
                     },
                     getPhotos: function () {
@@ -306,7 +311,6 @@
 
         function deleteSelected() {
             var scope = $rootScope.$new();
-            scope.photos = getSelectedPhotos();
 
             var deleteModal = deleteModal || $modal({
                 scope: scope,
@@ -320,6 +324,7 @@
                                 vm.photos = photos.categorizedPhotos;
                             }
                             clearSelected();
+                            sortPhotos();
                         };
                     },
                     getPhotos: function () {
@@ -329,6 +334,36 @@
                 show: false
             });
             deleteModal.$promise.then(deleteModal.show);
+        }
+
+        function reorderModal() {
+            var scope = $rootScope.$new();
+            scope.parentCategories = getParentCategories();
+
+            var reorderModal = reorderModal || $modal({
+                scope: scope,
+                templateUrl: 'src/partials/modals/photos/reorder.html',
+                controller: 'photoModalReorderCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    callbackPhotos: function () {
+                        return function () {
+                            // TODO: add alert
+                        };
+                    },
+                    parentCategories: function() {
+                        return vm.parentCategories;
+                    },
+                    methods: function () {
+                        return {
+                            subCategories: getSubCategories,
+                            parentCategories: getParentCategories
+                        };
+                    }
+                },
+                show: false
+            });
+            reorderModal.$promise.then(reorderModal.show);
         }
 
         $scope.$watch('vm.photos', function (next, prev) {

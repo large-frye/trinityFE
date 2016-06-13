@@ -1,4 +1,4 @@
-<img ng-src="{{vm.photo.file_url}}" ng-click="vm.photo.selected=!vm.photo.selected" ng-class="{'selected': vm.photo.selected}"/>
+<img ng-src="{{vm.photo.file_url}}" ng-click="vm.selectPhoto()" ng-class="{'selected': vm.photo.selected, 'disabled-selected': vm.disableSelect}"/>
 <div class="form-group">
     <div class="col-sm-12 margin-bottom">
         {{vm.photo.label}}

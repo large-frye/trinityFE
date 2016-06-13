@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -18,22 +18,24 @@
             link: link,
             restrict: 'E',
             scope: {
-                photo: '='
+                photo: '=',
+                disableSelect: '='
             },
             templateUrl: 'src/partials/inspections/photo.html'
         };
         return directive;
-        
-        function link(scope, element, attrs) {}
+
+        function link(scope, element, attrs) { }
     }
     /* @ngInject */
-    function PhotoSelectController () {
+    function PhotoSelectController($scope, $element) {
         var vm = this;
-        
         vm.selectPhoto = selectPhoto;
-        
+
         function selectPhoto() {
-            
+            if (!vm.disableSelect) {
+                vm.photo.selected = !vm.photo.selected;
+            }
         }
     }
 })();

@@ -1,0 +1,5 @@
+<ul id="vm.label.id" class="photo-sortable">
+    <li class="col-sm-3" ng-repeat="photo in vm.photos[vm.label.id] | customOrder:photo.display_order" data-label-id="{{photo.id}}">
+        <img ng-src="{{photo.file_url}}" data-index="{{$index}}"/>
+    </li>
+</ul>

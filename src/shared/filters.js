@@ -1,7 +1,7 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
-   /* Filters */
+    /* Filters */
     angular.module('trinity.filters.shared', [])
         .filter('outcomeType', function () {
             return function (outcomeType) {
@@ -13,7 +13,7 @@
                         return 'Expert Inspection';
                     }
                     case 2: {
-                        return 'Engineer Report';   
+                        return 'Engineer Report';
                     }
                     case 3: {
                         return 'Allstate (NCT) Ladder Assist';
@@ -27,14 +27,14 @@
                 }
             };
         })
-        
-        .filter('showMeta', function() {
-            return function(array, search) {
+
+        .filter('showMeta', function () {
+            return function (array, search) {
                 if (typeof array !== 'undefined') {
-                    var data = array.filter(function(item) {
+                    var data = array.filter(function (item) {
                         return item.key === search;
                     })[0];
-                    
+
                     if (typeof data !== 'undefined') {
                         return data.value;
                     } else {
@@ -45,19 +45,37 @@
                 }
             };
         })
-        .filter('newOrders', function() {
-            return function(items) {
-                console.log(items);     
+        .filter('newOrders', function () {
+            return function (items) {
+                console.log(items);
             };
         })
-        .filter('cancelledOrders', function() {
-            return function(items) {
-                console.log(items);     
+        .filter('cancelledOrders', function () {
+            return function (items) {
+                console.log(items);
             };
         })
-        .filter('replace', function() {
-            return function(str, match, replace) {
-                return str.replace(match, replace);      
+        .filter('replace', function () {
+            return function (str, match, replace) {
+                return str.replace(match, replace);
+            };
+        })
+
+        .filter('customOrder', function () {
+            return function (items, order) {
+                if (typeof items !== 'undefined') {
+                    items.sort(function (a, b) {
+                        if (a.display_order > b.display_order) {
+                            return 1;
+                        }
+                        if (b.display_order > a.display_order || (a.display_order === null || b.display_order === null)) {
+                            return -1;
+                        }
+
+                        return 0;
+                    });
+                }
+                return items;
             };
         });
 })();
