@@ -12,7 +12,7 @@
                     counts: ['$q', 'workOrderService', 'UserFactory', '$rootScope', '$location',
                         function ($q, workOrderService, UserFactory, $rootScope, $location) {
                             var deferred = $q.defer();
-                            
+
                             showSidebar();
 
                             // Pre-loading direct-chat-contacts-open
@@ -32,13 +32,12 @@
                         }
                     ]
                 };
-
                 var inspectionResolver = {
                     inspection: ['$q', 'InspectionService', '$route', '$routeParams',
                         function ($q, InspectionService, $route, $routeParams) {
                             var deferred = $q.defer();
                             var id = $route.current.params.id;
-                            
+
                             showSidebar();
 
                             if (id) {
@@ -59,7 +58,7 @@
                                     order: {
                                         auto_upgrade: false,
                                         has_tarp: false,
-                                        estimate_requested: false    
+                                        estimate_requested: false
                                     }
                                 });
                             }
@@ -67,16 +66,15 @@
                             return deferred.promise;
                         }]
                 };
-
                 var report = {
                     report: ['$q', '$route', '$routeParams', 'reportService',
                         function ($q, $route, $routeParams, reportService) {
                             var deferred = $q.defer();
                             var filter = $route.current.params.filter;
                             var type = $route.current.params.type;
-                            
+
                             showSidebar();
-                            
+
                             if (filter && type) {
                                 reportService.byStatus({
                                     sub: filter,
@@ -106,14 +104,13 @@
                             return deferred.promise;
                         }]
                 };
-
                 var inspectionForm = {
                     form: ['$q', '$route', '$routeParams', 'InspectionService',
                         function ($q, $route, $routeParams, InspectionService) {
                             var deferred = $q.defer();
-                            
+
                             showSidebar();
-                            
+
                             InspectionService.inspectionForm({
                                 id: $route.current.params.id
                             }).$promise.then(function (data) {
@@ -129,93 +126,20 @@
                             return deferred.promise;
                         }]
                 };
-
-                var billing = { billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve] };
-
-                function BillingResolve($q, $route, $routeParams, UserFactory) {
-                    var defer = $q.defer();
-                    var user = UserFactory.user.get();
-                    hideSidebar();
-                    
-                    defer.resolve({
-                        id: 123
-                    });
-                    return defer.promise;
-                }
-                
-                var photo = { photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotosResolve] };
-                
-                function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
-                    var defer = $q.defer();
-                    var user = UserFactory.user.get();
-                    showSidebar();
-                    
-                    PhotoService.api().getPhotos({
-                        type: 'admin',
-                        route: 'photos',
-                        action: $route.current.params.id
-                    }, function(data) {
-                       defer.resolve({
-                            photos: data
-                        }); 
-                    }, function(err) {
-                        $log.error(err);
-                    });
-                    
-                    return defer.promise;
-                }
-                
-                var generate = { generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve] };
-                
-                function GenerateResolve($q, $route, $routeParams, UserFactory) {
-                    var defer = $q.defer();
-                    var user = UserFactory.user.get();
-                    showSidebar();
-                    
-                    defer.resolve({
-                        id: $route
-                    });
-                    return defer.promise;
-                }
-                
-                var invoice = { invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve] };
-                
-                function InvoiceResolve($q, $route, $routeParams, UserFactory) {
-                    var defer = $q.defer();
-                    var user = UserFactory.user.get();
-                    showSidebar();
-                    
-                    defer.resolve({
-                        id: $route
-                    });
-                    return defer.promise;
-                }
-                
+                var billing = {billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve]};
+                var generate = {generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve]};
+                var photo = {photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotosResolve]};
+                var invoice = {invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve]};
                 var settings = {
-                    photos: { settings: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve] }
+                    photos: {settings: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve]}
                 };
-                
-                function PhotoSettingsResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
-                    var defer = $q.defer();
-                    var user = UserFactory.user.get();
-                    hideSidebar();
-                    
-                    PhotoService.api().getParentCategories(function(data) {
-                        defer.resolve(data);
-                    }, function(err) {
-                        $log.error(err);
-                    });
-                    
-                    return defer.promise;
-                }
-
                 var inspector = {
                     home: {
                         items: ['$q', '$route', '$routeParams', 'workOrderService', 'UserFactory',
                             function ($q, $route, $routeParams, workOrderService, UserFactory) {
                                 var deferred = $q.defer();
                                 var user = UserFactory.user.get();
-                                
+
                                 hideSidebar();
 
                                 workOrderService.inspectorDaily({
@@ -232,7 +156,7 @@
                                     deferred.resolve(d);
                                 }, function (e) {
                                     console.log(e);
-                                    deferred.reject({error: 'data failed to load' });
+                                    deferred.reject({error: 'data failed to load'});
                                 });
 
                                 return deferred.promise;
@@ -262,7 +186,7 @@
                                 if (!filter) {
                                     filter = 'all';
                                 }
-                                
+
                                 showSidebar();
 
                                 inspectorReportService.get({
@@ -279,7 +203,7 @@
                     },
                     inspections: {
                         inspection: ['$q', '$route', 'inspectorInspectionService', 'UserFactory', '$log',
-                            function($q, $route, inspectorInspectionService, UserFactory, $log) {
+                            function ($q, $route, inspectorInspectionService, UserFactory, $log) {
                                 var deferred = $q.defer();
                                 var id = $route.current.params.id;
 
@@ -287,23 +211,23 @@
                                     inspectorInspectionService.get({
                                         userId: UserFactory.user.get().id,
                                         id: id
-                                    }, function(data) {
+                                    }, function (data) {
                                         if (data.order.length) {
                                             deferred.resolve(data.order[0]);
                                         }
-                                    }, function(err) {
+                                    }, function (err) {
                                         $log.error(err);
                                     });
-                                    
+
                                     showSidebar();
-                                    
+
                                 } else {
                                     deferred.resolve({
                                         auto_upgrade: false,
                                         has_tarp: false,
                                         estimate_requested: false
                                     });
-                                    
+
                                     hideSidebar();
                                 }
 
@@ -311,15 +235,174 @@
                             }]
                     }
                 };
+                var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', ResourceResolve]};
+                var training = {
+                    content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingResolve]},
+                    videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]},
+                    officeVideos: { officeVideoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]}
+                };
+
+                function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    showSidebar();
+
+                    PhotoService.api().getPhotos({
+                        type: 'admin',
+                        route: 'photos',
+                        action: $route.current.params.id
+                    }, function (data) {
+                        defer.resolve({
+                            photos: data
+                        });
+                    }, function (err) {
+                        $log.error(err);
+                    });
+
+                    return defer.promise;
+                }
+
+                /**
+                 *
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @constructor
+                 */
+                function BillingResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+
+                    defer.resolve({
+                        id: 123
+                    });
+                    return defer.promise;
+                }
+
+                /**
+                 *
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @constructor
+                 */
+                function GenerateResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    showSidebar();
+
+                    defer.resolve({
+                        id: $route
+                    });
+                    return defer.promise;
+                }
+
+                /**
+                 *
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @constructor
+                 */
+                function InvoiceResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    showSidebar();
+
+                    defer.resolve({
+                        id: $route
+                    });
+                    return defer.promise;
+                }
+
+                /**
+                 * Resolves photo settings for an admin.
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @param PhotoService
+                 * @param $log
+                 * @constructor
+                 */
+                function PhotoSettingsResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+
+                    PhotoService.api().getParentCategories(function (data) {
+                        defer.resolve(data);
+                    }, function (err) {
+                        $log.error(err);
+                    });
+
+                    return defer.promise;
+                }
+
+                /**
+                 * Resolves resource content for an admin.
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @constructor
+                 */
+                function ResourceResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+
+                    defer.resolve({
+                        id: 1
+                    });
+                }
+
+                /**
+                 * Resolves training content for an admin.
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @constructor
+                 */
+                function TrainingResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+
+                    defer.resolve({
+                        id: 1
+                    });
+                }
+
+                /**
+                 * Resolves video content for an admin.
+                 * @param $q
+                 * @param $route
+                 * @param $routeParams
+                 * @param UserFactory
+                 * @constructor
+                 */
+                function TrainingVideoResolve($q, $route, $routeParams, UserFactory) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+
+                    defer.resolve({
+                        id: 1
+                    });
+                }
 
                 $routeProvider
-
                     .when('/admin', {
                         templateUrl: '/src/partials/account/admin.html',
                         controller: 'adminHomeCtrl',
                         resolve: countsResolver
                     })
-
                     .when('/inspector', {
                         templateUrl: '/src/partials/account/inspector.html',
                         controller: 'inspectorAccountCtrl',
@@ -332,121 +415,129 @@
                         controllerAs: 'vm',
                         resolve: inspector.reports
                     })
-
                     .when('/inspector/reports/:status', {
                         templateUrl: '/src/partials/reports/inspector/reports.html',
                         controller: 'inspectorReportCtrl',
                         controllerAs: 'vm',
                         resolve: inspector.reports
                     })
-
                     .when('/inspector/inspections/new', {
                         templateUrl: '/src/partials/inspections/inspector/edit.html',
                         controller: 'inspector.inspectionsCtrl',
                         controllerAs: 'vm',
                         resolve: inspector.inspections
                     })
-
                     .when('/inspector/inspections/:id', {
                         templateUrl: '/src/partials/inspections/inspector/edit.html',
                         controller: 'inspector.inspectionsCtrl',
                         controllerAs: 'vm',
                         resolve: inspector.inspections
                     })
-
                     .when('/admin/billing', {
                         templateUrl: '/src/partials/billing/billing.html',
                         controller: 'billingCtrl',
                         controllerAs: 'vm',
                         resolve: billing
                     })
-                    
                     .when('/inspector/billing', {
                         templateUrl: '/src/partials/billing/billing.html',
                         controller: 'billingCtrl',
                         controllerAs: 'vm',
                         resolve: billing
                     })
-
                     .when('/admin/workorders/:type/:timeUnit', {
                         templateUrl: '/src/partials/workorders/list.html',
                         controller: 'listCtrl'
                     })
-
                     .when('/admin/inspections/new', {
                         templateUrl: '/src/partials/inspections/new.html',
                         controller: 'inspectionsCtrl',
                         resolve: inspectionResolver
                     })
-
                     .when('/admin/inspections/:id', {
                         templateUrl: '/src/partials/inspections/new.html',
                         controller: 'inspectionsCtrl',
                         resolve: inspectionResolver
                     })
-
                     .when('/admin/inspections/processing/:id', {
                         templateUrl: '/src/partials/inspections/processing.html',
                         controller: 'adminProcessingCtrl',
                         controllerAs: 'vm',
                         resolve: inspectionResolver
                     })
-
                     .when('/admin/inspections/form/:id', {
                         templateUrl: '/src/partials/inspections/form.html',
                         controller: 'adminInspectionCtrl',
                         controllerAs: 'vm',
                         resolve: inspectionForm
                     })
-                    
                     .when('/admin/inspections/photos/:id', {
                         templateUrl: '/src/partials/inspections/photos.html',
                         controller: 'adminInspectionPhotoCtrl',
                         controllerAs: 'vm',
                         resolve: photo
                     })
-                    
                     .when('/admin/inspections/generate/:id', {
                         templateUrl: '/src/partials/inspections/generate.html',
                         controller: 'adminInspectionReportGenerateCtrl',
                         controllerAs: 'vm',
                         resolve: generate
                     })
-                    
                     .when('/admin/inspections/invoice/:id', {
                         templateUrl: '/src/partials/inspections/invoice.html',
                         controller: 'adminInspectionInvoiceCtrl',
                         controllerAs: 'vm',
                         resolve: invoice
                     })
-
                     .when('/admin/reports', {
                         templateUrl: '/src/partials/reports/list.html',
                         controller: 'adminReportCtrl',
                         controllerAs: 'vm',
                         resolve: report
                     })
-
                     .when('/admin/reports/:filter', {
                         templateUrl: '/src/partials/reports/list.html',
                         controller: 'adminReportCtrl',
                         controllerAs: 'vm',
                         resolve: report
                     })
-                    
                     .when('/admin/reports/:filter/:type', {
                         templateUrl: '/src/partials/reports/list.html',
                         controller: 'adminReportCtrl',
                         controllerAs: 'vm',
                         resolve: report
                     })
-                    
                     .when('/admin/settings/photos', {
                         templateUrl: '/src/partials/settings/photos.html',
                         controller: 'photoSettingsCtrl',
                         controllerAs: 'vm',
                         resolve: settings.photos
                     })
+                    .when('/admin/resources', {
+                        templateUrl: '/src/partials/resources/resources.html',
+                        controller: 'resourceCtrl',
+                        controllerAs: 'vm',
+                        resolve: resources
+                    })
+                    .when('/admin/resources/training-material', {
+                        templateUrl: '/src/partials/resources/training.html',
+                        controller: 'trainingCtrl',
+                        controllerAs: 'vm',
+                        resolve: training.content
+                    })
+                    .when('/admin/resources/training-videos', {
+                        templateUrl: '/src/partials/resources/training-videos.html',
+                        controller: 'trainingVideoCtrl',
+                        controllerAs: 'vm',
+                        resolve: training.videos
+                    })
+                    .when('/admin/resources/office-training-videos', {
+                        templateUrl: '/src/partials/resources/office-training-videos.html',
+                        controller: 'trainingVideoCtrl',
+                        controllerAs: 'vm',
+                        resolve: training.officeVideos
+                    })
+
 
                     // Authentication
 
@@ -491,14 +582,14 @@
                     }]);
             }]
     );
-    
+
     function hideSidebar() {
         angular.element('.content-wrapper').css({
             'margin-left': '0',
-            'transition': 'none'   
+            'transition': 'none'
         });
     }
-    
+
     function showSidebar() {
         var $el = angular.element('.content-wrapper');
         $el.removeClass('margin-left');

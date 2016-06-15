@@ -161,7 +161,8 @@
         }
         
         function setBillable() {
-            vm.mileage.billable = vm.mileage.billable_mileage * .5;
+            if (vm.mileage.billable !== 0)
+                vm.mileage.billable = vm.mileage.billable_mileage * .5;
         }
         
         function getInspectionTotals() {
@@ -170,7 +171,9 @@
                 var meta = vm.meta[inspection.id];
                 if (typeof meta !== 'undefined') {
                     meta.forEach(function(item) {
-                        inspection.chargeTotal += parseInt(item.value, 10); 
+                        if (!isNaN(parseInt(item.value, 10))) {
+                            inspection.chargeTotal += parseInt(item.value, 10);
+                        }
                     });
                 }
             });

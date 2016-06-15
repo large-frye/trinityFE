@@ -8,36 +8,36 @@
 <div class="box box-info">
     <div class="box-body">
         <h4>{{vm.categoryType}}</h4>
-        <div>
-                Photo Display Order
-            </div>
+        <div class="custom-photo-display-order" ng-if="!vm.category1">
+            Photo Display Order
+        </div>
         <h5 ng-if="vm.category1 && !vm.category2">
             <button class="btn btn-default" ng-click="vm.showCategory1()" style="margin-right:10px;">
-                <i class="fa fa-angle-left" /> Back</button>
-            Category 1: {{vm.category1.name}}
+                <i class="fa fa-angle-left" /> Back</button> Category 1: {{vm.category1.name}}
         </h5>
         <h5 ng-if="vm.category2">
             <button class="btn btn-default" ng-click="vm.showCategory2()" style="margin-right:10px;">
-                <i class="fa fa-angle-left" /> Back</button>
-            Category 2: {{vm.category2.name}}
+                <i class="fa fa-angle-left" /> Back</button> Category 2: {{vm.category2.name}}
         </h5>
         <form name="photoSettingsForm" ng-submit="save()" class="form form-horizontal inspection-form">
             <div ng-if="!vm.category1">
-                <div class="form-group" ng-repeat="category in vm.settings.categories" ng-init="category$index=category.name">
+                <div class="form-group" ng-repeat="category in vm.settings.categories" ng-init="category$index=category.name;categoryDisplayOrder$index=category.display_order">
                     <label for="" class="col-sm-2 control-label">Category Name</label>
                     <div class="col-sm-7">
                         <input type="text" ng-model="category$index" class="form-control" ng-change="category.name=category$index">
                     </div>
                     <div class="col-sm-3">
                         <div class="col-sm-4">
-                            <input type="text" ng-model="categoryDisplayOrder$index" class="form-control" ng-change="category.display_order=categoryDisplayOrder$index" />
+                            <input type="text" ng-model="categoryDisplayOrder$index" class="form-control" ng-change="category.display_order=categoryDisplayOrder$index"
+                            />
                         </div>
                         <a href="" ng-click="vm.getSubCategories(category.id, 2);vm.category1=category;vm.parentCat1=category">View</a>
                         <a href="" ng-click="vm.deleteCategory(category.id, 1)" style="margin-left:10px;">Delete</a>
                     </div>
                 </div>
             </div>
-            <div ng-if="vm.category1 && !vm.category2" class="form-group" ng-repeat="subCategory in vm.settings.subCategories[vm.category1.id]" ng-init="subCategory$index=subCategory.name">
+            <div ng-if="vm.category1 && !vm.category2" class="form-group" ng-repeat="subCategory in vm.settings.subCategories[vm.category1.id]"
+                ng-init="subCategory$index=subCategory.name">
                 <label for="" class="col-sm-2 control-label">Category 2 Name</label>
                 <div class="col-sm-8"><input type="text" ng-model="subCategory$index" ng-change="subCategory.name=subCategory$index" class="form-control"></div>
                 <div class="col-sm-2">
@@ -45,13 +45,11 @@
                     <a href="" ng-click="vm.deleteCategory(subCategory.id, 2)" style="margin-left:10px;">Delete</a>
                 </div>
             </div>
-            
+
             <div ng-if="vm.category2" class="form-group" ng-repeat="sub2Category in vm.settings.subCategories[vm.category2.id]" ng-init="sub2Category$index=sub2Category.name">
                 <label for="" class="col-sm-2 control-label">Category 3 Name</label>
                 <div class="col-sm-8">
-                    <input type="text" ng-model="sub2Category$index" 
-                        ng-change="sub2Category.name=sub2Category$index" 
-                        class="form-control">
+                    <input type="text" ng-model="sub2Category$index" ng-change="sub2Category.name=sub2Category$index" class="form-control">
                 </div>
                 <div class="col-sm-2">
                     <a href="" ng-click="vm.deleteCategory(sub2Category.id, 3)">Delete</a>
@@ -62,8 +60,8 @@
                 <hr/>
                 <button type="button" ng-click="vm.save()" class="btn btn-success">Save</button>
                 <button class="btn btn-success" ng-click="vm.addCategory()" style="margin-left:10px;">Add Category</button>
-                <a href="http://api.trinity.dev/settings/categories/create-excel" 
-                    ng-click="vm.bulkUpload()" class="btn btn-default" style="margin-left:10px;">Bulk Upload</a>
+                <a href="http://api.trinity.dev/settings/categories/create-excel" ng-click="vm.bulkUpload()" class="btn btn-default" 
+                    style="margin-left:10px;" ng-disabled="true">Bulk Upload</a>
             </div>
         </form>
     </div>

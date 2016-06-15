@@ -38,15 +38,16 @@
                                 parent: 'Inspector Billing',
                                 link: '/#/' + this.user.appRole + '/billing',
                                 icon: 'fa-dollar'
-                            }, {
+                            }, /* {
                                 parent: 'Calendar',
                                 link: '/#/' + this.user.appRole + '/calendar',
                                 icon: 'fa-calendar'
                             }, {
+                            TODO: these two tasks are quite involved and will not be done for initial build.
                                 parent: 'Maps',
                                 link: '/#/' + this.user.appRole + '/maps',
                                 icon: 'fa-map'
-                            }, {
+                            }, */ {
                                 parent: 'Tasks',
                                 link: '/#/' + this.user.appRole + '/tasks',
                                 icon: 'fa-tasks'
@@ -120,7 +121,7 @@
                         this.baseOrigin = '/#/' + this.role;
                         cb();
                     }
-                },
+                }
             };
         }])
 

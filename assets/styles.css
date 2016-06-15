@@ -331,6 +331,11 @@ input[type="search"].form-control  {
     color: #bbb;
 }
 
+.custom-photo-display-order {
+    position: relative;
+    left: 76%;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;

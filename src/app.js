@@ -27,21 +27,29 @@
         'trinity.shared.factories.form',
         'trinity.inspections.services.photo',
         'trinity.directives.inspections.photoSelect',
-        'trinity.shared.controllers.modals.photoModalDelete',
-        'trinity.shared.controllers.modals.photoModal',
-        'trinity.shared.controllers.modals.photoModalReorder',
-        'trinity.shared.directives.photoSort',
             
         // new angular stype
         'trinity.controllers.admin.reports',
         'trinity.directives.inspections.datePicker',
         'trinity.directives.inspections.timePicker',
         'trintiy.services.inspections.workorderNote',
-        
+
         // settings
         'trinity.controllers.settings.photos',
         'trinity.controllers.shared.addCategory',
-        'trinity.settings.services.category'
+        'trinity.settings.services.category',
+
+        /**
+         * All new modules need should follow this pattern => {appName}.{directory}.{directory/filename}* this expression
+         * can repeat multiple times, depending on file path. If they do not, please update.
+         */
+        'trinity.shared.controllers.modals.photoModalDelete',
+        'trinity.shared.controllers.modals.photoModal',
+        'trinity.shared.controllers.modals.photoModalReorder',
+        'trinity.shared.directives.photoSort',
+        'trinity.resources.controllers.resource',
+        'trinity.resources.controllers.trainingContent',
+        'trinity.resources.controllers.trainingVideo'
     ])
 
         .config(function ($modalProvider) {
