@@ -167,6 +167,7 @@ a.disabled {
 .inspection-form input[type=email].form-control,
 .inspection-form input[type=number].form-control,
 .inspection-form input[type=date].form-control,
+.inspection-form input[type=url].form-control,
 .inspection-form select.form-control {
     padding: 1px 0 1px 5px;
     height: 24px;
@@ -334,6 +335,11 @@ input[type="search"].form-control  {
 .custom-photo-display-order {
     position: relative;
     left: 76%;
+}
+
+.resource-form input[type="file"] {
+    padding: 5px;
+    height: auto;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

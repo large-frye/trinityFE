@@ -538,7 +538,6 @@
                         resolve: training.officeVideos
                     })
 
-
                     // Authentication
 
                     .when('/sign-in', {

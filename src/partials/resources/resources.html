@@ -1,1 +1,88 @@
-<h4>Resource Content</h4>
+<div class="box">
+    <div class="box-header">
+        <h4>Documents</h4>
+    </div>
+
+
+    <div class="box-body">
+        <table class="table table-striped">
+            <thead>
+                <!-- noop -->
+            </thead>
+            <tbody>
+                <tr ng-repeat="resource in resources">
+
+                </tr>
+            </tbody>
+        </table>
+
+        <form name="documentsForm" class="form form-horizontal inspection-form resource-form">
+            <div class="form-group">
+                <label class="col-sm-1 control-label no-set-width">Resource Type</label>
+                <div class="col-sm-6">
+                    <label class="radio-inline" ng-init="vm.resource.item_type='link'">
+                        <div class="col-sm-6">
+                            <input type="radio" name="fileType" ng-model="vm.resource.item_type" value="link" /> Link
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="radio" name="fileType" ng-model="vm.resource.item_type" value="file" /> File
+                        </div>
+
+                    </label>
+
+
+
+                </div>
+            </div>
+            <div ng-if="vm.resource.item_type=='link'">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" ng-model="vm.resource.name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Url</label>
+                    <div class="col-sm-6">
+                        <input type="url" ng-model="vm.resource.item_url" class="form-control" ng-required="vm.resource.item_type=='link'" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" ng-if="vm.resource.item_type=='file'">
+                <label class="col-sm-1 control-label">Name</label>
+                <div class="col-sm-6">
+                    <input type="file" ng-model="vm.resource.name" class="form-control"
+                        onchange="angular.element(this).scope().vm.uploadFile();"/>
+                </div>
+            </div>
+        </form>
+
+        <hr />
+        <div ng-if="documentsForm.$error.url" class="alert alert-danger">Please enter a valid url.</div>
+        <button type="button" class="btn btn-success" ng-click="vm.add()" ng-disabled="documentsForm.$invalid">
+            <span ng-if="vm.resource.item_type=='link'">Add Link</span>
+            <span ng-if="vm.resource.item_type=='file'">Add File</span>
+        </button>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-header">
+        <h4>Other Resources</h4>
+    </div>
+
+
+    <div class="box-body">
+        <table class="table table-striped">
+            <thead>
+            <!-- noop -->
+            </thead>
+            <tbody>
+            <tr ng-repeat="resource in resources">
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

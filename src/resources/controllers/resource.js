@@ -8,12 +8,17 @@
     ResourceController.$inject = [];
     function ResourceController() {
         var vm = this;
-
-
+        vm.add = add;
+        
         activate();
 
         ////////////////
 
         function activate() { }
+
+        function add() {
+            console.log(vm);
+        }
+
     }
 })();
