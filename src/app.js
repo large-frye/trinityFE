@@ -27,12 +27,15 @@
         'trinity.shared.factories.form',
         'trinity.inspections.services.photo',
         'trinity.directives.inspections.photoSelect',
+        'trinty.inspections.directives.workorderLog',
+        'trinity.inspections.directives.showLog',
             
         // new angular stype
         'trinity.controllers.admin.reports',
         'trinity.directives.inspections.datePicker',
         'trinity.directives.inspections.timePicker',
         'trintiy.services.inspections.workorderNote',
+        'trinity.inspections.services.workorderLogger',
 
         // settings
         'trinity.controllers.settings.photos',

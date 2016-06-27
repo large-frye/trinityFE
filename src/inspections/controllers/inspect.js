@@ -20,7 +20,6 @@
 				 */
 				var setInspectionType = function () {
 					$scope.inspection.inspection_type = $scope.inspectionTypes.filter(function (type) {
-						console.log(type, $scope.inspection.inspection_type);
 						return type.id == $scope.inspection.inspection_type;
 					})[0];
 				};
@@ -131,6 +130,7 @@
 					}
 
 					inspection.requested_date_of_inspection = new Date(getDate() + ' ' + $scope.time).getTime();
+					inspection.updated_by = UserFactory.user.get().id;
 
 					InspectionService.create(inspection).$promise.then(function (data) {
 

@@ -10,6 +10,8 @@
                 UserFactory.user.clear();
                 $scope.user = null;
 
+                $scope.test = function() { console.log('andrew'); }
+
                 if ($route.current.$$route.originalPath === '/sign-out') {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
@@ -33,6 +35,7 @@
                 angular.element('.content-wrapper').addClass('no-margin-left');
 
                 $scope.signIn = function() {
+                    console.log('here');
                     accountService.authenticate($scope.user, function(response) {
 
                         UserService.destroy(function() {

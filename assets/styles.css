@@ -163,7 +163,7 @@ a.disabled {
 }
 
 .inspection-form input[type=text].form-control,
-.inspection-form input[type=phone].form-control,
+input[type=phone].form-control,
 .inspection-form input[type=email].form-control,
 .inspection-form input[type=number].form-control,
 .inspection-form input[type=date].form-control,
@@ -322,6 +322,11 @@ input[type="search"].form-control  {
 /* Datatables */
 .dataTables_filter {
     display: none;
+}
+
+.dataTables_length {
+    right: 0;
+    position: absolute;
 }
 
 .clear {

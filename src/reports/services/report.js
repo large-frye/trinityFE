@@ -28,6 +28,17 @@
 					action: 'by-status'
 				},
 				withCredentials: true
+			},
+			excel: {
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/csv',
+					'Accept': 'application/csv'
+				},
+				params: {
+					action: 'export-csv'
+				},
+				withCredentials: true
 			}
 		});
 	}])

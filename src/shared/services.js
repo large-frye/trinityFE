@@ -259,7 +259,10 @@
                         parent: 'All Open Inspections',
                         link: '/#/admin/reports/open'
                     }, {
-                        parent: 'Attention Required',
+                        parent: 'Admin Attention Required',
+                        link: '/#/admin/reports/admin-attention-required'
+                    }, {
+                        parent: 'Office Attention Required',
                         link: '/#/admin/reports/office-attention-required'
                     }, {
                         parent: 'Inspector Attention Required',
@@ -280,26 +283,20 @@
                         parent: 'Scheduled',
                         link: '/#/admin/reports/scheduled'
                     }, {
-                        parent: 'Insp Input Required',
-                        link: '/#/admin/reports/insp-input-req'
-                    }, {
                         parent: 'Post Inspection Date',
                         link: '/#/admin/reports/post-inspection-date'
                     }, {
                         parent: 'Inspected',
                         link: '/#/admin/reports/inspected'
                     }, {
-                        parent: 'Invoiced',
-                        link: '/#/admin/reports/invoiced'
+                        parent: 'Reporting',
+                        link: '/#/admin/reports/reporting'
                     }, {
-                        parent: 'Invoiced Past 30 Days',
-                        link: '/#/admin/reports/invoiced-past-30-days'
+                        parent: 'Inv. Alacrity',
+                        link: '/#/admin/reports/inv-alacrity'
                     }, {
-                        parent: 'Invoiced Past 60 Days',
-                        link: '/#/admin/reports/invoiced-past-60-days'
-                    }, {
-                        parent: 'Invoiced Past 90 Days',
-                        link: '/#/admin/reports/invoiced-past-90-days'
+                        parent: 'Invoicing',
+                        link: '/#/admin/reports/invoicing'
                     }, {
                         parent: 'Closed',
                         link: '/#/admin/reports/closed'

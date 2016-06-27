@@ -6,16 +6,19 @@ var express = require('express'),
   path = require('path'),
   reload = require('reload');
 
-var request = require('request');
-var app = express();
+var request = require('request')
+, app = express()
+, appPath = 'trinityFE'
+, localServerStorage= 'php/TrinityServer/storage/exports';
 
 app.set('port', process.env.PORT || 8000);
 app.use(bodyParser());
 app.use(methodOverride());
 app.use('/', express.static(__dirname + '/'));
 app.use('/bower', express.static(__dirname + '/bower_components'));
+app.use('/storage', express.static(__dirname.replace(appPath, '') + localServerStorage));
 
-console.log(__dirname + 'bower_components');
+console.log(__dirname.replace(appPath, '') + localServerStorage);
 
 var server = http.createServer(app);
 
