@@ -10,6 +10,10 @@ body {
 .main-header {
 }
 
+.main-header .navbar {
+    background-color: rgb(149, 0, 46) !important;
+}
+
 .sidebar {
     margin-top: 20px;
 }
@@ -191,7 +195,7 @@ input[type=phone].form-control,
 }
 
 .skin-red-light .sidebar-menu>li.active {
-    border-left: 4px solid #dd4b39; 
+    border-left: 4px solid rgb(149, 0, 46) !important; 
 }
 
 .dropdown-menu.datepicker {

@@ -10,7 +10,11 @@
 				inspection, $location, REPORTS, $timeout, $window, shared, UserFactory, alert, $dateParser, formFactory
 				, WorkorderNoteService) {
 
-				if (!$routeParams.id) $window.scrollTo(0, 0);
+				if (!$routeParams.id) {
+					$window.scrollTo(0, 0);
+					$scope.newInspection = true;
+				}
+					
 
 				$scope.inspection = inspection.order;
 
@@ -137,24 +141,16 @@
 					InspectionService.create(inspection).$promise.then(function (data) {
 
 						setStringToDate(data);
-						$scope.inspection = data;
+						// $scope.inspection = data;
 
 						// Set form details
-						setInspectionType();
+						// setInspectionType();
 						setAdjuster();
 
 						var role = UserFactory.user.get().appRole;
 
-						switch (redirect) {
-							case 'new':
-								$location.url('/' + role + '/inspections/new');
-								break;
-							case 'reports':
-								$location.path('/' + role + '/reports/' + decodeURIComponent(REPORTS[data.status_id].toLowerCase().replace(' ', '-').replace('_', '-')));
-								break;
-							default:
-								$location.path('/' + role + '/inspections/' + data.id);
-								break;
+						if (!redirect) {
+							$location.path('/' + role + '/inspections/' + data.id);
 						}
 
 						// Save note if there is one
@@ -174,6 +170,11 @@
 
 					}, function (err) {
 						window.console && console.log(err);
+						$scope.alerts = alert.add({
+							title: 'Error when trying to save.',
+							content: 'Error when saving',
+							type: 'danger'
+						});
 					});
 				};
 
