@@ -130,6 +130,8 @@
 					}
 
 					inspection.requested_date_of_inspection = new Date(getDate() + ' ' + $scope.time).getTime();
+
+					// Added for logger service
 					inspection.updated_by = UserFactory.user.get().id;
 
 					InspectionService.create(inspection).$promise.then(function (data) {

@@ -16,6 +16,9 @@
         vm.findInspection = findInspection;
         vm.exportToExcel = exportToExcel;
 
+        /**
+         * Todo: needs to be moved to a directive. 
+         */
         $timeout(function () {
             var table = $('#example1').DataTable({
                 'paging': true,
@@ -46,8 +49,14 @@
 
         function activate() { }
 
+        /**
+         * Open tab to a new window, was using $location service before.
+         */
         function findInspection(id) {
-            $location.url(encodeURIComponent('/admin/inspections/processing/' + id));
+            var win = window.open('/#/admin/inspections/processing/' + id, '_blank');
+            win.focus();
+
+            // $location.url(encodeURIComponent('/admin/inspections/processing/' + id));
         }
 
         function exportToExcel() {

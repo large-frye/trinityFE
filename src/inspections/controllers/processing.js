@@ -7,9 +7,9 @@
 		.controller('adminProcessingCtrl', AdminProcessingController);
 
 	AdminProcessingController.$inject = ['shared', '$routeParams', 'InspectionService',
-		'UserService', 'inspection', '$log', 'alert'];
+		'UserService', 'inspection', '$log', 'alert', 'UserFactory'];
 	function AdminProcessingController(shared, $routeParams, InspectionService, UserService,
-		inspection, $log, alert) {
+		inspection, $log, alert, UserFactory) {
 		var vm = this;
 		vm.options = shared.getInspectionSideBar($routeParams.id);
 		vm.inspection = inspection.order;
@@ -65,6 +65,9 @@
 			inspection.date_cancelled = new Date(inspection.date_cancelled).getTime();
 			inspection.status_id = vm.status.id;
 
+			// Add updated by for Logger service
+			inspection.updated_by = UserFactory.user.get().id;
+
 			function getDate() {
 				inspection.date_of_inspection = new Date(inspection.date_of_inspection);
 				return getMonth() + '/' + getDay() + '/' + inspection.date_of_inspection.getFullYear();
@@ -91,7 +94,7 @@
 					type: 'success'
 				}, 3000);
 			}, function (err) {
-				$log.err(err);
+				$log.error(err);
 			});
 		}
 
@@ -102,7 +105,6 @@
 			} else {
 				inspection.order.date_of_inspection = new Date(inspection.order.date_of_inspection);
 			}
-
 			setLastContact();
 		}
 

@@ -3,33 +3,34 @@
 <div class="box">
 	<div class="box-header">
 		<h4 class="box-title">{{vm.report.header}}</h4>
-	</div><!-- /.box-header -->
+	</div>
+	<!-- /.box-header -->
 	<div class="margin-top">
 		<label for="" class="col-sm-2 control-label no-set-width">Search</label>
 		<div class="col-sm-4">
-			<input type="search" class="form-control" id="searchReports"/>
+			<input type="search" class="form-control" id="searchReports" />
 		</div>
 		<div class="col-sm-2">
 			<button type="button" class="btn btn-default" ng-click="vm.exportToExcel()">Export to Excel</button>
-	</div>
-	<div class="box-body sm-margin-top clear">
-		<table id="example1" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th ng-repeat="field in vm.report.fields">
-						{{field.header}}
-					</th>
-				</tr>
-			</thead>
+		</div>
+		<div class="box-body sm-margin-top clear">
+			<table id="example1" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th ng-repeat="field in vm.report.fields">
+							{{field.header}}
+						</th>
+					</tr>
+				</thead>
 
-			<tbody>
-				<tr ng-repeat="item in vm.report.reports" 
-					ng-click="vm.findInspection(item.customer_id)">
-					<td ng-repeat="field in vm.report.fields">
-						{{item[field.key]}}
-					</td>
-				</tr>
-			</tbody>
-		</table>
+				<tbody>
+					<tr ng-repeat="item in vm.report.reports" ng-click="vm.findInspection(item.customer_id)">
+						<td ng-repeat="field in vm.report.fields">
+							{{item[field.key]}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
