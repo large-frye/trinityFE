@@ -94,6 +94,11 @@
 					type: 'success'
 				}, 3000);
 			}, function (err) {
+				vm.alerts = alert.add({
+					title: 'Error',
+					content: 'Error saving',
+					type: 'danger'
+				});
 				$log.error(err);
 			});
 		}
