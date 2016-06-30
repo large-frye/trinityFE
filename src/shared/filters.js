@@ -57,7 +57,15 @@
         })
         .filter('replace', function () {
             return function (str, match, replace) {
-                return str.replace(match, replace);
+                var regex = new RegExp(match, 'g');
+                return str.replace(regex, replace);
+            };
+        })
+
+        .filter('genReportLink', function() {
+            return function (str, type) {
+                console.log(str, type);
+                return str;
             };
         })
 

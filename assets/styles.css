@@ -162,8 +162,12 @@ a.disabled {
     font-size: 15px;
 }
 
-.admin-table td {
+.admin-table td, th {
     text-align: center;
+}
+
+.admin-table td {
+    font-size: 16px;
 }
 
 .inspection-form input[type=text].form-control,

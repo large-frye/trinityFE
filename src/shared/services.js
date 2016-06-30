@@ -32,7 +32,7 @@
                                 icon: 'fa-folder-o'
                             }, {
                                 parent: 'Reports',
-                                link: '/#/' + this.user.appRole + '/reports',
+                                link: '/#/',
                                 icon: 'fa-bar-chart-o'
                             }, {
                                 parent: 'Inspector Billing',

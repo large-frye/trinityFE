@@ -83,8 +83,8 @@
             }
         ])
 
-        .controller('adminHomeCtrl', ['$scope', 'workOrderService', 'UserFactory', 'counts', 'shared',
-            function($scope, workOrderService, UserFactory, counts, shared) {
+        .controller('adminHomeCtrl', ['$scope', 'workOrderService', 'UserFactory', 'counts', 'shared', '$filter',
+            function($scope, workOrderService, UserFactory, counts, shared, $filter) {
 
                 $scope.timeFilters = ['Today', 'Yesterday', 'Tomorrow', 'This Week',
                 'Next Week', 'Last Week', 'This Month', 'Next Month', 'Last Month',
@@ -94,7 +94,7 @@
                     name: 'Ladder Assist',
                     map: -1
                 }, {
-                    name: 'Basic',
+                    name: 'Ladder Assist w/ Report',
                     map: 0
                 }, {
                     name: 'Expert'
@@ -105,12 +105,38 @@
                 }, {
                     name: 'Cancelled'
                 }];
+
+                $scope.topTableStatuses = [
+                    { name: 'Admin Attn.',  key: 'admin_attention_required' }, 
+                    { name: 'Office Attn.', key: 'office_attention_required' },
+                    { name: 'Insp. Attn.', key: 'inspector_attention_required' }, 
+                    { name: 'On Hold', key: 'on_hold' },
+                    { name: 'Pickups', key: 'new_pickups' },
+                    { name: 'New', key: 'new' },
+                    { name: 'Reschedule', key: 'reschedule' },
+                    { name: 'In Process', key: 'in_process' }
+                ];
+                $scope.bottomTableStatuses = [
+                    { name: 'Scheduled', key: 'scheduled' },
+                    { name: 'Post Insp.', key: 'post_inspection_date' },
+                    { name: 'Inspected', key: 'inspected' },
+                    { name: 'Reporting', key: 'reporting' },
+                    { name: 'Inv. Alacrity', key: 'inv_alacrity' },
+                    { name: 'Invoicing', key: 'invoicing' },
+                    { name: 'Cancelled', key: 'cancelled' }];
                 
                 $scope.items = [ counts.basic[0], counts.expert[0], counts.ladderAssist[0] ];
-                
                 $scope.basic = counts.basic[0];
                 $scope.expert = counts.expert[0];
                 $scope.ladderAssist = counts.ladderAssist[0];
+                $scope.counts = counts;
+
+                /**
+                 * Set report link, would've link to do this in angular scope. Add it if you'd like.
+                 */
+                $scope.setReportLink = function(link) {
+                    return '/#/admin/reports/' + $filter('replace')(link, '_', '-');
+                };
 
                 for (var key in $scope.basic) {
                     $scope.basic[key] = parseInt($scope.basic[key], 10);
