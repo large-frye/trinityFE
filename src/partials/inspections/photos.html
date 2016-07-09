@@ -13,7 +13,6 @@
     <div class="box-body">
         <div class="col-sm-12 sm-margin-top">
             <div class="btn-group">
-                <button type="button" ng-click="vm.save()" class="btn btn-success">Save</button>
                 <button type="button" ng-click="vm.uploadPhotos()" class="btn btn-info">Upload Photos</button>
                 <button type="button" ng-click="vm.categorizePhotos()" class="btn btn-default" ng-disabled="!vm.photosSelected">Categorize Photos</button>
                 <button type="button" ng-click="vm.reorderModal()" class="btn btn-default">Reorder Photos</button>
@@ -28,9 +27,6 @@
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#all-photos" ng-click="vm.getAllPhotos()" data-toggle="tab">All Photos</a>
-                </li>
-                <li>
-                    <a href="#all-uncategorized-photos" ng-click="vm.getAllUncategorizedPhotos()" data-toggle="tab">Uncategorized Photos</a>
                 </li>
             </ul>
             <div class="tab-content">
