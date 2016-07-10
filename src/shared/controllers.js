@@ -63,6 +63,13 @@
                     initUser();
                 }
 
+                // Set view
+                if (isWorkorderView($location)) {
+                    localStorage.setItem('workorderView', true);
+                } else {
+                    localStorage.removeItem('workorderView');
+                }
+
             }])
 
         .controller('sidebarCtrl', ['$scope', function ($scope) {
@@ -134,4 +141,9 @@
                 return true;
             };
         }]);
+
+        function isWorkorderView($location) {
+            var regex = new RegExp('admin/inspections');
+            return regex.test($location.url());
+        }
 })();

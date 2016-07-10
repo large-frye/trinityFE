@@ -33,8 +33,8 @@
                     ]
                 };
                 var inspectionResolver = {
-                    inspection: ['$q', 'InspectionService', '$route', '$routeParams',
-                        function ($q, InspectionService, $route, $routeParams) {
+                    inspection: ['$q', 'InspectionService', '$route', '$routeParams', '$location',
+                        function ($q, InspectionService, $route, $routeParams, $location) {
                             var deferred = $q.defer();
                             var id = $route.current.params.id;
 
@@ -44,6 +44,7 @@
                                 InspectionService.get({
                                     id: id
                                 }).$promise.then(function (data) {
+                                    workorderView($location);
                                     // data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
                                     // data.order.date_received = new Date(data.order.date_received);
                                     // data.order.date_of_inspection = new Date(data.order.date_of_inspection);
@@ -105,8 +106,8 @@
                         }]
                 };
                 var inspectionForm = {
-                    form: ['$q', '$route', '$routeParams', 'InspectionService',
-                        function ($q, $route, $routeParams, InspectionService) {
+                    form: ['$q', '$route', '$routeParams', 'InspectionService', '$location',
+                        function ($q, $route, $routeParams, InspectionService, $location) {
                             var deferred = $q.defer();
 
                             showSidebar();
@@ -114,6 +115,7 @@
                             InspectionService.inspectionForm({
                                 id: $route.current.params.id
                             }).$promise.then(function (data) {
+                                workorderView($location);
                                 if (data.inspection.length > 0) {
                                     deferred.resolve(data);
                                 } else {
@@ -128,7 +130,7 @@
                 };
                 var billing = {billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve]};
                 var generate = {generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve]};
-                var photo = {photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotosResolve]};
+                var photo = {photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', '$location', PhotosResolve]};
                 var invoice = {invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve]};
                 var settings = {
                     photos: {settings: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve]}
@@ -242,7 +244,7 @@
                     officeVideos: { officeVideoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]}
                 };
 
-                function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log) {
+                function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log, $location) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     showSidebar();
@@ -255,6 +257,7 @@
                         defer.resolve({
                             photos: data
                         });
+                        workorderView($location);
                     }, function (err) {
                         $log.error(err);
                     });
@@ -561,13 +564,6 @@
                     function ($q, $location, UserFactory, $rootScope) {
                         return {
                             request: function (request) {
-                                var regex = new RegExp('admin/inspections');
-                                if (regex.test($location.url())) {
-                                    var $sidebar = $('.main-sidebar');
-                                    $('.navbar').hide();
-                                    $sidebar.addClass('no-topbar-sidebar-adjusted'); 
-                                }
-
                                 if (localStorage.getItem('token')) {
                                     request.headers.Authorization = 'Bearer ' + localStorage.getItem('token');
                                 }
@@ -603,6 +599,13 @@
         $el.css({
             'margin-left': '230px'
         });
+    }
+
+    function workorderView($location) {
+        var isWorkorderView = localStorage.getItem('workorderView');
+        if (isWorkorderView) {
+            $('.navbar').hide();
+        }
     }
 })();
 

@@ -356,10 +356,10 @@ input[type="search"].form-control  {
 }
 
 .main-sidebar.no-topbar-sidebar-adjusted {
-    padding-top: 0 !important;
-    -webkit-transition: .1s;
-    -moz-transition: .1s;
-    transition: .1s;
+    /*padding-top: 0 !important;
+    -webkit-transition: .25s;
+    -moz-transition: .25s;
+    transition: .25s;*/
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

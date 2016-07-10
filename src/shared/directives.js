@@ -12,6 +12,11 @@
 					options: '='
 				},
 				link: function ($scope, elem, attrs) {
+					
+					if (localStorage.getItem('workorderView')) {
+						$('.main-sidebar').css('padding-top', '0px');
+					}
+						
 					$scope.activeLink = function (link) {
 						return link === location.pathname + location.hash;
 					};
@@ -133,7 +138,7 @@
 		activate();
 
 		function activate() {
-			isWorkorderView();
+			
 		}
 
 		// function isWorkorderView() {
