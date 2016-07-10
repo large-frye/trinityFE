@@ -355,6 +355,13 @@ input[type="search"].form-control  {
     height: auto;
 }
 
+.main-sidebar.no-topbar-sidebar-adjusted {
+    padding-top: 0 !important;
+    -webkit-transition: .1s;
+    -moz-transition: .1s;
+    transition: .1s;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;

@@ -102,8 +102,8 @@
 			};
 		}]);
 
-	NavbarDirective.$inject = ['InspectionService'];
-	function NavbarDirective(InspectionService) {
+	NavbarDirective.$inject = ['InspectionService', '$location', '$rootScope', '$timeout'];
+	function NavbarDirective() {
 		// Usage:
 		//
 		// Creates:
@@ -125,9 +125,32 @@
 		function link(scope, element, attrs) {}
 	}
 	/* @ngInject */
-	function NavbarController() {
+	function NavbarController(InspectionService, $location, $rootScope, $timeout) {
 		var vm = this;
 		vm.search = search;
+		vm.workorder = false;
+
+		activate();
+
+		function activate() {
+			isWorkorderView();
+		}
+
+		// function isWorkorderView() {
+		// 	var adjusted = 0;
+		// 	var regex = new RegExp('admin/inspections');
+		// 	$rootScope.$on('$routeChangeStart', function() {
+		// 		if (regex.test($location.url())) {
+		// 			vm.workorder = true;
+		// 			$timeout(function() {
+		// 				var $sidebar = $('.main-sidebar');
+		// 				$sidebar.addClass('no-topbar-sidebar-adjusted'); 
+		// 			});
+		// 		}	
+		// 		adjusted++;
+		// 	});
+			
+		// }
 
 		function search() {
 			console.log(vm);

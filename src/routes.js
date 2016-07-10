@@ -561,6 +561,13 @@
                     function ($q, $location, UserFactory, $rootScope) {
                         return {
                             request: function (request) {
+                                var regex = new RegExp('admin/inspections');
+                                if (regex.test($location.url())) {
+                                    var $sidebar = $('.main-sidebar');
+                                    $('.navbar').hide();
+                                    $sidebar.addClass('no-topbar-sidebar-adjusted'); 
+                                }
+
                                 if (localStorage.getItem('token')) {
                                     request.headers.Authorization = 'Bearer ' + localStorage.getItem('token');
                                 }

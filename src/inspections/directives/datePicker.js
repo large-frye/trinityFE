@@ -35,12 +35,15 @@
         function activate() {
             vm.date = getDate();
             
-            $element.datepicker({
+            var $datePicker = $element.datepicker({
                 autoclose: true
             }).on('changeDate', function (e) {
                 vm.date = e.date;
                 vm.date = getDate();
                 $scope.$apply();
+            }).on('show', function(e) {
+                // hack to move the element below the input
+                $('.datepicker').css('margin-top', '30px');
             });
         }
         

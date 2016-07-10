@@ -30,6 +30,7 @@
     /* @ngInject */
     function TimePickerController($scope, $element, $attrs, $timeout) {
         var vm = this;
+        var delTime = false; 
 
         function activate() {
             vm.time = getTime();
@@ -37,11 +38,25 @@
             $timeout(function () {
                 $element.timepicker({
                     defaultTime: vm.time
-                }).on('changeTime.timepicker', function (e) {
+                }).on('changeTime.timepicker', checkTime);
+            }, 100);
+
+            function checkTime(e) {
+                // Give some time to see the final value
+                if (!delTime) {
                     vm.time = e.time.value;
                     $scope.$apply();
-                });
-            }, 100);
+                }
+
+                if (delTime)
+                    delTime = false;
+            }
+
+            $element.on('keyup', function(e) {
+                delTime = false;
+                if (e.keyCode === 8 || e.keyCode === 46)
+                    delTime = true;
+            });
 
             // vm.date = getDate();
 
