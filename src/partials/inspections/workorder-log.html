@@ -1,6 +1,6 @@
 <div class="box box-default margin-top">
     <div class="box-content">
-        <div class="col-sm-12 nav-tabs-custom margin-top">
+        <div class="col-sm-8 nav-tabs-custom margin-top">
             <ul class="nav nav-tabs">
                 <li class="active">
                     <a href="#internal-notes" ng-click="vm.getNotes()" data-toggle="tab">Internal Notes</a>
@@ -8,21 +8,18 @@
                 <li>
                     <a href="#workorder-log" ng-click="vm.getLog()" data-toggle="tab">Workorder Log</a>
                 </li>
-                <li>
-                    <a href="#workorder-files" ng-click="vm.getFiles()" data-toggle="tab">Uploaded Files</a>
-                </li>
             </ul>
             <div class="tab-content">
                 <div id="internal-notes" class="tab-pane active" ng-form ng-submit="vm.saveNote()">
                     <div class="form-group">
-                        <label for="" class="col-sm-2 control-label ">Add Workorder Note</label>
-                        <div class="col-sm-8">
-                            <input type="text " ng-model="vm.workorderNote.text" class="form-control ">
+                        <label for="" class="col-sm-3 control-label ">Add Workorder Note</label>
+                        <div class="col-sm-9">
+                            <input type="text" ng-model="vm.workorderNote.text" class="form-control sm-padding">
                         </div>
                     </div>
                     <div class="form-group ">
-                        <label class="col-sm-2 control-label ">Workorder Notes</label>
-                        <div class="col-sm-8 ">
+                        <label class="col-sm-3 control-label ">Workorder Notes</label>
+                        <div class="col-sm-9">
                             <div class="scroll-box form-control ">
                                 <ul>
                                     <li ng-repeat="note in vm.workorderNotes ">
@@ -43,11 +40,16 @@
                         </li>
                     </ul>
                 </div>
-
-                <div id="workorder-files" class="tab-pane">
-                    <p>files</p>
-                </div>
+            </div>
+        </div>
+        <div id="uploaded-files" class="col-sm-4 left-border light-gray margin-top">
+            <div class="file-header">Uploaded Files</div>
+            <div class="scroll-box form-control sm-margin-top">
+                <ul>
+                    <li ng-if="!vm.workorderFiles">There are no files assosciated with this work order.</li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
+<div class="clear"></div>

@@ -181,6 +181,11 @@ input[type=phone].form-control,
     height: 24px;
 }
 
+.form-control.sm-padding {
+    padding: 1px 0 1px 5px;
+    height: 24px;
+}
+
 .form-horizontal .control-label {
     padding-top: 0;
     margin-top: 2px;
@@ -363,9 +368,25 @@ input[type="search"].form-control  {
     transition: .25s;*/
 }
 
+.file-header {
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-top: 2.4em;
+    text-align: center;
+}
+
 .lg-font {
     font-size: 18px;
 }
+
+.left-border.light-gray {
+    border-left: 1px solid #bbb;
+}
+
+#uploaded-files .scroll-box {
+    height: 200px;
+}
+
 
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
