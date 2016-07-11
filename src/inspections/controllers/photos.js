@@ -27,6 +27,7 @@
         vm.deleteSelected = deleteSelected;
         vm.photosSelected = false;
         vm.reorderModal = reorderModal;
+        vm.createPhotosZip = createPhotosZip;
 
         activate();
 
@@ -364,6 +365,18 @@
                 show: false
             });
             reorderModal.$promise.then(reorderModal.show);
+        }
+
+        function createPhotosZip() {
+            return PhotoService.api().createPhotosZip({
+                workorderId: vm.workorder_id
+            }, function(data) {
+                var $anchor = document.createElement('a');
+                $anchor.setAttribute('href', data.file);
+                $anchor.click();
+            }, function(err) {
+                $log.error(err);
+            });
         }
 
         $scope.$watch('vm.photos', function (next, prev) {

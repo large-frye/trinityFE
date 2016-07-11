@@ -21,7 +21,19 @@
                     },
                     params: {},
                     withCredentials: true
-                },  
+                },
+                createPhotosZip: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'photos',
+                        action: 'zip'
+                    },
+                    withCredentials: true
+                },
                 getLabeledPhotos: {
                     method: 'GET',
                     headers: {
