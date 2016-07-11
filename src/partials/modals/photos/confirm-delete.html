@@ -6,13 +6,15 @@
                 <h4 class="modal-title">Delete selected photos</h4>
             </div>
             <div class="modal-body">
-                <p>You are going to be deleting the photos selected, would you like to continue?</p>
+                <div class="alert alert-danger">
+                    <p class="lg-font">You are going to be deleting the photos selected, would you like to continue?</p>
+                </div>
                 <div class="col-sm-3" ng-repeat="photo in vm.photos">
                     <photo-select photo="photo" disable-select="true"></photo-select>
                 </div>
             </div>
             <div class="modal-footer clear">
-                <button type="button" class="btn btn-success" ng-click="vm.deletePhotos()">Delete</button>
+                <button type="button" class="btn btn-danger" ng-click="vm.deletePhotos()">Delete</button>
                 <button type="button" class="btn btn-default" ng-click="vm.close()">Cancel</button>
             </div>
         </div>

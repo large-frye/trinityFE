@@ -284,6 +284,7 @@ select.form-control {
 
 .category-choice li {
     margin: 5px 0;
+    text-align: center;
 }
 
 .category-choice li input[type="radio"] {
@@ -360,6 +361,10 @@ input[type="search"].form-control  {
     -webkit-transition: .25s;
     -moz-transition: .25s;
     transition: .25s;*/
+}
+
+.lg-font {
+    font-size: 18px;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {
