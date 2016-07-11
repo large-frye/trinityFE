@@ -3,12 +3,19 @@
 (function () {
     'use strict';
     angular.module('trinity', [
+
+        // Third party/angular libs
         'ngRoute',
         'ngAnimate',
         'ngSanitize',
         'ngAria',
+        'mgcrea.ngStrap',
+
+        // Shared
         'shared',
         'routes',
+    
+        // Trinity specific modules
         'trinity.workOrders',
         'trinity.user.services',
         'trinity.account.controllers',
@@ -23,19 +30,14 @@
         'trinity.controllers.billing',
         'trinity.services.billing',
         'trinity.filters.shared',
-        'mgcrea.ngStrap',
-        'trinity.shared.factories.form',
-        'trinity.inspections.services.photo',
         'trinity.directives.inspections.photoSelect',
-        'trinty.inspections.directives.workorderLog',
-        'trinity.inspections.directives.showLog',
+        
             
         // new angular stype
         'trinity.controllers.admin.reports',
         'trinity.directives.inspections.datePicker',
         'trinity.directives.inspections.timePicker',
         'trintiy.services.inspections.workorderNote',
-        'trinity.inspections.services.workorderLogger',
 
         // settings
         'trinity.controllers.settings.photos',
@@ -46,13 +48,27 @@
          * All new modules need should follow this pattern => {appName}.{directory}.{directory/filename}* this expression
          * can repeat multiple times, depending on file path. If they do not, please update.
          */
+
+        // Shared Modules
         'trinity.shared.controllers.modals.photoModalDelete',
         'trinity.shared.controllers.modals.photoModal',
         'trinity.shared.controllers.modals.photoModalReorder',
+        'trinity.shared.constants',
         'trinity.shared.directives.photoSort',
+        'trinity.shared.factories.form',
+        'trinity.shared.controllers',
+        'trinity.shared.directives',
+
+        // Resource Modules
         'trinity.resources.controllers.resource',
         'trinity.resources.controllers.trainingContent',
-        'trinity.resources.controllers.trainingVideo'
+        'trinity.resources.controllers.trainingVideo',
+
+        // Inspection Modules
+        'trinity.inspections.services.workorderLogger',
+        'trinty.inspections.directives.workorderLog', // TODO: mispelled
+        'trinity.inspections.directives.showLog',
+        'trinity.inspections.services.photo'
     ])
 
         .config(function ($modalProvider) {

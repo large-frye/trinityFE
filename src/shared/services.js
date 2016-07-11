@@ -234,10 +234,13 @@
     				}, {
     					parent: 'Generate Report',
     					link: '/#/admin/inspections/generate/' + id
-    				}, {
-    					parent: 'Invoice Details',
-    					link: '/#/admin/inspections/invoice/' + id
-    				}];
+    				}
+                    // Per request to not show anymore
+                    // {
+    				// 	parent: 'Invoice Details',
+    				// 	link: '/#/admin/inspections/invoice/' + id
+    				// }
+                    ];
                 },
                 getInspectorInspectionBar: function(id) {
                     return [{

@@ -2,13 +2,13 @@
 
 <th>{{colHeader}}</th>
 <td>
-    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/ladderAssist"> 
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/ladder-assist"> 
         {{ladderAssist}}
     </a>
 </td> 
 <td>
-    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/basic"> 
-        {{basic}}
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/ladder-assist-with-report"> 
+        {{ladderAssistWithReport}}
     </a>
 </td> 
 <td>
@@ -27,7 +27,7 @@
     </a> 
 </td> 
 <td> 
-    <a href="/#/admin/reports/today/cancelled">
-        {{basic.cancelledToday + expert.cancelledToday + ladderAssist.cancelledToday}}    
+    <a href="/#/admin/reports/{{itemType | replace:'_':'-'}}/cancelled">
+        {{cancelled()}}    
     </a>
 </td>

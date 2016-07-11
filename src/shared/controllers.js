@@ -4,7 +4,7 @@
 (function () {
     'use strict';
 
-    var app = angular.module('shared.controllers', [])
+    var app = angular.module('trinity.shared.controllers', [])
 
         .controller('navCtrl', ['$scope', 'UserFactory', '$rootScope', '$location',
             function ($scope, UserFactory, $rootScope, $location) {
@@ -15,7 +15,7 @@
                     setOptions();
                 };
 
-                var setOptions = function() {
+                var setOptions = function () {
                     if (!$scope.options) {
                         try {
                             $scope.options = UserFactory.user.getNavOptions();
@@ -63,12 +63,14 @@
                     initUser();
                 }
 
-                // Set view
-                if (isWorkorderView($location)) {
-                    localStorage.setItem('workorderView', true);
-                } else {
-                    localStorage.removeItem('workorderView');
-                }
+                $rootScope.$on('$routeChangeSuccess', function () {
+                    if (isWorkorderView($location)) {
+                        localStorage.setItem('workorderView', true);
+                        $('.navbar').hide();
+                    } else {
+                        localStorage.removeItem('workorderView');
+                    }
+                });
 
             }])
 
@@ -81,53 +83,53 @@
                 children: [{
                     name: 'Overview & Stats', link: '/#/account'
                 }, {
-                    name: 'New Inspection', link: '/#/account/inspections/new'
-                }],
+                        name: 'New Inspection', link: '/#/account/inspections/new'
+                    }],
                 link: baseOrigin,
                 icon: 'fa-folder-o'
             }, {
-                parent: 'Reports',
-                link: baseOrigin + '/reports',
-                icon: 'fa-bar-chart-o'
-            }, {
-                parent: 'Inspector Billing',
-                link: baseOrigin + '/inspector/billing',
-                icon: 'fa-dollar'
-            }, {
-                parent: 'Calendar',
-                link: baseOrigin + '/calendar',
-                icon: 'fa-calendar'
-            }, {
-                parent: 'Maps',
-                link: baseOrigin + '/maps',
-                icon: 'fa-map'
-            }, {
-                parent: 'Tasks',
-                link: baseOrigin + '/tasks',
-                icon: 'fa-tasks'
-            }, {
-                parent: 'Resources',
-                children: [{
-                    name: 'Resources', link: baseOrigin + '/resources'
+                    parent: 'Reports',
+                    link: baseOrigin + '/reports',
+                    icon: 'fa-bar-chart-o'
                 }, {
-                    name: 'Training Material', link: baseOrigin + '/resources/training-material'
+                    parent: 'Inspector Billing',
+                    link: baseOrigin + '/inspector/billing',
+                    icon: 'fa-dollar'
                 }, {
-                    name: 'Training Videos', link: baseOrigin + '/resources/training-videos'
+                    parent: 'Calendar',
+                    link: baseOrigin + '/calendar',
+                    icon: 'fa-calendar'
                 }, {
-                    name: 'Office Training Videos', link: baseOrigin + '/resources/office-training-videos'
-                }],
-                link: baseOrigin + '/resources',
-                icon: 'fa-folder-o'
-            }, {
-                parent: 'Contacts',
-                children: [{
-                    name: 'Admins', link: baseOrigin + '/contacts/admins'
+                    parent: 'Maps',
+                    link: baseOrigin + '/maps',
+                    icon: 'fa-map'
                 }, {
-                    name: 'Office Users', link: baseOrigin + '/contacts/office-users'
-                }],
-                link: baseOrigin + '/contacts',
-                icon: 'fa-folder-o'
-            }];
+                    parent: 'Tasks',
+                    link: baseOrigin + '/tasks',
+                    icon: 'fa-tasks'
+                }, {
+                    parent: 'Resources',
+                    children: [{
+                        name: 'Resources', link: baseOrigin + '/resources'
+                    }, {
+                            name: 'Training Material', link: baseOrigin + '/resources/training-material'
+                        }, {
+                            name: 'Training Videos', link: baseOrigin + '/resources/training-videos'
+                        }, {
+                            name: 'Office Training Videos', link: baseOrigin + '/resources/office-training-videos'
+                        }],
+                    link: baseOrigin + '/resources',
+                    icon: 'fa-folder-o'
+                }, {
+                    parent: 'Contacts',
+                    children: [{
+                        name: 'Admins', link: baseOrigin + '/contacts/admins'
+                    }, {
+                            name: 'Office Users', link: baseOrigin + '/contacts/office-users'
+                        }],
+                    link: baseOrigin + '/contacts',
+                    icon: 'fa-folder-o'
+                }];
 
             $scope.hide = function () {
                 if ($location.url().match(/account/) === null) {
@@ -142,8 +144,8 @@
             };
         }]);
 
-        function isWorkorderView($location) {
-            var regex = new RegExp('admin/inspections');
-            return regex.test($location.url());
-        }
+    function isWorkorderView($location) {
+        var regex = new RegExp('admin/inspections');
+        return regex.test($location.url());
+    }
 })();

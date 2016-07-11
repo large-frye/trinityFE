@@ -40,9 +40,10 @@
                     colHeader: '@'
                 },
                 link: function($scope, elem, attrs) {
-                    $scope.basic = $scope.items[0][$scope.itemType];
-                    $scope.expert = $scope.items[1][$scope.itemType];
-                    $scope.ladderAssist = $scope.items[2][$scope.itemType];
+                    $scope.ladderAssist = $scope.items[0][$scope.itemType];
+                    $scope.ladderAssistWithReport = $scope.items[1][$scope.itemType];
+                    $scope.expert = $scope.items[2][$scope.itemType];
+                    $scope.cancelled = getCancelled; 
                     $scope.newToday = newToday;
                     $scope.getTotal = getTotal;
                     
@@ -53,10 +54,18 @@
                     }
                     
                     function getTotal() {
-                        return $scope.basic + $scope.expert + $scope.ladderAssist;
+                        return $scope.ladderAssist + $scope.ladderAssistWithReport + $scope.expert;
+                    }
+
+                    function getCancelled() {
+                        console.log($scope.items[0], $scope.cancelledType);
+                        console.log($scope.items[0][$scope.cancelledType]);
+                        return $scope.items[0][$scope.cancelledType] +
+                            $scope.items[1][$scope.cancelledType] +
+                            $scope.items[2][$scope.cancelledType]; 
                     }
                 },
                 templateUrl: 'src/partials/shared/count-listings.html'
-            }
-        }])
+            };
+        }]);
 })();

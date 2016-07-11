@@ -7,9 +7,9 @@
 		.controller('adminProcessingCtrl', AdminProcessingController);
 
 	AdminProcessingController.$inject = ['shared', '$routeParams', 'InspectionService',
-		'UserService', 'inspection', '$log', 'alert', 'UserFactory'];
+		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM'];
 	function AdminProcessingController(shared, $routeParams, InspectionService, UserService,
-		inspection, $log, alert, UserFactory) {
+		inspection, $log, alert, UserFactory, FORM) {
 		var vm = this;
 		vm.options = shared.getInspectionSideBar($routeParams.id);
 		vm.inspection = inspection.order;
@@ -92,7 +92,7 @@
 					title: 'Saved',
 					content: 'Saved',
 					type: 'success'
-				}, 3000);
+				}, FORM.SAVE_LENGTH);
 			}, function (err) {
 				vm.alerts = alert.add({
 					title: 'Error',

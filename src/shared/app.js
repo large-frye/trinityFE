@@ -3,5 +3,5 @@
  */
 (function () {
     'use strict';
-    var app = angular.module('shared', ['shared.controllers', 'shared.directives', 'shared.services']);
+    var app = angular.module('shared', ['shared.services']);
 })();

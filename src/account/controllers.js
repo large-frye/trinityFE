@@ -125,8 +125,8 @@
                     { name: 'Invoicing', key: 'invoicing' },
                     { name: 'Cancelled', key: 'cancelled' }];
                 
-                $scope.items = [ counts.basic[0], counts.expert[0], counts.ladderAssist[0] ];
-                $scope.basic = counts.basic[0];
+                $scope.items = [ counts.ladderAssist[0], counts.ladderAssistWithReport[0], counts.expert[0] ];
+                $scope.ladderAssistWithReport = counts.ladderAssistWithReport[0];
                 $scope.expert = counts.expert[0];
                 $scope.ladderAssist = counts.ladderAssist[0];
                 $scope.counts = counts;
@@ -138,8 +138,8 @@
                     return '/#/admin/reports/' + $filter('replace')(link, '_', '-');
                 };
 
-                for (var key in $scope.basic) {
-                    $scope.basic[key] = parseInt($scope.basic[key], 10);
+                for (var key in $scope.ladderAssistWithReport) {
+                    $scope.ladderAssistWithReport[key] = parseInt($scope.ladderAssistWithReport[key], 10);
                 }
                 for (var key in $scope.expert) {
                     $scope.expert[key] = parseInt($scope.expert[key], 10);

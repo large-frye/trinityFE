@@ -5,10 +5,10 @@
 
 		.controller('inspectionsCtrl', ['$scope', 'UserService', 'InspectionService', '$modal', '$routeParams',
 			'inspection', '$location', 'REPORTS', '$timeout', '$window', 'shared', 'UserFactory', 'alert', '$dateParser',
-			'formFactory', 'WorkorderNoteService',
+			'formFactory', 'WorkorderNoteService', 'FORM',
 			function ($scope, UserService, InspectionService, $modal, $routeParams,
 				inspection, $location, REPORTS, $timeout, $window, shared, UserFactory, alert, $dateParser, formFactory
-				, WorkorderNoteService) {
+				, WorkorderNoteService, FORM) {
 
 				if (!$routeParams.id) {
 					$window.scrollTo(0, 0);
@@ -161,7 +161,7 @@
 								title: 'Saved',
 								content: 'Saved',
 								type: 'success'
-							}, 3000);
+							}, FORM.SAVE_LENGTH);
 						}
 
 						$timeout(function () {
@@ -192,7 +192,7 @@
 							title: 'Saved',
 							content: 'Saved',
 							type: 'success'
-						}, 3000);
+						}, FORM.SAVE_LENGTH);
 					}, function (err) {
 						console.error(err);
 					});

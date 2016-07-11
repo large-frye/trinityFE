@@ -1,18 +1,18 @@
 (function () {
 	'use strict';
 
-	angular.module('shared.directives', [])
+	angular.module('trinity.shared.directives', [])
 
 		.directive('navbar', NavbarDirective)
 
-		.directive('sidebar', ['$location', '$route', function ($location, $route) {
+		.directive('sidebar', ['$location', '$route', '$rootScope', function ($location, $route, $rootScope) {
 			return {
 				restrict: 'E',
 				scope: {
 					options: '='
 				},
 				link: function ($scope, elem, attrs) {
-					
+
 					if (localStorage.getItem('workorderView')) {
 						$('.main-sidebar').css('padding-top', '0px');
 					}
@@ -140,22 +140,6 @@
 		function activate() {
 			
 		}
-
-		// function isWorkorderView() {
-		// 	var adjusted = 0;
-		// 	var regex = new RegExp('admin/inspections');
-		// 	$rootScope.$on('$routeChangeStart', function() {
-		// 		if (regex.test($location.url())) {
-		// 			vm.workorder = true;
-		// 			$timeout(function() {
-		// 				var $sidebar = $('.main-sidebar');
-		// 				$sidebar.addClass('no-topbar-sidebar-adjusted'); 
-		// 			});
-		// 		}	
-		// 		adjusted++;
-		// 	});
-			
-		// }
 
 		function search() {
 			console.log(vm);

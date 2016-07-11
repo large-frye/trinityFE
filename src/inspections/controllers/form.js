@@ -8,9 +8,10 @@
         .controller('adminInspectionCtrl', AdminInspectionController);
 
     AdminInspectionController.$inject = ['InspectionService', 'InspectionFactory', 'FormService', '$log', 'STATUSES', 'form', '$rootScope', '$modal',
-    '$routeParams', 'shared', 'alert'];
+    '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory'];
     
-    function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal, $routeParams, shared, alert) {
+    function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal
+    , $routeParams, shared, alert, FORM, UserFactory) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.listRoofConditions = InspectionFactory.roofConditions;
@@ -228,6 +229,8 @@
         
         function saveWorkorder() {
             var workorderCopy = angular.copy(vm.workorder);
+            // Added for logger service
+            workorderCopy.updated_by = UserFactory.user.get().id;
             workorderCopy.date_of_inspection = new Date(workorderCopy.date_of_inspection).getTime();
             delete workorderCopy.inspection_val;
             
@@ -236,7 +239,7 @@
                     title: 'Saved',
                     content: 'Saved',
                     type: 'success'
-                }, 3000);
+                }, FORM.SAVE_LENGTH);
             }, function(err) {
                 $log.error(err);
             });
