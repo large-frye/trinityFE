@@ -5,16 +5,23 @@
 
 
     <div class="box-body">
-        <table class="table table-striped">
+        <table class="table table-striped centered">
             <thead>
-                <!-- noop -->
+                <tr>
+                    <th>Name</th>
+                    <th>Url</th>
+                </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="resource in resources">
-
+                <tr ng-repeat="resource in vm.resources">
+                    <td>{{resource.name}}</td>
+                    <td><a ng-href="resource.item_url">{{resource.item_url}}</a></td>
+                    <td><a ng-href="#" ng-click="vm.delete()" onclick="event.preventDefault()"><i class="fa fa-trash-o"></i>
                 </tr>
             </tbody>
         </table>
+
+        <hr />
 
         <form name="documentsForm" class="form form-horizontal inspection-form resource-form">
             <div class="form-group">
@@ -27,11 +34,7 @@
                         <div class="col-sm-6">
                             <input type="radio" name="fileType" ng-model="vm.resource.item_type" value="file" /> File
                         </div>
-
                     </label>
-
-
-
                 </div>
             </div>
             <div ng-if="vm.resource.item_type=='link'">
@@ -49,18 +52,27 @@
                 </div>
             </div>
 
-            <div class="form-group" ng-if="vm.resource.item_type=='file'">
-                <label class="col-sm-1 control-label">Name</label>
-                <div class="col-sm-6">
-                    <input type="file" ng-model="vm.resource.name" class="form-control"
-                        onchange="angular.element(this).scope().vm.uploadFile();"/>
+            <div ng-if="vm.resource.item_type=='file'">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" ng-model="vm.resource.name" class="form-control"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">File</label>
+                    <div class="col-sm-6">
+                        <input type="file" ng-model="vm.file" class="form-control" onchange="angular.element(this).scope().vm.uploadFile();"
+                        />
+                    </div>
                 </div>
             </div>
-        </form>
 
-        <hr />
+
+        </form>
         <div ng-if="documentsForm.$error.url" class="alert alert-danger">Please enter a valid url.</div>
-        <button type="button" class="btn btn-success" ng-click="vm.add()" ng-disabled="documentsForm.$invalid">
+        <button type="button" class="btn btn-success margin-top" ng-click="vm.add()" ng-disabled="documentsForm.$invalid">
             <span ng-if="vm.resource.item_type=='link'">Add Link</span>
             <span ng-if="vm.resource.item_type=='file'">Add File</span>
         </button>
@@ -76,12 +88,12 @@
     <div class="box-body">
         <table class="table table-striped">
             <thead>
-            <!-- noop -->
+                <!-- noop -->
             </thead>
             <tbody>
-            <tr ng-repeat="resource in resources">
+                <tr ng-repeat="resource in resources">
 
-            </tr>
+                </tr>
             </tbody>
         </table>
     </div>

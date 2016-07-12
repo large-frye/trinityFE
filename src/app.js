@@ -64,6 +64,7 @@
         'trinity.resources.controllers.resource',
         'trinity.resources.controllers.trainingContent',
         'trinity.resources.controllers.trainingVideo',
+        'trinity.resources.services.resource',
 
         // Inspection Modules
         'trinity.inspections.services.workorderLogger',

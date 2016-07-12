@@ -237,7 +237,7 @@
                             }]
                     }
                 };
-                var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', ResourceResolve]};
+                var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', ResourceResolve]};
                 var training = {
                     content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingResolve]},
                     videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]},
@@ -338,7 +338,7 @@
                     hideSidebar();
 
                     PhotoService.api().getParentCategories(function (data) {
-                        defer.resolve(data);
+                        defer.resolve(data.resources);
                     }, function (err) {
                         $log.error(err);
                     });
@@ -354,14 +354,18 @@
                  * @param UserFactory
                  * @constructor
                  */
-                function ResourceResolve($q, $route, $routeParams, UserFactory) {
+                function ResourceResolve($q, $route, $routeParams, UserFactory, ResourceService, $log) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     hideSidebar();
 
-                    defer.resolve({
-                        id: 1
+                    ResourceService.api().getResources(function(data) {
+                        defer.resolve(data);
+                    }, function(err) {
+                        $log.error(err);
                     });
+
+                    return defer.promise;
                 }
 
                 /**
