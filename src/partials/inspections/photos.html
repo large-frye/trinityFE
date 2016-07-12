@@ -1,5 +1,7 @@
 <sidebar options="vm.options"></sidebar>
 
+<progress-bar loading="vm.loading"></progress-bar>
+
 <div class="alert-fixed">
     <div ng-repeat="alert in vm.alerts">
         <div class="alert alert-{{alert.type}}">{{alert.content}}</div>
@@ -33,14 +35,14 @@
             <div class="tab-content">
                 <div id="all-photos" class="tab-pane inspection-photos active">
                     <h4>All Photos</h4>
-                    <div class="col-sm-3" ng-repeat="photo in vm.photos.all">
+                    <div class="col-photo" ng-repeat="photo in vm.photos.all">
                         <photo-select photo="photo" />
                     </div>
                 </div>
 
                 <div id="all-uncategorized-photos" class="tab-pane inspection-photos">
                     <h4>Uncategorized Photos</h4>
-                    <div class="col-sm-3" ng-repeat="photo in vm.photos.notCategorized">
+                    <div class="col-photo" ng-repeat="photo in vm.photos.notCategorized">
                         <photo-select photo="photo" />
                     </div>
                 </div>

@@ -59,14 +59,15 @@
             }
 
             formData.append('workorder_id', vm.workorder_id);
-
+            
+            vm.loading = true;
             PhotoService.api().upload({
                 action: vm.workorder_id
             }, formData).$promise.then(function (data) {
+                vm.loading = false;
                 vm.photos = data.categorizedPhotos;
                 getParentPhotoSize(1);
-                selectNewPhotos();
-                categorizePhotos();
+                sortPhotos();
             }, function (err) {
                 $log.log(err);
             });
@@ -368,9 +369,11 @@
         }
 
         function createPhotosZip() {
+            vm.loading = !vm.loading;
             return PhotoService.api().createPhotosZip({
                 workorderId: vm.workorder_id
             }, function(data) {
+                vm.loading = !vm.loading;
                 var $anchor = document.createElement('a');
                 $anchor.setAttribute('href', data.file);
                 $anchor.click();

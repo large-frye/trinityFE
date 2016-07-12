@@ -387,6 +387,11 @@ input[type="search"].form-control  {
     height: 150px;
 }
 
+.col-photo {
+    width: 25%;
+    display: inline-block;
+    padding: 1em;
+}
 
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {

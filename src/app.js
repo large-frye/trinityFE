@@ -53,11 +53,12 @@
         'trinity.shared.controllers.modals.photoModalDelete',
         'trinity.shared.controllers.modals.photoModal',
         'trinity.shared.controllers.modals.photoModalReorder',
-        'trinity.shared.constants',
         'trinity.shared.directives.photoSort',
+        'trinity.shared.directives.progressBar',
         'trinity.shared.factories.form',
         'trinity.shared.controllers',
         'trinity.shared.directives',
+        'trinity.shared.constants',
 
         // Resource Modules
         'trinity.resources.controllers.resource',
