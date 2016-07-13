@@ -57,9 +57,14 @@
                             } else {
                                 deferred.resolve({
                                     order: {
-                                        auto_upgrade: false,
-                                        has_tarp: false,
-                                        estimate_requested: false
+                                        auto_upgrade: 'unknown',
+                                        has_tarp: 'unknown',
+                                        estimate_requested: 'unknown',
+                                        is_reinspection: 'unknown',
+                                        trinity_reinspection: 'unknown',
+                                        install_tarp: 'unknown',
+                                        scope_interior: 'unknown',
+                                        adjuster_present: 'unknown'
                                     }
                                 });
                             }

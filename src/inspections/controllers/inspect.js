@@ -98,6 +98,7 @@
 					});
 
 				} else {
+					console.log($scope);
 					// Hide the side bar
 					angular.element('.content-wrapper').addClass('no-margin-left');
 				}
@@ -107,7 +108,7 @@
 				 * @param  {[type]} redirect [description]
 				 * @return {[type]}          [description]
 				 */
-				$scope.save = function (redirect) {
+				$scope.save = function (isClosed) {
 
 					// In case inspection_val exists
 					delete $scope.inspection.inspection_val;
@@ -149,19 +150,25 @@
 
 						var role = UserFactory.user.get().appRole;
 
-						if (!redirect) {
+						if (!isClosed) {
 							$location.path('/' + role + '/inspections/' + data.id);
 						}
 
 						// Save note if there is one
 						if ($scope.workorderNote.text) {
-							$scope.saveNote();
+							$scope.saveNote(function() {
+								if (isClosed === 'close')
+									$window.close();
+							});
 						} else {
 							$scope.alerts = alert.add({
 								title: 'Saved',
 								content: 'Saved',
 								type: 'success'
 							}, FORM.SAVE_LENGTH);
+
+							if (isClosed === 'close')
+								$window.close();
 						}
 
 						$timeout(function () {
@@ -178,7 +185,7 @@
 					});
 				};
 
-				$scope.saveNote = function () {
+				$scope.saveNote = function (cb) {
 					var profile = UserFactory.user.get().profile;
 					$scope.workorderNote.workorder_id = $scope.inspection.id;
 					$scope.workorderNote.username = profile.first_name + ' ' + profile.last_name;
