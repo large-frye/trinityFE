@@ -397,6 +397,16 @@ input[type="search"].form-control  {
     text-align: center;
 }
 
+td.resource-display-order div {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+input[type=text].form-control.sm-padding.centered {
+    padding: 1px 0;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;

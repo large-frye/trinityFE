@@ -17,7 +17,7 @@
         function api() {
             return $resource(url, {}, {
                 'getResources': {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
                         'Accept': 'application/json'
                     },
@@ -45,6 +45,17 @@
                     params: {
                         type: 'admin',
                         action: 'upload'
+                    },
+                    withCredentials: true
+                },
+                'deleteResource': {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        action: 'delete'
                     },
                     withCredentials: true
                 }

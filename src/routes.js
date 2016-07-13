@@ -237,10 +237,10 @@
                             }]
                     }
                 };
-                var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', ResourceResolve]};
+                var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', ResourceResolve]};
                 var training = {
-                    content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingResolve]},
-                    videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]},
+                    content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingResolve]},
+                    videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingVideoResolve]},
                     officeVideos: { officeVideoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]}
                 };
 
@@ -354,12 +354,16 @@
                  * @param UserFactory
                  * @constructor
                  */
-                function ResourceResolve($q, $route, $routeParams, UserFactory, ResourceService, $log) {
+                function ResourceResolve($q, $route, $routeParams, UserFactory, ResourceService, $log, RESOURCE_TYPES) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     hideSidebar();
 
-                    ResourceService.api().getResources(function(data) {
+                    var types = [RESOURCE_TYPES.RESOURCE, RESOURCE_TYPES.OTHER];
+
+                    ResourceService.api().getResources({
+                        types: types
+                    }, function(data) {
                         defer.resolve(data);
                     }, function(err) {
                         $log.error(err);
@@ -376,14 +380,22 @@
                  * @param UserFactory
                  * @constructor
                  */
-                function TrainingResolve($q, $route, $routeParams, UserFactory) {
+                function TrainingResolve($q, $route, $routeParams, UserFactory, ResourceService, $log, RESOURCE_TYPES) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     hideSidebar();
 
-                    defer.resolve({
-                        id: 1
+                    var types = [RESOURCE_TYPES.TRAINING_MATERIAL];
+
+                    ResourceService.api().getResources({
+                        types: types
+                    }, function(data) {
+                        defer.resolve(data);
+                    }, function(err) {
+                        $log.error(err);
                     });
+
+                    return defer.promise;
                 }
 
                 /**
@@ -394,14 +406,22 @@
                  * @param UserFactory
                  * @constructor
                  */
-                function TrainingVideoResolve($q, $route, $routeParams, UserFactory) {
+                function TrainingVideoResolve($q, $route, $routeParams, UserFactory, ResourceService, $log, RESOURCE_TYPES) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     hideSidebar();
 
-                    defer.resolve({
-                        id: 1
+                    var types = [RESOURCE_TYPES.TRAINING_VIDEO];
+
+                    ResourceService.api().getResources({
+                        types: types
+                    }, function(data) {
+                        defer.resolve(data);
+                    }, function(err) {
+                        $log.error(err);
                     });
+
+                    return defer.promise;
                 }
 
                 $routeProvider

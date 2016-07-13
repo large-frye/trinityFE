@@ -59,9 +59,12 @@
                                     name: 'Training Material', link: '/#/' + this.user.appRole + '/resources/training-material'
                                 }, {
                                     name: 'Training Videos', link: '/#/' + this.user.appRole + '/resources/training-videos'
-                                }, {
-                                    name: 'Office Training Videos', link: '/#/' + this.user.appRole + '/resources/office-training-videos'
-                                }],
+                                }
+                                // ,
+                                // {
+                                //     name: 'Office Training Videos', link: '/#/' + this.user.appRole + '/resources/office-training-videos'
+                                // }
+                                ],
                                 link: '/#/' + this.user.appRole + '/resources',
                                 icon: 'fa-folder-o'
                             }, {
