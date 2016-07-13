@@ -58,8 +58,6 @@
                     }
 
                     function getCancelled() {
-                        console.log($scope.items[0], $scope.cancelledType);
-                        console.log($scope.items[0][$scope.cancelledType]);
                         return $scope.items[0][$scope.cancelledType] +
                             $scope.items[1][$scope.cancelledType] +
                             $scope.items[2][$scope.cancelledType]; 

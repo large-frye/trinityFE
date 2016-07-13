@@ -7,10 +7,10 @@
         .module('trinity.controllers.settings.photos', [])
         .controller('photoSettingsCtrl', PhotoSettingsCtrl);
 
-    PhotoSettingsCtrl.$inject = ['settings', 'UserFactory', 'PhotoService', '$log', '$modal', 'alert', '$rootScope', 'CategoryService'];
-    function PhotoSettingsCtrl(settings, UserFactory, PhotoService, $log, $modal, alert, $rootScope, CategoryService) {
+    PhotoSettingsCtrl.$inject = ['UserFactory', 'PhotoService', '$log', '$modal', 'alert', '$rootScope', 'CategoryService', 'settingsData'];
+    function PhotoSettingsCtrl(UserFactory, PhotoService, $log, $modal, alert, $rootScope, CategoryService, settingsData) {
         var vm = this;
-        vm.settings = settings;
+        vm.settings = settingsData;
         vm.options = UserFactory.user.getNavOptions();
         vm.categoryType = 'Category 1';
         vm.getSubCategories = getSubCategories;

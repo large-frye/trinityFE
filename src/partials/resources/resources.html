@@ -17,7 +17,7 @@
             <tbody>
                 <tr ng-repeat="resource in vm.resources">
                     <td>{{resource.name}}</td>
-                    <td><a ng-href="resource.item_url">{{resource.item_url}}</a></td>
+                    <td><a ng-href="{{resource.item_url}}" target="_blank">{{resource.item_url}}</a></td>
                     <td><a ng-href="#" ng-click="vm.deleteResource(vm.resources[$index], 'resource')" onclick="event.preventDefault()"><i class="fa fa-trash-o"></i>
                     <td class="resource-display-order"><div class="col-md-3 col-sm-4 col-xs-6"><input type="text" ng-model="vm.resources[$index].display_order" class="form-control sm-padding centered" /></div></td>
                 </tr>

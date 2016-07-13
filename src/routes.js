@@ -138,7 +138,7 @@
                 var photo = {photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', '$location', PhotosResolve]};
                 var invoice = {invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve]};
                 var settings = {
-                    photos: {settings: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve]}
+                    photos: {settingsData: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve]}
                 };
                 var inspector = {
                     home: {
@@ -343,7 +343,7 @@
                     hideSidebar();
 
                     PhotoService.api().getParentCategories(function (data) {
-                        defer.resolve(data.resources);
+                        defer.resolve(data);
                     }, function (err) {
                         $log.error(err);
                     });
