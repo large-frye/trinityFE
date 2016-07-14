@@ -60,7 +60,7 @@
         }
 
         function exportToExcel() {
-            var type = null;
+            var type = 'all';
             if ($routeParams.filter)
                 type = $routeParams.filter;
             return reportService.excel({
@@ -70,9 +70,9 @@
                 $anchor.setAttribute('href', d.file);
                 $anchor.click();
             },
-                function (err) {
-                    console.log(err);
-                });
+            function (err) {
+                console.log(err);
+            });
         }
     }
 })();
