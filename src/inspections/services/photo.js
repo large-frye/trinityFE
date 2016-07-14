@@ -12,7 +12,7 @@
         ////////////////
 
         function api() { 
-            var endpoint = env.getEndpoint() + '/:type/:route/:action/:workorderId/:parentCategory/:parentId/:subParentId/:labelName';
+            var endpoint = env.getEndpoint() + '/:type/:route/:action/:workorderId/:parentCategory/:parentId/:subParentId/:labelName/:id';
             return $resource(endpoint, {}, {
                 getPhotos: {
                     method: 'GET',

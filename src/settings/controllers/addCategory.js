@@ -23,7 +23,9 @@
         }
 
         function getParents() {
-            CategoryService.api().getParentCategories(function (data) {
+            CategoryService.api().getParentCategories({
+                id: -1
+            }, function (data) {
                 vm.parents = data.categories;
             }, function (err) {
                 $log.log(err);

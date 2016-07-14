@@ -267,6 +267,9 @@ img.disabled-selected:hover {
 .modal-dialog.modal-large {
     width: 80% !important;
 }
+.modal-dialog.modal-md {
+    width: 60% !important;
+}
 
 .modal-reorder .modal-body ul {
     list-style: none;
@@ -290,6 +293,10 @@ select.form-control {
 .category-choice li {
     margin: 5px 0;
     text-align: center;
+}
+
+.modal-reorder .category-choice li {
+    text-align: left;
 }
 
 .category-choice li input[type="radio"] {
@@ -409,6 +416,10 @@ td.resource-display-order div {
 
 input[type=text].form-control.sm-padding.centered {
     padding: 1px 0;
+}
+
+.full-width {
+    width: 100%;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

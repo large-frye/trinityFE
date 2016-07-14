@@ -1,5 +1,5 @@
 <div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-large modal-reorder">
+    <div class="modal-dialog modal-md modal-reorder">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" aria-label="Close" ng-click="vm.close()"><span aria-hidden="true">&times;</span></button>
@@ -8,15 +8,15 @@
             <div class="modal-body">
                 <div class="alert alert-info">To start reordering, please click a parent category.</div>
                 <ul class="category-choice" ng-if="!vm.category1">
-                    <li ng-repeat="category in vm.parentCategories">
+                    <li ng-repeat="category in vm.parentCategories" ng-if="category.photo_count > 0">
                         <button type="button" class="btn btn-default" ng-click="vm.getSubCategories(category.id, true);vm.parentId=category.id;vm.subParentId=null">
                             {{category.name}}
                         </button>
                         <ul ng-show="vm.children[category.id]" id="parent-{{category.name | lowercase | replace:' ':'-'}}">
-                            <li ng-repeat="child in vm.children[category.id].categories" class="clear">
+                            <li ng-repeat="child in vm.children[category.id].categories" class="clear" ng-if="child.photo_count > 0">
                                 <button class="btn btn-default" ng-click="vm.getLabels(child.id, true);vm.subParentId=child.id;vm.photos=[]">{{child.name}}</button>
                                 <ul ng-show="vm.labels[child.id]">
-                                    <li ng-repeat="label in vm.labels[child.id].categories" ng-class="{'clear': !vm.photos['label.id'], 'pull-left clear': vm.photos[label.id]}">
+                                    <li ng-repeat="label in vm.labels[child.id].categories" ng-if="label.photo_count > 0" ng-class="{'clear full-width': !vm.photos['label.id'], 'pull-left clear full-width': vm.photos[label.id]}">
                                         <button class="btn btn-default" ng-click="vm.getPhotos(label.id, label.name);selectedLabel=label;clicked=!clicked">{{label.name}}</button>
                                         <photo-sort clicked="clicked" photos="vm.photos" label="selectedLabel" parent-id="vm.parentId" sub-parent-id="vm.subParentId" />
                                     </li>

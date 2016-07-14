@@ -342,7 +342,9 @@
                     var user = UserFactory.user.get();
                     hideSidebar();
 
-                    PhotoService.api().getParentCategories(function (data) {
+                    PhotoService.api().getParentCategories({
+                        id: -1
+                    }, function (data) {
                         defer.resolve(data);
                     }, function (err) {
                         $log.error(err);

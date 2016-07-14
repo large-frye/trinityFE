@@ -74,16 +74,19 @@
         }
 
         function getParentCategories() {
-            return PhotoService.api().getParentCategories(function (data) {
+            return PhotoService.api().getParentCategories({
+                id: vm.workorder_id
+            }, function (data) {
                 vm.parentCategories = data.categories;
             }, function (err) {
                 $log.log(err);
             });
         }
 
-        function getSubCategories(id, ref) {
+        function getSubCategories(id, ref, forceNoWorker) {
             return PhotoService.api().getSubCategories({
-                parentCategory: id
+                parentCategory: id,
+                id: vm.workorder_id
             }, function (data) {
                 if (ref) {
                     return data.categories;
@@ -341,6 +344,7 @@
         function reorderModal() {
             var scope = $rootScope.$new();
             scope.parentCategories = getParentCategories();
+            scope.workorderId = vm.workorder_id;
 
             var reorderModal = reorderModal || $modal({
                 scope: scope,

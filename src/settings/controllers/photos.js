@@ -30,7 +30,8 @@
         function getSubCategories(id, type, ref) {
             vm.categoryType = 'Category ' + type;
             return PhotoService.api().getSubCategories({
-                parentCategory: id
+                parentCategory: id,
+                id: -1
             }, function (data) {
                 if (ref) {
                     return data.categories;
@@ -124,7 +125,9 @@
         }
         
         function getCategories() {
-            return PhotoService.api().getParentCategories(function(data) {
+            return PhotoService.api().getParentCategories({
+                id: -1
+            }, function(data) {
                 vm.settings = data;
             }, function(err) {
                 $log.error(err);

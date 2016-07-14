@@ -1,5 +1,5 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
     angular
         .module('trinity.shared.controllers.modals.photoModalReorder', [])
@@ -14,7 +14,7 @@
         vm.save = save;
         vm.getPhotos = getPhotos;
         vm.photos = vm.photos || [];
-        
+
         vm.close = close;
 
         activate();
@@ -22,19 +22,29 @@
         ////////////////
 
         function activate() {
-            // parentCategories.$promise.then(function(data) {
-            //     vm.parentCategories = data.categories;
-            // });
+            if (!vm.parentCategories) {
+                getParentCategories();
+            }
+        }
+
+        function getParentCategories() {
+            return PhotoService.api().getParentCategories({
+                id: $scope.workorderId
+            }, function (data) {
+                vm.parentCategories = data.categories;
+            }, function (err) {
+                $log.error(err);
+            });
         }
 
         function getSubCategories(id, ref) {
             vm.children = [];
-            vm.children[id] = methods.subCategories(id, ref); 
+            vm.children[id] = methods.subCategories(id, ref);
         }
 
         function getLabels(id, ref) {
             vm.labels = [];
-            vm.labels[id] = methods.subCategories(id, ref); 
+            vm.labels[id] = methods.subCategories(id, ref, -1);
         }
 
         function getPhotos(labelId, labelName) {
@@ -43,11 +53,11 @@
                 parentId: vm.parentId,
                 subParentId: vm.subParentId,
                 labelName: labelName
-            }, function(data) {
+            }, function (data) {
                 if (!vm.photos[labelId]) {
                     vm.photos[labelId] = data.photos;
                 }
-            }, function(err) {
+            }, function (err) {
                 $log.log(err);
             });
         }
@@ -59,10 +69,10 @@
         function save() {
             PhotoService.api().save({
                 photos: vm.photos
-            }, function(data) {
+            }, function (data) {
                 $scope.$hide();
                 callbackPhotos();
-            }, function(err) {
+            }, function (err) {
                 $log.error(err);
             });
         }
