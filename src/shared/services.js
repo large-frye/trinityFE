@@ -394,7 +394,7 @@
                 getEndpoint: function() {
                     if (location.href.match(/localhost/) !== null) {
                         // return 'http://52.2.169.5';
-                        return 'http://api.trinity.dev';
+                        return 'http://api.trinity.dev/api';
                     }
                     return 'http://52.2.169.5/api';
                 }
