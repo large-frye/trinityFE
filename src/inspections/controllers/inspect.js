@@ -98,7 +98,6 @@
 					});
 
 				} else {
-					console.log($scope);
 					// Hide the side bar
 					angular.element('.content-wrapper').addClass('no-margin-left');
 				}
