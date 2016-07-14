@@ -70,6 +70,7 @@
         // Inspection Modules
         'trinity.inspections.services.workorderLogger',
         'trinty.inspections.directives.workorderLog', // TODO: mispelled
+        'trinity.inspections.directives.deleteNotes',
         'trinity.inspections.directives.showLog',
         'trinity.inspections.services.photo'
     ])

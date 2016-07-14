@@ -36,6 +36,17 @@
                         action: 'save'
                     },
                     withCredentials: true
+                },
+                deleteNotes: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        action: 'delete'
+                    },
+                    withCredentials: true
                 }
             });
         }

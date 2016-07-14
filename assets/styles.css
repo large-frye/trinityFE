@@ -317,6 +317,10 @@ select.form-control {
     list-style: none;
 }
 
+.scroll-box li {
+    outline: none;
+}
+
 .scroll-box li:before {
     content: '-'
 }
