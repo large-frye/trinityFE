@@ -60,6 +60,9 @@
             <div class="scroll-box form-control sm-margin-top">
                 <ul>
                     <li ng-if="!vm.workorderFiles">There are no files assosciated with this work order.</li>
+                    <li ng-repeat="workorderFile in vm.workorderFiles">
+                        <a ng-href="{{workorderFile.file_url}}" target="_blank">{{workorderFile.name}}</a>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -211,11 +211,11 @@
 					<label class="col-sm-4 control-label">Auto Upgrade</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.auto_upgrade" ng-value="true" />
+						<input type="radio" ng-model="inspection.auto_upgrade" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.auto_upgrade" ng-value="false" />
+						<input type="radio" ng-model="inspection.auto_upgrade" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -229,11 +229,11 @@
 					<label class="col-sm-4 control-label">Adjuster Present</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.adjuster_present" ng-value="true" />
+						<input type="radio" ng-model="inspection.adjuster_present" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.adjuster_present" ng-value="false" />
+						<input type="radio" ng-model="inspection.adjuster_present" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -247,11 +247,11 @@
 					<label class="col-sm-4 control-label">Is this a Reinspection?</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.is_reinspection" ng-value="true" />
+						<input type="radio" ng-model="inspection.is_reinspection" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.is_reinspection" ng-value="false" />
+						<input type="radio" ng-model="inspection.is_reinspection" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -265,11 +265,11 @@
 					<label class="col-sm-4 control-label">Reinspection of Trinity?</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.trinity_reinspection" ng-value="true" />
+						<input type="radio" ng-model="inspection.trinity_reinspection" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.trinity_reinspection" ng-value="false" />
+						<input type="radio" ng-model="inspection.trinity_reinspection" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -283,11 +283,11 @@
 					<label class="col-sm-4 control-label">Install Tarp If Needed?</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.has_tarp" ng-value="true" />
+						<input type="radio" ng-model="inspection.has_tarp" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.has_tarp" ng-value="false" />
+						<input type="radio" ng-model="inspection.has_tarp" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -302,11 +302,11 @@
 					<label class="col-sm-4 control-label">Scope Interior?</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.scope_interior" ng-value="true" />
+						<input type="radio" ng-model="inspection.scope_interior" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.scope_interior" ng-value="false" />
+						<input type="radio" ng-model="inspection.scope_interior" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -320,11 +320,11 @@
 					<label class="col-sm-4 control-label">Estimate/Scope Requested</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.estimate_requested" ng-value="true" />
+						<input type="radio" ng-model="inspection.estimate_requested" ng-value="'yes'" />
 						Yes
 					</label>
 						<label class="radio-inline">
-						<input type="radio" ng-model="inspection.estimate_requested" ng-value="false" />
+						<input type="radio" ng-model="inspection.estimate_requested" ng-value="'no'" />
 						No
 					</label>
 						<label class="radio-inline">
@@ -431,7 +431,7 @@
 			</div>
 
 			<!-- Workorder log -->
-			<workorder-log ng-if="!newInspection " workorder="inspection "></workorder-log>
+			<workorder-log ng-if="!newInspection " workorder="inspection"></workorder-log>
 
 			<hr/>
 

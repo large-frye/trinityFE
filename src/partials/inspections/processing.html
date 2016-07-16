@@ -15,24 +15,24 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="col-sm-3 no-set-width control-label">Policy #</label>
-							<div class="col-sm-9 processing-content">{{vm.inspection.policy_num}}</div>
+							<label class="col-sm-3 no-set-width control-label">First Name:</label>
+							<div class="col-sm-8">{{vm.inspection.first_name}}</div>
 						</div>
 					</div>
 
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="col-sm-4 no-set-width control-label">Date received</label>
-							<div class="col-sm-8 processing-content">
-								{{vm.inspection.created_at}}
+							<label class="col-sm-4 no-set-width control-label">Phone 1:</label>
+							<div class="col-sm-8">
+								{{vm.inspection.phone_1}}
 							</div>
 						</div>
 					</div>
 
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="col-sm-3 no-set-width control-label">Claim #</label>
-							<div class="col-sm-9 processing-content">{{vm.inspection.claim_num}}</div>
+							<label class="col-sm-3 no-set-width control-label">WO #:</label>
+							<div class="col-sm-8">{{vm.inspection.id}}</div>
 						</div>
 					</div>
 				</div>
@@ -40,32 +40,81 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="col-sm-4 no-set-width control-label">Insured Name</label>
-							<div class="col-sm-8 processing-content">{{vm.inspection.first_name}} {{vm.inspection.last_name}}</div>
+							<label class="col-sm-4 no-set-width control-label">Last Name:</label>
+							<div class="col-sm-8">{{vm.inspection.last_name}}</div>
 						</div>
 					</div>
 
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="col-sm-4 no-set-width control-label">Phone Number</label>
-							<div class="col-sm-7 processing-content">{{vm.inspection.phone_1}}</div>
+							<label class="col-sm-4 no-set-width control-label">Phone 2:</label>
+							<div class="col-sm-7">{{vm.inspection.phone_2}}</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Claim #:</label>
+							<div class="col-sm-8">
+								{{vm.inspection.claim_num}}
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-sm-4">
 						<div class="form-group">
-							<label class="col-sm-4 no-set-width control-label">Insured Address</label>
-							<div class="col-sm-8 processing-content">{{vm.inspection.address}} {{vm.inspection.city}}, {{vm.inspection.state}} {{vm.inspection.zip}}
+							<label class="col-sm-4 no-set-width control-label">Street Address:</label>
+							<div class="col-sm-8">{{vm.inspection.address}}</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Phone 3:</label>
+							<div class="col-sm-7">{{vm.inspection.phone_3}}</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Policy #:</label>
+							<div class="col-sm-8">
+								{{vm.inspection.policy_num}}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">City, State, Zip</label>
+							<div class="col-sm-8">{{vm.inspection.city}}, {{vm.inspection.state}}, {{vm.inspection.zip}}</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">Email:</label>
+							<div class="col-sm-7">{{vm.inspection.email}}</div>
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="col-sm-4 no-set-width control-label">DOL:</label>
+							<div class="col-sm-8">
+								<strong>DOL</strong>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-2 no-set-width control-label">Insured Special Instructions</label>
-					<div class="col-sm-8 processing-content">
+					<label class="col-sm-2 no-set-width control-label">Insructions From Insured:</label>
+					<div class="col-sm-8">
 						<p>
 							{{vm.inspection.special_instructions_insured}}
 						</p>
@@ -74,70 +123,167 @@
 			</div>
 
 			<!-- adjutser -->
-			<div class="processing-gray margin-top">
+			<div class="processing-gray margin-top col-sm-8">
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-set-width">Adjuster Name</label>
-							<div class="col-sm-9 processing-content">{{vm.inspection.adjuster.name}}</div>
+							<label class="col-sm-4 control-label no-set-width">Client Name:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.name}}</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-set-width">Insurance Company</label>
-							<div class="col-sm-8 processing-content">{{vm.inspection.adjuster.profile.insurance_company}}</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label class="col-sm-2 control-label no-set-width">Adjuster Phone</label>
-							<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.profile.phone}}</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label class="col-sm-2 control-label no-set-width">Adjuster Email</label>
-							<div class="col-sm-10 processing-content">{{vm.inspection.adjuster.email}}</div>
+							<label class="col-sm-4 control-label no-set-width">Requested Date:</label>
+							<div class="col-sm-7">{{vm.inspection.requested_date_of_inspection | date: 'shortDate'}}</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-set-width">Requested Inspection Type</label>
-							<div class="col-sm-7 processing-content">{{vm.inspection.inspection_val}}</div>
+							<label class="col-sm-4 control-label no-set-width">Company:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.insurance_company}}</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-set-width">Auto Upgrade</label>
-							<div class="col-sm-9 processing-content">{{vm.auto_upgrade}}</div>
+							<label class="col-sm-4 control-label no-set-width">Requested Time:</label>
+							<div class="col-sm-7">{{vm.inspection.requested_date_of_inspection | date: 'hh:mm a'}}</div>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-set-width">Requested Date</label>
-							<div class="col-sm-9 processing-content">{{vm.inspection.requested_date_of_inspection | date: 'shortDate'}}</div>
+							<label class="col-sm-4 control-label no-set-width">Phone 1:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.phone}}</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-set-width">Requested Time</label>
-							<div class="col-sm-9 processing-content">{{vm.inspection.requested_date_of_inspection | date: 'hh:mm a'}}</div>
+							<label class="col-sm-4 control-label no-set-width">Inspection Type:</label>
+							<div class="col-sm-7">{{vm.inspection.inspection_val}}</div>
 						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Phone 2:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.phone_1}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Auto Upgrade:</label>
+							<div class="col-sm-7">{{vm.auto_upgrade | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Phone 3:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.phone_2}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Adjuster Present:</label>
+							<div class="col-sm-7">{{vm.inspection.adjuster_present | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Email:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.email}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Reinspection:</label>
+							<div class="col-sm-7">{{vm.inspection.is_reinspection | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Billing Contact:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.billing_contact}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Reinspection of Trinity:</label>
+							<div class="col-sm-6">{{vm.inspection.trinity_reinspection | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Billing Company:</label>
+							<div class="col-sm-7">{{vm.inspection.adjuster.profile.insurance_company}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Tarp Currently In Place:</label>
+							<div class="col-sm-6">{{vm.inspection.has_tarp | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Billing Phone:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.billing_phone}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Install Tarp If Needed:</label>
+							<div class="col-sm-7">{{vm.inspection.install_tarp | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Billing Email:</label>
+							<div class="col-sm-8">{{vm.inspection.adjuster.profile.billing_email}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Scope Interior:</label>
+							<div class="col-sm-7">{{vm.inspection.scope_interior | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Date Received:</label>
+							<div class="col-sm-8">{{vm.inspection.date_received | date: 'shortDate'}}</div>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="col-sm-4 control-label no-set-width">Estimate/Scope Needed:</label>
+							<div class="col-sm-6">{{vm.inspection.estimate_requested | ucFirst}}</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label class="col-sm-2 control-label no-set-width">Adjuster Special Instructions:</label>
-							<div class="col-sm-8 processing-content">
+							<div class="col-sm-8">
 								<p>
 									{{vm.inspection.special_instructions_adjuster}}
 								</p>
@@ -146,6 +292,40 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="col-sm-4 margin-top">
+				<div class="col-sm-12 processing-gray" style="margin-left:15px">
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-set-width">Field Inspector:</label>
+						<div class="col-sm-7">{{vm.inspector.profile.first_name}} {{vm.inspector.profile.last_name}}</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-set-width">Inspector Phone:</label>
+						<div class="col-sm-7">{{vm.inspector.profile.phone}}</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-set-width">Inspector Email:</label>
+						<div class="col-sm-7">{{vm.inspector.email}}</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-set-width">Inspector Location:</label>
+						<div class="col-sm-7">{{vm.inspector.profile.state}}</div>
+					</div>
+
+					<button type="button" class="btn btn-default" ng-click="vm.lockWorkorder()">Lock/Unlock Inspector Billing</button>
+
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-set-width">Inspection Outcome:</label>
+						<div class="col-sm-7">{{vm.inspectionOutcomeToString}}</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-4 control-label no-set-width">Reason Appointment Cancelled/Rescheduled:</label>
+						<div class="col-sm-7">{{vm.inspectionOutcomeToString}}</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="clear"></div>
 			<!--<div class="box-group" id="accordion">
 				<div class="panel box">
 					<div class="box-header">
@@ -163,73 +343,75 @@
 			<hr style="margin: 10px 0" />
 
 			<h4>Processing Information</h4>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Progress Status</label>
-						<div class="col-sm-8">
-							<select ng-model="vm.status" class="form-control" ng-options="status.name for status in vm.statuses" ng-change="vm.setStatus(vm.status)">
-							</select>
-						</div>
+
+			<div class="col-sm-3 row">
+				<div class="form-group">
+					<label class="col-sm-6 row control-label">Progress Status</label>
+					<div class="col-sm-7">
+						<select ng-model="vm.status" class="form-control" ng-options="status.name for status in vm.statuses" ng-change="vm.setStatus(vm.status)">
+						</select>
 					</div>
 				</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Date of last contact</label>
-						<div class="col-sm-8">
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<date-picker date="vm.inspection.date_of_last_contact" />
+				<div class="form-group">
+					<label class="col-sm-6 row control-label" style="margin-left:0">Date of inspection</label>
+					<div class="col-sm-6">
+						<div class="input-group date">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
 							</div>
+							<date-picker date="vm.inspection.date_of_inspection" />
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Date of inspection</label>
-						<div class="col-sm-8">
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<date-picker date="vm.inspection.date_of_inspection" />
+				<div class="form-group">
+					<label class="col-sm-6 row control-label" style="margin-left:0">Time of inspection</label>
+					<div class="col-sm-6">
+						<div class="input-group bootstrap-timepicker timepicker">
+							<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
+							<time-picker date="vm.inspection.date_of_inspection" time="vm.time" />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-6 row control-label">Inspector</label>
+					<div class="col-sm-7">
+						<select ng-model="vm.inspector" class="form-control" ng-options="inspector.name for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-6 row control-label">Xactware ID#</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="vm.inspection.xactware_id">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-6 row control-label">Date Invoiced</label>
+					<div class="col-sm-6">
+						<div class="input-group date">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
 							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Time of inspection</label>
-						<div class="col-sm-8">
-							<div class="input-group bootstrap-timepicker timepicker">
-								<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
-								<time-picker date="vm.inspection.date_of_inspection" time="vm.time" />
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Inspector</label>
-						<div class="col-sm-8">
-							<select ng-model="vm.inspector" class="form-control" ng-options="inspector.name for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
-							</select>
+							<date-picker date="vm.inspection.date_invoiced" />
 						</div>
 					</div>
 				</div>
 
-				<div class="col-sm-6">
-					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Date Cancelled</label>
+				<div class="form-group">
+					<label class="col-sm-6 row control-label">QB Invoice #</label>
+					<div class="col-sm-6">
+						<input type="text" class="form-control" ng-model="vm.inspection.qb_invoice_id">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-6 row control-label">Date Cancelled</label>
+					<div class="col-sm-6">
 						<div class="input-group date">
 							<div class="input-group-addon">
 								<i class="fa fa-calendar"></i>
@@ -240,11 +422,141 @@
 				</div>
 			</div>
 
+			<div class="col-sm-3 row">
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.emailed_adjuster_receipt_of_request" ng-true-value="1" ng-false-value="0"
+						/>
+					</div>
+					<label class="col-sm-10">Emailed Adjuster Receipt of Request</label>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.address_confirmed_with_insured_adjuster" ng-true-value="1" ng-false-value="0"
+						/>
+					</div>
+					<label class="col-sm-10">Address Confirmed with Insured/Adjuster</label>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.confirmed_address_on_google_maps" ng-true-value="1" ng-false-value="0" />
+					</div>
+					<label class="col-sm-10">Confirmed Address on Google Maps</label>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.confirmed_date_and_time_of_inspection_with_adjuster" ng-true-value="1" ng-false-value="0"
+						/>
+					</div>
+					<label class="col-sm-10">Confirmed Date and Time of Inspection With Adjuster</label>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.appointment_added_to_calendar" ng-true-value="1" ng-false-value="0" />
+					</div>
+					<label class="col-sm-10">Appointment Added to Calendar</label>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.inspection_completed" ng-true-value="1" ng-false-value="0" />
+					</div>
+					<label class="col-sm-10">Inspection Completed</label>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.report_sent_out" ng-true-value="1" ng-false-value="0" />
+					</div>
+					<label class="col-sm-10">Report Sent Out (when required)</label>
+				</div>
+			</div>
+
+			<div class="col-sm-3 row">
+				<h5>Alacrity Only</h4>
+				<div class="col-sm-12 row">
+					<div class="form-group">
+						<div class="col-sm-7 row">
+							<div class="input-group date">
+								<div class="input-group-addon">
+									<i class="fa fa-calendar"></i>
+								</div>
+								<date-picker date="vm.inspection.due_date" />
+							</div>
+						</div>
+						<label class="col-sm-4 row control-label margin-xs-left">Due Date</label>
+					</div>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="checkbox" ng-model="vm.inspection.uploaded_el_and_nct" ng-true-value="1" ng-false-value="0" />
+						</div>
+						<label class="col-sm-10 margin-xs-left row">Uploaded EL & NCT</label>
+					</div>
+				</div>
+				<div class="col-sm-12 row">
+					<div class="form-group">
+						<div class="col-sm-1">
+							<input type="checkbox" ng-model="vm.inspection.completed_xactanalysis" ng-true-value="1" ng-false-value="0" />
+						</div>
+						<label class="col-sm-10 margin-xs-left row">Uploaded Xactanalysis</label>
+					</div>
+				</div>
+
+				<div class="col-sm-12 row">
+					<!--<button type="button" class="btn btn-default sm-padding" ng-click="toggleCalendarPopup" data-toggle="popover"
+					title="Popover Title" data-content="mycontent">Calendar Details</button>-->
+					<button type="button" class="btn btn-default" data-placement="bottom" data-animation="am-flip-x" 
+					bs-popover="vm.calendarDetails">Calendar Details</button>
+
+				</div>
+
+			</div>
+
+			<div class="col-sm-2 row">
+				<div class="col-sm-12">
+					<h4>Upload Docs</h4>
+				</div>
+				
+				<button type="button" ng-click="vm.upload('sketch')" class="btn btn-default processing-btn-upload">Sketch</button>
+				<button type="button" ng-click="vm.upload('nctAlacrity')" class="btn btn-default processing-btn-upload">NCT/Alacrity</button>
+				<button type="button" ng-click="vm.upload('report')" class="btn btn-default processing-btn-upload">Report</button>
+				<button type="button" ng-click="vm.upload('previousReport')" class="btn btn-default processing-btn-upload">Previous Report</button>
+				<button type="button" ng-click="vm.upload('other')" class="btn btn-default processing-btn-upload">Other Document</button>
+			</div>
+
+			<div class="col-sm-2">
+				<div class="col-sm-12 centered">
+					<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Alert!</button>
+					<div class="sm-margin-top">
+						<p>Remove Alert Status</p>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.inspection.alert_admin" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert Admin</label>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert Office</label>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.inspection.alert_to_inspector" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert to Inspector</label>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.inspection.alert_from_inspector" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert from Inspector</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Hidden input for file -->
+			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
+
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="form-group">
-						<label class="col-sm-2 no-set-width control-label">Special Instructions to Inspector</label>
-						<div class="col-sm-9">
+						<label class="col-sm-2 control-label">Special Instructions to Inspector</label>
+						<div class="col-sm-10">
 							<textarea class="form-control" ng-model="vm.inspection.special_instructions_to_inspector">
 							</textarea>
 						</div>
@@ -253,7 +565,7 @@
 			</div>
 
 			<!-- workorder -->
-			<workorder-log workorder="vm.inspection"></workorder-log>
+			<workorder-log workorder="vm.inspection" reload-notes="vm.reloadNotes"></workorder-log>
 
 			<hr />
 			<button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>

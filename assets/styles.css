@@ -18,8 +18,14 @@ body {
     margin-top: 20px;
 }
 
-.layout-top-nav .wrapper .content-wrapper, .layout-top-nav .right-side, .layout-top-nav .main-footer {
-    margin-left: 230px;
+.layout-top-nav .wrapper .content-wrapper, 
+.layout-top-nav .right-side, 
+.layout-top-nav .main-footer {
+    margin-left: 220px !important;
+}
+
+.main-sidebar {
+    width: 220px !important;
 }
 
 .content-wrapper.no-margin-left {
@@ -86,7 +92,7 @@ body {
 .processing-form .processing-gray {
     background-color: #f2f2f2;
     border: 1px solid #ddd;
-    padding: .5em 1em;
+    padding: .5em .5em;
 }
 
 .processing-content {
@@ -196,7 +202,7 @@ input[type=phone].form-control,
 }
 
 .inspection-form .form-group {
-    margin: .3em 0;
+    margin: .3em -15px;
 }
 
 .inspection-form .billing-input input.form-control {
@@ -420,6 +426,29 @@ input[type=text].form-control.sm-padding.centered {
 
 .full-width {
     width: 100%;
+}
+
+.side-processing-box {
+    margin-left: 10px;
+    float: left;
+    width: 32.5%;
+}
+
+.processing-form .processing-gray .form-group div {
+    margin-top: 2px;
+}
+
+.margin-xs-left {
+    margin-left: 5px;
+}
+
+.processing-btn-upload {
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.alert-modal-list {
+    list-style: none;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

@@ -5,7 +5,7 @@
         .module('trinty.inspections.directives.workorderLog', [])
         .directive('workorderLog', WorkorderLog);
 
-    WorkorderLog.$inject = ['WorkorderNoteService', 'UserFactory', 'WorkorderLoggerService', 'alert'];
+    WorkorderLog.$inject = ['WorkorderNoteService', 'UserFactory', 'WorkorderLoggerService', 'alert', 'FileService', '$log'];
     function WorkorderLog() {
         // Usage:
         //
@@ -18,7 +18,8 @@
             link: link,
             restrict: 'E',
             scope: {
-                workorder: '='
+                workorder: '=',
+                reloadNotes: '='
             },
             templateUrl: 'src/partials/inspections/workorder-log.html'
         };
@@ -27,7 +28,7 @@
         function link(scope, element, attrs) { /* noop */ }
     }
     /* @ngInject */
-    function WorkorderLogCtrl (WorkorderNoteService, UserFactory, WorkorderLoggerService, alert) {
+    function WorkorderLogCtrl ($scope, WorkorderNoteService, UserFactory, WorkorderLoggerService, alert, FileService, $log) {
         var vm = this;
         vm.getNotes = getNotes;
         vm.saveNote = saveNote;
@@ -37,6 +38,7 @@
 
         function activate() {
             getNotes();
+            getWorkorderFiles();
         }
 
         activate();
@@ -110,5 +112,22 @@
                 console.error(err);
             });
         }
+
+        function getWorkorderFiles() {
+			return FileService.api().getFiles({
+				id: vm.workorder.id
+			}, function(data) {
+                $log.log(data);
+				vm.workorderFiles = data.workorderFiles;
+			}, function(err) {
+				$log.error(err);
+			});
+		}
+
+        $scope.$watch('vm.reloadNotes', function(prev, next) {
+            getNotes();
+            getWorkorderFiles();
+            vm.reloadNotes = false;
+        }, []);
     }
 })();

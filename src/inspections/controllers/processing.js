@@ -7,9 +7,9 @@
 		.controller('adminProcessingCtrl', AdminProcessingController);
 
 	AdminProcessingController.$inject = ['shared', '$routeParams', 'InspectionService',
-		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM'];
+		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM', 'INSPECTION_OUTCOMES', '$rootScope', '$modal', 'FileService'];
 	function AdminProcessingController(shared, $routeParams, InspectionService, UserService,
-		inspection, $log, alert, UserFactory, FORM) {
+		inspection, $log, alert, UserFactory, FORM, INSPECTION_OUTCOMES, $rootScope, $modal, FileService) {
 		var vm = this;
 		vm.options = shared.getInspectionSideBar($routeParams.id);
 		vm.inspection = inspection.order;
@@ -21,6 +21,11 @@
 		vm.setStatus = setStatus;
 		vm.setInspector = setInspector;
 		vm.save = save;
+		vm.calendarDetails = 'Test';
+		vm.uploadFile = uploadFile;
+		vm.upload = upload;
+		vm.showAlertModal = showAlertModal;
+		vm.lockWorkorder = lockWorkorder;
 
 		activate();
 
@@ -30,6 +35,7 @@
 			getInspectors();
 			getStatuses();
 			setDates();
+			getInspectionType();
 		}
 
 		function getStatuses() {
@@ -63,6 +69,8 @@
 			var inspection = angular.copy(vm.inspection);
 			inspection.date_of_last_contact = new Date(inspection.date_of_last_contact).getTime();
 			inspection.date_cancelled = new Date(inspection.date_cancelled).getTime();
+			inspection.date_invoiced = new Date(inspection.date_invoiced).getTime();
+			inspection.due_date = new Date(inspection.due_date).getTime();
 			inspection.status_id = vm.status.id;
 
 			// Add updated by for Logger service
@@ -115,6 +123,101 @@
 
 		function setLastContact() {
 			vm.inspection.date_of_last_contact = vm.inspection.date_of_last_contact || new Date();
+		}
+
+		function getInspectionType() {
+			for (var key in INSPECTION_OUTCOMES) {
+				var outcome = INSPECTION_OUTCOMES[key];
+				if (outcome === vm.inspection.inspection_outcome)
+					vm.inspectionOutcomeToString = getInspectionOutcomeName(key);
+			}
+		}
+
+		function getInspectionOutcomeName(key) {
+			var ret = key
+				.replace(/_/g, ' ')
+				.replace('WITH', 'w/')
+				.toLowerCase();
+
+			for (var i = 0; i < ret.length; i++) {
+				var char = ret[i];
+
+				if (i === 0)
+					ret = ret.substring(0, 1).toUpperCase() + ret.substring(1, ret.length);
+
+				if (char === ' ')
+					ret = ret.substring(0, i) + char + ret.substr(i + 1, 1).toUpperCase() + ret.substring(i + 2);
+					
+			}
+
+			return ret;
+		}
+
+		function uploadFile() {
+			var $file = angular.element('input[type="file"]');
+            var fileChooser = $file[0];
+            var files = fileChooser.files;
+            var formData = new FormData();
+            var inc = 0;
+			var user =  UserFactory.user.get();
+
+            for (var key in files) {
+                if (files.hasOwnProperty(key)) {
+                    formData.append('file_' + inc, files[key]);
+                }
+                inc++;
+            }
+
+            formData.append('workorderId', vm.inspection.id);
+			formData.append('username', user.profile.first_name + ' ' + user.profile.last_name);
+			formData.append('uploadType', vm.uploadType);
+            
+            vm.loading = true;
+            FileService.api().upload(formData).$promise.then(function(data) {
+                vm.loading = false;
+				vm.reloadNotes = true;
+				$file.replaceWith($file.val('').clone(true));
+            }, function (err) {
+				$file.replaceWith($file.val('').clone(true));
+                $log.log(err);
+            }); 
+		}
+
+		function upload(uploadType) {
+			vm.uploadType = uploadType;
+            var $file = angular.element('input[type="file"]');
+            $file.click();
+		}
+
+		function showAlertModal() {
+            var scope = $rootScope.$new();
+
+            var modal = modal || $modal({
+                scope: scope,
+                templateUrl: 'src/partials/modals/alerts/alert.html',
+                controller: 'alertModalCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    callbackAlertCompleted: function() {
+                        return function(data) {
+                            vm.inspection = data.workorder;
+							vm.reloadNotes = true;
+                        };
+                    }
+                },
+                show: false
+            });
+            modal.$promise.then(modal.show);
+        }
+
+		function lockWorkorder() {
+			return InspectionService.lockWorkorder({
+				id: vm.inspection.id
+			}, function(data) {
+				vm.inspection = data.workorder;
+			}, function(err) {
+				$log.log(err);
+			});
 		}
 	}
 })();

@@ -80,6 +80,18 @@
                         action: 'types'
                     },
                     withCredentials: true
+                },
+                lockWorkorder: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'workorder',
+                        action: 'inspector-lock'
+                    },
+                    withCredentials: true
                 }
             });
         }])

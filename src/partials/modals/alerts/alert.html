@@ -1,0 +1,40 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" ng-click="vm.close()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Alert!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info" ng-if="!vm.category1">
+                    Choose alerts below.
+                </div>
+
+                <form name="alertAddForm" class="form form-horizontal">
+                    <div class="form-group">
+                        <ul class="alert-modal-list">
+                            <li ng-repeat="alert in vm.alerts" class="clear">
+                                <div class="col-sm-1">
+                                    <input type="checkbox" ng-model="vm.alert.alerts[alert.key]" ng-true-value="1" ng-false-value="0" />
+                                </div>
+                                <label class="col-sm-10">
+                                    {{alert.display}}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group sm-margin-top clear">
+                        <label class="control-label col-sm-2">Alert Text</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control sm-padding" ng-model="vm.alert.text"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" ng-click="vm.save();">Send Alert</button>
+                <button type="button" class="btn btn-default" ng-click="vm.close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,8 +11,7 @@
         'ngAria',
         'mgcrea.ngStrap',
 
-        // Shared
-        'shared',
+        // Routes
         'routes',
     
         // Trinity specific modules
@@ -54,12 +53,15 @@
         'trinity.shared.controllers.modals.photoModal',
         'trinity.shared.controllers.modals.photoModalReorder',
         'trinity.shared.controllers.modals.deleteResource',
+        'trinity.shared.controllers.modals.alertModal',
+        'trinity.shared.services.fileService',
         'trinity.shared.directives.photoSort',
         'trinity.shared.directives.progressBar',
         'trinity.shared.factories.form',
         'trinity.shared.controllers',
         'trinity.shared.directives',
         'trinity.shared.constants',
+        'shared.services',
 
         // Resource Modules
         'trinity.resources.controllers.resource',

@@ -85,5 +85,14 @@
                 }
                 return items;
             };
+        })
+
+        .filter('ucFirst', function() {
+            return function(str) {
+                if (typeof str === 'undefined' || str === null)
+                    return str;
+
+                return str.substring(0, 1).toUpperCase() + str.substring(1, str.length);
+             };
         });
 })();

@@ -37,6 +37,17 @@
                     },
                     withCredentials: true
                 },
+                saveAlertNote: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'shared',
+                        action: 'save'
+                    },
+                    withCredentials: true
+                },
                 deleteNotes: {
                     method: 'POST',
                     headers: {
