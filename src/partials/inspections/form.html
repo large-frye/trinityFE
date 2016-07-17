@@ -228,7 +228,7 @@
 						<div class="col-sm-12 row">
 							<label class="col-sm-2 control-label" style="text-align:left">Instructions From Office:</label>
 							<div class="col-sm-10">
-								{{vm.workorder.instructions_from_office}}
+								{{vm.workorder.special_instructions_to_inspector}}
 							</div>
 						</div>
 					</div>
@@ -281,6 +281,47 @@
 				</div>
 			</div>
 
+			<div class="col-sm-2 centered">
+				<button type="button" class="btn btn-danger" ng-click="lockBilling()">Lock Billing Details</button>
+			</div>
+
+			<div class="col-sm-1 centered">
+				Download Blank Forms:
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('Sketch')">Sketch</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('Alacrity')">Alacrity</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('NCT Form')">NCT Form</button>
+			</div>
+
+			<div class="col-sm-2 centered">
+				Upload Forms:
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('Sketch')">Sketch</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('Alacrity')">NCT/Alacrity</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('NCT Form')">Other Document</button>
+			</div>
+
+			<!-- Hidden input for file -->
+			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
+
+			<div class="col-sm-2 row">
+				<div class="col-sm-12 centered">
+					<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Alert!</button>
+					<div class="sm-margin-top">
+						<p>Remove Alert Status</p>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.inspection.alert_to_inspector" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert to Inspector</label>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.inspection.alert_from_inspector" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert from Inspector</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="clear margin-bottom"></div>
+
+            <!-- Rescheduled / Cancelled -->
 			<div class="row" ng-if="[1, 2, 3, 4].indexOf(vm.workorder.inspection_outcome) != -1">
 				<div class="col-sm-12">
 					<div class="form-group">
@@ -293,21 +334,13 @@
 				</div>
 			</div>
 
-			<div class="col-sm-2 centered">
-				<button type="button" class="btn btn-danger" ng-click="lockBilling()">Lock Billing Details</button>
-			</div>
-
-			<div class="col-sm-1 centered">
-				Download Blank Forms:
-				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="downloadFile('Sketch')">Sketch</button>
-				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="downloadFile('Alacrity')">Alacrity</button>
-				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="downloadFile('NCT Form')">NCT Form</button>
-			</div>
-
 			<alacrity-form form="vm.form" outcome-type="vm.workorder.inspection_outcome"></alacrity-form>
 			<basic-form form="vm.form" outcome-type="vm.workorder.inspection_outcome"></basic-form>
 
-			<div class="clearfix"></div>
+			<div class="clear margin-top"></div>
+
+			<!-- workorder log -->
+			<workorder-log ng-if="vm.workorder" workorder="vm.workorder" reload-notes="vm.reloadNotes"></workorder-log>
 
 			<hr />
 			<button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>

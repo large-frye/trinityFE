@@ -347,7 +347,7 @@
 			<div class="col-sm-3 row">
 				<div class="form-group">
 					<label class="col-sm-6 row control-label">Progress Status</label>
-					<div class="col-sm-7">
+					<div class="col-sm-6">
 						<select ng-model="vm.status" class="form-control" ng-options="status.name for status in vm.statuses" ng-change="vm.setStatus(vm.status)">
 						</select>
 					</div>
@@ -377,7 +377,7 @@
 
 				<div class="form-group">
 					<label class="col-sm-6 row control-label">Inspector</label>
-					<div class="col-sm-7">
+					<div class="col-sm-6">
 						<select ng-model="vm.inspector" class="form-control" ng-options="inspector.name for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
 						</select>
 					</div>
@@ -524,7 +524,7 @@
 				<button type="button" ng-click="vm.upload('other')" class="btn btn-default processing-btn-upload">Other Document</button>
 			</div>
 
-			<div class="col-sm-2">
+			<div class="col-sm-2 row">
 				<div class="col-sm-12 centered">
 					<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Alert!</button>
 					<div class="sm-margin-top">
@@ -564,7 +564,7 @@
 				</div>
 			</div>
 
-			<!-- workorder -->
+			<!-- workorder log -->
 			<workorder-log workorder="vm.inspection" reload-notes="vm.reloadNotes"></workorder-log>
 
 			<hr />

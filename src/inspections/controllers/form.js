@@ -1,6 +1,6 @@
 /* global angular */
 
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -8,14 +8,14 @@
         .controller('adminInspectionCtrl', AdminInspectionController);
 
     AdminInspectionController.$inject = ['InspectionService', 'InspectionFactory', 'FormService', '$log', 'STATUSES', 'form', '$rootScope', '$modal',
-    '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory'];
-    
+        '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory', 'FileService'];
+
     function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal
-    , $routeParams, shared, alert, FORM, UserFactory) {
+        , $routeParams, shared, alert, FORM, UserFactory, FileService) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.listRoofConditions = InspectionFactory.roofConditions;
-        
+
         // functions
         vm.setBillingTypes = setBillingTypes;
         vm.getStatus = getStatus;
@@ -27,22 +27,23 @@
         vm.showModal = showModal;
         vm.uploadFile = uploadFile;
         vm.showBillingModal = showBillingModal;
-        
+        vm.showAlertModal = showAlertModal;
+
         activate();
 
         ////////////////
 
-        function activate() { 
-            getWorkorder(function() {
+        function activate() {
+            getWorkorder(function () {
                 getInspectionOutcomes();
-                setForm();    
+                setForm();
             });
         }
-        
+
         function getWorkorder(cb) {
             return InspectionService.get(({
                 id: $routeParams.id
-            }), function(data) {
+            }), function (data) {
                 data.order.date_received = new Date(parseInt(data.order.date_received));
                 data.order.date_of_inspection = new Date(parseInt(data.order.date_of_inspection));
                 data.order.date_of_loss = new Date(parseInt(data.order.date_of_loss));
@@ -51,62 +52,62 @@
                 vm.workorderStatus = getStatus();
                 vm.auto_upgrade = vm.workorder.auto_upgrade ? 'Yes' : 'No';
                 if (cb) cb();
-            }, function(err) {
+            }, function (err) {
                 $log.error(err);
             });
         }
-        
+
         function getInspectionOutcomes() {
-            return InspectionService.inspectionOutcomes(function(data) {
+            return InspectionService.inspectionOutcomes(function (data) {
                 vm.outcomes = data;
                 vm.inspectionOutcome = setInspectionOutcome();
                 setBillingTypes();
-            }, function(err) {
+            }, function (err) {
                 $log.error(err);
             });
         }
-        
+
         function setBillingTypes() {
             vm.inspectionOutcome = setInspectionOutcome();
             vm.harnessCharge = setHarnessCharge();
             vm.tarpCharge = setTarpCharge();
         }
-        
+
         function setInspectionOutcome() {
-            return vm.outcomes.outcomes.filter(function(item) {
+            return vm.outcomes.outcomes.filter(function (item) {
                 return item.id === vm.workorder.inspection_outcome;
             })[0];
         }
-        
+
         function setHarnessCharge() {
-            return vm.outcomes.harnessCharges.filter(function(item) {
+            return vm.outcomes.harnessCharges.filter(function (item) {
                 if (vm.form.harness_charge) {
                     return item.amount === parseInt(vm.form.harness_charge, 10);
                 }
             })[0];
         }
-        
+
         function setTarpCharge() {
-            return vm.outcomes.tarpCharges.filter(function(item) {
+            return vm.outcomes.tarpCharges.filter(function (item) {
                 if (vm.form.tarp_charge) {
                     return item.amount === parseInt(vm.form.tarp_charge, 10);
                 }
             })[0];
         }
-        
+
         function getStatus() {
-            return STATUSES.filter(function(item) {
+            return STATUSES.filter(function (item) {
                 return item.id && vm.workorder.status_id === item.id;
             })[0];
         }
-        
+
         function setForm() {
             if (form.inspection) {
                 vm.form = {};
                 var inspectionItems = form.inspection;
-                inspectionItems.forEach(function(item) {
+                inspectionItems.forEach(function (item) {
                     vm.form[item.key] = item.value;
-                    
+
                     if (item.key.match(/array/) !== null) {
                         vm.form[item.key] = item.value.split(',');
                     }
@@ -119,7 +120,7 @@
                 vm.form = form;
             }
         }
-        
+
         function addCondition(condition, add) {
             vm.form.roof_conditions = vm.form.roof_conditions || [];
             if (add) {
@@ -129,28 +130,28 @@
                 vm.form.roof_conditions.splice(index, 1);
             }
         }
-        
+
         function conditionExists(condition) { return vm.form.roof_conditions.indexOf(condition) !== -1; }
-        
+
         function save() {
             var form = angular.copy(vm.form);
             form.workorder_id = vm.workorder.id;
-            
-            for(var key in form) {
+
+            for (var key in form) {
                 var item = form[key];
                 if (typeof item === 'object' && item.length) {
                     // Convert array to list
                     form[key] = item.toString();
                 }
             }
-            
-            FormService.save(form).$promise.then(function(data) {
+
+            FormService.save(form).$promise.then(function (data) {
                 saveWorkorder();
-            }, function(err) {
+            }, function (err) {
                 $log.log(err);
             });
         }
-        
+
         function initUpload($event, type) {
             if (!vm.form[type]) {
                 vm.upload(type);
@@ -159,20 +160,50 @@
             }
             $event.preventDefault();
         }
-        
+
         function upload(type, cb) {
             var $file = angular.element('input[type="file"]');
-            vm.fileType = type;
+			vm.uploadType = type;
             $file.click();
             if (cb) cb();
         }
-        
+
+        function uploadFile() {
+            var $file = angular.element('input[type="file"]');
+            var fileChooser = $file[0];
+            var files = fileChooser.files;
+            var formData = new FormData();
+            var inc = 0;
+			var user =  UserFactory.user.get();
+
+            for (var key in files) {
+                if (files.hasOwnProperty(key)) {
+                    formData.append('file_' + inc, files[key]);
+                }
+                inc++;
+            }
+
+            formData.append('workorderId', vm.workorder.id);
+			formData.append('username', user.profile.first_name + ' ' + user.profile.last_name);
+			formData.append('uploadType', vm.uploadType);
+            
+            vm.loading = true;
+            FileService.api().upload(formData).$promise.then(function(data) {
+                vm.loading = false;
+				vm.reloadNotes = true;
+				$file.replaceWith($file.val('').clone(true));
+            }, function (err) {
+				$file.replaceWith($file.val('').clone(true));
+                $log.log(err);
+            }); 
+        }
+
         function showModal(type) {
             var scope = $rootScope.$new();
             scope.url = vm.form[type];
             scope.name = type;
-            scope.upload = function(type) {
-                vm.upload(type, function() {
+            scope.upload = function (type) {
+                vm.upload(type, function () {
                     modal.hide();
                 });
             };
@@ -184,65 +215,73 @@
             });
             modal.$promise.then(modal.show);
         }
-        
-        function uploadFile() {
-            var $file = angular.element('input[type=file]');
-            var fileChooser = $file[0];
-            var file = fileChooser.files[0];
-            var formData = new FormData();
 
-            formData.append('file', file);
-            formData.append('workorder_id', vm.workorder.id);
-            formData.append('key', vm.fileType);
-
-            FormService.upload(formData).$promise.then(function(data) {
-                vm.form[vm.fileType] = data.url;
-            }, function(err) {
-                $log.log(err);
-            });
-        }
-        
         function showBillingModal() {
-            
+
             var mv = $rootScope.$new();
             mv.lockBilling = lockBilling;
             mv.workorder = vm.workorder;
-            
+
             var modal = modal || $modal({
                 scope: mv,
                 templateUrl: 'src/partials/modals/billing-locked-confirm.html',
                 show: false
             });
-            
+
             modal.$promise.then(modal.show);
         }
-        
+
         function lockBilling(workorder) {
             if (workorder.billing_locked === 1) {
                 workorder.billing_locked = 0;
             } else {
                 vm.workorder.billing_locked = 1;
             }
-            
+
             saveWorkorder();
         }
-        
+
         function saveWorkorder() {
             var workorderCopy = angular.copy(vm.workorder);
             // Added for logger service
             workorderCopy.updated_by = UserFactory.user.get().id;
             workorderCopy.date_of_inspection = new Date(workorderCopy.date_of_inspection).getTime();
             delete workorderCopy.inspection_val;
-            
-            return InspectionService.create(workorderCopy).$promise.then(function(data) {
+
+            return InspectionService.create(workorderCopy).$promise.then(function (data) {
                 vm.alerts = alert.add({
                     title: 'Saved',
                     content: 'Saved',
                     type: 'success'
                 }, FORM.SAVE_LENGTH);
-            }, function(err) {
+            }, function (err) {
                 $log.error(err);
             });
+        }
+
+        function showAlertModal() {
+            var scope = $rootScope.$new();
+            scope.alerts = ['alert_to_inspector', 'alert_from_inspector'];
+
+            var modal = $modal({
+                scope: scope,
+                templateUrl: 'src/partials/modals/alerts/alert.html',
+                controller: 'alertModalCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    callbackAlertCompleted: function() {
+                        return function(data) {
+                            vm.inspection = data.workorder;
+							vm.reloadNotes = true;
+                        };
+                    },
+                    scope: function() {
+                        return scope;
+                    }
+                },
+                show: false
+            });
+            modal.$promise.then(modal.show);
         }
     }
 })();

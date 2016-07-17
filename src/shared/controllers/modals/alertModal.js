@@ -5,10 +5,11 @@
         .module('trinity.shared.controllers.modals.alertModal', [])
         .controller('alertModalCtrl', AlertModalController);
 
-    AlertModalController.$inject = ['callbackAlertCompleted', 'WorkorderNoteService', '$log', '$routeParams', 'UserFactory', '$scope'];
-    function AlertModalController(callbackAlertCompleted, WorkorderNoteService, $log, $routeParams, UserFactory, $scope) {
+    AlertModalController.$inject = ['callbackAlertCompleted', 'WorkorderNoteService', '$log', '$routeParams', 'UserFactory', '$scope', 'scope'];
+    function AlertModalController(callbackAlertCompleted, WorkorderNoteService, $log, $routeParams, UserFactory, $scope, scope) {
         var vm = this;
         var user = UserFactory.user.get();
+
         vm.alerts = [{
             key: 'alert_admin',
             display: 'Alert Admin'
@@ -22,6 +23,13 @@
             key: 'alert_from_inspector',
             display: 'Alert From Inspector'
         }];
+
+        if (scope.alerts) {
+            vm.alerts = vm.alerts.filter(function(item) {
+                return scope.alerts.indexOf(item.key) != -1; 
+            });
+        }
+
         vm.save = save;
         vm.alert = {
             workorderId: $routeParams.id,
