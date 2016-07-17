@@ -117,7 +117,6 @@
 			return FileService.api().getFiles({
 				id: vm.workorder.id
 			}, function(data) {
-                $log.log(data);
 				vm.workorderFiles = data.workorderFiles;
 			}, function(err) {
 				$log.error(err);

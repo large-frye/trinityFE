@@ -95,7 +95,7 @@
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label class="col-sm-3 control-label no-set-width">Inspection Type:</label>
-								<div class="col-sm-8">{{vm.workorder.adjuster.profile.insurance_company}}</div>
+								<div class="col-sm-8">{{vm.workorder.inspection_type | inpsectionType }}</div>
 							</div>
 						</div>
 					</div>
@@ -282,7 +282,7 @@
 			</div>
 
 			<div class="col-sm-2 centered">
-				<button type="button" class="btn btn-danger" ng-click="lockBilling()">Lock Billing Details</button>
+				<button type="button" class="btn btn-danger" ng-click="vm.showBillingModal()">Lock Billing Details</button>
 			</div>
 
 			<div class="col-sm-1 centered">
@@ -308,11 +308,11 @@
 					<div class="sm-margin-top">
 						<p>Remove Alert Status</p>
 						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.inspection.alert_to_inspector" ng-true-value="1" ng-false-value="0"/>
+							<input type="checkbox" ng-model="vm.workorder.alert_to_inspector" ng-true-value="1" ng-false-value="0"/>
 						</div>
 						<label class="col-sm-9">Alert to Inspector</label>
 						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.inspection.alert_from_inspector" ng-true-value="1" ng-false-value="0"/>
+							<input type="checkbox" ng-model="vm.workorder.alert_from_inspector" ng-true-value="1" ng-false-value="0"/>
 						</div>
 						<label class="col-sm-9">Alert from Inspector</label>
 					</div>

@@ -169,6 +169,7 @@
             }
 
             formData.append('workorderId', vm.inspection.id);
+			formData.append('files3Name', vm.uploadType.toLowerCase() + '_' + vm.inspection.claim_num + '_' + vm.inspection.last_name);
 			formData.append('username', user.profile.first_name + ' ' + user.profile.last_name);
 			formData.append('uploadType', vm.uploadType);
             

@@ -28,6 +28,19 @@
             };
         })
 
+        .filter('inpsectionType', function() {
+            return function(type) {
+                switch(type) {
+                    case 0: 
+                        return 'Ladder Assist w/ Report';
+                    case 1:
+                        return 'Expert Inspection';
+                    case 5: 
+                        return 'Ladder Assist';
+                }
+            };
+        })
+
         .filter('showMeta', function () {
             return function (array, search) {
                 if (typeof array !== 'undefined') {
