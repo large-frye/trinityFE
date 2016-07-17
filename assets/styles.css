@@ -451,6 +451,10 @@ input[type=text].form-control.sm-padding.centered {
     list-style: none;
 }
 
+.processing-gray .form-group {
+    margin: 0em -15px !important;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;
