@@ -21,11 +21,11 @@ body {
 .layout-top-nav .wrapper .content-wrapper, 
 .layout-top-nav .right-side, 
 .layout-top-nav .main-footer {
-    margin-left: 220px !important;
+    margin-left: 220px;
 }
 
 .main-sidebar {
-    width: 220px !important;
+    width: 220px;
 }
 
 .content-wrapper.no-margin-left {
@@ -453,6 +453,10 @@ input[type=text].form-control.sm-padding.centered {
 
 .processing-gray .form-group {
     margin: 0em -15px !important;
+}
+
+.no-sidebar {
+     margin-left: 0 !important;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

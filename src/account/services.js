@@ -57,6 +57,30 @@
                         sub: 'workorder'
                     },
                     isArray: true
+                },
+                updateProfile: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        action: 'shared',
+                        sub: 'profile',
+                        id: 'save'
+                    },
+                    withCredentials: true
+                },
+                updatePassword: {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        action: 'shared',
+                        sub: 'password',
+                        id: 'save'
+                    },
+                    withCredentials: true
                 }
             });
         }])

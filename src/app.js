@@ -74,7 +74,10 @@
         'trinty.inspections.directives.workorderLog', // TODO: mispelled
         'trinity.inspections.directives.deleteNotes',
         'trinity.inspections.directives.showLog',
-        'trinity.inspections.services.photo'
+        'trinity.inspections.services.photo',
+
+        // Profile
+        'trinity.account.controllers.profile'
     ])
 
         .config(function ($modalProvider) {

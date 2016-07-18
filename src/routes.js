@@ -242,12 +242,14 @@
                             }]
                     }
                 };
+
                 var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', ResourceResolve]};
                 var training = {
                     content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingResolve]},
                     videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingVideoResolve]},
                     officeVideos: { officeVideoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]}
                 };
+                var profile = { userData: ['$q', '$route', '$routeParams', 'UserFactory', '$log', ProfileResolve] };
 
                 function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log, $location) {
                     var defer = $q.defer();
@@ -431,6 +433,14 @@
                     return defer.promise;
                 }
 
+                function ProfileResolve($q, $route , $routeParams, UserFactory, $log) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    hideSidebar();
+                    defer.resolve(user);
+                    return defer.promise;
+                }
+
                 $routeProvider
                     .when('/admin', {
                         templateUrl: '/src/partials/account/admin.html',
@@ -572,6 +582,14 @@
                         resolve: training.officeVideos
                     })
 
+                    // Account
+                    .when('/account/profile', {
+                        templateUrl: '/src/partials/account/profile.html',
+                        controller: 'profileCtrl',
+                        controllerAs: 'vm',
+                        resolve: profile
+                    })
+
                     // Authentication
 
                     .when('/sign-in', {
@@ -606,8 +624,8 @@
                                     $location.path('/sign-in');
                                     UserFactory.user.clear();
                                     localStorage.removeItem('user');
+                                    $rootScope.$broadcast('LOGOUT');
                                 }
-                                $rootScope.$broadcast('LOGOUT');
 
                                 return $q.reject(rejection);
                             }
@@ -617,10 +635,7 @@
     );
 
     function hideSidebar() {
-        angular.element('.content-wrapper').css({
-            'margin-left': '0',
-            'transition': 'none'
-        });
+        angular.element('.content-wrapper').addClass('no-sidebar');
     }
 
     function showSidebar() {
