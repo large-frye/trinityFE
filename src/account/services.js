@@ -81,6 +81,40 @@
                         id: 'save'
                     },
                     withCredentials: true
+                },
+                users: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        action: 'admin',
+                        sub: 'users'
+                    },
+                    withCredentials: true
+                },
+                user: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        action: 'admin',
+                        sub: 'user'
+                    },
+                    withCredentials: true
+                },
+                deleteUser: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        action: 'admin',
+                        sub: 'users',
+                        id: 'delete'
+                    },
+                    withCredentials: true
                 }
             });
         }])

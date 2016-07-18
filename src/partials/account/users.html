@@ -1,0 +1,24 @@
+<div class="box">
+    <div class="box-header">Users</div>
+    <div class="box-body">
+        <a ng-href="/#/admin/users/edit/new" class="btn btn-success margin-bottom">Create User</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody class="centered">
+                <tr ng-repeat="user in vm.users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.email}}</td>
+                    <td><a ng-href="/#/admin/users/edit/{{user.id}}"><i class="fa fa-edit"></i></a></td>
+                    <td><a ng-href="#" ng-click="vm.deleteUser($event, user.id);"><i class="fa fa-trash-o"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

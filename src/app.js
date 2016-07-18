@@ -54,6 +54,7 @@
         'trinity.shared.controllers.modals.photoModalReorder',
         'trinity.shared.controllers.modals.deleteResource',
         'trinity.shared.controllers.modals.alertModal',
+        'trinity.shared.controllers.modals.userDeleteModal',
         'trinity.shared.services.fileService',
         'trinity.shared.directives.photoSort',
         'trinity.shared.directives.progressBar',
@@ -76,8 +77,11 @@
         'trinity.inspections.directives.showLog',
         'trinity.inspections.services.photo',
 
-        // Profile
-        'trinity.account.controllers.profile'
+        // Account
+        'trinity.account.controllers.profile',
+        'trinity.account.controllers.users',
+        'trinity.account.controller.users.edit'
+        
     ])
 
         .config(function ($modalProvider) {

@@ -48,10 +48,6 @@
                                 link: '/#/' + this.user.appRole + '/maps',
                                 icon: 'fa-map'
                             }, */ {
-                                parent: 'Tasks',
-                                link: '/#/' + this.user.appRole + '/tasks',
-                                icon: 'fa-tasks'
-                            }, {
                                 parent: 'Resources',
                                 children: [{
                                     name: 'Resources', link: '/#/' + this.user.appRole + '/resources'
@@ -67,20 +63,29 @@
                                 ],
                                 link: '/#/' + this.user.appRole + '/resources',
                                 icon: 'fa-folder-o'
-                            }, {
-                                parent: 'Contacts',
-                                children: [{
-                                    name: 'Admins', link: '/#/' + this.user.appRole + '/contacts/admins'
-                                }, {
-                                    name: 'Office Users', link: '/#/' + this.user.appRole + '/contacts/office-users'
-                                }],
-                                link: '/#/' + this.user.appRole + '/contacts',
-                                icon: 'fa-folder-o'
-                            }, {
+                            }, 
+                            // {
+                            //     parent: 'Contacts',
+                            //     children: [{
+                            //         name: 'Admins', link: '/#/' + this.user.appRole + '/contacts/admins'
+                            //     }, {
+                            //         name: 'Office Users', link: '/#/' + this.user.appRole + '/contacts/office-users'
+                            //     }],
+                            //     link: '/#/' + this.user.appRole + '/contacts',
+                            //     icon: 'fa-folder-o'
+                            // }
+                            // , 
+                            {
                                 parent: 'Settings',
                                 children: [{
                                     name: 'Photos', link: '/#/admin/settings/photos'
+                                }, {
+                                    name: 'Users', link: '/#/admin/users'
                                 }]
+                            }, {
+                                parent: 'Tasks',
+                                link: '/#/' + this.user.appRole + '/tasks',
+                                icon: 'fa-tasks'
                             }],
                             inspector: [{
                                 parent: 'Inspections',

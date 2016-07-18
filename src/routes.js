@@ -133,12 +133,12 @@
                             return deferred.promise;
                         }]
                 };
-                var billing = {billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve]};
-                var generate = {generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve]};
-                var photo = {photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', '$location', PhotosResolve]};
-                var invoice = {invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve]};
+                var billing = { billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve] };
+                var generate = { generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve] };
+                var photo = { photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', '$location', PhotosResolve] };
+                var invoice = { invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve] };
                 var settings = {
-                    photos: {settingsData: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve]}
+                    photos: { settingsData: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', PhotoSettingsResolve] }
                 };
                 var inspector = {
                     home: {
@@ -163,7 +163,7 @@
                                     deferred.resolve(d);
                                 }, function (e) {
                                     console.log(e);
-                                    deferred.reject({error: 'data failed to load'});
+                                    deferred.reject({ error: 'data failed to load' });
                                 });
 
                                 return deferred.promise;
@@ -243,13 +243,15 @@
                     }
                 };
 
-                var resources = {resourceData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', ResourceResolve]};
+                var resources = { resourceData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', ResourceResolve] };
                 var training = {
-                    content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingResolve]},
-                    videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingVideoResolve]},
-                    officeVideos: { officeVideoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve]}
+                    content: { contentData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingResolve] },
+                    videos: { videoData: ['$q', '$route', '$routeParams', 'UserFactory', 'ResourceService', '$log', 'RESOURCE_TYPES', TrainingVideoResolve] },
+                    officeVideos: { officeVideoData: ['$q', '$route', '$routeParams', 'UserFactory', TrainingVideoResolve] }
                 };
                 var profile = { userData: ['$q', '$route', '$routeParams', 'UserFactory', '$log', ProfileResolve] };
+                var users = { userData: ['$q', '$route', '$routeParams', 'UserFactory', '$log', 'accountService', UsersResolve] };
+                var userResolve = { user: ['$q', '$route', '$routeParams', 'UserFactory', '$log', 'accountService', UserResolve] };
 
                 function PhotosResolve($q, $route, $routeParams, UserFactory, PhotoService, $log, $location) {
                     var defer = $q.defer();
@@ -372,9 +374,9 @@
 
                     ResourceService.api().getResources({
                         types: types
-                    }, function(data) {
+                    }, function (data) {
                         defer.resolve(data);
-                    }, function(err) {
+                    }, function (err) {
                         $log.error(err);
                     });
 
@@ -398,9 +400,9 @@
 
                     ResourceService.api().getResources({
                         types: types
-                    }, function(data) {
+                    }, function (data) {
                         defer.resolve(data);
-                    }, function(err) {
+                    }, function (err) {
                         $log.error(err);
                     });
 
@@ -418,26 +420,62 @@
                 function TrainingVideoResolve($q, $route, $routeParams, UserFactory, ResourceService, $log, RESOURCE_TYPES) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
-                    hideSidebar();
 
                     var types = [RESOURCE_TYPES.TRAINING_VIDEO];
 
                     ResourceService.api().getResources({
                         types: types
-                    }, function(data) {
+                    }, function (data) {
+                        hideSidebar();
                         defer.resolve(data);
-                    }, function(err) {
+                    }, function (err) {
                         $log.error(err);
                     });
 
                     return defer.promise;
                 }
 
-                function ProfileResolve($q, $route , $routeParams, UserFactory, $log) {
+                function ProfileResolve($q, $route, $routeParams, UserFactory, $log) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
                     hideSidebar();
                     defer.resolve(user);
+                    return defer.promise;
+                }
+
+                function UsersResolve($q, $route, $routeParams, UserFactory, $log, accountService) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+
+                    accountService.users(function (data) {
+                        hideSidebar();
+                        defer.resolve(data);
+                    }, function (err) {
+                        $log.error(err);
+                    });
+
+                    return defer.promise;
+                }
+
+                function UserResolve($q, $route, $routeParams, UserFactory, $log, accountService) {
+                    var defer = $q.defer();
+                    var user = UserFactory.user.get();
+                    var id = $route.current.params.id;
+
+                    if (id === 'new') {
+                        defer.resolve({});
+                        hideSidebar();
+                    } else {
+                        accountService.user({
+                            id: $route.current.params.id
+                        }, function (data) {
+                            hideSidebar();
+                            defer.resolve(data);
+                        }, function (err) {
+                            $log.error(err);
+                        });
+                    }
+
                     return defer.promise;
                 }
 
@@ -581,6 +619,18 @@
                         controllerAs: 'vm',
                         resolve: training.officeVideos
                     })
+                    .when('/admin/users', {
+                        templateUrl: '/src/partials/account/users.html',
+                        controller: 'usersCtrl',
+                        controllerAs: 'vm',
+                        resolve: users
+                    })
+                    .when('/admin/users/edit/:id', {
+                        templateUrl: '/src/partials/account/users/edit.html',
+                        controller: 'usersEditCtrl',
+                        controllerAs: 'vm',
+                        resolve: userResolve
+                    })
 
                     // Account
                     .when('/account/profile', {
@@ -602,7 +652,7 @@
                         controller: 'loginCtrl'
                     })
 
-                    .otherwise({redirectTo: '/admin'});
+                    .otherwise({ redirectTo: '/admin' });
             }]
     );
 
@@ -642,6 +692,7 @@
         var $el = angular.element('.content-wrapper');
         $el.removeClass('margin-left');
         $el.removeClass('no-margin-left');
+        $el.removeClass('no-sidebar');
         $el.css({
             'margin-left': '230px'
         });

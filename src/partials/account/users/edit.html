@@ -7,9 +7,15 @@
 </div>
 
 <div class="box">
-    <div class="box-header">Profile</div>
+    <div class="box-header">User</div>
     <div class="box-body">
-        <form class="form form-horizontal" name="profileForm" ng-submit="vm.updateProfile()">
+        <form class="form form-horizontal" name="profileForm" ng-submit="vm.updateUser()">
+             <div class="form-group">
+                <label for="" class="control-label col-sm-2">User Type</label>
+                <div class="col-sm-10">
+                    <select class="form-control" ng-options="userType.name for userType in vm.userTypes" ng-model="vm.userType" ng-change="vm.user.roles_user[0].role_id=vm.userType.id;"></select>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">First Name</label>
                 <div class="col-sm-10"><input type="text" ng-model="vm.user.profile.first_name" class="form-control sm-padding"></div>
@@ -21,6 +27,12 @@
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">Email</label>
                 <div class="col-sm-10"><input type="text" ng-model="vm.user.email" class="form-control sm-padding"></div>
+            </div>
+            <div class="form-group" ng-if="vm.newUser">
+                <label for="" class="control-label col-sm-2">Password</label>
+                <div class="col-sm-10"><input type="password" ng-model="vm.user.password" class="form-control sm-padding">
+                <p ng-if="vm.user.password">Password: {{vm.user.password}}</p>
+                </div>
             </div>
             <div class="form-group">
                 <label for="" class="control-label col-sm-2">Phone</label>
@@ -58,29 +70,7 @@
                 <label for="" class="control-label col-sm-2">Insurance Company</label>
                 <div class="col-sm-10"><input type="text" ng-model="vm.user.profile.insurance_company" class="form-control sm-padding"></div>
             </div>
-            <button type="submit" class="btn btn-success clear">Update Profile</button>
-        </form>
-    </div>
-</div>
-<div class="box">
-    <div class="box-header">Update Password</div>
-    <div class="box-body">
-        <form name="passwordForm" ng-submit="vm.updatePassword()" class="form form-horizontal">
-            <div class="callout callout-info">
-                Please type your current password and a new password to update.
-            </div>
-            <div class="form-group">
-                <label for="" class="control-label col-sm-2">Current Password</label>
-                <div class="col-sm-10"><input type="password" ng-model="vm.currentPassword" class="form-control sm-padding"></div>
-            </div>
-            <div class="form-group">
-                <label for="" class="control-label col-sm-2">New Password</label>
-                <div class="col-sm-10"><input type="password" ng-model="vm.newPassword" class="form-control sm-padding">
-                <p ng-if="vm.newPassword">New Password: {{vm.newPassword}}</p>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-success clear">Update Password</button>
+            <button type="submit" class="btn btn-success clear">Save</button>
         </form>
     </div>
 </div>
