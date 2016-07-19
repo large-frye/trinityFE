@@ -14,7 +14,28 @@
             getCollateralDamages: getCollateralDamages,
             getMetalDamage: getMetalDamage,
             getHailSize: getHailSize,
-            getStates: getStates
+            getStates: getStates,
+            getPitches: getPitches,
+            getAgeOfRoofs: getAgeOfRoofs,
+            getRoofHeights: getRoofHeights,
+            getLayers: getLayers,
+            getConditions: getConditions,
+            getPreviousRepairsMade: getPreviousRepairsMade,
+            getRoofConditions: getRoofConditions,
+            getTypeOfSiding: getTypeOfSiding,
+            getRoofingTypes: getRoofingTypes,
+            getDirectionalFaces: getDirectionalFaces,
+            getLightning: getLightning,
+            getFallTreeDamages: getFallTreeDamages,
+            getExcessDebrisLocations: getExcessDebrisLocations,
+            getStandingWater: getStandingWater,
+            getAnamolieDropdownChoices: getAnamolieDropdownChoices,
+            getAnamolieDamages: getAnamolieDamages,
+            getImproperNailing: getImproperNailing,
+            getFlashing: getFlashing,
+            getFlashingMissing: getFlashingMissing,
+            getAgedWorn: getAgedWorn,
+            getVenting: getVenting
         };
 
         return service;
@@ -288,6 +309,99 @@
                     'abbreviation': 'WY'
                 }
             ];
+        }
+
+        function getAgeOfRoofs() {
+            return ['Under 5 years', '5-10 years', '10-20 years', 'Over 20 years'];
+        }
+
+        function getRoofHeights() {
+            return ['1 story', '1.5 stories', '2 stories', '2.5 stories', '3 stories', '4 stories (latch entry)', '5 stories (latch entry)'];
+        }
+
+        function getPitches() {
+            var pitches = ['Flat'];
+            for (var i = 1; i < 13; i++)
+                pitches.push(i + '');
+            return pitches;
+        }
+
+        function getLayers() {
+            var layers = ['Flat'];
+            for (var i = 1; i < 4; i++)
+                layers.push(i + '');
+            layers.push('Over 3');
+            return layers;
+        }
+
+        function getRoofingTypes() {
+            return ['Jet', 'Steel', '20-Year 3-Tab', '25-Year 3-Tab', '40-Year 3-Tab', '50-Year 3-Tab', 'Tile', 'T-Lock', 'Wood Shake', '30-Year Laminated', '40-Year Laminated',
+            '50-Year Laminated', 'TPO', 'PVC', 'EPDM', 'Modified Bituminous', 'Built-Up Membrane', 'Fiberglass', 'Slate', 'Rolled', 'Terracotta', 'Others', 'Metal'];
+        }
+
+        function getTypeOfSiding() {
+            return ['Vinyl', 'Brick', 'Stucco', 'Wood Composite', 'Aluminum', 'Cedar Shake', 'Metal Panel'];
+        }
+
+        function getConditions() {
+            return ['Excellent', 'Good', 'Poor', 'Beyond life expectancy', 'Fair'];
+        }
+
+        function getPreviousRepairsMade() {
+            return ['Re-Roofed', 'Tarped', 'Tarred', 'Sheathed', 'Caulked', 'Boarded Up'];
+        }
+
+        function getRoofConditions() {
+            return ['Interior Damage', 'Brittle Test Failure', 'Mechanical Damage', 'High Nailing', 'Nail Extrusions', 'Water Intrusion', 'Vent Pipe Flashing Failure', 'Missing Shingles', 'Lichen Growth', 'Algae Growth',
+            'Spatter Present', 'Blistering', 'Slippage', 'Flashing Breach'];
+        }
+
+        function getDirectionalFaces() {
+            return ['Front', 'Rear', 'Left', 'Right'];
+        }
+
+        function getLightning() {
+            return ['Antenna', 'Sheathing/Framing', 'Flashing', 'Chimney'];
+        }
+
+        function getFallTreeDamages() {
+            return ['Roofing Scratched', 'Flashing', 'Holes in Decking', 'Venting', 'Framing', 'Antenna', 'Fascia', 'A/C Unit', 'Gutters', 'Roofing Damaged or Missing', 'Skylights/Windows'];
+        }
+
+        function getExcessDebrisLocations() {
+            return ['On Decking', 'In Valleys', 'In Drains', 'Around Skylights', 'In Gutters', 'Gabie Ends'];
+        }
+
+        function getStandingWater() {
+            return ['Improper Drainage', 'Roof Pitched Incorrectly', 'Clogged Drains'];
+        }
+
+        function getAnamolieDropdownChoices() {
+            return ['N/A', '10%', '25%', '50%', '100%'];
+        }
+
+        function getAnamolieDamages() {
+            return ['Large Areas of granule release', 'Small areas of granule release', 'Overall widespread areas of early granule release', 'Stress Fractures', 'Craze cracking of asphalt'];
+        }
+
+        function getImproperNailing() {
+            return ['Over Driven', 'Under Driven', 'Over Nailed', 'High Nailing'];
+        }
+
+        function getFlashing() {
+            return ['Flashing Missing', 'Crushed', 'Top Nailed', 'Improper Materials', 'Raised/Loose'];
+        }
+
+        function getFlashingMissing() {
+            return ['Apron', 'Step', 'Valley', 'Chimney'];
+        }
+
+        function getAgedWorn() {
+            return ['Drying', 'Significant Granule Loss', 'Cupping', 'Splitting Wood', 'Shrinkage', 'Delamination', 'Flashing missing', 'Cracking', 'Shading'];
+        }
+
+        function getVenting() {
+            return ['Missing', 'Insufficient'];
         }
 
     }

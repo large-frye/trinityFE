@@ -76,6 +76,7 @@
         'trinity.inspections.directives.deleteNotes',
         'trinity.inspections.directives.showLog',
         'trinity.inspections.services.photo',
+        'trinity.inspections.directives.expertForm',
 
         // Account
         'trinity.account.controllers.profile',

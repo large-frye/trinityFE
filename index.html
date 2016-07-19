@@ -24,13 +24,13 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
     <div class="wrapper">
-        <div ng-controller="navCtrl">
+        <div ng-controller="navCtrl" ng-cloak>
             <navbar user="user" options="options"></navbar>
         </div>
 
         <div class="content-wrapper" style="min-height:1177px">
             <div class="padded">
-                <div ng-view></div>
+                <div ng-view ng-cloak></div>
             </div>
         </div>
     </div>
@@ -103,6 +103,7 @@
 <script type="text/javascript" src="src/inspections/directives/workorderLog.js"></script>
 <script type="text/javascript" src="src/inspections/directives/showLog.js"></script>
 <script type="text/javascript" src="src/inspections/directives/deleteNotes.js"></script>
+<script type="text/javascript" src="src/inspections/directives/expertForm.js"></script>
 
 <!-- User Service -->
 <script type="text/javascript" src="src/user/services.js"></script>

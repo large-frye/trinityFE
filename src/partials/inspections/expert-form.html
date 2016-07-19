@@ -1,0 +1,1165 @@
+<div ng-if="vm.outcomeType===9">
+
+    <div class="box">
+        <div class="box-header">
+            <h4>Expert Inspection Report</h4>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Estimated age of roof:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.estimated_age_of_roof" ng-options="estimatedAgeofRoof for estimatedAgeofRoof in vm.ageOfRoofs"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Roof height:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.roof_height" ng-options="roofHeight for roofHeight in vm.roofHeights"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Pitch 1:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.pitch_1" ng-options="pitch for pitch in vm.pitches"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Pitch 2:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.pitch_2" ng-options="pitch for pitch in vm.pitches"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Pitch 3:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.pitch_3" ng-options="pitch for pitch in vm.pitches"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Layers:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.layers" ng-options="layer for layer in vm.layers"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Type of roofing:</label>
+                <div class="col-sm-10">
+                    <select class="select2-multiple col-sm-10" ng-model="vm.form.roofing_types_array" multiple="multiple" ng-options="roofingType for roofingType in vm.roofingTypes">
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.insured_present=!vm.form.insured_present?'No':vm.form.insured_present">Was insured present?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="insuredPresent" ng-model="vm.form.insured_present" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="insuredPresent" ng-model="vm.form.insured_present" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.insured_stay_for_entire_inspection=!vm.form.insured_stay_for_entire_inspection?'No':vm.form.insured_stay_for_entire_inspection">Did insured stay for entire inspection?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="entireInspection" ng-model="vm.form.insured_stay_for_entire_inspection" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="entireInspection" ng-model="vm.form.insured_stay_for_entire_inspection" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">What was the type of siding?</label>
+                <div class="col-sm-10">
+                    <select class="select2-multiple col-sm-10" ng-model="vm.form.siding_types_array" multiple="multiple" ng-options="sidingType for sidingType in vm.sidingTypes">
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.was_the_roofer_present=!vm.form.was_the_roofer_present?'No':vm.form.was_the_roofer_present">Was the roofer present?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="rooferPresent" ng-model="vm.form.was_the_roofer_present" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="rooferPresent" ng-model="vm.form.was_the_roofer_present" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.did_roofer_stay_for_entire_inspection=!vm.form.did_roofer_stay_for_entire_inspection?'No':vm.form.did_roofer_stay_for_entire_inspection">Did roofer stay for entire inspection?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="rooferStay" ng-model="vm.form.did_roofer_stay_for_entire_inspection" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="rooferStay" ng-model="vm.form.did_roofer_stay_for_entire_inspection" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.was_the_roof_climbed_by_the_roofer=!vm.form.was_the_roof_climbed_by_the_roofer?'No':vm.form.was_the_roof_climbed_by_the_roofer">Was the roof climbed by the roofer?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="roofClimbed" ng-model="vm.form.was_the_roof_climbed_by_the_roofer" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="roofClimbed" ng-model="vm.form.was_the_roof_climbed_by_the_roofer" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.did_the_roofer_agree_with_wind=!vm.form.did_the_roofer_agree_with_wind?'No':vm.form.did_the_roofer_agree_with_wind">Did the roofer agree with wind?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="rooferAgree" ng-model="vm.form.did_the_roofer_agree_with_wind" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="rooferAgree" ng-model="vm.form.did_the_roofer_agree_with_wind" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.did_the_roofer_agree_with_hail_assessment=!vm.form.did_the_roofer_agree_with_hail_assessment?'No':vm.form.did_the_roofer_agree_with_hail_assessment">Did the roofer agree with hail assessment?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="rooferAgreeHail" ng-model="vm.form.did_the_roofer_agree_with_hail_assessment" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="rooferAgreeHail" ng-model="vm.form.did_the_roofer_agree_with_hail_assessment" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.did_the_roofer_refuse_test_squares=!vm.form.did_the_roofer_refuse_test_squares?'No':vm.form.did_the_roofer_refuse_test_squares">Did the roofer refuse test squares?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="rooferRefuse" ng-model="vm.form.did_the_roofer_refuse_test_squares" value="Yes">Yes</label>
+                    <label for="" class="radio-inline"><input type="radio" name="rooferRefuse" ng-model="vm.form.did_the_roofer_refuse_test_squares" value="No">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">Condition:</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.condition" ng-options="condition for condition in vm.conditions"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Previous repairs made:</label>
+                <div class="col-sm-10">
+                    <select class="select2-multiple col-sm-10" ng-model="vm.form.previous_repairs_made_array" multiple="multiple" ng-options="previousRepairMade for previousRepairMade in vm.previousRepairs">
+                </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Roof Conditions:</label>
+                <div class="col-sm-10">
+                    <select class="select2-multiple col-sm-10" ng-model="vm.form.roof_conditions_array" multiple="multiple" ng-options="roofCondition for roofCondition in vm.roofConditions">
+                </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-header">
+            <h4>Cause of Loss</h4>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label" ng-init="vm.form.house_direction=!vm.form.house_direction?'N, S, E, W':vm.form.house_direction">What direction does the house face?</label>
+                <div class="col-sm-10">
+                    <label for="" class="radio-inline"><input type="radio" name="houseDirection" ng-model="vm.form.house_direction" value="N, S, E, W">N, S, E, W</label>
+                    <label for="" class="radio-inline"><input type="radio" name="houseDirection" ng-model="vm.form.house_direction" value="NE, SW, SE, SW">NE, SW, SE, SW</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">What directional face is North?</label>
+                <div class="col-sm-10">
+                    <select name="" id="" class="form-control" ng-model="vm.form.directionalFace" ng-options="face for face in vm.directionalFaces"></select>
+                </div>
+            </div>
+            <div id="wind" class="form-header">
+                <h4>Wind</h4>
+                <!-- damage wind shingles -->
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Shingles Damaged</label>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Front</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_front_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Rear</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.rear.wind_rear_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Left</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_left_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Right</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_right_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- fraud wind input -->
+                <div class="form-group sm-margin-top">
+                    <label class="col-sm-2 control-label">Fraud wind input</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.wind_fraud_input_array" multiple="multiple" ng-options="input for input in vm.windFraudInput">
+                </select>
+                    </div>
+                </div>
+
+                <!-- roof peeled back -->
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.peeledBack = vm.form.wind_roof_peeled_back && vm.form.wind_roof_peeled_back != 'N/A'">Roof Peeled Back</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" ng-model="vm.form.wind_roof_peeled_back" ng-options="peeledBack for peeledBack in vm.windRoofPeeledBack"
+                            ng-change="vm.peeledBack = vm.form.wind_roof_peeled_back && vm.form.wind_roof_peeled_back != 'N/A'"></select>
+                    </div>
+                </div>
+
+                <!-- roof peeled back slope -->
+                <div class="form-group" ng-if="vm.peeledBack">
+                    <label for="" class="col-sm-2 control-label">Roof Peeled Back Slope</label>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Front</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_front_roof_peeled_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Rear</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_rear_roof_peeled_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Left</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_left_roof_peeled_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Right</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.wind_right_roof_peeled_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- comments -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Comments</label>
+                    <div class="col-sm-6">
+                        <textarea ng-model="form.wind_comments" class="col-sm-12 form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div id="hail" class="form-header">
+                <h4>Hail</h4>
+                <div class="form-group">
+
+                    <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Front</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.hail_front_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Rear</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.hail_rear_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Left</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.hail_left_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="col-sm-4 control-label">Right</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="vm.form.hail_right_shingles_damaged" aria-label="Text input with checkbox">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- fraud wind input -->
+                <div class="form-group sm-margin-top">
+                    <label class="col-sm-2 control-label">Fraud hail input</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.hail_fraud_input_array" multiple="multiple" ng-options="input for input in vm.hailInput">
+                </select>
+                    </div>
+                </div>
+
+                <!-- comments -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Comments</label>
+                    <div class="col-sm-6">
+                        <textarea ng-model="vm.form.hail_comments" class="col-sm-12 form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="collateral-damages" class="form-header">
+                <h4>Collateral Damages</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Damages</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.collateral_damages_array" multiple="multiple" ng-options="damage for damage in vm.collateralDamages">
+                </select>
+                    </div>
+                </div>
+                <!-- comments -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Comments</label>
+                    <div class="col-sm-6">
+                        <textarea ng-model="vm.form.collateral_damages_comments" class="col-sm-12 form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div id="metal-damage" class="form-header">
+                <h4>Metal Damage</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Damages</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.metal_damages_array" multiple="multiple" ng-options="damage for damage in vm.metalDamage">
+
+                        </select>
+                    </div>
+                </div>
+
+                <!-- hail size -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Hail Size</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.metal_damage_hail_size" class="col-sm-12 form-control" ng-options="size for size in vm.hailSize"></select>
+                    </div>
+                </div>
+
+                <!-- comments -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Comments</label>
+                    <div class="col-sm-6">
+                        <textarea ng-model="vm.form.metal_damage_comments" class="col-sm-12 form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- lightning -->
+            <div id="lightning" class="form-header">
+                <h4>Lightning</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.lightning_was_there_damage_to_the_roofing=!vm.form.lightning_was_there_damage_to_the_roofing?'No':vm.form.lightning_was_there_damage_to_the_roofing">Was there damage to the roofing?</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="lightningDamage" ng-model="vm.form.lightning_was_there_damage_to_the_roofing" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="lightningDamage" ng-model="vm.form.lightning_was_there_damage_to_the_roofing" value="No">No</label>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.lightning_was_there_damage_to_the_roofing === 'Yes'">
+                    <div class="form-group">
+
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.lightning_front_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.lightning_rear_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.lightning_left_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.lightning_right_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Damages</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.lightning_damages_array" multiple="multiple" ng-options="damage for damage in vm.lightning">
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- vermin -->
+            <div id="vermin" class="form-header">
+                <h4>Vermin</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.vermin_roof_damaged=!vm.form.vermin_roof_damaged?'No':vm.form.vermin_roof_damaged">Was there damage to the roofing?</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="verminDamage" ng-model="vm.form.vermin_roof_damaged" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="verminDamage" ng-model="vm.form.vermin_roof_damaged" value="No">No</label>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.vermin_roof_damaged === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_front_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_rear_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_left_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_right_shingles_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- fascia damage -->
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.vermin_fascia_damaged=!vm.form.vermin_fascia_damaged?'No':vm.form.vermin_fascia_damaged">Was there fascia damage?</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="verminFasciaDamage" ng-model="vm.form.vermin_fascia_damaged" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="verminFasciaDamage" ng-model="vm.form.vermin_fascia_damaged" value="No">No</label>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.vermin_fascia_damaged === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_front_shingles_fascia_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_rear_shingles_fascia_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_left_shingles_fascia_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_right_shingles_fascia_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- vent damage -->
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.vermin_vent_damaged=!vm.form.vermin_vent_damaged?'No':vm.form.vermin_vent_damaged">Was ther vent dammage?</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="verminVentDamage" ng-model="vm.form.vermin_vent_damaged" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="verminVentDamage" ng-model="vm.form.vermin_vent_damaged" value="No">No</label>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.vermin_vent_damaged === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_front_shingles_vent_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_rear_shingles_vent_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_left_shingles_vent_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.vermin_right_shingles_vent_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ice" class="form-header">
+                <h4>Ice</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.ice_damming=!vm.form.ice_damming?'No':vm.form.ice_damming">Ice Damming?</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="iceDamming" ng-model="vm.form.ice_damming" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="iceDamming" ng-model="vm.form.ice_damming" value="No">No</label>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.ice_damming === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_front_damming_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_rear_damming_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_left_damming_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_right_damming_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.fallen_ice=!vm.form.fallen_ice?'No':vm.form.fallen_ice">Fallen Ice?</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="fallenIce" ng-model="vm.form.fallen_ice" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="fallenIce" ng-model="vm.form.fallen_ice" value="No">No</label>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.fallen_ice === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_front_fallen_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_rear_fallen_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_left_fallen_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.ice_right_fallen_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- start fallen tree -->
+            <div id="fallen-tree" class="form-header">
+                <h4>Fallen Tree</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Damages</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.fallen_tree_damages_array" multiple="multiple" ng-options="damage for damage in vm.fallTreeDamages">
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- end fallen tree -->
+
+            <!-- start excess debris -->
+            <div id="excess-debris" class="form-header">
+                <h4>Excess Debris</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Location</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.excess_debris_damages_array" multiple="multiple" ng-options="damage for damage in vm.excessDebrisLocations">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.excess_debris_damages_array.length > 0">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.excess_debris_front_location_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.excess_debris_rear_location_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.excess_debris_left_location_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.excess_debris_right_location_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end excess debris -->
+
+            <!-- start standing-water -->
+            <div id="standing-water" class="form-header">
+                <h4>Standing Water</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Select</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.standing_water_damages_array" multiple="multiple" ng-options="damage for damage in vm.standingWater">
+                            
+                        </select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.standing_water_damages_array.length > 0">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.standing_water_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.standing_water_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.standing_water_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.standing_water_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end standing-water -->
+
+            <!-- start shingle-anomalies -->
+            <div id="shingle-anomalies" class="form-header">
+                <h4>Shingle Anomalies</h4>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Asphalt Coating Defect</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.shingle_anomalies_asphalt_coating_defect" class="col-sm-12 form-control" ng-options="damage for damage in vm.anamolieDropdownChoices"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.shingle_anomalies_asphalt_coating_defect">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.shingle_anomalies_asphalt_coating_defect_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.shingle_anomalies_asphalt_coating_defect_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.shingle_anomalies_asphalt_coating_defect_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.shingle_anomalies_asphalt_coating_defect_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Blistering</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.blistering" class="col-sm-12 form-control" ng-options="damage for damage in vm.anamolieDropdownChoices"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.blistering">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.blistering_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.blistering_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.blistering_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.blistering_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Flaking</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.flaking" class="col-sm-12 form-control" ng-options="damage for damage in vm.anamolieDropdownChoices"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.flaking">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.flaking_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.flaking_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.flaking_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.flaking_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Damages</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.shingle_anomalies_damages_array" multiple="multiple" ng-options="damage for damage in vm.anamolieDamages">
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- end shingle-anomalies -->
+
+            <!-- start workmanship -->
+            <div id="workmanship" class="form-header">
+                <h4>Workmanship / Improper Installation</h4>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Improper Nailing</label>
+                    <div class="col-sm-10">
+                        <select ng-model="vm.form.workmanship_improper_nailing" class="select2-multiple col-sm-12 form-control" multiple="multiple" ng-options="damage for damage in vm.improperNailing"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_improper_nailing">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_nailing_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_nailing_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_nailing_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_nailing_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.workmanship_improper_overlap=!vm.form.workmanship_improper_overlap?'No':vm.form.workmanship_improper_overlap">Improper Overlap</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="workManshipImproperOverlap" ng-model="vm.form.workmanship_improper_overlap" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="workManshipImproperOverlap" ng-model="vm.form.workmanship_improper_overlap" value="No">No</label>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_improper_overlap === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_overlap_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_overlap_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_overlap_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_improper_overlap_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Flashing</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.workmanship_flashing_array" class="col-sm-12 select2-multiple form-control" multiple="multiple" ng-options="damage for damage in vm.flashing"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_flashing_array.length > 0">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Flashing Missing</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.workmanship_flashing_missing_array" class="col-sm-12 select2-multiple form-control" multiple="multiple" ng-options="damage for damage in vm.flashingMissing"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_flashing_missing_array.length > 0">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_missing_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_missing_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_missing_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_flashing_missing_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Venting</label>
+                    <div class="col-sm-6">
+                        <select ng-model="vm.form.workmanship_venting_array" class="col-sm-12 select2-multiple form-control" multiple="multiple" ng-options="damage for damage in vm.venting"></select>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_venting_array.length > 0">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_venting_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_venting_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_venting_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_venting_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.workmanship_incorrect_materials=!vm.form.workmanship_incorrect_materials?'No':vm.form.workmanship_incorrect_materials">Incorrect Materials</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="workManshipIncorrectMaterials" ng-model="vm.form.workmanship_incorrect_materials" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="workManshipIncorrectMaterials" ng-model="vm.form.workmanship_incorrect_materials" value="No">No</label>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_incorrect_materials === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_incorrect_materials_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_incorrect_materials_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_incorrect_materials_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_incorrect_materials_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label" ng-init="vm.form.workmanship_excessive_layers=!vm.form.workmanship_excessive_layers?'No':vm.form.workmanship_excessive_layers">Excessive Layers</label>
+                    <div class="col-sm-10">
+                        <label for="" class="radio-inline"><input type="radio" name="workManshipExcessiveLayers" ng-model="vm.form.workmanship_excessive_layers" value="Yes">Yes</label>
+                        <label for="" class="radio-inline"><input type="radio" name="workManshipExcessiveLayers" ng-model="vm.form.workmanship_excessive_layers" value="No">No</label>
+                    </div>
+                </div>
+                <div ng-if="vm.form.workmanship_excessive_layers === 'Yes'">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_excessive_layers_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_excessive_layers_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_excessive_layers_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.workmanship_excessive_layers_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Comments</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="vm.form.workmanship_comments"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- end workmanship -->
+
+            <!-- start aged-worn -->
+            <div id="aged-worn" class="form-header">
+                <h4>Aged/Worn</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Check all that apply</label>
+                    <div class="col-sm-10">
+                        <select class="select2-multiple col-sm-10" ng-model="vm.form.aged_worn_damages_array" multiple="multiple" ng-options="damage for damage in vm.agedWorn">
+                            
+                        </select>
+                    </div>
+                </div>
+
+                <div ng-if="vm.form.aged_worn_damages_array.length > 0">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">Amount Damaged</label>
+
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Front</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.aged_worn_front_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Rear</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.aged_worn_rear_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Left</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.aged_worn_left_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="col-sm-4 control-label">Right</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="vm.form.aged_worn_right_damaged" aria-label="Text input with checkbox">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end aged-worn -->
+
+            <!-- start fire damages -->
+            <div id="fire-damages" class="form-header">
+                <h4>Fire Damages</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Damages</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="vm.form.fire_damages"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- end fire damages -->
+
+            <!-- start general comments -->
+            <div id="fire-damages" class="form-header">
+                <h4>General</h4>
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Comments</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" ng-model="vm.form.general_comments"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- end general comments -->
+
+        </div>
+    </div>
+</div>
