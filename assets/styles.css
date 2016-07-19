@@ -3,6 +3,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.sans-pro {
+    font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+
 .padded {
     padding: 1em;
 }
@@ -457,6 +461,11 @@ input[type=text].form-control.sm-padding.centered {
 
 .no-sidebar {
      margin-left: 0 !important;
+}
+
+.popover.scroll-y {
+    overflow-y: scroll;
+    height: 400px;
 }
 
 @media (min-width: 810px) and (max-width: 909px) {

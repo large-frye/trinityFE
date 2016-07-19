@@ -1,0 +1,38 @@
+<div class="popover sans-pro scroll-y">
+    <div class="arrow"></div>
+    <div class="popover-title">Calendar Details</div>
+    <div class="popover-content">
+        <p>Inspection Type: {{content.data.inspection_type}}</p>
+        <p>Claim Number: {{content.data.claim_num}}</p>
+        <p>Insured Name: {{content.data.first_name}} {{content.data.last_name}}</p>
+        <p>Insured Phone: {{content.data.phone_1}}</p>
+        <p>Insured Phone: {{content.data.phone_2}}</p>
+        <p>Insured Phone: {{content.data.phone_3}}</p>
+        <p>Insured Street: {{content.data.address}}</p>
+        <p>Insured City: {{content.data.city}}</p>
+        <p>Insured State: {{content.data.state}}</p>
+        <p>Insured Zip: {{content.data.zip}}</p>
+
+        <!-- Client -->
+        <p>Insurance Company: {{content.data.adjuster.profile.insurance_company}}</p>
+        <p>Adjuster Name: {{content.data.adjuster.profile.first_name}} {{content.data.adjuster.profile.last_name}}</p>
+        <p>Adjuster Phone: {{content.data.adjuster.profile.phone}}</p>
+        <p>Adjuster Phone: {{content.data.adjuster.profile.phone_1}}</p>
+        <p>Adjuster Phone: {{content.data.adjsuter.profile.phone_2}}</p>
+
+        <!-- Date -->
+        <p>Date of Inspection: {{content.data.date_of_inspection | date:'YYYY/mm/dd'}}</p>
+        <p>Time of Inspection: {{content.data.date_of_inspection | date:'hh:MM a'}}</p>
+
+        <p>Auto Upgrade: {{content.data.auto_upgrade}}</p>
+        <p>Adjuster Present: {{content.data.adjuster_present}}</p>
+        <p>Reinspection: {{content.data.is_reinspection}}</p>
+        <p>Rein Trinity: {{content.data.has_tarp}}</p>
+        <p>Tarp if Decking is Exposed: {{content.data.install_tarp}}</p>
+        <p>Scope Interior: {{content.data.scope_interior}}</p>
+
+        <p>Instruction from Insured: {{content.data.special_instructions_insured}} </p>
+        <p>Instructions from Adjuster: {{content.data.special_instructions_adjuster}} </p>
+        <p>Instructions from Office: {{content.data.special_instructions_to_inspector}} </p>
+    </div>
+</div>

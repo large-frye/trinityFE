@@ -21,11 +21,12 @@
 		vm.setStatus = setStatus;
 		vm.setInspector = setInspector;
 		vm.save = save;
-		vm.calendarDetails = 'Test';
+		vm.calendarDetails = {};
 		vm.uploadFile = uploadFile;
 		vm.upload = upload;
 		vm.showAlertModal = showAlertModal;
 		vm.lockWorkorder = lockWorkorder;
+		vm.setCalendarDetails = setCalendarDetails;
 
 		activate();
 
@@ -219,6 +220,15 @@
 			}, function(err) {
 				$log.log(err);
 			});
+		}
+
+		function setCalendarDetails() {
+			vm.calendarDetails = {
+				title: 'Calendar Details',
+				content: {
+					data: vm.inspection
+				}
+			};
 		}
 	}
 })();
