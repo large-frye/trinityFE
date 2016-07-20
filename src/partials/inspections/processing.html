@@ -91,7 +91,7 @@
 					<div class="col-sm-4">
 						<div class="form-group">
 							<label class="col-sm-4 no-set-width control-label">City, State, Zip</label>
-							<div class="col-sm-8">{{vm.inspection.city}}, {{vm.inspection.state}}, {{vm.inspection.zip}}</div>
+							<div class="col-sm-8">{{vm.inspection.city}}, {{vm.inspection.state}} {{vm.inspection.zip_code}}</div>
 						</div>
 					</div>
 
@@ -106,7 +106,7 @@
 						<div class="form-group">
 							<label class="col-sm-4 no-set-width control-label">DOL:</label>
 							<div class="col-sm-8">
-								<strong>DOL</strong>
+								<span>{{vm.inspection.date_of_loss | date:YYYY/mm/dd}}</span>
 							</div>
 						</div>
 					</div>
@@ -176,7 +176,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Auto Upgrade:</label>
-							<div class="col-sm-7">{{vm.auto_upgrade | ucFirst}}</div>
+							<div class="col-sm-7">{{vm.inspection.auto_upgrade | ucFirst}}</div>
 						</div>
 					</div>
 				</div>

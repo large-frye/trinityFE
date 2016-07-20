@@ -8,10 +8,10 @@
         .controller('adminInspectionCtrl', AdminInspectionController);
 
     AdminInspectionController.$inject = ['InspectionService', 'InspectionFactory', 'FormService', '$log', 'STATUSES', 'form', '$rootScope', '$modal',
-        '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory', 'FileService'];
+        '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory', 'FileService', '$interval'];
 
     function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal
-        , $routeParams, shared, alert, FORM, UserFactory, FileService) {
+        , $routeParams, shared, alert, FORM, UserFactory, FileService, $interval) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.listRoofConditions = InspectionFactory.roofConditions;
@@ -28,6 +28,7 @@
         vm.uploadFile = uploadFile;
         vm.showBillingModal = showBillingModal;
         vm.showAlertModal = showAlertModal;
+        vm.refreshSelect2 = refreshSelect2;
 
         activate();
 
@@ -112,10 +113,6 @@
                         vm.form[item.key] = item.value.split(',');
                     }
                 });
-
-                if (vm.form.roof_conditions) {
-                    vm.form.roof_conditions = angular.fromJson(vm.form.roof_conditions);
-                }
             } else {
                 vm.form = form;
             }
@@ -163,7 +160,7 @@
 
         function upload(type, cb) {
             var $file = angular.element('input[type="file"]');
-			vm.uploadType = type;
+            vm.uploadType = type;
             $file.click();
             if (cb) cb();
         }
@@ -174,7 +171,7 @@
             var files = fileChooser.files;
             var formData = new FormData();
             var inc = 0;
-			var user =  UserFactory.user.get();
+            var user = UserFactory.user.get();
 
             for (var key in files) {
                 if (files.hasOwnProperty(key)) {
@@ -185,18 +182,18 @@
 
             formData.append('workorderId', vm.workorder.id);
             formData.append('files3Name', vm.uploadType.toLowerCase() + '_' + vm.workorder.claim_num + '_' + vm.workorder.last_name);
-			formData.append('username', user.profile.first_name + ' ' + user.profile.last_name);
-			formData.append('uploadType', vm.uploadType);
-            
+            formData.append('username', user.profile.first_name + ' ' + user.profile.last_name);
+            formData.append('uploadType', vm.uploadType);
+
             vm.loading = true;
-            FileService.api().upload(formData).$promise.then(function(data) {
+            FileService.api().upload(formData).$promise.then(function (data) {
                 vm.loading = false;
-				vm.reloadNotes = true;
-				$file.replaceWith($file.val('').clone(true));
+                vm.reloadNotes = true;
+                $file.replaceWith($file.val('').clone(true));
             }, function (err) {
-				$file.replaceWith($file.val('').clone(true));
+                $file.replaceWith($file.val('').clone(true));
                 $log.log(err);
-            }); 
+            });
         }
 
         function showModal(type) {
@@ -247,6 +244,10 @@
             // Added for logger service
             workorderCopy.updated_by = UserFactory.user.get().id;
             workorderCopy.date_of_inspection = new Date(workorderCopy.date_of_inspection).getTime();
+            workorderCopy.date_received = new Date(workorderCopy.date_received).getTime();
+            workorderCopy.date_of_loss = new Date(workorderCopy.date_of_loss).getTime();
+            // inspection.requested_date_of_inspection = new Date(getDate() + ' ' + $scope.time).getTime();
+
             delete workorderCopy.inspection_val;
 
             return InspectionService.create(workorderCopy).$promise.then(function (data) {
@@ -270,19 +271,29 @@
                 controller: 'alertModalCtrl',
                 controllerAs: 'vm',
                 resolve: {
-                    callbackAlertCompleted: function() {
-                        return function(data) {
+                    callbackAlertCompleted: function () {
+                        return function (data) {
                             vm.inspection = data.workorder;
-							vm.reloadNotes = true;
+                            vm.reloadNotes = true;
                         };
                     },
-                    scope: function() {
+                    scope: function () {
                         return scope;
                     }
                 },
                 show: false
             });
             modal.$promise.then(modal.show);
+        }
+
+        function refreshSelect2() {
+            var interval = $interval(function () {
+                var $select = $('.select2-multiple');
+                if ($select.length > 0) {
+                    $select.select2();
+                    $interval.cancel(interval);
+                }
+            }, 10);
         }
     }
 })();

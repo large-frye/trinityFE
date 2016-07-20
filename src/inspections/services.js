@@ -92,6 +92,17 @@
                         action: 'inspector-lock'
                     },
                     withCredentials: true
+                },
+                generate: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'admin',
+                        route: 'generate'
+                    },
+                    withCredentials: true
                 }
             });
         }])

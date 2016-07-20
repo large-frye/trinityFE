@@ -244,7 +244,7 @@
 					<label class="col-sm-5 control-label">Inspection outcome</label>
 					<div class="col-sm-7">
 						<select class="form-control" ng-options="outcome.name for outcome in vm.outcomes.outcomes" ng-model="vm.inspectionOutcome"
-							ng-change="vm.workorder.inspection_outcome=vm.inspectionOutcome.id;">
+							ng-change="vm.workorder.inspection_outcome=vm.inspectionOutcome.id;vm.refreshSelect2()">
 							<option value="">
 								Select an outcome
 							</option>

@@ -1,5 +1,7 @@
 <sidebar options="vm.options"></sidebar>
 
+<progress-bar loading="vm.loading"></progress-bar>
+
 <div class="alert-fixed">
 	<div ng-repeat="alert in vm.alerts">
 		<div class="alert alert-{{alert.type}}">
@@ -13,7 +15,7 @@
         <h3>Generate Report</h3>
     </div>
     <div class="box-body">
-        
+        <button type="button" class="btn btn-default" ng-click="vm.generateReport()">Generate Report</button>
     </div>
 </div>
 

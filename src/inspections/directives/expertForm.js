@@ -25,7 +25,7 @@
         }
     }
     /* @ngInject */
-    function ControllerController(FormService, $log, formFactory) {
+    function ControllerController(FormService, $log, formFactory, $interval) {
         var vm = this;
         vm.pitches = formFactory.getPitches();
         vm.roofHeights = formFactory.getRoofHeights();
@@ -54,5 +54,23 @@
         vm.flashingMissing = formFactory.getFlashingMissing();
         vm.agedWorn = formFactory.getAgedWorn();
         vm.venting = formFactory.getVenting();
+
+        ///////////
+        
+        activate();
+
+        function activate() {
+            initSelect2();
+        }
+
+        function initSelect2() {
+            var interval = $interval(function () {
+                var $select = $('.select2-multiple');
+                if ($select.length > 0) {
+                    $select.select2();
+                    $interval.cancel(interval);
+                }
+            }, 10);
+        }
     }
 })();

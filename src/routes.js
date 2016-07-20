@@ -134,7 +134,7 @@
                         }]
                 };
                 var billing = { billingData: ['$q', '$route', '$routeParams', 'UserFactory', BillingResolve] };
-                var generate = { generateData: ['$q', '$route', '$routeParams', 'UserFactory', GenerateResolve] };
+                var generate = { generateData: ['$q', '$route', '$routeParams', 'UserFactory', 'InspectionService', GenerateResolve] };
                 var photo = { photos: ['$q', '$route', '$routeParams', 'UserFactory', 'PhotoService', '$log', '$location', PhotosResolve] };
                 var invoice = { invoiceData: ['$q', '$route', '$routeParams', 'UserFactory', InvoiceResolve] };
                 var settings = {
@@ -301,14 +301,21 @@
                  * @param UserFactory
                  * @constructor
                  */
-                function GenerateResolve($q, $route, $routeParams, UserFactory) {
+                function GenerateResolve($q, $route, $routeParams, UserFactory, InspectionService) {
                     var defer = $q.defer();
                     var user = UserFactory.user.get();
+                    var id = $route.current.params.id;
+
                     showSidebar();
 
-                    defer.resolve({
-                        id: $route
+                    InspectionService.generate({
+                        id: id
+                    }, function(data) {
+                        defer.resolve(data);
+                    }, function(err) {
+                        console.error(err);
                     });
+                    
                     return defer.promise;
                 }
 
