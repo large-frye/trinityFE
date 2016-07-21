@@ -29,6 +29,7 @@
             }, function(data) {
                 vm.loading = false;
                 var $a = document.createElement('a');
+                $a.setAttribute('target', '_blank');
                 $a.setAttribute('href', data.pdfUrl);
                 $a.click();
             }, function(err) {
