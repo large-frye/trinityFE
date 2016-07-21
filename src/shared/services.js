@@ -63,7 +63,7 @@
                                 ],
                                 link: '/#/' + this.user.appRole + '/resources',
                                 icon: 'fa-folder-o'
-                            }, 
+                            },
                             // {
                             //     parent: 'Contacts',
                             //     children: [{
@@ -74,7 +74,7 @@
                             //     link: '/#/' + this.user.appRole + '/contacts',
                             //     icon: 'fa-folder-o'
                             // }
-                            // , 
+                            // ,
                             {
                                 parent: 'Settings',
                                 children: [{
@@ -393,7 +393,7 @@
                 }
             };
         }])
-    
+
         .service('env', [ function() {
             return {
                 getEndpoint: function() {
@@ -401,9 +401,9 @@
                         // return 'http://52.2.169.5';
                         return 'http://api.trinity.dev/api';
                     }
-                    return 'http://52.2.169.5/api';
+                    return 'http://52.205.216.249/api';
                 }
-            }
+            };
         }]);
 
 
