@@ -1,1 +1,4 @@
-<div class="alert alert-info" ng-if="vm.loading">Loading...</div>
+<div class="alert alert-info" ng-if="vm.loading">
+    <span ng-if="vm.customMessage">{{vm.customMessage}}</span>
+    <span ng-if="!vm.customMessage">Loading...</div>
+</div>

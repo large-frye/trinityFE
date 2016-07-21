@@ -308,13 +308,7 @@
 
                     showSidebar();
 
-                    InspectionService.generate({
-                        id: id
-                    }, function(data) {
-                        defer.resolve(data);
-                    }, function(err) {
-                        console.error(err);
-                    });
+                    defer.resolve({});
                     
                     return defer.promise;
                 }

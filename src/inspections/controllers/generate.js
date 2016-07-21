@@ -7,11 +7,12 @@
         .module('trinity.controllers.inspections.admin.generate', [])
         .controller('adminInspectionReportGenerateCtrl', GenerateController);
 
-    GenerateController.$inject = ['shared', '$routeParams', 'generateData'];
-    function GenerateController(shared, $routeParams, generateData) {
+    GenerateController.$inject = ['shared', '$routeParams', 'InspectionService'];
+    function GenerateController(shared, $routeParams, InspectionService) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.generateReport = generateReport;
+        vm.loading = false;
         
         activate();
 
@@ -20,9 +21,21 @@
         function activate() { }
 
         function generateReport() {
-            var $a = document.createElement('a');
-            $a.setAttribute('href', generateData.pdfUrl);
-            $a.click();
+            vm.loading = true;
+            vm.loadingMessage = 'Creating report...';
+            
+            InspectionService.generate({
+                id: $routeParams.id
+            }, function(data) {
+                vm.loading = false;
+                var $a = document.createElement('a');
+                $a.setAttribute('href', data.pdfUrl);
+                $a.click();
+            }, function(err) {
+                console.error(err);
+            });
+
+            
         }
     }
 })();

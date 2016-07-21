@@ -18,7 +18,8 @@
             link: link,
             restrict: 'E',
             scope: {
-                loading: '='
+                loading: '=',
+                customMessage: '='
             },
             templateUrl: 'src/partials/shared/progress-bar.html'
         };
