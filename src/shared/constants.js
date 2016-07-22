@@ -24,6 +24,11 @@
         'LADDER_ASSIST': 7,
         'LADDER_ASSIST_WITH_REPORT': 8,
         'EXPERT_INSPECTION': 8
+    })
+    
+    .constant('USER_TYPES', {
+        'ADMIN': 'admin',
+        'INSPECTOR': 'inspector'
     });
     
 })();

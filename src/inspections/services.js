@@ -17,7 +17,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'workorder',
                         action: 'save'
                     },
@@ -29,7 +29,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'workorder'
                     },
                     withCredentials: true
@@ -40,7 +40,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'workorder',
                         action: 'statuses'
                     },
@@ -52,7 +52,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'inspections'
                     },
                     withCredentials: true
@@ -63,7 +63,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'inspections',
                         action: 'outcomes'
                     },
@@ -75,9 +75,21 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'inspections',
                         action: 'types'
+                    },
+                    withCredentials: true
+                },
+                getWorkorderBillingLocked: {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    params: {
+                        type: 'shared',
+                        route: 'workorder',
+                        action: 'is-locked'
                     },
                     withCredentials: true
                 },
@@ -119,7 +131,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'form',
                         action: 'get'
                     },
@@ -131,7 +143,7 @@
                         Accept: 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'form',
                         action: 'save'
                     },
@@ -140,7 +152,7 @@
                 upload: {
                     method: 'POST',
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'form',
                         action: 'upload'
                     },

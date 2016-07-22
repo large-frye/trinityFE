@@ -1,0 +1,350 @@
+<sidebar options="vm.options"></sidebar>
+
+<div class="alert-fixed">
+	<div ng-repeat="alert in vm.alerts">
+		<div class="alert alert-{{alert.type}}">
+			{{alert.content}}
+		</div>
+	</div>
+</div>
+
+<div class="box box-info">
+
+	<div class="box-body">
+		<form name="processingForm" ng-submit="vm.save" class="form-horizontal processing-form inspection-form">
+
+			<div class="box-group">
+				<div class="processing-gray">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-3 no-set-width control-label">First Name:</label>
+								<div class="col-sm-9">{{vm.workorder.first_name}}</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-3 no-set-width control-label">Phone 1:</label>
+								<div class="col-sm-9">{{vm.workorder.phone_1}}</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Last Name:</label>
+								<div class="col-sm-7">{{vm.workorder.last_name}}</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Phone 2:</label>
+								<div class="col-sm-8">{{vm.workorder.phone_2}}</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-4 no-set-width control-label">Address:</label>
+								<div class="col-sm-8">{{vm.workorder.address}} {{vm.workorder.city}}, {{vm.workorder.state}} {{vm.workorder.zip}}</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-4 no-set-width control-label">Phone 3:</label>
+								<div class="col-sm-8">{{vm.workorder.phone_3}}</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="col-sm-2 no-set-width control-label">Insured Special Instructions:</label>
+								<div class="col-sm-9">
+									<p>
+										{{vm.workorder.special_instructions_insured}}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- adjutser -->
+				<div class="processing-gray margin-top">
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Client Name:</label>
+								<div class="col-sm-8">{{vm.workorder.adjuster.name}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Trinity WO#:</label>
+								<div class="col-sm-8">{{vm.workorder.id}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Inspection Type:</label>
+								<div class="col-sm-8">{{vm.workorder.inspection_type | inpsectionType }}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Company:</label>
+								<div class="col-sm-8">{{vm.workorder.adjuster.profile.insurance_company}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Ins. Claim#:</label>
+								<div class="col-sm-8">{{vm.workorder.claim_num}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Auto Upgrade:</label>
+								<div class="col-sm-8">{{vm.workorder.auto_upgrade | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Phone 1:</label>
+								<div class="col-sm-8">{{vm.workorder.adjuster.profile.phone}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Inspection Date:</label>
+								<div class="col-sm-8">{{vm.workorder.date_of_inspection | date:YYYY/mm/dd}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Adjuster Present:</label>
+								<div class="col-sm-7">{{vm.workorder.adjuster_present | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Phone 2:</label>
+								<div class="col-sm-8">{{vm.workorder.adjuster.profile.phone_1}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Inspection Time:</label>
+								<div class="col-sm-8">{{vm.workorder.date_of_inspection | date:'hh:mm a'}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Reinspection:</label>
+								<div class="col-sm-7">{{vm.workorder.is_reinspection | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Phone 3:</label>
+								<div class="col-sm-7">{{vm.workorder.adjuster.profile.phone_3}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<!-- space -->
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Reinspection of Trinity:</label>
+								<div class="col-sm-7">{{vm.workorder.trinity_reinspection | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Email:</label>
+								<div class="col-sm-8">{{vm.workorder.adjuster.email}}</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<!-- space -->
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Tarp currently in place:</label>
+								<div class="col-sm-7">{{vm.workorder.has_tarp | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-8">
+							<div class="form-group">
+								<label class="col-sm-2 control-label no-set-width">Instructions From Adjuster:</label>
+								<div class="col-sm-9">
+									{{vm.workorder.special_instructions_adjuster}}
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Install Tarp if Needed:</label>
+								<div class="col-sm-7">{{vm.workorder.install_tarp | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-8">
+							<!-- space -->
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-set-width">Scope Interior:</label>
+								<div class="col-sm-7">{{vm.workorder.scope_interior | ucFirst}}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="processing-gray margin-top">
+					<div class="row">
+						<div class="col-sm-12 row">
+							<label class="col-sm-2 control-label" style="text-align:left">Instructions From Office:</label>
+							<div class="col-sm-10">
+								{{vm.workorder.special_instructions_to_inspector}}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+
+			<h4>Inspection Billing Details:</h4>
+
+			<div class="col-sm-5 row">
+				<div class="form-group">
+					<label class="col-sm-5 control-label">Inspection outcome</label>
+					<div class="col-sm-7">
+						<select class="form-control" ng-options="outcome.name for outcome in vm.outcomes.outcomes" ng-model="vm.inspectionOutcome"
+							ng-change="vm.workorder.inspection_outcome=vm.inspectionOutcome.id;vm.refreshSelect2()" ng-disabled="vm.billingLocked">
+							<option value="">
+								Select an outcome
+							</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label">Rope & Harness Charge</label>
+					<div class="col-sm-7">
+						<select class="form-control" ng-options="outcome.amount for outcome in vm.outcomes.harnessCharges" ng-model="vm.harnessCharge"
+							ng-change="vm.form.harness_charge=vm.harnessCharge.amount" ng-disabled="vm.billingLocked">
+								<option value="">
+									Select an amount
+								</option>
+							</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label">Tarp(s) Charge</label>
+					<div class="col-sm-7">
+						<select class="form-control" ng-options="outcome.amount for outcome in vm.outcomes.tarpCharges" ng-model="vm.tarpCharge"
+							ng-change="vm.form.tarp_charge=vm.tarpCharge.amount" ng-disabled="vm.billingLocked">
+								<option value="">
+									Select a charge
+								</option>
+							</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-5 control-label">Misc.</label>
+					<div class="col-sm-7">
+						<input type="text" ng-model="vm.form.misc_charge" class="form-control" placeholder="Manual enter value" ng-disabled="vm.billingLocked"/>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-2 centered" ng-if="vm.userType===vm.userTypes.ADMIN">
+				<button type="button" class="btn btn-danger" ng-click="vm.showBillingModal()">Lock Billing Details</button>
+			</div>
+
+			<div class="col-sm-1 centered">
+				Download Blank Forms:
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('Sketch')">Sketch</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('Alacrity')">Alacrity</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('NCT Form')">NCT Form</button>
+			</div>
+
+			<div class="col-sm-2 centered">
+				Upload Forms:
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('Sketch')">Sketch</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('Alacrity')">NCT/Alacrity</button>
+				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('NCT Form')">Other Document</button>
+			</div>
+
+			<!-- Hidden input for file -->
+			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
+
+			<div class="col-sm-2 row">
+				<div class="col-sm-12 centered">
+					<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Alert!</button>
+					<div class="sm-margin-top">
+						<p>Remove Alert Status</p>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.workorder.alert_to_inspector" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert to Inspector</label>
+						<div class="col-sm-2">
+							<input type="checkbox" ng-model="vm.workorder.alert_from_inspector" ng-true-value="1" ng-false-value="0"/>
+						</div>
+						<label class="col-sm-9">Alert from Inspector</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="clear margin-bottom"></div>
+
+            <!-- Rescheduled / Cancelled -->
+			<div class="row" ng-if="[1, 2, 3, 4].indexOf(vm.workorder.inspection_outcome) != -1">
+				<div class="col-sm-12">
+					<div class="form-group">
+						<label class="col-sm-2 no-set-width control-label">
+							What was the reason this inspection was cancelled or needs to be rescheduled?</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" ng-model="vm.form.cancel_reschedule_reason"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<alacrity-form form="vm.form" outcome-type="vm.workorder.inspection_outcome"></alacrity-form>
+			<basic-form form="vm.form" outcome-type="vm.workorder.inspection_outcome"></basic-form>
+			<expert-form form="vm.form" outcome-type="vm.workorder.inspection_outcome"></expert-form>
+
+			<div class="clear margin-top"></div>
+
+			<!-- workorder log -->
+			<workorder-log ng-if="vm.workorder" workorder="vm.workorder" reload-notes="vm.reloadNotes"></workorder-log>
+
+			<hr />
+			<button type="submit" class="btn btn-success" ng-click="vm.save()">Save</button>
+		</form>
+	</div>
+</div>

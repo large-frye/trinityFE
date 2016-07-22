@@ -8,8 +8,8 @@
         .module('trinity.resources.controllers.trainingVideo', [])
         .controller('trainingVideoCtrl', TrainingVideoController);
 
-    TrainingVideoController.$inject = ['ResourceService', '$log', 'videoData', 'RESOURCE_TYPES', '$rootScope', '$modal'];
-    function TrainingVideoController(ResourceService, $log, videoData, RESOURCE_TYPES, $rootScope, $modal) {
+    TrainingVideoController.$inject = ['ResourceService', '$log', 'videoData', 'RESOURCE_TYPES', '$rootScope', '$modal', 'USER_TYPES', 'UserFactory'];
+    function TrainingVideoController(ResourceService, $log, videoData, RESOURCE_TYPES, $rootScope, $modal, USER_TYPES, UserFactory) {
         var vm = this;
         vm.add = add;
         vm.trainingVideos = videoData.resources[RESOURCE_TYPES.TRAINING_VIDEO];
@@ -17,6 +17,10 @@
         vm.uploadFile = uploadFile;
         vm.deleteTrainingVideo = deleteTrainingVideo;
         vm.saveTrainingVideos = saveTrainingVideos;
+        vm.userTypes = USER_TYPES;
+        vm.userRole = UserFactory.user.get().appRole;
+
+        console.log(vm.userRole);
 
         activate();
 

@@ -8,11 +8,10 @@
         .controller('adminInspectionPhotoCtrl', PhotosController);
 
     PhotosController.$inject = ['shared', '$routeParams', 'photos', 'PhotoService', '$log'
-        , '$rootScope', '$modal', '$scope'];
+        , '$rootScope', '$modal', '$scope', 'USER_TYPES', 'UserFactory'];
     function PhotosController(shared, $routeParams, photos, PhotoService, $log, $rootScope
-        , $modal, $scope) {
+        , $modal, $scope, USER_TYPES, UserFactory) {
         var vm = this;
-        vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.photos = photos.photos.categorizedPhotos;
         vm.uploadPhotos = uploadPhotos;
         vm.workorder_id = $routeParams.id;
@@ -36,7 +35,17 @@
         function activate() {
             getParentCategories();
             getSubCategories(1);
+            getSidebarOptions();
             sortPhotos();
+        }
+
+        function getSidebarOptions() {
+            if (UserFactory.user.get().appRole === USER_TYPES.ADMIN) {
+                vm.options = shared.getInspectionSideBar($routeParams.id);
+            } else {
+                vm.options = shared.getInspectorInspectionBar($routeParams.id);
+            }
+            
         }
 
         function uploadPhotos() {
@@ -100,15 +109,15 @@
 
         function clearSelected() {
             var allPhotos = vm.photos.all;
-            var unCategorizedPhotos = vm.photos.notCategorized;
+            // var unCategorizedPhotos = vm.photos.notCategorized;
 
             allPhotos.forEach(function (photo) {
                 unselectPhoto(photo);
             });
 
-            unCategorizedPhotos.forEach(function (photo) {
-                unselectPhoto(photo);
-            });
+            // unCategorizedPhotos.forEach(function (photo) {
+            //     unselectPhoto(photo);
+            // });
         }
 
         function unselectPhoto(photo) {

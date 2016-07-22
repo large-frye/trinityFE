@@ -259,7 +259,7 @@
                     showSidebar();
 
                     PhotoService.api().getPhotos({
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: $route.current.params.id
                     }, function (data) {
@@ -511,11 +511,44 @@
                         resolve: inspector.inspections
                     })
                     .when('/inspector/inspections/:id', {
-                        templateUrl: '/src/partials/inspections/inspector/edit.html',
-                        controller: 'inspector.inspectionsCtrl',
+                        templateUrl: '/src/partials/inspections/inspector/details.html',
+                        controller: 'inspector.formCtrl',
                         controllerAs: 'vm',
                         resolve: inspector.inspections
                     })
+
+                    .when('/inspector/inspections/photos/:id', {
+                        templateUrl: '/src/partials/inspections/photos.html',
+                        controller: 'adminInspectionPhotoCtrl',
+                        controllerAs: 'vm',
+                        resolve: photo
+                    })
+
+                    .when('/inspector/resources', {
+                        templateUrl: '/src/partials/resources/resources.html',
+                        controller: 'resourceCtrl',
+                        controllerAs: 'vm',
+                        resolve: resources
+                    })
+                    .when('/inspector/resources/training-material', {
+                        templateUrl: '/src/partials/resources/training.html',
+                        controller: 'trainingCtrl',
+                        controllerAs: 'vm',
+                        resolve: training.content
+                    })
+                    .when('/inspector/resources/training-videos', {
+                        templateUrl: '/src/partials/resources/training-videos.html',
+                        controller: 'trainingVideoCtrl',
+                        controllerAs: 'vm',
+                        resolve: training.videos
+                    })
+                    .when('/inspector/resources/office-training-videos', {
+                        templateUrl: '/src/partials/resources/office-training-videos.html',
+                        controller: 'trainingVideoCtrl',
+                        controllerAs: 'vm',
+                        resolve: training.officeVideos
+                    })
+
                     .when('/admin/billing', {
                         templateUrl: '/src/partials/billing/billing.html',
                         controller: 'billingCtrl',
@@ -528,6 +561,8 @@
                         controllerAs: 'vm',
                         resolve: billing
                     })
+
+                    // Admin routes
                     .when('/admin/workorders/:type/:timeUnit', {
                         templateUrl: '/src/partials/workorders/list.html',
                         controller: 'listCtrl'

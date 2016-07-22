@@ -40,7 +40,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos'
                     },
                     withCredentials: true
@@ -48,7 +48,7 @@
                 upload: {
                     method: 'POST',
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos'
                     },
                     headers: {
@@ -75,7 +75,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'parent-categories'
                     },
@@ -87,7 +87,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'sub-categories'
                     },
@@ -99,7 +99,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'micro-categories'
                     },
@@ -111,7 +111,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'parent'
                     },
@@ -123,7 +123,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'save'
                     },
@@ -135,7 +135,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'delete'
                     },

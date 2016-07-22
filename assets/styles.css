@@ -468,6 +468,14 @@ input[type=text].form-control.sm-padding.centered {
     height: 400px;
 }
 
+.calendar-details-format {
+    margin-bottom: 1em;
+}
+
+.calendar-details-format p {
+    margin: 0;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;

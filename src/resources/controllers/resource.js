@@ -5,8 +5,8 @@
         .module('trinity.resources.controllers.resource', [])
         .controller('resourceCtrl', ResourceController);
 
-    ResourceController.$inject = ['ResourceService', '$log', 'resourceData', 'RESOURCE_TYPES', '$rootScope', '$modal'];
-    function ResourceController(ResourceService, $log, resourceData, RESOURCE_TYPES, $rootScope, $modal) {
+    ResourceController.$inject = ['ResourceService', '$log', 'resourceData', 'RESOURCE_TYPES', '$rootScope', '$modal', 'UserFactory', 'USER_TYPES'];
+    function ResourceController(ResourceService, $log, resourceData, RESOURCE_TYPES, $rootScope, $modal, UserFactory, USER_TYPES) {
         var vm = this;
         vm.add = add;
         vm.getResources = getResources;
@@ -18,6 +18,8 @@
         vm.otherResource = {
             resource_type: RESOURCE_TYPES.OTHER
         };
+        vm.userTypes = USER_TYPES;
+        vm.userRole = UserFactory.user.get().appRole;
 
         // Set constants to be used in view
         vm.resourceConstants = RESOURCE_TYPES;

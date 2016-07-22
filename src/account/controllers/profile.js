@@ -9,6 +9,7 @@
     function ProfileController(userData, accountService, UserFactory, $log, alert, FORM) {
         var vm = this;
         vm.user = userData;
+        var appRole = UserFactory.user.get().appRole;
 
         vm.updatePassword = updatePassword;
         vm.updateProfile = updateProfile;
@@ -44,8 +45,15 @@
 
         function updateProfile() {
             return accountService.updateProfile(vm.user, function(data) {
-                vm.user = user;
+                vm.user = data.user;
+                var user = data.user;
+                user.appRole = appRole;
+
+                // Update local storage & user factory
+                localStorage.removeItem('user');
+                localStorage.setItem('user', JSON.stringify(user));
                 UserFactory.user.set(user);
+
                 vm.alerts = alert.add({
                     title: 'Profile',
                     content: 'Profile updated.',

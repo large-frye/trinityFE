@@ -27,6 +27,7 @@
 		vm.showAlertModal = showAlertModal;
 		vm.lockWorkorder = lockWorkorder;
 		vm.setCalendarDetails = setCalendarDetails;
+		vm.showCalendarDetailsModal = showCalendarDetailsModal;
 
 		activate();
 
@@ -211,6 +212,24 @@
             });
             modal.$promise.then(modal.show);
         }
+
+		function showCalendarDetailsModal() {
+			var scope = $rootScope.$new();
+
+            var modal = modal || $modal({
+                scope: scope,
+                templateUrl: 'src/partials/modals/calendar-details.html',
+                controller: 'calendarCtrl',
+                controllerAs: 'vm',
+                resolve: {
+                    data: function() {
+						return vm.inspection;
+					}
+                },
+                show: false
+            });
+            modal.$promise.then(modal.show);
+		}
 
 		function lockWorkorder() {
 			return InspectionService.lockWorkorder({

@@ -13,14 +13,13 @@
 
         // Routes
         'routes',
-    
+
         // Trinity specific modules
         'trinity.workOrders',
         'trinity.user.services',
         'trinity.account.controllers',
         'trinity.account.services',
         'trinity.account.directives',
-        'trinity.inspections',
         'trinity.reports.controller.inspector',
         'trinity.reports.services.report',
         'trinity.inspections.controller.inspector',
@@ -30,8 +29,14 @@
         'trinity.services.billing',
         'trinity.filters.shared',
         'trinity.directives.inspections.photoSelect',
-        
-            
+        'trinity.inspections.controllers.inspect',
+        'trinity.controllers.admin.processing',
+        'trinity.inspections.services',
+        'trinity.controllers.inspections.admin.form',
+        'trinity.controllers.inspections.admin.photos',
+        'trinity.controllers.inspections.admin.generate',
+        'trinity.controllers.inspections.admin.invoice',
+
         // new angular stype
         'trinity.controllers.admin.reports',
         'trinity.directives.inspections.datePicker',
@@ -55,6 +60,7 @@
         'trinity.shared.controllers.modals.deleteResource',
         'trinity.shared.controllers.modals.alertModal',
         'trinity.shared.controllers.modals.userDeleteModal',
+        'trinity.shared.controllers.modals.calendarModal',
         'trinity.shared.services.fileService',
         'trinity.shared.directives.photoSort',
         'trinity.shared.directives.progressBar',
@@ -77,12 +83,13 @@
         'trinity.inspections.directives.showLog',
         'trinity.inspections.services.photo',
         'trinity.inspections.directives.expertForm',
+        'trinity.controllers.inspections.inspector.form',
 
         // Account
         'trinity.account.controllers.profile',
         'trinity.account.controllers.users',
         'trinity.account.controller.users.edit'
-        
+
     ])
 
         .config(function ($modalProvider) {

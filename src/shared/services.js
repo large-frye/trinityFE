@@ -32,7 +32,7 @@
                                 icon: 'fa-folder-o'
                             }, {
                                 parent: 'Reports',
-                                link: '/#/',
+                                link: '/#/admin',
                                 icon: 'fa-bar-chart-o'
                             }, {
                                 parent: 'Inspector Billing',
@@ -99,16 +99,16 @@
                             }, {
                                 parent: 'Inspector Billing',
                                 link: '/#/inspector/billing'
-                            }, {
-                                parent: 'Calendar',
-                                link: '/#/inspector/calendar'
-                            }, {
-                                parent: 'Maps',
-                                link: '/#/inspector/maps'
-                            }, {
-                                parent: 'Tasks',
-                                link: '/#/inspector/tasks'
-                            }, {
+                            }, 
+                            // {
+                            //     parent: 'Calendar',
+                            //     link: '/#/inspector/calendar'
+                            // }, 
+                            // {
+                            //     parent: 'Maps',
+                            //     link: '/#/inspector/maps'
+                            // }, 
+                            {
                                 parent: 'Resources',
                                 children: [{
                                     name: 'Resources', link: '/#/inspector/resources'
@@ -118,6 +118,9 @@
                                     name: 'Training Videos', link: '/#/inspector/resources/training-videos'
                                 }],
                                 link: '/#/inspector/resources'
+                            }, {
+                                parent: 'Tasks',
+                                link: '/#/inspector/tasks'
                             }]
                         };
 

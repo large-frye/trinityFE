@@ -1,0 +1,64 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Calendar Details</h4>
+            </div>
+            <div class="modal-body">
+                <div class="calendar-details-format">
+                    <p>Inspection Type: {{vm.data.inspection_type}}</p>
+                    <p>Claim Number: {{vm.data.claim_num}}</p>
+                </div>
+
+                <div class="calendar-details-format">
+                    <p>Insured Name: {{vm.data.first_name}} {{vm.data.last_name}}</p>
+                    <p>Insured Phone: {{vm.data.phone_1}}</p>
+                    <p>Insured Phone: {{vm.data.phone_2}}</p>
+                    <p>Insured Phone: {{vm.data.phone_3}}</p>
+                </div>
+
+                <div class="calendar-details-format">
+                    <p>Insured Street: {{vm.data.address}}</p>
+                    <p>Insured City: {{vm.data.city}}</p>
+                    <p>Insured State: {{vm.data.state}}</p>
+                    <p>Insured Zip: {{vm.data.zip_code}}</p>
+                </div>
+
+                <!-- Client -->
+                <div class="calendar-details-format">
+                    <p>Insurance Company: {{vm.data.adjuster.profile.insurance_company}}</p>
+                    <p>Adjuster Name: {{vm.data.adjuster.profile.first_name}} {{vm.data.adjuster.profile.last_name}}</p>
+                    <p>Adjuster Phone: {{vm.data.adjuster.profile.phone}}</p>
+                    <p>Adjuster Phone: {{vm.data.adjuster.profile.phone_1}}</p>
+                    <p>Adjuster Phone: {{vm.data.adjsuter.profile.phone_2}}</p>
+                </div>
+
+                <!-- Date -->
+                <div class="calendar-details-format">
+                    <p>Date of Inspection: {{vm.data.date_of_inspection | date:'YYYY/mm/dd'}}</p>
+                    <p>Time of Inspection: {{vm.data.date_of_inspection | date:'hh:MM a'}}</p>
+                </div>
+
+                <div class="calendar-details-format">
+                    <p>Auto Upgrade: {{vm.data.auto_upgrade}}</p>
+                    <p>Adjuster Present: {{vm.data.adjuster_present}}</p>
+                    <p>Reinspection: {{vm.data.is_reinspection}}</p>
+                    <p>Rein Trinity: {{vm.data.has_tarp}}</p>
+                    <p>Tarp if Decking is Exposed: {{vm.data.install_tarp}}</p>
+                    <p>Scope Interior: {{vm.data.scope_interior}}</p>
+                </div>
+
+                <div class="calendar-details-format">
+                    <p>Instruction from Insured: {{vm.data.special_instructions_insured}} </p>
+                    <p>Instructions from Adjuster: {{vm.data.special_instructions_adjuster}} </p>
+                    <p>Instructions from Office: {{vm.data.special_instructions_to_inspector}} </p>
+                </div>
+
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

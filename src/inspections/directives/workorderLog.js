@@ -28,13 +28,15 @@
         function link(scope, element, attrs) { /* noop */ }
     }
     /* @ngInject */
-    function WorkorderLogCtrl ($scope, WorkorderNoteService, UserFactory, WorkorderLoggerService, alert, FileService, $log) {
+    function WorkorderLogCtrl ($scope, WorkorderNoteService, UserFactory, WorkorderLoggerService, alert, FileService, $log, USER_TYPES) {
         var vm = this;
         vm.getNotes = getNotes;
         vm.saveNote = saveNote;
         vm.getLog = getLog;
         vm.queueDeletedNotes = queueDeletedNotes;
         vm.deleteNotes = deleteNotes;
+        vm.userTypes = USER_TYPES;
+        vm.userType = UserFactory.user.get().appRole;
 
         function activate() {
             getNotes();
@@ -84,6 +86,9 @@
         }
 
         function queueDeletedNotes(note) {
+            if (vm.userType !== USER_TYPES.ADMIN)
+                return;
+                
             if (typeof vm.deletedNotes === 'undefined') {
                 vm.deletedNotes = {};
                 vm.deletedNotes[note.id] = note;

@@ -24,19 +24,19 @@
 						{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 					</td>
 					<td>
-						{{item.date_of_inspection | date:'hh:mm:ss'}}
+						{{item.date_of_inspection | date:'hh:mm a'}}
 					</td>
 					<td>
 						{{item.inspection_type}}
 					</td>
 					<td>
-						{{item.adjuster.profile.insurance_company}}
+						{{item.adjuster_insurance}}
 					</td>
 					<td>
-						{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+						{{item.adjuster}}
 					</td>
 					<td>
-						{{item.first_name}} {{item.last_name}}
+						{{item.insured}}
 					</td>
 					<td>
 						{{item.address}}
@@ -77,19 +77,19 @@
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
 				<td>
-					{{item.date_of_inspection | date:'hh:mm:ss'}}
+					{{item.date_of_inspection | date:'hh:mm a'}}
 				</td>
 				<td>
 					{{item.inspection_type}}
 				</td>
 				<td>
-					{{item.adjuster.profile.insurance_company}}
+					{{item.adjuster_insurance}}
 				</td>
 				<td>
-					{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+					{{item.adjuster}}
 				</td>
 				<td>
-					{{item.first_name}} {{item.last_name}}
+					{{item.insured}}
 				</td>
 				<td>
 					{{item.address}}
@@ -130,19 +130,19 @@
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
 				<td>
-					{{item.date_of_inspection | date:'hh:mm:ss'}}
+					{{item.date_of_inspection | date:'hh:mm a'}}
 				</td>
 				<td>
 					{{item.inspection_type}}
 				</td>
 				<td>
-					{{item.adjuster.profile.insurance_company}}
+					{{item.adjuster_insurance}}
 				</td>
 				<td>
-					{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+					{{item.adjuster}}
 				</td>
 				<td>
-					{{item.first_name}} {{item.last_name}}
+					{{item.insured}}
 				</td>
 				<td>
 					{{item.address}}
@@ -183,19 +183,19 @@
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
 				<td>
-					{{item.date_of_inspection | date:'hh:mm:ss'}}
+					{{item.date_of_inspection | date:'hh:mm a'}}
 				</td>
 				<td>
 					{{item.inspection_type}}
 				</td>
 				<td>
-					{{item.adjuster.profile.insurance_company}}
+					{{item.adjuster_insurance}}
 				</td>
 				<td>
-					{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+					{{item.adjuster}}
 				</td>
 				<td>
-					{{item.first_name}} {{item.last_name}}
+					{{item.insured}}
 				</td>
 				<td>
 					{{item.address}}
@@ -237,19 +237,19 @@
 					{{item.date_of_inspection | date:'yyyy-MM-dd'}}
 				</td>
 				<td>
-					{{item.date_of_inspection | date:'hh:mm:ss'}}
+					{{item.date_of_inspection | date:'hh:mm a'}}
 				</td>
 				<td>
 					{{item.inspection_type}}
 				</td>
 				<td>
-					{{item.adjuster.profile.insurance_company}}
+					{{item.adjuster_insurance}}
 				</td>
 				<td>
-					{{item.adjuster.profile.first_name}} {{item.adjuster.profile.last_name}}
+					{{item.adjuster}}
 				</td>
 				<td>
-					{{item.first_name}} {{item.last_name}}
+					{{item.insured}}
 				</td>
 				<td>
 					{{item.address}}
@@ -260,6 +260,7 @@
 				<td>
 					{{item.state}}
 				</td>
+				<td>{{item.zip_code}}</td>
 			</tr>
 			</tbody>
 		</table>

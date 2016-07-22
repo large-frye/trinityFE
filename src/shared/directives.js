@@ -107,7 +107,7 @@
 			};
 		}]);
 
-	NavbarDirective.$inject = ['InspectionService', '$location', '$rootScope', '$timeout'];
+	NavbarDirective.$inject = ['InspectionService', '$location', '$rootScope', '$timeout', 'UserFactory'];
 	function NavbarDirective() {
 		// Usage:
 		//
@@ -130,7 +130,7 @@
 		function link(scope, element, attrs) {}
 	}
 	/* @ngInject */
-	function NavbarController(InspectionService, $location, $rootScope, $timeout) {
+	function NavbarController(InspectionService, $location, $rootScope, $timeout, UserFactory) {
 		var vm = this;
 		vm.search = search;
 		vm.workorder = false;

@@ -5,8 +5,8 @@
         .module('trinity.resources.controllers.trainingContent', [])
         .controller('trainingCtrl', TrainingController);
 
-    TrainingController.$inject = ['ResourceService', '$log', 'contentData', 'RESOURCE_TYPES', '$rootScope', '$modal'];
-    function TrainingController(ResourceService, $log, contentData, RESOURCE_TYPES, $rootScope, $modal) {
+    TrainingController.$inject = ['ResourceService', '$log', 'contentData', 'RESOURCE_TYPES', '$rootScope', '$modal', 'USER_TYPES', 'UserFactory'];
+    function TrainingController(ResourceService, $log, contentData, RESOURCE_TYPES, $rootScope, $modal, USER_TYPES, UserFactory) {
         var vm = this;
         vm.add = add;
         vm.trainingMaterials = contentData.resources[RESOURCE_TYPES.TRAINING_MATERIAL];
@@ -14,6 +14,8 @@
         vm.uploadFile = uploadFile;
         vm.deleteTrainingMaterial = deleteTrainingMaterial;
         vm.saveTrainingMaterials = saveTrainingMaterials;
+        vm.userTypes = USER_TYPES;
+        vm.userRole = UserFactory.user.get().appRole;
 
         activate();
 
