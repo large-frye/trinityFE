@@ -33,8 +33,8 @@
                     ]
                 };
                 var inspectionResolver = {
-                    inspection: ['$q', 'InspectionService', '$route', '$routeParams', '$location',
-                        function ($q, InspectionService, $route, $routeParams, $location) {
+                    inspection: ['$q', 'InspectionService', '$route', '$routeParams', '$location', '$window',
+                        function ($q, InspectionService, $route, $routeParams, $location, $window) {
                             var deferred = $q.defer();
                             var id = $route.current.params.id;
 
@@ -50,6 +50,7 @@
                                     // data.order.date_of_inspection = new Date(data.order.date_of_inspection);
                                     // data.order.date_of_loss = new Date(data.order.date_of_loss);
                                     // data.order.date_of_last_contact = new Date(data.order.date_of_last_contact);
+                                    document.title = 'Trinity - (' + data.order.first_name + ' ' + data.order.last_name + ')';
                                     deferred.resolve(data);
                                 }, function (err) {
                                     deferred.resolve(err);
