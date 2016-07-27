@@ -29,7 +29,8 @@
                             admin: [{
                                 parent: 'New Inspection',
                                 link: '/#/admin/inspections/new',
-                                icon: 'fa-folder-o'
+                                icon: 'fa-folder-o',
+                                newTab: true
                             }, {
                                 parent: 'Reports',
                                 link: '/#/admin',
