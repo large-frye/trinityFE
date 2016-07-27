@@ -21,7 +21,7 @@
                 log: '='
             },
             template: '<strong>Updated by {{vm.log.updater.profile.first_name}} {{vm.log.updater.profile.last_name}} ' + 
-            'on: {{vm.log.created_at}}</strong> <ul ng-if="vm.parts"><li ng-repeat="part in vm.parts">{{part}}</li></ul></strong>'
+            'on: {{vm.log.created_at}}</strong> <ul ng-if="vm.parts"><li ng-repeat="part in vm.parts" ng-bind-html="part"></li></ul></strong>'
         };
         return directive;
         
