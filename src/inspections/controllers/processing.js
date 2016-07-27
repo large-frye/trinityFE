@@ -7,9 +7,9 @@
 		.controller('adminProcessingCtrl', AdminProcessingController);
 
 	AdminProcessingController.$inject = ['shared', '$routeParams', 'InspectionService',
-		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM', 'INSPECTION_OUTCOMES', '$rootScope', '$modal', 'FileService'];
+		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM', 'INSPECTION_OUTCOMES', '$rootScope', '$modal', 'FileService', '$filter'];
 	function AdminProcessingController(shared, $routeParams, InspectionService, UserService,
-		inspection, $log, alert, UserFactory, FORM, INSPECTION_OUTCOMES, $rootScope, $modal, FileService) {
+		inspection, $log, alert, UserFactory, FORM, INSPECTION_OUTCOMES, $rootScope, $modal, FileService, $filter) {
 		var vm = this;
 		vm.options = shared.getInspectionSideBar($routeParams.id);
 		vm.inspection = inspection.order;
@@ -236,6 +236,7 @@
 				id: vm.inspection.id
 			}, function(data) {
 				vm.inspection = data.workorder;
+				vm.inspection.inspection_val = $filter('inspectionType')(vm.inspection.inspection_type);
 			}, function(err) {
 				$log.log(err);
 			});

@@ -164,7 +164,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Inspection Type:</label>
-							<div class="col-sm-7">{{vm.inspection.inspection_val}}</div>
+							<div class="col-sm-7">{{vm.inspection.inspection_type | inspectionType }}</div>
 						</div>
 					</div>
 				</div>
@@ -314,7 +314,10 @@
 						<div class="col-sm-7">{{vm.inspector.profile.state}}</div>
 					</div>
 
-					<button type="button" class="btn btn-default" ng-click="vm.lockWorkorder()">Lock/Unlock Inspector Billing</button>
+					<button type="button" class="btn btn-default" ng-click="vm.lockWorkorder()">
+						<span ng-if="vm.inspection.billing_locked">Inspector Billing Details Locked</span>
+						<span ng-if="!vm.inspection.billing_locked">Inspector Billing Details Unlocked</span>
+					</button>
 
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspection Outcome:</label>

@@ -31,6 +31,7 @@
     /* @ngInject */
     function DatePickerController($scope, $element, $attrs) {
         var vm = this;
+        var inc = 0;
 
         function activate() {
             vm.date = getDate();
@@ -67,6 +68,11 @@
         }
 
         activate();
+
+        $scope.$watch('vm.date', function(prev, next) {
+            if (typeof prev === 'number')
+                vm.date = getDate();
+        });
 
     }
 })();

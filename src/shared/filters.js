@@ -28,7 +28,7 @@
             };
         })
 
-        .filter('inpsectionType', function() {
+        .filter('inspectionType', function() {
             return function(type) {
                 switch(type) {
                     case 0: 
