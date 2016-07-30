@@ -93,7 +93,11 @@
 				return day > 9 ? day.toString() : '0' + day;
 			}
 
-			inspection.date_of_inspection = new Date(getDate() + ' ' + vm.time).getTime();
+			if (typeof inspection.date_of_inspection !== 'undefined' && inspection.date_of_inspection.length > 0) {
+				inspection.date_of_inspection = new Date(getDate() + ' ' + vm.time).getTime();
+			} else {
+				inspection.date_of_inspection = null;
+			}
 		
 			delete inspection.inspection_val;
 
@@ -115,6 +119,10 @@
 
 		function setDates() {
 			vm.inspection = vm.inspection || inspection.order;
+
+			if (!vm.inspection.date_of_inspection || vm.inspection.date_of_inspection === null)
+				return;
+
 			if (vm.inspection) {
 				vm.inspection.date_of_inspection = new Date(vm.inspection.date_of_inspection);
 			} else {
