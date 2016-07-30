@@ -285,14 +285,14 @@
 				<button type="button" class="btn btn-danger" ng-click="vm.showBillingModal()">Lock Billing Details</button>
 			</div>
 
-			<div class="col-sm-1 centered">
-				Download Blank Forms:
+			<div class="col-sm-1 centered" style="width:13%">
+				<div class="download-forms-header">Download Blank Forms:</div>
 				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('Sketch')">Sketch</button>
 				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('Alacrity')">Alacrity</button>
 				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.downloadFile('NCT Form')">NCT Form</button>
 			</div>
 
-			<div class="col-sm-2 centered">
+			<div class="col-sm-2 centered" style="width:13%">
 				Upload Forms:
 				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('Sketch')">Sketch</button>
 				<button type="button" class="btn btn-default col-sm-12 sm-margin-top" ng-click="vm.upload('Alacrity')">NCT/Alacrity</button>
@@ -302,20 +302,18 @@
 			<!-- Hidden input for file -->
 			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
 
-			<div class="col-sm-2 row">
-				<div class="col-sm-12 centered">
-					<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Alert!</button>
-					<div class="sm-margin-top">
-						<p>Remove Alert Status</p>
-						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.workorder.alert_to_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.workorder.alert_to_inspector"/>
-						</div>
-						<label class="col-sm-9">Alert to Inspector</label>
-						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.workorder.alert_from_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.workorder.alert_from_inspector"/>
-						</div>
-						<label class="col-sm-9">Alert from Inspector</label>
+			<div class="col-sm-2 centered">
+				<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Send Alert!</button>
+				<div class="sm-margin-top">
+					<p>Remove Alert Status Below</p>
+					<div class="col-sm-2">
+						<input type="checkbox" ng-model="vm.workorder.alert_to_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.workorder.alert_to_inspector"/>
 					</div>
+					<label class="col-sm-9">Alert to Inspector</label>
+					<div class="col-sm-2">
+						<input type="checkbox" ng-model="vm.workorder.alert_from_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.workorder.alert_from_inspector"/>
+					</div>
+					<label class="col-sm-9">Alert to Office</label>
 				</div>
 			</div>
 

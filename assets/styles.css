@@ -510,3 +510,9 @@ input[type=text].form-control.sm-padding.centered {
         margin-top: 150px !important;
     }
 }
+
+@media (max-width: 1580px) {
+    .download-forms-header {
+        margin-top: -20px;
+    }
+}
