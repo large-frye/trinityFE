@@ -14,12 +14,16 @@
 
 		<form name="inspectionForm" ng-submit="save" class="form-horizontal inspection-form">
 
-			<div class="form-group">
+			<!--<div class="form-group">
 				<h4 class="col-sm-2" style="width:10%">Client Info</h4>
 				<div class="alert alert-info col-sm-10" style="margin-top:7px">
 					<i class="fa fa-info-circle"></i> You may select an adjuster to pre-fill if the adjuster exists. If not the adjuster
 					will be created.
 				</div>
+			</div>-->
+
+			<div class="clear">
+				<h4>Client Info</h4>
 			</div>
 
 			<div class="col-sm-4">
@@ -115,17 +119,17 @@
 				</div>
 			</div>
 
-			<div class="col-sm-12">
+			<div class="col-sm-12 margin-bottom">
 				<div class="form-group">
-					<label for="" class="col-sm-2 control-label">Client Inspection Preferences</label>
-					<div class="col-sm-10">
+					<label for="" class="col-sm-1 control-label" style="width:11%">Client Inspection Preferences</label>
+					<div class="col-sm-11" style="width:89%">
 						<textarea class="form-control" ng-model="inspection.adjuster.profile.client_inspection_preferences"></textarea>
 					</div>
 				</div>
 			</div>
 
 			<!-- Inspection Information -->
-			<div class="clear">
+			<div class="clear margin-sm-top">
 				<h4>Inspection Information</h4>
 			</div>
 
