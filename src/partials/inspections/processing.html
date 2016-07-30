@@ -136,7 +136,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Requested Date:</label>
-							<div class="col-sm-7">{{vm.inspection.requested_date_of_inspection | date: 'shortDate'}}</div>
+							<div class="col-sm-7">{{vm.inspection.requested_date_of_inspection | date:YYYY/mm/dd}}</div>
 						</div>
 					</div>
 				</div>
@@ -270,7 +270,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Date Received:</label>
-							<div class="col-sm-8">{{vm.inspection.date_received | date: 'shortDate'}}</div>
+							<div class="col-sm-8">{{vm.inspection.date_received | date:YYYY/mm/dd}}</div>
 						</div>
 					</div>
 					<div class="col-sm-6">
