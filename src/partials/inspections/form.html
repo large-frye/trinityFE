@@ -282,7 +282,10 @@
 			</div>
 
 			<div class="col-sm-2 centered">
-				<button type="button" class="btn btn-danger" ng-click="vm.showBillingModal()">Lock Billing Details</button>
+				<button type="button" class="btn btn-danger" ng-click="vm.showBillingModal()">
+					<span ng-if="!vm.workorder.billing_locked">Lock Billing Details</span>
+					<span ng-if="vm.workorder.billing_locked">Billing Details Locked</span>
+				</button>
 			</div>
 
 			<div class="col-sm-1 centered" style="width:13%">
