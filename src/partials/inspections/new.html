@@ -280,7 +280,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-4 control-label">Install Tarp If Needed?</label>
+					<label class="col-sm-4 control-label">Tarp Currently In Place?</label>
 					<div class="col-sm-6">
 						<label class="radio-inline">
 						<input type="radio" ng-model="inspection.has_tarp" ng-value="'yes'" />
@@ -292,6 +292,24 @@
 					</label>
 						<label class="radio-inline">
 						<input type="radio" ng-model="inspection.has_tarp" ng-value="'unknown'" />
+						Unknown
+					</label>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-4 control-label">Install Tarp If Needed?</label>
+					<div class="col-sm-6">
+						<label class="radio-inline">
+						<input type="radio" ng-model="inspection.install_tarp" ng-value="'yes'" />
+						Yes
+					</label>
+						<label class="radio-inline">
+						<input type="radio" ng-model="inspection.install_tarp" ng-value="'no'" />
+						No
+					</label>
+						<label class="radio-inline">
+						<input type="radio" ng-model="inspection.install_tarp" ng-value="'unknown'" />
 						Unknown
 					</label>
 					</div>
