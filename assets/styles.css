@@ -476,6 +476,23 @@ input[type=text].form-control.sm-padding.centered {
     margin: 0;
 }
 
+.label-header {
+    font-size:16px;
+}
+
+.margin-left-back {
+    margin-left: -30px !important;
+}
+
+.margin-sm-bottom {
+    margin-bottom: .5em;
+}
+
+.system-alert-module {
+    margin: 2em -15px 0 2em;
+    text-align: center;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;

@@ -351,7 +351,7 @@
 
 			<div class="col-sm-3 row">
 				<div class="form-group">
-					<label class="col-sm-6 row control-label">Progress Status</label>
+					<label class="col-sm-6 control-label">Progress Status</label>
 					<div class="col-sm-6">
 						<select ng-model="vm.status" class="form-control" ng-options="status.name for status in vm.statuses" ng-change="vm.setStatus(vm.status)">
 						</select>
@@ -359,7 +359,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-6 row control-label" style="margin-left:0">Date of inspection</label>
+					<label class="col-sm-6 control-label">Date of inspection</label>
 					<div class="col-sm-6">
 						<div class="input-group date">
 							<div class="input-group-addon">
@@ -371,7 +371,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-6 row control-label" style="margin-left:0">Time of inspection</label>
+					<label class="col-sm-6 control-label">Time of inspection</label>
 					<div class="col-sm-6">
 						<div class="input-group bootstrap-timepicker timepicker">
 							<div class="input-group-addon"><i class="fa fa-clock-o"></i></div>
@@ -381,22 +381,22 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-6 row control-label">Inspector</label>
+					<label class="col-sm-6 control-label">Inspector</label>
 					<div class="col-sm-6">
 						<select ng-model="vm.inspector" class="form-control" ng-options="inspector.name for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
 						</select>
 					</div>
 				</div>
-				
+
 				<div class="form-group">
-					<label class="col-sm-6 row control-label">Xactware ID#</label>
+					<label class="col-sm-6 control-label">Xactware ID#</label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" ng-model="vm.inspection.xactware_id">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-6 row control-label">Date Invoiced</label>
+					<label class="col-sm-6 control-label">Date Invoiced</label>
 					<div class="col-sm-6">
 						<div class="input-group date">
 							<div class="input-group-addon">
@@ -408,14 +408,14 @@
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-6 row control-label">QB Invoice #</label>
+					<label class="col-sm-6 control-label">QB Invoice #</label>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" ng-model="vm.inspection.qb_invoice_id">
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="col-sm-6 row control-label">Date Cancelled</label>
+					<label class="col-sm-6 control-label">Date Cancelled</label>
 					<div class="col-sm-6">
 						<div class="input-group date">
 							<div class="input-group-addon">
@@ -427,7 +427,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-3 row">
+			<div class="col-sm-3">
 				<div class="col-sm-12 row">
 					<div class="col-sm-1">
 						<input type="checkbox" ng-model="vm.inspection.emailed_adjuster_receipt_of_request" ng-true-value="1" ng-false-value="0"
@@ -475,36 +475,29 @@
 				</div>
 			</div>
 
-			<div class="col-sm-3 row">
-				<h5>Alacrity Only</h4>
-				<div class="col-sm-12 row">
-					<div class="form-group">
-						<div class="col-sm-7 row">
-							<div class="input-group date">
-								<div class="input-group-addon">
-									<i class="fa fa-calendar"></i>
-								</div>
-								<date-picker date="vm.inspection.due_date" />
+			<div class="col-sm-2 row">
+				<div class="label-header row margin-sm-bottom">Alacrity Due Date</div>
+				<div class="form-group">
+					<div class="col-sm-12 row">
+						<div class="input-group date">
+							<div class="input-group-addon">
+								<i class="fa fa-calendar"></i>
 							</div>
+							<date-picker date="vm.inspection.due_date" />
 						</div>
-						<label class="col-sm-4 row control-label margin-xs-left">Due Date</label>
 					</div>
 				</div>
-				<div class="col-sm-12 row">
-					<div class="form-group">
-						<div class="col-sm-1">
-							<input type="checkbox" ng-model="vm.inspection.uploaded_el_and_nct" ng-true-value="1" ng-false-value="0" />
-						</div>
-						<label class="col-sm-10 margin-xs-left row">Uploaded EL & NCT</label>
+				<div class="form-group margin-left-back">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.uploaded_el_and_nct" ng-true-value="1" ng-false-value="0" />
 					</div>
+					<label class="col-sm-10 margin-xs-left row">Uploaded EL & NCT</label>
 				</div>
-				<div class="col-sm-12 row">
-					<div class="form-group">
-						<div class="col-sm-1">
-							<input type="checkbox" ng-model="vm.inspection.completed_xactanalysis" ng-true-value="1" ng-false-value="0" />
-						</div>
-						<label class="col-sm-10 margin-xs-left row">Uploaded Xactanalysis</label>
+				<div class="form-group margin-left-back">
+					<div class="col-sm-1">
+						<input type="checkbox" ng-model="vm.inspection.completed_xactanalysis" ng-true-value="1" ng-false-value="0" />
 					</div>
+					<label class="col-sm-10 margin-xs-left row">Uploaded Xactanalysis</label>
 				</div>
 
 				<div class="col-sm-12 row">
@@ -513,11 +506,9 @@
 
 			</div>
 
-			<div class="col-sm-2 row">
-				<div class="col-sm-12">
-					<h4>Upload Docs</h4>
-				</div>
-				
+			<div class="col-sm-2 centered">
+				<div class="label-header margin-sm-bottom">Upload Docs</div>
+
 				<button type="button" ng-click="vm.upload('sketch')" class="btn btn-default processing-btn-upload">Sketch</button>
 				<button type="button" ng-click="vm.upload('nctAlacrity')" class="btn btn-default processing-btn-upload">NCT/Alacrity</button>
 				<button type="button" ng-click="vm.upload('report')" class="btn btn-default processing-btn-upload">Report</button>
@@ -525,25 +516,29 @@
 				<button type="button" ng-click="vm.upload('other')" class="btn btn-default processing-btn-upload">Other Document</button>
 			</div>
 
-			<div class="col-sm-2 row">
-				<div class="col-sm-12 centered">
+			<div class="col-sm-2 system-alert-module">
+				<div>
 					<button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Alert!</button>
 					<div class="sm-margin-top">
 						<p>Remove Alert Status</p>
 						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.inspection.alert_admin" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_admin"/>
+							<input type="checkbox" ng-model="vm.inspection.alert_admin" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_admin"
+							/>
 						</div>
 						<label class="col-sm-9">Alert Admin</label>
 						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_office"/>
+							<input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_office"
+							/>
 						</div>
 						<label class="col-sm-9">Alert Office</label>
 						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.inspection.alert_to_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_to_inspector"/>
+							<input type="checkbox" ng-model="vm.inspection.alert_to_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_to_inspector"
+							/>
 						</div>
 						<label class="col-sm-9">Alert to Inspector</label>
 						<div class="col-sm-2">
-							<input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_office"/>
+							<input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_office"
+							/>
 						</div>
 						<label class="col-sm-9">Alert from Inspector</label>
 					</div>
@@ -551,7 +546,8 @@
 			</div>
 
 			<!-- Hidden input for file -->
-			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
+			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"
+			/>
 
 			<div class="row">
 				<div class="col-sm-12">
