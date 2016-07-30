@@ -244,7 +244,7 @@
 					<label class="col-sm-5 control-label">Inspection outcome</label>
 					<div class="col-sm-7">
 						<select class="form-control" ng-options="outcome.name for outcome in vm.outcomes.outcomes" ng-model="vm.inspectionOutcome"
-							ng-change="vm.workorder.inspection_outcome=vm.inspectionOutcome.id;vm.refreshSelect2()">
+							ng-change="vm.workorder.inspection_outcome=vm.inspectionOutcome.id;vm.refreshSelect2()" ng-disabled="vm.workorder.billing_locked">
 							<option value="">
 								Select an outcome
 							</option>
@@ -255,7 +255,7 @@
 					<label class="col-sm-5 control-label">Rope & Harness Charge</label>
 					<div class="col-sm-7">
 						<select class="form-control" ng-options="outcome.amount for outcome in vm.outcomes.harnessCharges" ng-model="vm.harnessCharge"
-							ng-change="vm.form.harness_charge=vm.harnessCharge.amount">
+							ng-change="vm.form.harness_charge=vm.harnessCharge.amount" ng-disabled="vm.workorder.billing_locked">
 								<option value="">
 									Select an amount
 								</option>
@@ -266,7 +266,7 @@
 					<label class="col-sm-5 control-label">Tarp(s) Charge</label>
 					<div class="col-sm-7">
 						<select class="form-control" ng-options="outcome.amount for outcome in vm.outcomes.tarpCharges" ng-model="vm.tarpCharge"
-							ng-change="vm.form.tarp_charge=vm.tarpCharge.amount">
+							ng-change="vm.form.tarp_charge=vm.tarpCharge.amount" ng-disabled="vm.workorder.billing_locked">
 								<option value="">
 									Select a charge
 								</option>
@@ -276,7 +276,7 @@
 				<div class="form-group">
 					<label class="col-sm-5 control-label">Misc.</label>
 					<div class="col-sm-7">
-						<input type="text" ng-model="vm.form.misc_charge" class="form-control" placeholder="Manual enter value" />
+						<input type="text" ng-model="vm.form.misc_charge" class="form-control" placeholder="Manual enter value" ng-disabled="vm.workorder.billing_locked" />
 					</div>
 				</div>
 			</div>
