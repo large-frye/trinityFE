@@ -61,6 +61,7 @@
         'trinity.shared.controllers.modals.alertModal',
         'trinity.shared.controllers.modals.userDeleteModal',
         'trinity.shared.controllers.modals.calendarModal',
+        'trinity.shared.controllers.modals.confirmAlertModal',
         'trinity.shared.services.fileService',
         'trinity.shared.directives.photoSort',
         'trinity.shared.directives.progressBar',
@@ -83,7 +84,9 @@
         'trinity.inspections.directives.showLog',
         'trinity.inspections.services.photo',
         'trinity.inspections.directives.expertForm',
+        'trinity.inspections.directives.systemAlert',
         'trinity.controllers.inspections.inspector.form',
+        
 
         // Account
         'trinity.account.controllers.profile',

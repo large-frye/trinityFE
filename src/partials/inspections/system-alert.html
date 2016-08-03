@@ -1,0 +1,31 @@
+<div>
+    <button type="button" class="btn-default btn" ng-click="vm.showAlertModal()">Send Alert!</button>
+    <div class="sm-margin-top">
+        <p>Remove Alert Status</p>
+        <div class="col-sm-2">
+            <input type="checkbox" ng-model="vm.inspection.alert_admin" ng-true-value="1" ng-false-value="0"
+                ng-disabled="!vm.inspection.alert_admin"
+                ng-click="vm.confirmAlert(vm.inspection.alert_admin, $event, 'alert_admin')"
+            />
+        </div>
+        <label class="col-sm-9">Alert Admin</label>
+        <div class="col-sm-2">
+            <input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_office"
+                ng-click="vm.confirmAlert(vm.inspection.alert_office, $event, 'alert_office')"
+            />
+        </div>
+        <label class="col-sm-9">Alert Office</label>
+        <div class="col-sm-2">
+            <input type="checkbox" ng-model="vm.inspection.alert_to_inspector" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_to_inspector"
+                ng-click="vm.confirmAlert(vm.inspection.alert_to_inspector, $event, 'alert_to_inspector')"
+            />
+        </div>
+        <label class="col-sm-9">Alert to Inspector</label>
+        <div class="col-sm-2">
+            <input type="checkbox" ng-model="vm.inspection.alert_office" ng-true-value="1" ng-false-value="0" ng-disabled="!vm.inspection.alert_office"
+                ng-click="vm.confirmAlert(vm.inspection.alert_office, $event, 'alert_office')"
+            />
+        </div>
+        <label class="col-sm-9">Alert from Inspector</label>
+    </div>
+</div>

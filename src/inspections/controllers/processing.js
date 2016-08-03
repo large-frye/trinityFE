@@ -24,7 +24,6 @@
 		vm.calendarDetails = {};
 		vm.uploadFile = uploadFile;
 		vm.upload = upload;
-		vm.showAlertModal = showAlertModal;
 		vm.lockWorkorder = lockWorkorder;
 		vm.setCalendarDetails = setCalendarDetails;
 		vm.showCalendarDetailsModal = showCalendarDetailsModal;
@@ -199,27 +198,6 @@
             var $file = angular.element('input[type="file"]');
             $file.click();
 		}
-
-		function showAlertModal() {
-            var scope = $rootScope.$new();
-
-            var modal = modal || $modal({
-                scope: scope,
-                templateUrl: 'src/partials/modals/alerts/alert.html',
-                controller: 'alertModalCtrl',
-                controllerAs: 'vm',
-                resolve: {
-                    callbackAlertCompleted: function() {
-                        return function(data) {
-                            vm.inspection = data.workorder;
-							vm.reloadNotes = true;
-                        };
-                    }
-                },
-                show: false
-            });
-            modal.$promise.then(modal.show);
-        }
 
 		function showCalendarDetailsModal() {
 			var scope = $rootScope.$new();
