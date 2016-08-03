@@ -28,6 +28,10 @@
         vm.reorderModal = reorderModal;
         vm.createPhotosZip = createPhotosZip;
 
+        var FILE_SIZE_CHECK = 30;
+        var MAX_FILE_UPLOAD_SIZE = 200;
+        var TO_MB = 1000000;
+
         activate();
 
         ////////////////
@@ -45,7 +49,7 @@
             } else {
                 vm.options = shared.getInspectorInspectionBar($routeParams.id);
             }
-            
+
         }
 
         function uploadPhotos() {
@@ -60,6 +64,31 @@
             var formData = new FormData();
             var inc = 0;
 
+            // TODO: make a fn
+            if (files.length > MAX_FILE_UPLOAD_SIZE) {
+                vm.alerts = alert.add({
+                    title: 'Photos too big!',
+                    content: ['The quantity of photos selected exceeds the limit ',
+                    'of photos that can be uploaded at one time.  Please try to ',
+                    'upload the photos in less than 200 at a time'].join('\n'),
+                    type: 'danger'
+                });
+                return;
+            }
+
+            if (findFileSize(files) > FILE_SIZE_CHECK) {
+                vm.alerts = alert.add({
+                    title: 'File size check!',
+                    content: ['The combined sizes of the photos you are trying to ',
+                    'upload is larger than expected.   In the future please reduce ',
+                    'the size of the photos you take by adjusting your camera settings. ',
+                    'This will shorten the amount of time it takes to upload these photos. ',
+                    'If you have any questions on how to do this please contact ',
+                    'the office.'].join('\n'),
+                    type: 'warning'
+                });
+            }
+
             for (var key in files) {
                 if (files.hasOwnProperty(key)) {
                     formData.append('file_' + inc, files[key]);
@@ -68,7 +97,7 @@
             }
 
             formData.append('workorder_id', vm.workorder_id);
-            
+
             vm.loading = true;
             PhotoService.api().upload({
                 action: vm.workorder_id
@@ -393,6 +422,14 @@
             }, function(err) {
                 $log.error(err);
             });
+        }
+
+        function findFileSize(files) {
+            var size = 0;
+            for(var i = 0; i < files.length; i++) {
+                size += files[i].size;
+            }
+            return size / TO_MB;
         }
 
         $scope.$watch('vm.photos', function (next, prev) {
