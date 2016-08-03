@@ -7,9 +7,11 @@
 		.controller('adminProcessingCtrl', AdminProcessingController);
 
 	AdminProcessingController.$inject = ['shared', '$routeParams', 'InspectionService',
-		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM', 'INSPECTION_OUTCOMES', '$rootScope', '$modal', 'FileService', '$filter'];
+		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM', 'INSPECTION_OUTCOMES',
+		'$rootScope', '$modal', 'FileService', '$filter', '$window'];
 	function AdminProcessingController(shared, $routeParams, InspectionService, UserService,
-		inspection, $log, alert, UserFactory, FORM, INSPECTION_OUTCOMES, $rootScope, $modal, FileService, $filter) {
+		inspection, $log, alert, UserFactory, FORM, INSPECTION_OUTCOMES, $rootScope,
+		$modal, FileService, $filter, $window) {
 		var vm = this;
 		vm.options = shared.getInspectionSideBar($routeParams.id);
 		vm.inspection = inspection.order;
@@ -66,7 +68,7 @@
 
 		function setInspector(inspector) { vm.inspection.inspector_id = inspector.id; }
 
-		function save() {
+		function save(isClosed) {
 			var inspection = angular.copy(vm.inspection);
 			inspection.date_of_last_contact = new Date(inspection.date_of_last_contact).getTime();
 			inspection.date_cancelled = new Date(inspection.date_cancelled).getTime();
@@ -97,10 +99,15 @@
 			} else {
 				inspection.date_of_inspection = null;
 			}
-		
+
 			delete inspection.inspection_val;
 
 			InspectionService.create(inspection).$promise.then(function (data) {
+				if (isClosed === 'close') {
+					$window.close();
+					return;
+				}
+
 				vm.alerts = alert.add({
 					title: 'Saved',
 					content: 'Saved',
@@ -156,7 +163,7 @@
 
 				if (char === ' ')
 					ret = ret.substring(0, i) + char + ret.substr(i + 1, 1).toUpperCase() + ret.substring(i + 2);
-					
+
 			}
 
 			return ret;
@@ -181,7 +188,7 @@
 			formData.append('files3Name', vm.uploadType.toLowerCase() + '_' + vm.inspection.claim_num + '_' + vm.inspection.last_name);
 			formData.append('username', user.profile.first_name + ' ' + user.profile.last_name);
 			formData.append('uploadType', vm.uploadType);
-            
+
             vm.loading = true;
             FileService.api().upload(formData).$promise.then(function(data) {
                 vm.loading = false;
@@ -190,7 +197,7 @@
             }, function (err) {
 				$file.replaceWith($file.val('').clone(true));
                 $log.log(err);
-            }); 
+            });
 		}
 
 		function upload(uploadType) {

@@ -8,10 +8,10 @@
         .controller('adminInspectionCtrl', AdminInspectionController);
 
     AdminInspectionController.$inject = ['InspectionService', 'InspectionFactory', 'FormService', '$log', 'STATUSES', 'form', '$rootScope', '$modal',
-        '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory', 'FileService', '$interval'];
+        '$routeParams', 'shared', 'alert', 'FORM', 'UserFactory', 'FileService', '$interval', '$window'];
 
     function AdminInspectionController(InspectionService, InspectionFactory, FormService, $log, STATUSES, form, $rootScope, $modal
-        , $routeParams, shared, alert, FORM, UserFactory, FileService, $interval) {
+        , $routeParams, shared, alert, FORM, UserFactory, FileService, $interval, $window) {
         var vm = this;
         vm.options = shared.getInspectionSideBar($routeParams.id);
         vm.listRoofConditions = InspectionFactory.roofConditions;
@@ -130,7 +130,7 @@
 
         function conditionExists(condition) { return vm.form.roof_conditions.indexOf(condition) !== -1; }
 
-        function save() {
+        function save(isClosed) {
             var form = angular.copy(vm.form);
             form.workorder_id = vm.workorder.id;
 
@@ -143,7 +143,7 @@
             }
 
             FormService.save(form).$promise.then(function (data) {
-                saveWorkorder();
+                saveWorkorder(isClosed);
             }, function (err) {
                 $log.log(err);
             });
@@ -239,7 +239,7 @@
             saveWorkorder();
         }
 
-        function saveWorkorder() {
+        function saveWorkorder(isClosed) {
             var workorderCopy = angular.copy(vm.workorder);
             // Added for logger service
             workorderCopy.updated_by = UserFactory.user.get().id;
@@ -251,6 +251,11 @@
             delete workorderCopy.inspection_val;
 
             return InspectionService.create(workorderCopy).$promise.then(function (data) {
+                if (isClosed === 'close') {
+					$window.close();
+					return;
+				}
+
                 vm.alerts = alert.add({
                     title: 'Saved',
                     content: 'Saved',
