@@ -31,11 +31,11 @@
         .filter('inspectionType', function() {
             return function(type) {
                 switch(type) {
-                    case 0: 
+                    case 0:
                         return 'Ladder Assist w/ Report';
                     case 1:
                         return 'Expert Inspection';
-                    case 5: 
+                    case 5:
                         return 'Ladder Assist';
                 }
             };
@@ -99,6 +99,29 @@
                 return items;
             };
         })
+
+        .filter('dateField', ['$filter', function($filter) {
+            return function (str, item, field) {
+                if (typeof str === 'undefined')
+                    return str;
+
+                if (field.key.match(/date/) !== null) {
+                    var date = new Date(item[field.key]);
+
+                    if (isNaN(date.getTime())) {
+                        date = new Date(item[field.key].replace(' ', 'T'));
+                    }
+                    var filteredDate = $filter('date')(date, 'MMM dd, yyyy');
+                    
+                    if (filteredDate.match(/1969/) !== null)
+                        return '';
+
+                    return filteredDate;
+                }
+
+                return str;
+            };
+        }])
 
         .filter('ucFirst', function() {
             return function(str) {

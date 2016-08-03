@@ -27,7 +27,7 @@
 				<tbody>
 					<tr ng-repeat="item in vm.report.reports" ng-click="vm.findInspection(item.customer_id)">
 						<td ng-repeat="field in vm.report.fields">
-							{{item[field.key]}}
+							{{item[field.key] | dateField:item:field}}
 						</td>
 					</tr>
 				</tbody>
