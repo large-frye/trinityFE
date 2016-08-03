@@ -18,7 +18,8 @@
 				<thead>
 					<tr>
 						<th ng-repeat="field in vm.report.fields">
-							{{field.header}}
+							<span ng-if="field.header === 'Claim Num'">Claim #</span>
+							<span ng-if="field.header !== 'Claim Num'">{{field.header}}</span>
 						</th>
 					</tr>
 				</thead>
