@@ -8,7 +8,12 @@
     UserController.$inject = ['userData', '$modal', 'accountService', '$rootScope'];
     function UserController(userData, $modal, accountService, $rootScope) {
         var vm = this;
-        vm.users = userData.users;
+        vm.users = userData.usersByRoles;
+
+        vm.admins = userData.usersByRoles[2];
+        vm.inspectors = userData.usersByRoles[3];
+        vm.clients = userData.usersByRoles[4];
+
         vm.deleteUser = deleteUser;
 
         activate();
