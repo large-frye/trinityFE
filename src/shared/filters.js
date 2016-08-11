@@ -41,6 +41,23 @@
             };
         })
 
+        .filter('getStatus', function() {
+          return function(status) {
+            console.log(status);
+            if (typeof status === 'undefined')
+              return status;
+
+            switch (status) {
+              case 8:
+              case '8':
+                return 'Reschedule';
+              case 9:
+              case '9':
+                return 'In process';
+            }
+          };
+        })
+
         .filter('showMeta', function () {
             return function (array, search) {
                 if (typeof array !== 'undefined') {
@@ -112,7 +129,7 @@
                         date = new Date(item[field.key].replace(' ', 'T'));
                     }
                     var filteredDate = $filter('date')(date, 'MMM dd, yyyy');
-                    
+
                     if (filteredDate.match(/1969/) !== null)
                         return '';
 

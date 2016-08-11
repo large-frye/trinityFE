@@ -19,7 +19,8 @@
 					<tr>
 						<th ng-repeat="field in vm.report.fields">
 							<span ng-if="field.header === 'Claim Num'">Claim #</span>
-							<span ng-if="field.header !== 'Claim Num'">{{field.header}}</span>
+							<span ng-if="field.header === 'Status_Id'">Status</span>
+							<span ng-if="['Claim Num', 'Status_Id'].indexOf(field.header) == -1">{{field.header}}</span>
 						</th>
 					</tr>
 				</thead>
@@ -27,7 +28,8 @@
 				<tbody>
 					<tr ng-repeat="item in vm.report.reports" ng-click="vm.findInspection(item.customer_id)">
 						<td ng-repeat="field in vm.report.fields">
-							{{item[field.key] | dateField:item:field}}
+							<span ng-if="field.header === 'Status_Id'">{{item[field.key] | getStatus }}</span>
+							<span ng-if="field.header !== 'Status_Id'">{{item[field.key] | dateField:item:field }}</span>
 						</td>
 					</tr>
 				</tbody>
