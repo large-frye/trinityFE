@@ -3,7 +3,7 @@
 <progress-bar loading="vm.loading"></progress-bar>
 
 <div class="alert-fixed">
-    <div ng-repeat="alert in vm.alerts">
+    <div ng-repeat="alert in vm.alerts" ng-click="vm.alerts.pop();">
         <div class="alert alert-{{alert.type}}">{{alert.content}}</div>
     </div>
 </div>
@@ -22,7 +22,7 @@
                 <button type="button" ng-click="vm.selectAll()" class="btn btn-default">Select All</button>
                 <button type="button" ng-click="vm.clearSelected()" class="btn btn-default">Unselect All</button>
                 <button type="button" ng-click="vm.deleteSelected()" class="btn btn-danger" ng-disabled="!vm.photosSelected">Delete Selected</button>
-                
+
             </div>
         </div>
 

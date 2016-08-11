@@ -8,9 +8,9 @@
         .controller('adminInspectionPhotoCtrl', PhotosController);
 
     PhotosController.$inject = ['shared', '$routeParams', 'photos', 'PhotoService', '$log'
-        , '$rootScope', '$modal', '$scope', 'USER_TYPES', 'UserFactory'];
+        , '$rootScope', '$modal', '$scope', 'USER_TYPES', 'UserFactory', 'alert'];
     function PhotosController(shared, $routeParams, photos, PhotoService, $log, $rootScope
-        , $modal, $scope, USER_TYPES, UserFactory) {
+        , $modal, $scope, USER_TYPES, UserFactory, alert) {
         var vm = this;
         vm.photos = photos.photos.categorizedPhotos;
         vm.uploadPhotos = uploadPhotos;
@@ -28,7 +28,7 @@
         vm.reorderModal = reorderModal;
         vm.createPhotosZip = createPhotosZip;
 
-        var FILE_SIZE_CHECK = 30;
+        var FILE_SIZE_CHECK = 100;
         var MAX_FILE_UPLOAD_SIZE = 200;
         var TO_MB = 1000000;
 
@@ -66,18 +66,20 @@
 
             // TODO: make a fn
             if (files.length > MAX_FILE_UPLOAD_SIZE) {
-                vm.alerts = alert.add({
+                vm.alerts = [{
                     title: 'Photos too big!',
                     content: ['The quantity of photos selected exceeds the limit ',
                     'of photos that can be uploaded at one time.  Please try to ',
                     'upload the photos in less than 200 at a time'].join('\n'),
                     type: 'danger'
-                });
+                }];
+                $scope.$apply();
+                $file.replaceWith($file.val('').clone(true));
                 return;
             }
 
             if (findFileSize(files) > FILE_SIZE_CHECK) {
-                vm.alerts = alert.add({
+                vm.alerts = [{
                     title: 'File size check!',
                     content: ['The combined sizes of the photos you are trying to ',
                     'upload is larger than expected.   In the future please reduce ',
@@ -85,8 +87,11 @@
                     'This will shorten the amount of time it takes to upload these photos. ',
                     'If you have any questions on how to do this please contact ',
                     'the office.'].join('\n'),
-                    type: 'warning'
-                });
+                    type: 'danger'
+                }];
+                $scope.$apply();
+                $file.replaceWith($file.val('').clone(true));
+                return;
             }
 
             for (var key in files) {

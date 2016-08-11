@@ -100,15 +100,15 @@
                             }, {
                                 parent: 'Inspector Billing',
                                 link: '/#/inspector/billing'
-                            }, 
+                            },
                             // {
                             //     parent: 'Calendar',
                             //     link: '/#/inspector/calendar'
-                            // }, 
+                            // },
                             // {
                             //     parent: 'Maps',
                             //     link: '/#/inspector/maps'
-                            // }, 
+                            // },
                             {
                                 parent: 'Resources',
                                 children: [{
