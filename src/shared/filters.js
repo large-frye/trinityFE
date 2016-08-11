@@ -28,6 +28,20 @@
             };
         })
 
+        .filter('customAlert', function() {
+          return function(alert) {
+            if (typeof alert === 'undefined')
+              return alert;
+
+            var alerts = alert.split('_');
+            var end = '';
+            alerts.forEach(function(item) {
+              end += item.substr(0, 1).toUpperCase() + item.substr(1, item.length) + ' ';
+            });
+            return end.substr(0, end.length - 1);
+          };
+        })
+
         .filter('inspectionType', function() {
             return function(type) {
                 switch(type) {

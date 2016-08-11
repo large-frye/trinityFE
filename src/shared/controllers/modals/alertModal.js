@@ -20,13 +20,13 @@
             key: 'alert_to_inspector',
             display: 'Alert To Inspector'
         }, {
-            key: 'alert_office',
+            key: 'alert_from_inspector',
             display: 'Alert From Inspector'
         }];
 
         if (customAlerts) {
             vm.alerts = vm.alerts.filter(function(item) {
-                return customAlerts.indexOf(item.key) != -1; 
+                return customAlerts.indexOf(item.key) != -1;
             });
         }
 
@@ -36,7 +36,7 @@
             username: user.profile.first_name + ' ' + user.profile.last_name
         };
         vm.close = close;
-        
+
         activate();
 
         ////////////////
