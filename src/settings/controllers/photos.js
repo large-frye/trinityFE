@@ -7,8 +7,8 @@
         .module('trinity.controllers.settings.photos', [])
         .controller('photoSettingsCtrl', PhotoSettingsCtrl);
 
-    PhotoSettingsCtrl.$inject = ['UserFactory', 'PhotoService', '$log', '$modal', 'alert', '$rootScope', 'CategoryService', 'settingsData'];
-    function PhotoSettingsCtrl(UserFactory, PhotoService, $log, $modal, alert, $rootScope, CategoryService, settingsData) {
+    PhotoSettingsCtrl.$inject = ['UserFactory', 'PhotoService', '$log', '$modal', 'alert', '$rootScope', 'CategoryService', 'settingsData', 'SettingService'];
+    function PhotoSettingsCtrl(UserFactory, PhotoService, $log, $modal, alert, $rootScope, CategoryService, settingsData, SettingService) {
         var vm = this;
         vm.settings = settingsData;
         vm.options = UserFactory.user.getNavOptions();
@@ -19,12 +19,15 @@
         vm.save = save;
         vm.addCategory = addCategory;
         vm.deleteCategory = deleteCategory;
+        vm.bulkUpload = bulkUpload;
+        vm.initBulkUpload = initBulkUpload;
+        vm.createExcel = createExcel;
 
         activate();
 
         ////////////////
 
-        function activate() { 
+        function activate() {
         }
 
         function getSubCategories(id, type, ref) {
@@ -98,7 +101,7 @@
                                 getSubCategories(vm.parentCat2.id, 3);
                             }
                         };
-                    }   
+                    }
                 }
             });
             modal.$promise.then(modal.show);
@@ -112,7 +115,7 @@
                     case 1:
                         getCategories();
                         break;
-                    case 2: 
+                    case 2:
                         getSubCategories(vm.parentCat1.id, 2);
                         break;
                     case 3:
@@ -123,7 +126,7 @@
                 $log.error(err);
             });
         }
-        
+
         function getCategories() {
             return PhotoService.api().getParentCategories({
                 id: -1
@@ -132,6 +135,36 @@
             }, function(err) {
                 $log.error(err);
             });
+        }
+
+        function initBulkUpload() {
+          var $file = angular.element('input[type="file"]');
+          $file.click();
+        }
+
+        function bulkUpload() {
+          var $file = angular.element('input[type="file"]');
+          var fileChooser = $file[0];
+          var files = fileChooser.files;
+          var formData = new FormData();
+
+          formData.append('file', files[0]);
+
+          SettingService.api().bulkUpload(formData, function() {
+
+          }, function(err) {
+            console.error(err);
+          });
+        }
+
+        function createExcel() {
+          return SettingService.api().createExcel(function(data) {
+            var $a = document.createElement('a');
+            $a.setAttribute('href', data.fileLocation);
+            $a.click();
+          }, function(err) {
+            console.error(err);
+          });
         }
     }
 })();

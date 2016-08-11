@@ -60,8 +60,9 @@
                 <hr/>
                 <button type="button" ng-click="vm.save()" class="btn btn-success">Save</button>
                 <button class="btn btn-success" ng-click="vm.addCategory()" style="margin-left:10px;">Add Category</button>
-                <a href="http://api.trinity.dev/settings/categories/create-excel" ng-click="vm.bulkUpload()" class="btn btn-default" 
-                    style="margin-left:10px;" ng-disabled="true">Bulk Upload</a>
+                <button class="btn btn-success" ng-click="vm.createExcel()" style="margin-left:10px;">Create Excel</button>
+                <a ng-click="vm.initBulkUpload()" class="btn btn-default" style="margin-left:10px;" ng-disabled="true">Bulk Upload</a>
+                <input type="file" style="display:none;" onchange="angular.element(this).scope().vm.bulkUpload();" />
             </div>
         </form>
     </div>
