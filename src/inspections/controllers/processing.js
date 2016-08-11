@@ -39,6 +39,7 @@
 			getStatuses();
 			setDates();
 			getInspectionType();
+			setInspectorDetailsHeight();
 		}
 
 		function getStatuses() {
@@ -242,6 +243,16 @@
 					data: vm.inspection
 				}
 			};
+		}
+
+		/**
+		 * TODO: use a directive instead, but this was a time saver
+		 */
+		function setInspectorDetailsHeight() {
+			var $gray = $('.processing-gray');
+			setTimeout(function() {
+				$gray[2].style.height = $gray[1].clientHeight + 'px';
+			});
 		}
 	}
 })();
