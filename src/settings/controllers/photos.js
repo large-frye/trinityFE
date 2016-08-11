@@ -151,7 +151,8 @@
           formData.append('file', files[0]);
 
           SettingService.api().bulkUpload(formData, function() {
-
+            // Refresh our categories
+            getCategories();
           }, function(err) {
             console.error(err);
           });
