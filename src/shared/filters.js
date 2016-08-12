@@ -85,12 +85,9 @@
 
 	.filter('getStatus', function() {
 		return function(status) {
-			console.log(status);
 			if (typeof status === 'undefined')
 				return status;
-
-
-
+        
 			switch (status) {
         case NEW_INSPECTION:
           return 'New Inspection';
