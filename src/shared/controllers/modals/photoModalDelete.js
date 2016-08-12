@@ -5,10 +5,11 @@
         .module('trinity.shared.controllers.modals.photoModalDelete', [])
         .controller('photoModalDeleteCtrl', PhotoModalDeleteController);
 
-    PhotoModalDeleteController.$inject = ['$scope', 'PhotoService', 'callbackPhotos', 'getPhotos' ,'$routeParams', '$log'];
-    function PhotoModalDeleteController($scope, PhotoService, callbackPhotos, getPhotos, $routeParams, $log) {
+    PhotoModalDeleteController.$inject = ['$scope', 'PhotoService', 'callbackPhotos', 'getPhotos' ,'$routeParams', '$log',
+    'setLoading'];
+    function PhotoModalDeleteController($scope, PhotoService, callbackPhotos, getPhotos, $routeParams, $log, setLoading) {
 
-        // Look at a later time but this scope is not translating correctly. 
+        // Look at a later time but this scope is not translating correctly.
 
         var vm = this;
         vm.photos = getPhotos;
@@ -22,10 +23,11 @@
         function activate() { }
 
         function deletePhotos() {
+          $scope.$hide();
+          setLoading(true, 'Deleting photo(s)...');
             PhotoService.api().delete({
                 workorderId: $routeParams.id
             }, { photos: vm.photos }, function(data) {
-                $scope.$hide();
                 callbackPhotos(data);
             }, function(err) {
                 $log.error(err);

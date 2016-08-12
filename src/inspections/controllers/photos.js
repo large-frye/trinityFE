@@ -104,6 +104,7 @@
             formData.append('workorder_id', vm.workorder_id);
 
             vm.loading = true;
+            vm.loadingMsg = "Loading...";
             PhotoService.api().upload({
                 action: vm.workorder_id
             }, formData).$promise.then(function (data) {
@@ -359,7 +360,6 @@
 
         function deleteSelected() {
             var scope = $rootScope.$new();
-
             var deleteModal = deleteModal || $modal({
                 scope: scope,
                 templateUrl: 'src/partials/modals/photos/confirm-delete.html',
@@ -373,10 +373,18 @@
                             }
                             clearSelected();
                             sortPhotos();
+                            vm.loading = false;
+                            vm.loadingMsg = 'Loading...';
                         };
                     },
                     getPhotos: function () {
                         return getSelectedPhotos();
+                    },
+                    setLoading: function() {
+                      return function(loading, msg) {
+                        vm.loading = loading;
+                        vm.loadingMsg = msg;
+                      };
                     }
                 },
                 show: false
@@ -417,6 +425,7 @@
 
         function createPhotosZip() {
             vm.loading = !vm.loading;
+            vm.loadingMsg = "Loading...";
             return PhotoService.api().createPhotosZip({
                 workorderId: vm.workorder_id
             }, function(data) {

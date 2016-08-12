@@ -1,6 +1,6 @@
 <sidebar options="vm.options"></sidebar>
 
-<progress-bar loading="vm.loading"></progress-bar>
+<progress-bar loading="vm.loading" custom-message="vm.loadingMsg"></progress-bar>
 
 <div class="alert-fixed">
     <div ng-repeat="alert in vm.alerts" ng-click="vm.alerts.pop();">
