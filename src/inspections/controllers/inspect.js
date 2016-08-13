@@ -14,7 +14,7 @@
 					$window.scrollTo(0, 0);
 					$scope.newInspection = true;
 				}
-					
+
 
 				$scope.inspection = inspection.order;
 
@@ -50,7 +50,7 @@
 				};
 
 				InspectionService.getInspectionTypes(function (data) {
-					$scope.inspectionTypes = data.types;
+					$scope.inspectionTypes = sortInspectionType(data.types);
 					if (typeof $scope.inspection.inspection_type !== 'undefined') {
 						setInspectionType();
 					}
@@ -224,5 +224,9 @@
 		.controller('modalCtrl', ['$scope', function ($scope) {
 			$scope.title = 'andrew';
 		}]);
+
+		function sortInspectionType(types) {
+			return [types[2], types[0], types[1]];
+		}
 
 } (angular));
