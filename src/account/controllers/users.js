@@ -13,6 +13,7 @@
         vm.admins = userData.usersByRoles[2];
         vm.inspectors = userData.usersByRoles[3];
         vm.clients = userData.usersByRoles[4];
+        vm.officeUsers = userData.usersByRoles[5];
 
         vm.deleteUser = deleteUser;
 

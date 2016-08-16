@@ -125,6 +125,13 @@
                             }]
                         };
 
+                        if (this.user.appRole == 'office') {
+                          var navOptions = options.admin;
+                          return navOptions.filter(function(item) {
+                            return item.parent != 'Settings';
+                          });
+                        }
+
                         return options[this.user.appRole];
                     },
                     initLocalStorageUser: function(user, cb) {
