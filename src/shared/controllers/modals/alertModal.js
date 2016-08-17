@@ -24,11 +24,10 @@
             display: 'Alert From Inspector'
         }];
 
-        if (customAlerts) {
-            vm.alerts = vm.alerts.filter(function(item) {
-                return customAlerts.indexOf(item.key) != -1;
-            });
-        }
+        console.log(customAlerts);
+
+        if (customAlerts)
+            vm.alerts = customAlerts;
 
         vm.save = save;
         vm.alert = {

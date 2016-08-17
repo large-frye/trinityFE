@@ -3,7 +3,8 @@
 
 	angular
 		.module('trinity.inspections.directives.systemAlert', [])
-		.directive('systemAlert', SystemAlert);
+		.directive(
+			'systemAlert', SystemAlert);
 
 	SystemAlert.$inject = ['$modal', '$rootScope'];
 

@@ -6,12 +6,13 @@
         <div ng-if="vm.customAlerts">
           <div ng-repeat="customAlert in vm.customAlerts">
             <div class="col-sm-2">
-                <input type="checkbox" ng-model="vm.inspection[customAlert]" ng-true-value="1" ng-false-value="0"
-                    ng-disabled="!vm.inspection[customAlert]"
-                    ng-click="vm.confirmAlert(vm.inspection.alert_admin, $event, customAlert)"
-                />
+
+                <!-- case in when we have an object as a customAlert and not string -->
+                <input type="checkbox" ng-model="vm.inspection[customAlert.key]" ng-true-value="1" ng-false-value="0"
+                       ng-disabled="!vm.inspection[customAlert.key]"
+                       ng-click="vm.confirmAlert(vm.inspection[customAlert.key], $event, customAlert)" />
             </div>
-            <label class="col-sm-9">{{customAlert | customAlert}}</label>
+            <label class="col-sm-9">{{customAlert.display | customAlert}}</label>
           </div>
         </div>
 

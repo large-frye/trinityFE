@@ -306,7 +306,9 @@
 			<input type="file" name="fileUpload[]" style="display:none;" onchange="angular.element(this).scope().vm.uploadFile();" multiple="[]"/>
 
 			<div class="col-sm-2 centered">
-				<system-alert inspection="vm.workorder" reload-notes="vm.reloadNotes" save="vm.save" custom-alerts="['alert_office', 'alert_to_inspector']"></system-alert>
+				<system-alert inspection="vm.workorder" reload-notes="vm.reloadNotes" save="vm.save"
+							  custom-alerts="[{ key: 'alert_from_inspector', display: 'Alert Office' },
+							  { key: 'alert_to_inspector', display: 'Alert To Inspector' }]"></system-alert>
 			</div>
 
 			<!-- <div class="col-sm-2 centered">
