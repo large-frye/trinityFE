@@ -136,7 +136,7 @@
 
             for (var key in form) {
                 var item = form[key];
-                if (typeof item === 'object' && item.length) {
+                if (typeof item === 'object' && item !== null && item.length) {
                     // Convert array to list
                     form[key] = item.toString();
                 }

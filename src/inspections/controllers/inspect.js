@@ -133,6 +133,7 @@
 						return day > 9 ? day.toString() : '0' + day;
 					}
 
+					$scope.time = $scope.time === null || $scope.time === 'undefined' || $scope.time === '' ? '11:59:00' : $scope.time;
 					inspection.requested_date_of_inspection = new Date(getDate() + ' ' + $scope.time).getTime();
 
 					// Added for logger service

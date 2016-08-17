@@ -7,9 +7,10 @@
             </div>
             <div class="modal-body">
                 <div class="calendar-details-format">
-                    <p>Inspection Type: {{vm.data.inspection_type}}</p>
+                    <p>Inspection Type: {{vm.data.inspection_type | inspectionType}}</p>
                     <p>Claim Number: {{vm.data.claim_num}}</p>
                 </div>
+                <span class="calendar-filler">&nbsp;</span>
 
                 <div class="calendar-details-format">
                     <p>Insured Name: {{vm.data.first_name}} {{vm.data.last_name}}</p>
@@ -17,6 +18,7 @@
                     <p>Insured Phone: {{vm.data.phone_2}}</p>
                     <p>Insured Phone: {{vm.data.phone_3}}</p>
                 </div>
+                <span class="calendar-filler">&nbsp;</span>
 
                 <div class="calendar-details-format">
                     <p>Insured Street: {{vm.data.address}}</p>
@@ -24,6 +26,7 @@
                     <p>Insured State: {{vm.data.state}}</p>
                     <p>Insured Zip: {{vm.data.zip_code}}</p>
                 </div>
+                <span class="calendar-filler">&nbsp;</span>
 
                 <!-- Client -->
                 <div class="calendar-details-format">
@@ -31,23 +34,26 @@
                     <p>Adjuster Name: {{vm.data.adjuster.profile.first_name}} {{vm.data.adjuster.profile.last_name}}</p>
                     <p>Adjuster Phone: {{vm.data.adjuster.profile.phone}}</p>
                     <p>Adjuster Phone: {{vm.data.adjuster.profile.phone_1}}</p>
-                    <p>Adjuster Phone: {{vm.data.adjsuter.profile.phone_2}}</p>
+                    <p>Adjuster Phone: {{vm.data.adjuster.profile.phone_2}}</p>
                 </div>
+                <span class="calendar-filler">&nbsp;</span>
 
                 <!-- Date -->
                 <div class="calendar-details-format">
-                    <p>Date of Inspection: {{vm.data.date_of_inspection | date:'YYYY/mm/dd'}}</p>
+                    <p>Date of Inspection: {{vm.data.date_of_inspection | date:'MMM dd, yyyy'}}</p>
                     <p>Time of Inspection: {{vm.data.date_of_inspection | date:'hh:MM a'}}</p>
                 </div>
+                <span class="calendar-filler">&nbsp;</span>
 
                 <div class="calendar-details-format">
                     <p>Auto Upgrade: {{vm.data.auto_upgrade}}</p>
                     <p>Adjuster Present: {{vm.data.adjuster_present}}</p>
                     <p>Reinspection: {{vm.data.is_reinspection}}</p>
-                    <p>Rein Trinity: {{vm.data.has_tarp}}</p>
+                    <p>Tarp Currently in Place: {{vm.data.has_tarp}}</p>
                     <p>Tarp if Decking is Exposed: {{vm.data.install_tarp}}</p>
                     <p>Scope Interior: {{vm.data.scope_interior}}</p>
                 </div>
+                <span class="calendar-filler">&nbsp;</span>
 
                 <div class="calendar-details-format">
                     <p>Instruction from Insured: {{vm.data.special_instructions_insured}} </p>

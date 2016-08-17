@@ -57,9 +57,11 @@
 		function getInspectors() {
 			UserService.inspectors().$promise.then(function (data) {
 				vm.inspectors = data.inspectors;
-				vm.inspector = vm.inspectors.filter(function (item) {
-					return vm.inspection.inspector_id === item.id;
+				vm.inspector = vm.inspection.inspector_id;
+				vm.fieldInspector = vm.inspectors.filter(function(item) {
+					return vm.inspector === item.id;
 				})[0];
+
 			}, function (err) {
 				$log.err(err);
 			});
@@ -67,7 +69,12 @@
 
 		function setStatus(status) { vm.inspection.status_id = status.id; }
 
-		function setInspector(inspector) { vm.inspection.inspector_id = inspector.id; }
+		function setInspector(id) {
+			vm.inspection.inspector_id = id;
+			vm.fieldInspector = vm.inspectors.filter(function(item) {
+				return vm.inspector === item.id;
+			})[0];
+		}
 
 		function save(isClosed) {
 			var inspection = angular.copy(vm.inspection);
@@ -95,11 +102,14 @@
 				return day > 9 ? day.toString() : '0' + day;
 			}
 
-			if (typeof inspection.date_of_inspection !== 'undefined' && inspection.date_of_inspection.length > 0) {
+			if (typeof inspection.date_of_inspection !== 'undefined') {
+				vm.time = vm.time === null || vm.time === 'undefined' || vm.time === '' ? '11:59:00' : vm.time;
 				inspection.date_of_inspection = new Date(getDate() + ' ' + vm.time).getTime();
 			} else {
 				inspection.date_of_inspection = null;
 			}
+
+
 
 			delete inspection.inspection_val;
 

@@ -299,19 +299,19 @@
 				<div class="col-sm-12 processing-gray" style="margin-left:15px">
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Field Inspector:</label>
-						<div class="col-sm-7">{{vm.inspector.profile.first_name}} {{vm.inspector.profile.last_name}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.profile.first_name}} {{vm.fieldInspector.profile.last_name}}</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspector Phone:</label>
-						<div class="col-sm-7">{{vm.inspector.profile.phone}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.profile.phone}}</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspector Email:</label>
-						<div class="col-sm-7">{{vm.inspector.email}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.email}}</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspector Location:</label>
-						<div class="col-sm-7">{{vm.inspector.profile.state}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.profile.state}}</div>
 					</div>
 
 					<button type="button" class="btn btn-default" ng-click="vm.lockWorkorder()">
@@ -383,7 +383,9 @@
 				<div class="form-group">
 					<label class="col-sm-6 control-label">Inspector</label>
 					<div class="col-sm-6">
-						<select ng-model="vm.inspector" class="form-control" ng-options="inspector.name for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
+						<select ng-model="vm.inspector" class="form-control"
+
+								ng-options="inspector.id as (inspector.profile.first_name+' '+inspector.profile.last_name) for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
 						</select>
 					</div>
 				</div>
