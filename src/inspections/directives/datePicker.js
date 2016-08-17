@@ -32,9 +32,12 @@
     function DatePickerController($scope, $element, $attrs) {
         var vm = this;
         var inc = 0;
+        var NAN_FORMAT = '0NaN/0NaN/NaN';
 
         function activate() {
             vm.selectedDate = getDate(new Date(vm.date));
+            if (vm.selectedDate === NAN_FORMAT)
+                vm.selectedDate = null;
 
             setTimeout(function() {
                 var $datePicker = $element.datepicker({
