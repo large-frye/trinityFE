@@ -102,7 +102,7 @@
 				return day > 9 ? day.toString() : '0' + day;
 			}
 
-			if (typeof inspection.date_of_inspection !== 'undefined') {
+			if (typeof inspection.date_of_inspection !== 'undefined' && inspection.date_of_inspection !== '') {
 				vm.time = vm.time === null || vm.time === 'undefined' || vm.time === '' ? '11:59:00' : vm.time;
 				inspection.date_of_inspection = new Date(getDate() + ' ' + vm.time).getTime();
 			} else {

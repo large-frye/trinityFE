@@ -39,6 +39,7 @@
             if (vm.selectedDate === NAN_FORMAT)
                 vm.selectedDate = null;
 
+
             setTimeout(function() {
                 var $datePicker = $element.datepicker({
                     autoclose: true
@@ -53,13 +54,10 @@
         }
         
         function getDate(date) {
-            // if (!vm.date) {
-            //     return;
-            // }
-            //
-            // vm.date = new Date(vm.date);
-            return getMonth(date) + '/' + getDay(date) + '/' + date.getFullYear();
-
+            var d = getMonth(date) + '/' + getDay(date) + '/' + date.getFullYear();
+            if (d === '12/31/1969')
+                return null;
+            return d;
         }
         
         function getMonth(date) {
