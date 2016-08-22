@@ -49,8 +49,14 @@
 				resolve: {
 					callbackAlertCompleted: function() {
 						return function(data) {
-							vm.inspection = data.workorder;
+							// Definitely not the best way to do this, but if setting the whole object it causes issues
+							// with the adjuster.
+							vm.inspection.alert_admin = data.workorder.alert_admin;
+							vm.inspection.alert_office = data.workorder.alert_office;
+							vm.inspection.alert_to_inspector = data.workorder.alert_to_inspector;
+							vm.inspection.alert_from_inspector = data.workorder.alert_from_inspector;
 							vm.reloadNotes = true;
+							vm.save();
 						};
 					},
 					customAlerts: function() {

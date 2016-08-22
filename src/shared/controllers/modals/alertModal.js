@@ -24,8 +24,6 @@
             display: 'Alert From Inspector'
         }];
 
-        console.log(customAlerts);
-
         if (customAlerts)
             vm.alerts = customAlerts;
 
