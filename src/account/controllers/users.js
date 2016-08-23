@@ -9,19 +9,22 @@
     function UserController(userData, $modal, accountService, $rootScope) {
         var vm = this;
         vm.users = userData.usersByRoles;
-
-        vm.admins = userData.usersByRoles[2];
-        vm.inspectors = userData.usersByRoles[3];
-        vm.clients = userData.usersByRoles[4];
-        vm.officeUsers = userData.usersByRoles[5];
-
         vm.deleteUser = deleteUser;
 
         activate();
 
         ////////////////
 
-        function activate() { }
+        function activate() {
+            setUsers(userData);
+        }
+
+        function setUsers(data) {
+            vm.admins = data.usersByRoles[2];
+            vm.inspectors = data.usersByRoles[3];
+            vm.clients = data.usersByRoles[4];
+            vm.officeUsers = data.usersByRoles[5];
+        }
 
         function deleteUser($event, id) {
             $event.preventDefault();
@@ -37,7 +40,8 @@
                 resolve: {
                     callbackAlertCompleted: function() {
                         return function(data) {
-                            vm.users = data.users;
+                            vm.users = data.usersByRoles;
+                            setUsers(data);
                         };
                     },
                     scope: function() {
