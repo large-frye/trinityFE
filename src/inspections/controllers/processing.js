@@ -103,13 +103,11 @@
 			}
 
 			if (typeof inspection.date_of_inspection !== 'undefined' && inspection.date_of_inspection !== '') {
-				vm.time = vm.time === null || vm.time === 'undefined' || vm.time === '' ? '11:59:00' : vm.time;
+				vm.time = vm.time === null || typeof vm.time === 'undefined' || vm.time === '' ? '11:59:00' : vm.time;
 				inspection.date_of_inspection = new Date(getDate() + ' ' + vm.time).getTime();
 			} else {
 				inspection.date_of_inspection = null;
 			}
-
-
 
 			delete inspection.inspection_val;
 

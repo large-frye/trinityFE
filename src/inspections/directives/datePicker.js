@@ -72,9 +72,12 @@
 
         activate();
 
-        $scope.$watch('vm.date', function(prev, next) {
-            // if (typeof prev === 'number')
-               //  vm.date = getDate();
+        $scope.$watch('vm.selectedDate', function(prev, next) {
+            if (prev !== null && prev.length === 0) {
+                console.log(prev);
+                vm.date = null;
+                vm.selectedDate = null;
+            }
         });
 
     }

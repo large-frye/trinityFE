@@ -108,7 +108,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">DOL:</label>
 							<div class="col-sm-8">
-								<span>{{vm.inspection.date_of_loss | date:YYYY/mm/dd}}</span>
+								<span ng-if="[0,null].indexOf(vm.inspection.date_of_loss)==-1">{{vm.inspection.date_of_loss | date:YYYY/mm/dd}}</span>
 							</div>
 						</div>
 					</div>
@@ -136,7 +136,8 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Requested Date:</label>
-							<div class="col-sm-7">{{vm.inspection.requested_date_of_inspection | date:YYYY/mm/dd}}</div>
+							<div class="col-sm-7" ng-if="[0,null].indexOf(vm.inspection.requested_date_of_inspection)==-1">
+								{{vm.inspection.requested_date_of_inspection | date:YYYY/mm/dd}}</div>
 						</div>
 					</div>
 				</div>
@@ -150,7 +151,8 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Requested Time:</label>
-							<div class="col-sm-7">{{vm.inspection.requested_date_of_inspection | date: 'hh:mm a'}}</div>
+							<div class="col-sm-7" ng-if="[0,null].indexOf(vm.inspection.requested_date_of_inspection)==-1">
+								{{vm.inspection.requested_date_of_inspection | date: 'hh:mm a'}}</div>
 						</div>
 					</div>
 				</div>
@@ -270,7 +272,8 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label class="col-sm-4 control-label no-set-width">Date Received:</label>
-							<div class="col-sm-8">{{vm.inspection.date_received | date:YYYY/mm/dd}}</div>
+							<div class="col-sm-8" ng-if="[0,null].indexOf(vm.inspection.date_received)==-1">
+								{{vm.inspection.date_received | date:YYYY/mm/dd}}</div>
 						</div>
 					</div>
 					<div class="col-sm-6">

@@ -119,8 +119,8 @@
 					if (typeof inspection.inspection_type !== 'undefined')
 						inspection.inspection_type = inspection.inspection_type.id;
 
-					inspection.date_received = new Date(inspection.date_received).getTime();
-					inspection.date_of_loss = new Date(inspection.date_of_loss).getTime();
+					inspection.date_received = inspection.date_received === null ? null : new Date(inspection.date_received).getTime();
+					inspection.date_of_loss = inspection.date_of_loss === null ? null : new Date(inspection.date_of_loss).getTime();
 
 					function getDate() {
 						inspection.requested_date_of_inspection = new Date(inspection.requested_date_of_inspection);
@@ -137,8 +137,9 @@
 						return day > 9 ? day.toString() : '0' + day;
 					}
 
-					$scope.time = $scope.time === null || $scope.time === 'undefined' || $scope.time === '' ? '11:59:00' : $scope.time;
-					inspection.requested_date_of_inspection = new Date(getDate() + ' ' + $scope.time).getTime();
+					$scope.time = $scope.time === null || typeof $scope.time === 'undefined' || $scope.time === '' ? '11:59:00' : $scope.time;
+					inspection.requested_date_of_inspection = inspection.requested_date_of_inspection === null ? null :
+						new Date(getDate() + ' ' + $scope.time).getTime();
 
 					// Added for logger service
 					inspection.updated_by = UserFactory.user.get().id;
