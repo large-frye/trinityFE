@@ -109,6 +109,8 @@
 				inspection.date_of_inspection = null;
 			}
 
+			vm.inspection.date_of_inspection = inspection.date_of_inspection;
+
 			delete inspection.inspection_val;
 
 			InspectionService.create(inspection).$promise.then(function (data) {
