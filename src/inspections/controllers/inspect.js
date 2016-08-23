@@ -44,9 +44,11 @@
 				 * @return {[type]} [description]
 				 */
 				var setAdjuster = function () {
-					$scope.inspection.adjuster = $scope.adjusters.filter(function (adjuster) {
-						return adjuster.id === $scope.inspection.adjuster.id;
-					})[0];
+					if ($scope.inspection.adjuster != null) {
+						$scope.inspection.adjuster = $scope.adjusters.filter(function (adjuster) {
+							return adjuster.id === $scope.inspection.adjuster.id;
+						})[0];
+					}
 				};
 
 				InspectionService.getInspectionTypes(function (data) {
@@ -114,7 +116,9 @@
 
 					// Angular will use the object and we only need the id
 					var inspection = angular.copy($scope.inspection);
-					inspection.inspection_type = inspection.inspection_type.id;
+					if (typeof inspection.inspection_type !== 'undefined')
+						inspection.inspection_type = inspection.inspection_type.id;
+
 					inspection.date_received = new Date(inspection.date_received).getTime();
 					inspection.date_of_loss = new Date(inspection.date_of_loss).getTime();
 
