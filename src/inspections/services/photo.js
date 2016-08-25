@@ -28,7 +28,7 @@
                         'Accept': 'application/json'
                     },
                     params: {
-                        type: 'admin',
+                        type: 'shared',
                         route: 'photos',
                         action: 'zip'
                     },
