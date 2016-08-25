@@ -200,17 +200,23 @@
 				return str;
 
 			if (field.key.match(/date/) !== null) {
-				var date = new Date(item[field.key]);
-
-				if (isNaN(date.getTime())) {
-					date = new Date(item[field.key].replace(' ', 'T'));
-				}
+				var date = new Date(item['raw_date_of_inspection']);
 				var filteredDate = $filter('date')(date, 'MMM dd, yyyy');
 
 				if (filteredDate.match(/1969/) !== null)
 					return '';
 
 				return filteredDate;
+			} else if (field.key.match(/time/) !== null) {
+				date = new Date(item['raw_date_of_inspection']);
+				filteredDate = $filter('date')(date, 'MMM dd, yyyy');
+				var time = new Date(item['raw_date_of_inspection']);
+				var filteredTime = $filter('date')(time, 'hh:mm a');
+
+				if (filteredDate.match(/1969/) !== null)
+					return '';
+
+				return filteredTime;
 			}
 
 			return str;
