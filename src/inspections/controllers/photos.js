@@ -44,7 +44,7 @@
         }
 
         function getSidebarOptions() {
-            if (UserFactory.user.get().appRole === USER_TYPES.ADMIN) {
+            if (UserFactory.user.get().appRole !== USER_TYPES.INSPECTOR) {
                 vm.options = shared.getInspectionSideBar($routeParams.id);
             } else {
                 vm.options = shared.getInspectorInspectionBar($routeParams.id);
