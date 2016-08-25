@@ -127,6 +127,20 @@
 
                         if (this.user.appRole == 'office') {
                           var navOptions = options.admin;
+                          navOptions = navOptions.map(function(item) {
+                              if (item.children) {
+                                  item.children = item.children.map(function(child) {
+                                      child.link = child.link.replace('office', 'admin');
+                                      return child;
+                                  })
+                              }
+
+                              if (item.link)
+                                  item.link = item.link.replace('office', 'admin');
+
+                              return item;
+                          });
+
                           return navOptions.filter(function(item) {
                             return item.parent != 'Settings';
                           });
