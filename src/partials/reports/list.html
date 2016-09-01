@@ -21,8 +21,9 @@
 							<span ng-if="field.header === 'Claim Num'">Claim #</span>
 							<span ng-if="field.header === 'Status_Id'">Status</span>
 							<span ng-if="field.header === 'Insurance Company'">Company</span>
+							<span ng-if="field.header === 'Date Created'">Received</span>
 							<span ng-if="field.header === 'Customer ID' || field.header === 'Customer Id'">WO#</span>
-							<span ng-if="['Claim Num', 'Status_Id', 'Customer ID', 'Customer Id', 'Insurance Company'].indexOf(field.header) == -1">{{field.header}}</span>
+							<span ng-if="['Claim Num', 'Status_Id', 'Customer ID', 'Customer Id', 'Insurance Company', 'Date Created'].indexOf(field.header) == -1">{{field.header}}</span>
 						</th>
 					</tr>
 				</thead>
