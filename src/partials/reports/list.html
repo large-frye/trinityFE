@@ -32,6 +32,7 @@
 						<td ng-repeat="field in vm.report.fields">
 							<span ng-if="field.header === 'Status_Id'">{{item[field.key] | getStatus }}</span>
 							<span ng-if="field.header !== 'Status_Id'">{{item[field.key] | dateField:item:field }}</span>
+							<span ng-if="field.header === 'Insured' && !item[field.key]">{{item['last_name']}}</span>
 						</td>
 					</tr>
 				</tbody>
