@@ -503,6 +503,10 @@ input[type=text].form-control.sm-padding.centered {
     padding: 6px 12px 6px 5px !important;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 @media (min-width: 810px) and (max-width: 909px) {
     .sidebar {
         margin-top: 80px !important;
