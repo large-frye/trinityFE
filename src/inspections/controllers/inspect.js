@@ -46,7 +46,7 @@
 				var setAdjuster = function () {
 					if ($scope.inspection.adjuster != null) {
 						$scope.inspection.adjuster = $scope.adjusters.filter(function (adjuster) {
-							return adjuster.id === $scope.inspection.adjuster.id;
+							return adjuster.user_id === $scope.inspection.adjuster.id || adjuster.id === $scope.inspection.adjuster.id;
 						})[0];
 					}
 				};

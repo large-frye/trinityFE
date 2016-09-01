@@ -302,11 +302,11 @@
 				<div class="col-sm-12 processing-gray" style="margin-left:15px">
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Field Inspector:</label>
-						<div class="col-sm-7">{{vm.fieldInspector.profile.first_name}} {{vm.fieldInspector.profile.last_name}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.first_name}} {{vm.fieldInspector.last_name}}</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspector Phone:</label>
-						<div class="col-sm-7">{{vm.fieldInspector.profile.phone}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.phone}}</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspector Email:</label>
@@ -314,7 +314,7 @@
 					</div>
 					<div class="form-group">
 						<label class="col-sm-4 control-label no-set-width">Inspector Location:</label>
-						<div class="col-sm-7">{{vm.fieldInspector.profile.state}}</div>
+						<div class="col-sm-7">{{vm.fieldInspector.state}}</div>
 					</div>
 
 					<button type="button" class="btn btn-default" ng-click="vm.lockWorkorder()">
@@ -386,9 +386,10 @@
 				<div class="form-group">
 					<label class="col-sm-6 control-label">Inspector</label>
 					<div class="col-sm-6">
-						<select ng-model="vm.inspector" class="form-control"
-
-								ng-options="inspector.id as (inspector.profile.first_name+' '+inspector.profile.last_name) for inspector in vm.inspectors" ng-change="vm.setInspector(vm.inspector)">
+						<select id="inspector-select" 
+							ng-model="vm.inspector" class="form-control"
+								ng-options="inspector.user_id as (inspector.first_name+' '+inspector.last_name) for inspector in vm.inspectors" 
+								ng-change="vm.setInspector(vm.inspector)">
 						</select>
 					</div>
 				</div>

@@ -8,10 +8,10 @@
 
 	AdminProcessingController.$inject = ['shared', '$routeParams', 'InspectionService',
 		'UserService', 'inspection', '$log', 'alert', 'UserFactory', 'FORM', 'INSPECTION_OUTCOMES',
-		'$rootScope', '$modal', 'FileService', '$filter', '$window'];
+		'$rootScope', '$modal', 'FileService', '$filter', '$window', '$interval'];
 	function AdminProcessingController(shared, $routeParams, InspectionService, UserService,
 		inspection, $log, alert, UserFactory, FORM, INSPECTION_OUTCOMES, $rootScope,
-		$modal, FileService, $filter, $window) {
+		$modal, FileService, $filter, $window, $interval) {
 		var vm = this;
 		vm.options = shared.getInspectionSideBar($routeParams.id);
 		vm.inspection = inspection.order;
@@ -29,6 +29,7 @@
 		vm.lockWorkorder = lockWorkorder;
 		vm.setCalendarDetails = setCalendarDetails;
 		vm.showCalendarDetailsModal = showCalendarDetailsModal;
+		vm.refreshSelect2 = refreshSelect2;
 
 		activate();
 
@@ -40,6 +41,7 @@
 			setDates();
 			getInspectionType();
 			setInspectorDetailsHeight();
+			refreshSelect2();
 		}
 
 		function getStatuses() {
@@ -59,7 +61,7 @@
 				vm.inspectors = data.inspectors;
 				vm.inspector = vm.inspection.inspector_id;
 				vm.fieldInspector = vm.inspectors.filter(function(item) {
-					return vm.inspector === item.id;
+					return vm.inspector === item.user_id;
 				})[0];
 
 			}, function (err) {
@@ -72,7 +74,7 @@
 		function setInspector(id) {
 			vm.inspection.inspector_id = id;
 			vm.fieldInspector = vm.inspectors.filter(function(item) {
-				return vm.inspector === item.id;
+				return vm.inspector === item.user_id;
 			})[0];
 		}
 
@@ -263,6 +265,16 @@
 			setTimeout(function() {
 				$gray[2].style.height = $gray[1].clientHeight + 'px';
 			});
+		}
+
+		function refreshSelect2() {
+			var interval = $interval(function () {
+				var $select = $('#inspector-select');
+				if ($select.length > 0) {
+					$select.select2();
+					$interval.cancel(interval);
+				}
+			}, 10);
 		}
 	}
 })();
