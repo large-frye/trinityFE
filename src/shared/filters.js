@@ -223,6 +223,14 @@
 		};
 	}])
 
+	.filter('verifyDate', function() {
+		return function(dateStr) {
+			if (dateStr.match(/1969/) !== null || dateStr.match(/1970/) !== null)
+				return '';
+			return dateStr;
+		};
+	})
+
 	.filter('ucFirst', function() {
 		return function(str) {
 			if (typeof str === 'undefined' || str === null)
