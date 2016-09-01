@@ -200,7 +200,7 @@
 				return str;
 
 			if (field.key.match(/date/) !== null) {
-				var date = new Date(item['raw_date_of_inspection']);
+				var date = field.key.match(/date_of_inspection/) !== null ? new Date(item['raw_date_of_inspection']) : new Date(item[field.key]);
 				var filteredDate = $filter('date')(date, 'MMM dd, yyyy');
 
 				if (filteredDate.match(/1969/) !== null)
