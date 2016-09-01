@@ -5,10 +5,10 @@
 
 		.controller('inspectionsCtrl', ['$scope', 'UserService', 'InspectionService', '$modal', '$routeParams',
 			'inspection', '$location', 'REPORTS', '$timeout', '$window', 'shared', 'UserFactory', 'alert', '$dateParser',
-			'formFactory', 'WorkorderNoteService', 'FORM',
+			'formFactory', 'WorkorderNoteService', 'FORM', '$interval',
 			function ($scope, UserService, InspectionService, $modal, $routeParams,
 				inspection, $location, REPORTS, $timeout, $window, shared, UserFactory, alert, $dateParser, formFactory
-				, WorkorderNoteService, FORM) {
+				, WorkorderNoteService, FORM, $interval) {
 
 				if (!$routeParams.id) {
 					$window.scrollTo(0, 0);
@@ -161,7 +161,7 @@
 
 						// Save note if there is one
 						if ($scope.workorderNote.text) {
-							$scope.saveNote(function() {
+							$scope.saveNote(function () {
 								if (isClosed === 'close')
 									$window.close();
 							});
@@ -224,6 +224,18 @@
 						templateUrl: 'src/app/inspections/partials/create-client-modal.html'
 					});
 				};
+
+				$scope.refreshSelect2 = function refreshSelect2() {
+					var interval = $interval(function () {
+						var $select = $('#adjuster-select');
+						if ($select.length > 0) {
+							$select.select2();
+							$interval.cancel(interval);
+						}
+					}, 10);
+				};
+
+				$scope.refreshSelect2();
 			}
 		])
 
@@ -231,8 +243,8 @@
 			$scope.title = 'andrew';
 		}]);
 
-		function sortInspectionType(types) {
-			return [types[2], types[0], types[1]];
-		}
+	function sortInspectionType(types) {
+		return [types[2], types[0], types[1]];
+	}
 
 } (angular));
