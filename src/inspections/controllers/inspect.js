@@ -44,9 +44,9 @@
 				 * @return {[type]} [description]
 				 */
 				var setAdjuster = function () {
-					if ($scope.inspection.adjuster != null) {
+					if ($scope.inspection.adjuster_id != null) {
 						$scope.inspection.adjuster = $scope.adjusters.filter(function (adjuster) {
-							return adjuster.user_id === $scope.inspection.adjuster.id || adjuster.id === $scope.inspection.adjuster.id;
+							return adjuster.user_id === $scope.inspection.adjuster_id;
 						})[0];
 					}
 				};
