@@ -83,11 +83,16 @@
                                 }, {
                                     name: 'Users', link: '/#/admin/users'
                                 }]
-                            }, {
-                                parent: 'Tasks',
-                                link: '/#/' + this.user.appRole + '/tasks',
-                                icon: 'fa-tasks'
-                            }],
+                            }
+
+                            // TODO: tasks.  
+                            // {
+                            //     parent: 'Tasks',
+                            //     link: '/#/' + this.user.appRole + '/tasks',
+                            //     icon: 'fa-tasks'
+                            // }
+                            
+                            ],
                             inspector: [{
                                 parent: 'Inspections',
                                 children: [{

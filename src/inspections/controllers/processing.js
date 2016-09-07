@@ -36,6 +36,7 @@
 		////////////////
 
 		function activate() {
+			console.log(vm);
 			getInspectors();
 			getStatuses();
 			setDates();

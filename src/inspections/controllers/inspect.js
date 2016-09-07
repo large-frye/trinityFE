@@ -153,10 +153,8 @@
 						// setInspectionType();
 						setAdjuster();
 
-						var role = UserFactory.user.get().appRole;
-
 						if (!isClosed) {
-							$location.path('/' + role + '/inspections/' + data.id);
+							$location.path($location.path().replace('new', data.id));
 						}
 
 						// Save note if there is one
